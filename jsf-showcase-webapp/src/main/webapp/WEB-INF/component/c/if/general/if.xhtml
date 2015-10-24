@@ -1,0 +1,13 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase"
+	template="/WEB-INF/templates/component-1col-60.xhtml">
+
+	<ui:define name="col1">
+		<showcase:example renderedCheckbox="true">
+			<c:if test="#{not jSTLBackingBean.rendered}">
+					Disabled
+			</c:if>
+		</showcase:example>
+	</ui:define>
+
+</ui:composition>

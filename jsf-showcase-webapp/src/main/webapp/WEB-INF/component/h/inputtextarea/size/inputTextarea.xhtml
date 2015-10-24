@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase" template="/WEB-INF/templates/component-2col.xhtml">
+
+	<ui:define name="col1">
+		<h:form>
+			<showcase:example description="#{i18n['h-inputtextarea-size-example-1']}" number="1">
+				<h:inputTextarea id="textarea" cols="50" rows="6" value="#{inputTextModelBean.text}" />
+				<hr />
+				<h:commandButton action="#{inputTextBackingBean.submit}" value="#{i18n['submit']}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton>
+			</showcase:example>
+			<showcase:outputModel>
+				<h:outputText id="modelValue" value="#{inputTextModelBean.text}" />
+			</showcase:outputModel>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="col2">
+		<h:form>
+			<showcase:example description="#{i18n['h-inputtextarea-size-example-2']}" number="2">
+				<h:inputTextarea id="textarea" value="#{inputTextModelBean.text}"
+					style="width: 150px; height: 150px;" />
+				<hr />
+				<h:commandButton action="#{inputTextBackingBean.submit}" value="#{i18n['submit']}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton>
+			</showcase:example>
+			<showcase:outputModel>
+				<h:outputText id="modelValue" value="#{inputTextModelBean.text}" />
+			</showcase:outputModel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

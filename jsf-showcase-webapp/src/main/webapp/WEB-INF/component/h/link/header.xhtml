@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase">
+
+	<showcase:note>
+		<h2>#{i18n['note']}</h2>
+		<alloy:dataList>
+			<alloy:dataItem>
+				<h:link includeViewParams="true" value="h:link" />
+				<h:outputText escape="false" value=" #{i18n['h-link-benefits-description']}" />
+			</alloy:dataItem>
+			<alloy:dataItem>
+				<h:link includeViewParams="true" value="h:outputLink">
+					<f:param name="componentPrefix" value="alloy" />
+					<f:param name="componentName" value="outputLink" />
+					<f:param name="componentUseCase" value="general" />
+				</h:link>
+				<h:outputText escape="false" value=" #{i18n['h-outputlink-benefits-description']}" />
+			</alloy:dataItem>
+		</alloy:dataList>
+	</showcase:note>
+
+</ui:composition>

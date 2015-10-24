@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-transitional.xsd">
+
+	<cc:interface>
+		<cc:attribute name="description" />
+		<cc:attribute name="label" default="#{i18n['component']}" />
+		<cc:attribute name="longDescription" default="false" />
+		<cc:attribute name="number" />
+		<cc:attribute name="renderedCheckbox" default="false" />
+		<cc:attribute name="requiredCheckbox" default="false" />
+		<cc:attribute name="styleClass" />
+	</cc:interface>
+
+	<cc:implementation>
+		<div class="showcase-example #{cc.attrs.styleClass}">
+			<alloy:outputLabel styleClass="example-label">
+				<c:if test="#{cc.attrs.number == null}">
+					<alloy:outputText escape="false" styleClass="example-number" value="#{i18n['example']}" />
+				</c:if>
+				<c:if test="#{cc.attrs.number != null}">
+					<alloy:outputText escape="false" styleClass="example-number" value="#{i18n['example']}&amp;nbsp;#{cc.attrs.number}" />
+				</c:if>
+				<c:if test="#{cc.attrs.description != null}">
+					<alloy:outputText escape="false" value=":&amp;nbsp;#{cc.attrs.description}" style="font-weight: normal;"/>
+				</c:if>
+			</alloy:outputLabel>
+			<div class="example-content">
+				<c:if test="#{(cc.attrs.renderedCheckbox and (facesContext.application.projectStage != 'Production'))}">
+					<span class="component-rendered-checkbox">
+						<alloy:selectBooleanCheckbox immediate="true" value="#{showcaseModelBean.selectedComponent.rendered}">
+							<f:ajax render="@form" />
+						</alloy:selectBooleanCheckbox>
+						<alloy:outputLabel styleClass="inline-label" value="#{i18n['rendered']}" />
+					</span>
+				</c:if>
+				<c:if test="#{cc.attrs.requiredCheckbox}">
+					<span class="component-required-checkbox">
+						<alloy:selectBooleanCheckbox immediate="true" value="#{showcaseModelBean.selectedComponent.required}">
+							<f:ajax render="@form" />
+						</alloy:selectBooleanCheckbox>
+						<alloy:outputLabel styleClass="inline-label" value="#{i18n['required']}" />
+					</span>
+				</c:if>
+				<div class="example-usage">
+					<cc:insertChildren />
+				</div>
+			</div>
+		</div>
+	</cc:implementation>
+
+</ui:component>

@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase" template="/WEB-INF/templates/component-4col.xhtml">
+
+	<ui:define name="col1">
+		<!-- Example 1: Render all messages in a <ul> (the default) -->
+		<h:form>
+			<showcase:example description="#{i18n['h-messages-general-example-1']}" number="1">
+				<h:messages />
+				<h:outputLabel for="inputText" value="#{i18n['text-field']}" />
+				<h:inputText id="inputText" label="#{i18n['text-field']}" required="true"
+					valueChangeListener="#{messageBackingBean.valueChangeListener}" />
+				<br />
+				<h:commandButton action="#{messageBackingBean.submit}" value="#{i18n['submit-and-re-render-form']}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton>
+			</showcase:example>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="col2">
+		<!-- Example 2: Render all messages in a <table> -->
+		<h:form>
+			<showcase:example description="#{i18n['h-messages-general-example-2']}" number="2">
+				<h:messages layout="table" />
+				<h:outputLabel for="inputText" value="#{i18n['text-field']}" />
+				<h:inputText id="inputText" label="#{i18n['text-field']}" required="true"
+					valueChangeListener="#{messageBackingBean.valueChangeListener}" />
+				<br />
+				<h:commandButton action="#{messageBackingBean.submit}" value="#{i18n['submit-and-re-render-form']}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton>
+			</showcase:example>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="col3">
+		<!-- Example 3: Render only global messages in a <ul> -->
+		<h:form>
+			<showcase:example description="#{i18n['h-messages-general-example-3']}" number="3">
+				<h:messages globalOnly="true" layout="table" />
+				<h:outputLabel for="inputText" value="#{i18n['text-field']}" />
+				<h:inputText id="inputText" label="#{i18n['text-field']}" required="true"
+					valueChangeListener="#{messageBackingBean.valueChangeListener}" />
+				<br />
+				<h:commandButton action="#{messageBackingBean.submit}" value="#{i18n['submit-and-re-render-form']}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton>
+			</showcase:example>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

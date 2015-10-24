@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase"	template="/WEB-INF/templates/component-1col-60.xhtml">
+
+	<ui:define name="col1">
+		<h:form>
+			<showcase:example>
+				<ui:repeat value="#{commandModelBean.customers}" var="customer">
+					<h:commandButton actionListener="#{commandBackingBean.selectionListener}"
+						image="#{resource['images:button-edit.png']}" value="#{customer}">
+						<f:ajax render="@form" />
+					</h:commandButton>
+					<h:outputText value=" #{customer.fullName}" />
+					<br />
+				</ui:repeat>
+			</showcase:example>
+			<showcase:outputModel>
+				<h:outputText id="modelValue" value="#{commandModelBean.selectedCustomer.fullName}" />
+			</showcase:outputModel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

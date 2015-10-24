@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml"  xmlns:alloy="http://liferay.com/faces/alloy"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-transitional.xsd">
+
+	<cc:interface>
+		<cc:attribute name="iconSize" default="big" />
+		<cc:attribute name="value" />
+	</cc:interface>
+
+	<cc:implementation>
+		<div class="showcase-note">
+			<h:panelGrid columns="2">
+				<c:choose>
+					<c:when test="#{cc.attrs.iconSize == 'small'}">
+						<alloy:image library="images" name="note.png" style="height: 40px;" />
+					</c:when>
+					<c:otherwise>
+						<alloy:image library="images" name="note.png" />
+					</c:otherwise>
+				</c:choose>
+				<alloy:panelGroup layout="block">
+					<alloy:outputText escape="false" value="#{cc.attrs.value}" />
+					<cc:insertChildren />
+				</alloy:panelGroup>
+			</h:panelGrid>
+		</div>
+	</cc:implementation>
+
+</ui:component>

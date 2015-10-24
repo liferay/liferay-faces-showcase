@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase" template="/WEB-INF/templates/component-1col-80.xhtml">
+
+	<ui:define name="col1">
+		<h:form>
+			<showcase:example>
+				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
+				<h:selectManyCheckbox layout="pageDirection" selectedClass="inline-label" unselectedClass="inline-label"
+					value="#{selectManyModelBean.favoriteIds}">
+					<f:selectItems value="#{selectManyModelBean.liferayBenefits}" var="benefit"
+						itemValue="#{benefit.id}"
+						itemLabel="#{benefit.label}" />
+				</h:selectManyCheckbox>
+				<hr />
+				<h:commandButton action="#{selectManyBackingBean.submit}" value="#{i18n['submit']}">
+					<f:ajax execute="@form" render="@form" />
+				</h:commandButton>
+			</showcase:example>
+			<showcase:outputModel>
+				<ui:repeat id="modelValue" value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
+					<h:outputText value="#{favoriteId}" />
+					<br />
+				</ui:repeat>
+			</showcase:outputModel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
