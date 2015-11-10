@@ -79,17 +79,6 @@
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.liferay.faces.alloy</groupId>
-			<artifactId>liferay-faces-alloy</artifactId>
-			<version>${project.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.liferay.faces.alloy</groupId>
-			<artifactId>liferay-faces-alloy-reslib</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>com.liferay.faces.showcase</groupId>
 			<artifactId>showcase-common</artifactId>
 			<version>${project.version}</version>

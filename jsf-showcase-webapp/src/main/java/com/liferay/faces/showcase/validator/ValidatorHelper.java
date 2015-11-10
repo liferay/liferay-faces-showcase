@@ -13,13 +13,8 @@
  */
 package com.liferay.faces.showcase.validator;
 
-import java.util.Locale;
-
-import javax.faces.FacesException;
 import javax.faces.context.FacesContext;
 
-import com.liferay.faces.alloy.component.inputdate.InputDate;
-import com.liferay.faces.alloy.component.inputtime.InputTime;
 import com.liferay.faces.util.context.MessageContext;
 import com.liferay.faces.util.context.MessageContextFactory;
 import com.liferay.faces.util.factory.FactoryExtensionFinder;
@@ -37,59 +32,5 @@ public class ValidatorHelper {
 		final MessageContext messageContext = messageContextFactory.getMessageContext();
 
 		return messageContext.getMessage(facesContext.getViewRoot().getLocale(), messageId);
-	}
-
-	public static String getMessage(FacesContext facesContext, InputDate inputDate, String messageId) {
-
-		MessageContextFactory messageContextFactory = (MessageContextFactory) FactoryExtensionFinder.getFactory(
-				MessageContextFactory.class);
-		MessageContext messageContext = messageContextFactory.getMessageContext();
-		Object localeObject = inputDate.getLocale(facesContext);
-		Locale locale = getObjectAsLocale(localeObject);
-
-		return messageContext.getMessage(locale, messageId);
-	}
-
-	public static String getMessage(FacesContext facesContext, InputTime inputTime, String messageId) {
-
-		MessageContextFactory messageContextFactory = (MessageContextFactory) FactoryExtensionFinder.getFactory(
-				MessageContextFactory.class);
-		final MessageContext messageContext = messageContextFactory.getMessageContext();
-		final Object localeObject = inputTime.getLocale(facesContext);
-		Locale locale = getObjectAsLocale(localeObject);
-
-		return messageContext.getMessage(locale, messageId);
-	}
-
-	public static Locale getObjectAsLocale(Object localeAsObject) throws FacesException {
-
-		Locale locale = null;
-
-		if (localeAsObject != null) {
-
-			if (localeAsObject instanceof Locale) {
-				locale = (Locale) localeAsObject;
-			}
-			else if (localeAsObject instanceof String) {
-
-				String localeAsString = (String) localeAsObject;
-
-				if (localeAsString.length() > 0) {
-					String[] locales = localeAsString.split("-");
-
-					if (locales.length > 1) {
-						locale = new Locale(locales[0], locales[1]);
-					}
-					else {
-						locale = new Locale(locales[0]);
-					}
-				}
-			}
-			else {
-				throw new FacesException("Unable to convert value to locale.");
-			}
-		}
-
-		return locale;
 	}
 }
