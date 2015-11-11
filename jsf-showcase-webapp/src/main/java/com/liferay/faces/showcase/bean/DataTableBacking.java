@@ -59,7 +59,7 @@ public class DataTableBacking implements Serializable {
 	public DataModel getCustomerOnDemandDataModel() {
 
 		if (customerOnDemandDataModel == null) {
-			customerOnDemandDataModel = new CustomerOnDemandDataModel();
+			customerOnDemandDataModel = new CustomerOnDemandDataModel(getRowsPerPage());
 		}
 
 		return customerOnDemandDataModel;
