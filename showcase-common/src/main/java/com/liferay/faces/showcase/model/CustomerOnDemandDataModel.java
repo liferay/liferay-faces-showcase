@@ -22,7 +22,6 @@ import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-import com.liferay.faces.showcase.bean.DataTableBacking;
 import com.liferay.faces.showcase.comparator.CustomerComparator;
 import com.liferay.faces.showcase.dto.Customer;
 import com.liferay.faces.showcase.service.CustomerService;
@@ -40,7 +39,11 @@ public class CustomerOnDemandDataModel extends OnDemandDataModel<Customer> imple
 
 	// Transient Data members
 	private transient CustomerService customerService;
-	private transient DataTableBacking dataTableBacking;
+	private int rowsPerPage;
+
+	public CustomerOnDemandDataModel(int rowsPerPage) {
+		this.rowsPerPage = rowsPerPage;
+	}
 
 	@Override
 	public int countRows() {
@@ -77,24 +80,8 @@ public class CustomerOnDemandDataModel extends OnDemandDataModel<Customer> imple
 		return customerService;
 	}
 
-	protected DataTableBacking getDataTableBacking() {
-
-		if (dataTableBacking == null) {
-
-			// In order to accommodate clustered environments, the DataTableBacking bean is transient and therefore must
-			// be self-injected.
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			Application application = facesContext.getApplication();
-			ELResolver elResolver = application.getELResolver();
-			ELContext elContext = facesContext.getELContext();
-			dataTableBacking = (DataTableBacking) elResolver.getValue(elContext, null, "dataTableBacking");
-		}
-
-		return dataTableBacking;
-	}
-
 	@Override
 	public int getRowsPerPage() {
-		return getDataTableBacking().getRowsPerPage();
+		return rowsPerPage;
 	}
 }
