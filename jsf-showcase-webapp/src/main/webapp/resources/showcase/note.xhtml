@@ -15,16 +15,16 @@
 			<h:panelGrid columns="2">
 				<c:choose>
 					<c:when test="#{cc.attrs.iconSize == 'small'}">
-						<alloy:image library="images" name="note.png" style="height: 40px;" />
+						<h:graphicImage library="images" name="note.png" style="height: 40px;" />
 					</c:when>
 					<c:otherwise>
-						<alloy:image library="images" name="note.png" />
+						<h:graphicImage library="images" name="note.png" />
 					</c:otherwise>
 				</c:choose>
-				<alloy:panelGroup layout="block">
-					<alloy:outputText escape="false" value="#{cc.attrs.value}" />
+				<h:panelGroup layout="block">
+					<h:outputText escape="false" value="#{cc.attrs.value}" />
 					<cc:insertChildren />
-				</alloy:panelGroup>
+				</h:panelGroup>
 			</h:panelGrid>
 		</div>
 	</cc:implementation>

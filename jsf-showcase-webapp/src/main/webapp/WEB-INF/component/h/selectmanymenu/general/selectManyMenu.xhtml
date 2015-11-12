@@ -1,4 +1,4 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
 	template="/WEB-INF/templates/component-1col-60.xhtml">
@@ -6,7 +6,7 @@
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example renderedCheckbox="true" requiredCheckbox="true">
-				<alloy:field label="#{i18n['favorite-liferay-benefit']}">
+				<bootstrap:field label="#{i18n['favorite-liferay-benefit']}">
 					<h:selectManyMenu id="selectManyMenu" rendered="#{showcaseModelBean.selectedComponent.rendered}"
 						required="#{showcaseModelBean.selectedComponent.required}"
 						value="#{selectManyModelBean.favoriteIds}">
@@ -17,7 +17,7 @@
 						<f:selectItem itemLabel="Open Source" itemValue="5" />
 					</h:selectManyMenu>
 					<h:message for="selectManyMenu" />
-				</alloy:field>
+				</bootstrap:field>
 				<showcase:note iconSize="small" value="#{i18n['note-chromium-issue-4579']}" />
 				<hr />
 				<h:commandButton action="#{selectManyBackingBean.submit}" value="#{i18n['submit']}">

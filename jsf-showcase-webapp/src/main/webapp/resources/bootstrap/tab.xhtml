@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrapFn="http://liferay.com/faces/bootstrap-fn"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:h="http://java.sun.com/jsf/html"	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/2002/08/xhtml/xhtml1-transitional.xsd">
+
+	<cc:interface>
+		<cc:attribute name="styleClass" />
+	</cc:interface>
+
+	<cc:implementation>
+		<c:set value="tab_#{tabViewVarStatus.index}" var="tabClientId" />
+		<c:set value="#{cc.parent.clientId}_tab#{tabViewVarStatus.index}" var="tabClientId" />
+		<div id="#{tabClientId}" class="tab-pane #{tabViewVarStatus.index == 0 ? 'active' : ''} #{cc.attrs.styleClass}">
+			<cc:insertChildren />
+		</div>
+		<h:outputScript>$("##{bootstrapFn:doubleEscapeClientId(tabClientId)}").tab('show');</h:outputScript>
+	</cc:implementation>
+
+</ui:component>

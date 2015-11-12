@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
 	<c:set value="#{showcaseModelBean.selectedComponent}" var="selectedComponent" />
 	<c:set value="#{selectedComponent.key}" var="selectedComponentKey" />
 	<c:set value="#{selectedComponent.useCaseName}" var="selectedComponentUseCaseName" />
-	<h:outputStylesheet name="showcase.css" library="css" />
-	<alloy:row>
-		<alloy:column styleClass="showcase-nav-col" width="#{browserSniffer.ipad ? '30' : '25'}">
-			<alloy:link outcome="home">
-				<alloy:image library="images" name="logo-nav.png" styleClass="logo" />
-			</alloy:link>
-			<alloy:accordion selectedIndex="#{selectedComponent.categoryIndex}" value="#{listModelBean.showcaseCategories}"
-				var="showcaseCategory">
-				<alloy:tab>
+	<h:outputScript library="bootstrap" name="js/jquery.min.js" target="head" />
+	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" target="head" />
+	<h:outputScript library="bootstrap" name="js/bootstrap-collapse.js" target="head" />
+	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+	<h:outputStylesheet library="bootstrap" name="css/bootstrap-responsive.min.css" />
+	<h:outputStylesheet library="bootstrap" name="css/bootstrap-responsive.min.css" />
+	<h:outputStylesheet library="css" name="showcase.css" />
+	<bootstrap:row>
+		<bootstrap:column styleClass="showcase-nav-col" width="#{browserSniffer.ipad ? '30' : '25'}">
+			<h:link outcome="home">
+				<h:graphicImage library="images" name="logo-nav.png" styleClass="logo" />
+			</h:link>
+			<bootstrap:accordion value="#{listModelBean.showcaseCategories}">
+				<c:set value="#{accordionVar}" var="showcaseCategory" />
+				<bootstrap:accordionTab selectedIndex="#{selectedComponent.categoryIndex}">
 					<f:facet name="header">
-						<alloy:panelGroup layout="block">
-							<alloy:image library="images" name="icon-#{showcaseCategory}.png" />
-							<alloy:outputText styleClass="category-name" value="#{i18n[showcaseCategory]}" />
-						</alloy:panelGroup>
+						<h:panelGroup layout="block">
+							<h:graphicImage library="images" name="icon-#{showcaseCategory}.png" />
+							<h:outputText styleClass="category-name" value="#{i18n[showcaseCategory]}" />
+						</h:panelGroup>
 					</f:facet>
-					<alloy:dataList styleClass="nav"
-						value="#{listModelBean.showcaseCategoryMap[showcaseCategory]}" var="showcaseComponent">
-						<alloy:dataItem styleClass="#{(selectedComponentKey == showcaseComponent.key) ? 'active' : ''}">
-							<alloy:link outcome="component" value="#{showcaseComponent}">
+					<bootstrap:dataList styleClass="nav" value="#{listModelBean.showcaseCategoryMap[showcaseCategory]}">
+						<c:set value="#{dataListVar}" var="showcaseComponent" />
+						<bootstrap:dataItem styleClass="#{(selectedComponentKey == showcaseComponent.key) ? 'active' : ''}">
+							<h:link outcome="component" styleClass="alloy-link" value="#{showcaseComponent}">
 								<f:param name="componentPrefix" value="#{showcaseComponent.prefix}" />
 								<f:param name="componentName" value="#{showcaseComponent.lowerCaseName}" />
 								<f:param name="componentUseCase" value="general" />
-								<alloy:icon name="chevron-right" />
-							</alloy:link>
+								<bootstrap:icon name="chevron-right" />
+							</h:link>
 							<ui:fragment rendered="#{selectedComponentKey == showcaseComponent.key}">
-								<alloy:dataList styleClass="nav" value="#{selectedComponent.useCases}"
-									var="useCase">
-										<alloy:dataItem styleClass="#{(selectedComponentUseCaseName == useCase.name) ? 'active' : ''}"
-											style="white-space: nowrap;">
-											<alloy:link value="#{i18n[useCase.name]}">
-												<f:param name="componentPrefix" value="#{selectedComponent.prefix}" />
-												<f:param name="componentName" value="#{selectedComponent.lowerCaseName}" />
-												<f:param name="componentUseCase" value="#{useCase.name}" />
-												<alloy:icon name="chevron-right" />
-											</alloy:link>
-										</alloy:dataItem>
-								</alloy:dataList>
+								<bootstrap:dataList styleClass="nav" value="#{selectedComponent.useCases}">
+									<c:set value="#{dataListVar}" var="useCase" />
+									<bootstrap:dataItem styleClass="#{(selectedComponentUseCaseName == useCase.name) ? 'active' : ''}"
+										style="white-space: nowrap;">
+										<h:link styleClass="alloy-link" value="#{i18n[useCase.name]}">
+											<f:param name="componentPrefix" value="#{selectedComponent.prefix}" />
+											<f:param name="componentName" value="#{selectedComponent.lowerCaseName}" />
+											<f:param name="componentUseCase" value="#{useCase.name}" />
+											<bootstrap:icon name="chevron-right" />
+										</h:link>
+									</bootstrap:dataItem>
+								</bootstrap:dataList>
 							</ui:fragment>
-						</alloy:dataItem>
-					</alloy:dataList>
-				</alloy:tab>
-			</alloy:accordion>
-		</alloy:column>
-		<alloy:column width="#{browserSniffer.ipad ? '70' : '75'}">
-			<alloy:panelGroup layout="block" styleClass="showcase-container">
+						</bootstrap:dataItem>
+					</bootstrap:dataList>
+				</bootstrap:accordionTab>
+			</bootstrap:accordion>
+		</bootstrap:column>
+		<bootstrap:column width="#{browserSniffer.ipad ? '70' : '75'}">
+			<h:panelGroup layout="block" styleClass="showcase-container">
 				<ui:insert name="content" />
-			</alloy:panelGroup>
-			<alloy:panelGroup layout="block" styleClass="showcase-container showcase-info">
-				<alloy:outputText escape="false" value="#{listModelBean.dependencyInfo}" />
-			</alloy:panelGroup>
-		</alloy:column>
-	</alloy:row>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="showcase-container showcase-info">
+				<h:outputText escape="false" value="#{listModelBean.dependencyInfo}" />
+			</h:panelGroup>
+		</bootstrap:column>
+	</bootstrap:row>
 </ui:composition>

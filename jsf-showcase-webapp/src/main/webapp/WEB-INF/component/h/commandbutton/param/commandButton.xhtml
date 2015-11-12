@@ -1,16 +1,16 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"	xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
 	template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example>
-				<alloy:field label="#{i18n['ajax']}">
+				<bootstrap:field label="#{i18n['ajax']}">
 					<h:selectBooleanCheckbox value="#{commandModelBean.ajax}">
 						<f:ajax render="nav" />
 					</h:selectBooleanCheckbox>
-				</alloy:field>
+				</bootstrap:field>
 				<h:commandButton id="nav"
 					action="/views/component.xhtml?faces-redirect=true&amp;componentPrefix=h&amp;componentName=commandbutton&amp;componentUseCase=navigation&amp;foo=1234"
 					value="&lt; #{i18n['back-to-navigation-with']} foo=1234">

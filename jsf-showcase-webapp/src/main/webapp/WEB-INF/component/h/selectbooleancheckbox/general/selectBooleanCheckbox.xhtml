@@ -1,4 +1,4 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
 	template="/WEB-INF/templates/component-1col-60.xhtml">
@@ -6,7 +6,7 @@
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example renderedCheckbox="true">
-				<alloy:field>
+				<bootstrap:field>
 					<f:facet name="label">
 						<h:selectBooleanCheckbox id="checkbox"
 							rendered="#{showcaseModelBean.selectedComponent.rendered}"
@@ -17,7 +17,7 @@
 					<h:outputText styleClass="pad-left" value="#{i18n['i-agree-to-the-terms-of-the-license-agreement']}" />
 					<br />
 					<h:message for="checkbox" />
-				</alloy:field>
+				</bootstrap:field>
 				<hr />
 				<h:commandButton action="#{selectBooleanCheckboxBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />

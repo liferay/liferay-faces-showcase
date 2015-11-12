@@ -1,16 +1,16 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"	xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
 	template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example>
-				<alloy:field label="#{i18n['ajax']}">
+				<bootstrap:field label="#{i18n['ajax']}">
 					<h:selectBooleanCheckbox value="#{commandModelBean.ajax}">
 						<f:ajax render="nav" />
 					</h:selectBooleanCheckbox>
-				</alloy:field>
+				</bootstrap:field>
 				<!-- Navigation based on outcome of navigation-case defined in navigation-rule.xml -->
 				<h:commandButton id="nav" action="toParam" value="#{i18n['to-param-page']} >">
 					<f:ajax disabled="#{!commandModelBean.ajax}" execute="@form" render="@all" />

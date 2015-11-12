@@ -1,23 +1,23 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase">
 
 	<showcase:note>
 		<h2>#{i18n['note']}</h2>
-		<alloy:dataList>
-			<alloy:dataItem>
+		<bootstrap:dataList>
+			<bootstrap:dataItem>
 				<h:link includeViewParams="true" value="h:link" />
 				<h:outputText escape="false" value=" #{i18n['h-link-benefits-description']}" />
-			</alloy:dataItem>
-			<alloy:dataItem>
+			</bootstrap:dataItem>
+			<bootstrap:dataItem>
 				<h:link includeViewParams="true" value="h:outputLink">
 					<f:param name="componentPrefix" value="alloy" />
 					<f:param name="componentName" value="outputLink" />
 					<f:param name="componentUseCase" value="general" />
 				</h:link>
 				<h:outputText escape="false" value=" #{i18n['h-outputlink-benefits-description']}" />
-			</alloy:dataItem>
-		</alloy:dataList>
+			</bootstrap:dataItem>
+		</bootstrap:dataList>
 	</showcase:note>
 
 </ui:composition>
