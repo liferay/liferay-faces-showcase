@@ -6,5 +6,7 @@ Lists of 7 third-party dependencies.
      (The Apache Software License, Version 2.0) Commons IO (commons-io:commons-io:2.2 - http://commons.apache.org/io/)
      (The Apache Software License, Version 2.0) Log4j (log4j:log4j:1.2.14 - http://logging.apache.org/log4j/docs/)
      (The Apache Software License, Version 2.0) jboss-el (org.jboss.seam:jboss-el:2.0.0.GA - no url defined)
-     (Font Awesome OFL License) font-awesome (http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
+     (The Apache Software License, Version 2.0) Prettify (https://github.com/google/code-prettify#license)
+     (MIT License) Twitter Bootstrap (http://getbootstrap.com/getting-started/#license-faqs)
+     (MIT License) jQuery (https://jquery.org/license/)
      The JSF logo is dual licensed under the CDDL and GPL v2 with the Classpath Exception.
