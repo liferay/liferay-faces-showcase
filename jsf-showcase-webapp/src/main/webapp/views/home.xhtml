@@ -1,64 +1,65 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://xmlns.jcp.org/jsf/composite/bootstrap"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core" template="/WEB-INF/templates/showcase-#{showcaseModelBean.deploymentType}.xhtml">
 
 	<ui:define name="content">
-		<h:outputStylesheet name="home.css" library="css" />
+		<h:outputStylesheet library="bootstrap" name="css/bootstrap-ext.css" />
+		<h:outputStylesheet library="css" name="home.css" />
 		<div class="showcase-home">
-			<alloy:image library="images" name="component-showcase.png" />
+			<h:graphicImage library="images" name="component-showcase.png" />
 			<p>
-				<alloy:image library="images" name="jsf-logo.png" style="float: right;" />
-				<alloy:outputText escape="false" value="JavaServer&amp;trade; Faces (JSF) is the standard component-based MVC framework for Java&amp;trade; EE." />
+				<h:graphicImage library="images" name="jsf-logo.png" style="float: right;" />
+				<h:outputText escape="false" value="JavaServer&amp;trade; Faces (JSF) is the standard component-based MVC framework for Java&amp;trade; EE." />
 				<span>JSF applications can be deployed as webapps or as portlets (via the JSF portlet bridge).</span>
 				<span>The Java Community Process<sup>SM</sup> (JCP<sup>SM</sup>) has guided the development of the JSF under the following Java Specification Requests (JSRs):</span>
-				<alloy:panelGrid columns="2">
-					<alloy:dataList>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=127">JSR 127</a> (JSF 1.0/1.1)</alloy:dataItem>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=252">JSR 252</a> (JSF 1.2)</alloy:dataItem>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=301">JSR 301</a> (Portlet 1.0 Bridge + JSF 1.2)</alloy:dataItem>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=314">JSR 314</a> (JSF 2.0/2.1)</alloy:dataItem>
-					</alloy:dataList>
-					<alloy:dataList>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=329">JSR 329</a> (Portlet 2.0 Bridge + JSF 1.2)</alloy:dataItem>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=344">JSR 344</a> (JSF 2.2)</alloy:dataItem>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=372">JSR 372</a> (JSF 2.3)</alloy:dataItem>
-						<alloy:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=378">JSR 378</a> (Portlet 3.0 Bridge + JSF 2.2)</alloy:dataItem>
-					</alloy:dataList>
-				</alloy:panelGrid>
+				<h:panelGrid columns="2">
+					<bootstrap:dataList>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=127">JSR 127</a> (JSF 1.0/1.1)</bootstrap:dataItem>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=252">JSR 252</a> (JSF 1.2)</bootstrap:dataItem>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=301">JSR 301</a> (Portlet 1.0 Bridge + JSF 1.2)</bootstrap:dataItem>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=314">JSR 314</a> (JSF 2.0/2.1)</bootstrap:dataItem>
+					</bootstrap:dataList>
+					<bootstrap:dataList>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=329">JSR 329</a> (Portlet 2.0 Bridge + JSF 1.2)</bootstrap:dataItem>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=344">JSR 344</a> (JSF 2.2)</bootstrap:dataItem>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=372">JSR 372</a> (JSF 2.3)</bootstrap:dataItem>
+						<bootstrap:dataItem><a href="https://www.jcp.org/en/jsr/detail?id=378">JSR 378</a> (Portlet 3.0 Bridge + JSF 2.2)</bootstrap:dataItem>
+					</bootstrap:dataList>
+				</h:panelGrid>
 			</p>
-			<alloy:panel>
+			<bootstrap:panel>
 				<f:facet name="header">
-					<alloy:image library="images" name="jsf-html-basic.png" />
+					<h:graphicImage library="images" name="jsf-html-basic.png" />
 				</f:facet>
 				<p>
 					JSF implementations provide "HTML Basic" component tags which are a standard set of JSF UI components that render HTML elements such as
-					<code><alloy:outputText value="&lt;input />" /></code>
-					<alloy:outputText value=", " />
-					<code><alloy:outputText value="&lt;span />" /></code>
-					<alloy:outputText value=", " />
-					<code><alloy:outputText value="&lt;table />" /></code>
-					<alloy:outputText value=", etc." />
+					<code><h:outputText value="&lt;input />" /></code>
+					<h:outputText value=", " />
+					<code><h:outputText value="&lt;span />" /></code>
+					<h:outputText value=", " />
+					<code><h:outputText value="&lt;table />" /></code>
+					<h:outputText value=", etc." />
 				</p>
 				<p>
 					The Facelet component tags are prefixed with the <code>h:</code> namespace and are compatible with <strong>webapp
 						and portlet environments</strong>.
 				</p>
-			</alloy:panel>
-			<alloy:panel>
+			</bootstrap:panel>
+			<bootstrap:panel>
 				<f:facet name="header">
-					<alloy:image library="images" name="jsf-jstl.png" />
+					<h:graphicImage library="images" name="jsf-jstl.png" />
 				</f:facet>
 				<p>
-					<alloy:outputText escape="false" value="JSF implementations provide a Facelet-compatible subset of the Java&amp;trade; Standard Tag Library (JSTL) tags that are familiar to JavaServer&amp;trade; Pages (JSP) developers." />
+					<h:outputText escape="false" value="JSF implementations provide a Facelet-compatible subset of the Java&amp;trade; Standard Tag Library (JSTL) tags that are familiar to JavaServer&amp;trade; Pages (JSP) developers." />
 				</p>
 				<p>
 					The Facelet component tags are prefixed with the <code>c:</code> namespace and are compatible with <strong>webapp
 						and portlet environments</strong>.
 				</p>
-			</alloy:panel>
-			<alloy:panel>
+			</bootstrap:panel>
+			<bootstrap:panel>
 				<f:facet name="header">
-					<alloy:image library="images" name="jsf-faces-core.png" />
+					<h:graphicImage library="images" name="jsf-faces-core.png" />
 				</f:facet>
 				<p>
 					JSF implementations provide "Faces Core" tags which are a standard set of tags that apply various behaviors and/or actions to JSF UI components.
@@ -67,10 +68,10 @@
 					The Facelet component tags are prefixed with the <code>f:</code> namespace and are compatible with <strong>webapp
 						and portlet environments</strong>.
 				</p>
-			</alloy:panel>
-			<alloy:panel>
+			</bootstrap:panel>
+			<bootstrap:panel>
 				<f:facet name="header">
-					<alloy:image library="images" name="jsf-facelets.png" />
+					<h:graphicImage library="images" name="jsf-facelets.png" />
 				</f:facet>
 				<p>
 					JSF implementations provide "Facelet" tags which are a standard set of tags for use with the Facelet View Declaration Language (VDL).
@@ -79,7 +80,7 @@
 					The Facelet component tags are prefixed with the <code>ui:</code> namespace and are compatible with <strong>webapp
 						and portlet environments</strong>.
 				</p>
-			</alloy:panel>
+			</bootstrap:panel>
 		</div>
 	</ui:define>
 

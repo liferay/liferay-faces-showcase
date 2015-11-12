@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
+	version="2.2">
+	<description><![CDATA[Liferay Faces Bootstrap Functions]]></description>
+	<namespace>http://liferay.com/faces/bootstrap-fn</namespace>
+	<function>
+		<description><![CDATA[Returns an escaped representation of the specified client ID.]]></description>
+		<function-name>columnUnitSize</function-name>
+		<function-class>com.liferay.faces.showcase.util.BootstrapUtil</function-class>
+		<function-signature>java.lang.Integer columnUnitSize(java.lang.Integer)</function-signature>
+	</function>
+	<function>
+		<description><![CDATA[Returns an escaped representation of the specified client ID.]]></description>
+		<function-name>doubleEscapeClientId</function-name>
+		<function-class>com.liferay.faces.showcase.util.BootstrapUtil</function-class>
+		<function-signature>java.lang.String doubleEscapeClientId(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description><![CDATA[Returns an escaped representation of the specified client ID.]]></description>
+		<function-name>singleEscapeClientId</function-name>
+		<function-class>com.liferay.faces.showcase.util.BootstrapUtil</function-class>
+		<function-signature>java.lang.String singleEscapeClientId(java.lang.String)</function-signature>
+	</function>
+</facelet-taglib>

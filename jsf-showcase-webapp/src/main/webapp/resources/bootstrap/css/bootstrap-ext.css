@@ -1,0 +1,71 @@
+.nav {
+    margin-bottom: 2px;
+}
+
+/* bootstrap-panel: bootstrap 3 backport */
+div.bootstrap-panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+div.bootstrap-panel div.bootstrap-panel-body {
+    padding: 15px;
+}
+
+div.bootstrap-panel div.bootstrap-panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+div.bootstrap-panel div.bootstrap-panel-heading>.dropdown .dropdown-toggle {
+    color: inherit;
+}
+
+div.bootstrap-panel .bootstrap-panel-title {
+    color: inherit;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+div.bootstrap-panel .bootstrap-panel-title>a {
+    color: inherit;
+}
+
+div.bootstrap-panel div.bootstrap-panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+div.bootstrap-panel-default {
+    border-color: #ddd;
+}
+
+div.bootstrap-panel-default>div.bootstrap-panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+div.bootstrap-panel-default>div.bootstrap-panel-heading+.bootstrap-panel-collapse>div.bootstrap-panel-body {
+    border-top-color: #ddd;
+}
+
+div.bootstrap-panel-default>div.bootstrap-panel-heading .bootstrap-panel-badge {
+    color: #f5f5f5;
+    background-color: #333;
+}
+
+div.bootstrap-panel-default>div.panel-footer+div.panel-collapse>div.panel-body {
+    border-bottom-color: #ddd;
+}

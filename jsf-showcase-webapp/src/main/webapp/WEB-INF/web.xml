@@ -11,7 +11,7 @@
 	<!-- Inform the JSF runtime (Mojarra) that this application has a custom Facelet tag library. -->
 	<context-param>
 		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
-		<param-value>/WEB-INF/showcase-fn.taglib.xml</param-value>
+		<param-value>/WEB-INF/bootstrap-fn.taglib.xml;/WEB-INF/showcase-fn.taglib.xml</param-value>
 	</context-param>
     <!-- Inform the JSF runtime (Mojarra) that this application is under development. -->
 	<context-param>

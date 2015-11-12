@@ -1,7 +1,8 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:showcaseFn="http://liferay.com/faces/showcase-fn"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="/WEB-INF/templates/showcase-#{showcaseModelBean.deploymentType}.xhtml">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/WEB-INF/templates/showcase-#{showcaseModelBean.deploymentType}.xhtml">
 
 	<ui:define name="content">
 		<f:metadata>
@@ -13,7 +14,11 @@
 				<f:converter converterId="com.liferay.faces.showcase.converter.CountryConverter" />
 			</f:viewParam>
 		</f:metadata>
-		<h:outputStylesheet name="component.css" library="css" />
+		<h:outputScript library="prettify" name="run_prettify.js" target="head" />
+		<h:outputStylesheet library="bootstrap" name="css/bootstrap-ext.css" />
+		<h:outputStylesheet library="css" name="component.css" />
+		<h:outputStylesheet library="prettify" name="prettify.css" />
+		<h:outputStylesheet library="prettify" name="prettify-ext.css" />
 		<c:set value="#{showcaseModelBean.selectedComponent}" var="selectedComponent" />
 		<c:set value="#{selectedComponent.camelCaseName}" var="selectedComponentCamelCaseName" />
 		<c:set value="#{selectedComponent.lowerCaseName}" var="selectedComponentLowerCaseName" />
@@ -25,39 +30,39 @@
 		<c:set value="#{i18n[selectedComponentKey]}" var="selectedComponentDescription" />
 		<c:set value="#{i18n[selectedComponentUseCaseKey]}" var="selectedComponentUseCaseDescription" />
 		<c:set value="vdldoc:#{selectedComponentFullName}" var="selectedComponentDocKey" />
-		<alloy:button onclick="window.open('#{showcaseFn:encodeVDLDocURL(selectedComponentDocKey)}')" style="float: right;"
+		<h:button onclick="window.open('#{showcaseFn:encodeVDLDocURL(selectedComponentDocKey)}')" style="float: right;"
 			value="#{i18n['vdl-documentation']}" />
 		<ui:include src="/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/header.xhtml" />
 		<h3>#{selectedComponentFullName}</h3>
-		<alloy:outputText escape="false" value="#{selectedComponentDescription}" />
+		<h:outputText escape="false" value="#{selectedComponentDescription}" />
 		<h4>#{i18n[selectedComponentUseCaseName]} #{i18n['usage']}</h4>
-		<alloy:outputText escape="false" value="#{selectedComponentUseCaseDescription}" />
+		<h:outputText escape="false" value="#{selectedComponentUseCaseDescription}" />
 		<ui:include
 			src="/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/#{selectedComponentUseCaseName}/#{selectedComponentCamelCaseName}.xhtml" />
 		<h4>#{i18n['source-code']}</h4>
-		<alloy:tabView value="#{showcaseModelBean.selectedComponent.useCaseCodeExamples}" var="useCaseCodeExample">
-			<alloy:tab headerText="#{useCaseCodeExample.fileName}">
-				<alloy:inputSourceCode mode="#{useCaseCodeExample.fileExtension}" readOnly="true" showPrintMargin="false"
-					useWrapMode="false" height="800" width="100%" value="#{useCaseCodeExample.rawText}" />
-			</alloy:tab>
-		</alloy:tabView>
-		<alloy:buttonRow styleClass="text-center">
+		<bootstrap:tabView labelFieldName="fileName" value="#{showcaseModelBean.selectedComponent.useCaseCodeExamples}">
+			<c:set value="#{tabViewVar}" var="useCaseCodeExample" />
+			<bootstrap:tab>
+				<pre class="prettyprint linenums lang-#{useCaseCodeExample.fileExtension}">#{useCaseCodeExample.rawText}</pre>
+			</bootstrap:tab>
+		</bootstrap:tabView>
+		<bootstrap:buttonRow styleClass="text-center">
 			<c:set var="showcaseComponentSuite" value="alloy" />
 			<c:set var="showcaseSourceContainer" value="webapp" />
 			<c:if test="#{selectedComponentPrefix == 'bridge' || selectedComponentPrefix == 'portal' || selectedComponentPrefix == 'portlet'}">
 				<c:set var="showcaseComponentSuite" value="portal" />
 				<c:set var="showcaseSourceContainer" value="portlet" />
 			</c:if>
-			<alloy:button styleClass="btn-default btn-xs"
-				onclick="window.open('https://github.com/liferay/liferay-faces-#{showcaseComponentSuite}/edit/master/demos/showcase/showcase-#{showcaseSourceContainer}/src/main/webapp/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/#{selectedComponentUseCaseName}/#{selectedComponentCamelCaseName}.xhtml');">
-				<alloy:icon name="github" styleClass="showcase-btn-icon" />
-				<alloy:outputText value="#{i18n['improve-this-example']}!" />
-			</alloy:button>
-			<alloy:button styleClass="btn-default btn-xs"
-				onclick="window.open('https://issues.liferay.com/secure/CreateIssue.jspa?pid=12081&amp;issuetype=4');">
-				<alloy:outputText value="#{i18n['request-a-new-example']}" />
-			</alloy:button>
-		</alloy:buttonRow>
+			<h:button
+				onclick="window.open('https://github.com/liferay/liferay-faces-#{showcaseComponentSuite}/edit/master/demos/showcase/showcase-#{showcaseSourceContainer}/src/main/webapp/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/#{selectedComponentUseCaseName}/#{selectedComponentCamelCaseName}.xhtml');"
+				value="#{i18n['improve-this-example']}!" styleClass="btn-default btn-xs">
+				<bootstrap:icon name="github" styleClass="showcase-btn-icon" />
+			</h:button>
+			<h:button
+				onclick="window.open('https://issues.liferay.com/secure/CreateIssue.jspa?pid=12081&amp;issuetype=4');"
+				styleClass="btn-default btn-xs" value="#{i18n['request-a-new-example']}">
+			</h:button>
+		</bootstrap:buttonRow>
 	</ui:define>
 
 </ui:composition>

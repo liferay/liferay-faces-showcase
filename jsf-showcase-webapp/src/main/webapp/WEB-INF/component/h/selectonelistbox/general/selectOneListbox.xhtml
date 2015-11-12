@@ -1,4 +1,4 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:alloy="http://liferay.com/faces/alloy"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://xmlns.jcp.org/jsf/composite/bootstrap"
 	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase"
 	template="/WEB-INF/templates/component-1col-80.xhtml">
@@ -6,7 +6,7 @@
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example renderedCheckbox="true" requiredCheckbox="true">
-				<alloy:field label="#{i18n['favorite-liferay-benefit']}">
+				<bootstrap:field label="#{i18n['favorite-liferay-benefit']}">
 					<h:selectOneListbox id="selectOneListbox"
 						rendered="#{showcaseModelBean.selectedComponent.rendered}"
 						required="#{showcaseModelBean.selectedComponent.required}" size="4"
@@ -19,7 +19,7 @@
 						<f:selectItem itemLabel="Open Source" itemValue="5" />
 					</h:selectOneListbox>
 					<h:message for="selectOneListbox" />
-				</alloy:field>
+				</bootstrap:field>
 				<hr />
 				<h:commandButton action="#{selectOneBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
