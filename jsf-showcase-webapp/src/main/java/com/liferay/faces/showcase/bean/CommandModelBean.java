@@ -15,6 +15,7 @@
  */
 package com.liferay.faces.showcase.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -32,7 +33,7 @@ import com.liferay.faces.showcase.service.CustomerService;
  */
 @ManagedBean
 @ViewScoped
-public class CommandModelBean {
+public class CommandModelBean implements Serializable {
 
 	// Injections
 	@ManagedProperty(value = "#{customerService}")

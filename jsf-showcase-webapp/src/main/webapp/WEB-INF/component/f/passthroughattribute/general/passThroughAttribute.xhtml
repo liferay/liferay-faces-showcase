@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:showcase="http://xmlns.jcp.org/jsf/composite/showcase"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:showcase="http://liferay.com/faces/showcase"
 	template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
@@ -11,9 +11,9 @@
 					<f:ajax execute="passThroughNumber" render="@form"/>
 				</h:commandButton>				
 			</showcase:example>
-			<showcase:outputModel>
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText id="modelValue" value="#{inputTextModelBean.text}"/>
-			</showcase:outputModel>
+			</showcase:results>
 		</h:form>
 	</ui:define>
 
