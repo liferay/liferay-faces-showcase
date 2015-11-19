@@ -1,66 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:showcase="http://liferay.com/faces/showcase"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<c:set value="#{showcaseModelBean.selectedComponent}" var="selectedComponent" />
 	<c:set value="#{selectedComponent.key}" var="selectedComponentKey" />
 	<c:set value="#{selectedComponent.useCaseName}" var="selectedComponentUseCaseName" />
-	<h:outputScript library="bootstrap" name="js/jquery.min.js" target="head" />
-	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" target="head" />
-	<h:outputScript library="bootstrap" name="js/bootstrap-collapse.js" target="head" />
-	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
-	<h:outputStylesheet library="bootstrap" name="css/bootstrap-responsive.min.css" />
-	<h:outputStylesheet library="bootstrap" name="css/bootstrap-responsive.min.css" />
 	<h:outputStylesheet library="css" name="showcase.css" />
-	<bootstrap:row>
-		<bootstrap:column styleClass="showcase-nav-col" width="#{browserSniffer.ipad ? '30' : '25'}">
+	<showcase:row>
+		<showcase:column styleClass="showcase-nav-col" width="#{browserSniffer.ipad ? '30' : '25'}">
 			<h:link outcome="home">
 				<h:graphicImage library="images" name="logo-nav.png" styleClass="logo" />
 			</h:link>
-			<bootstrap:accordion value="#{listModelBean.showcaseCategories}">
-				<c:set value="#{accordionVar}" var="showcaseCategory" />
-				<bootstrap:accordionTab selectedIndex="#{selectedComponent.categoryIndex}">
+			<showcase:accordion selectedIndex="#{selectedComponent.categoryIndex}"
+				value="#{listModelBean.showcaseCategories}" var="showcaseCategory">
+				<showcase:tab>
 					<f:facet name="header">
 						<h:panelGroup layout="block">
 							<h:graphicImage library="images" name="icon-#{showcaseCategory}.png" />
 							<h:outputText styleClass="category-name" value="#{i18n[showcaseCategory]}" />
 						</h:panelGroup>
 					</f:facet>
-					<bootstrap:dataList styleClass="nav" value="#{listModelBean.showcaseCategoryMap[showcaseCategory]}">
-						<c:set value="#{dataListVar}" var="showcaseComponent" />
-						<bootstrap:dataItem styleClass="#{(selectedComponentKey == showcaseComponent.key) ? 'active' : ''}">
+					<showcase:dataList styleClass="nav" value="#{listModelBean.showcaseCategoryMap[showcaseCategory]}"
+						var="showcaseComponent">
+						<showcase:dataItem styleClass="#{(selectedComponentKey == showcaseComponent.key) ? 'active' : ''}">
 							<h:link outcome="component" styleClass="alloy-link" value="#{showcaseComponent}">
 								<f:param name="componentPrefix" value="#{showcaseComponent.prefix}" />
 								<f:param name="componentName" value="#{showcaseComponent.lowerCaseName}" />
 								<f:param name="componentUseCase" value="general" />
-								<bootstrap:icon name="chevron-right" />
+								<showcase:icon name="chevron-right" />
 							</h:link>
 							<ui:fragment rendered="#{selectedComponentKey == showcaseComponent.key}">
-								<bootstrap:dataList styleClass="nav" value="#{selectedComponent.useCases}">
-									<c:set value="#{dataListVar}" var="useCase" />
-									<bootstrap:dataItem styleClass="#{(selectedComponentUseCaseName == useCase.name) ? 'active' : ''}"
+								<showcase:dataList styleClass="nav" value="#{selectedComponent.useCases}" var="useCase">
+									<showcase:dataItem styleClass="#{(selectedComponentUseCaseName == useCase.name) ? 'active' : ''}"
 										style="white-space: nowrap;">
 										<h:link styleClass="alloy-link" value="#{i18n[useCase.name]}">
 											<f:param name="componentPrefix" value="#{selectedComponent.prefix}" />
 											<f:param name="componentName" value="#{selectedComponent.lowerCaseName}" />
 											<f:param name="componentUseCase" value="#{useCase.name}" />
-											<bootstrap:icon name="chevron-right" />
+											<showcase:icon name="chevron-right" />
 										</h:link>
-									</bootstrap:dataItem>
-								</bootstrap:dataList>
+									</showcase:dataItem>
+								</showcase:dataList>
 							</ui:fragment>
-						</bootstrap:dataItem>
-					</bootstrap:dataList>
-				</bootstrap:accordionTab>
-			</bootstrap:accordion>
-		</bootstrap:column>
-		<bootstrap:column width="#{browserSniffer.ipad ? '70' : '75'}">
-			<h:panelGroup layout="block" styleClass="showcase-container">
+						</showcase:dataItem>
+					</showcase:dataList>
+				</showcase:tab>
+			</showcase:accordion>
+		</showcase:column>
+		<showcase:column width="#{browserSniffer.ipad ? '70' : '75'}">
+			<showcase:container>
 				<ui:insert name="content" />
-			</h:panelGroup>
-			<h:panelGroup layout="block" styleClass="showcase-container showcase-info">
+			</showcase:container>
+			<showcase:container styleClass="showcase-info">
 				<h:outputText escape="false" value="#{listModelBean.dependencyInfo}" />
-			</h:panelGroup>
-		</bootstrap:column>
-	</bootstrap:row>
+			</showcase:container>
+		</showcase:column>
+	</showcase:row>
 </ui:composition>

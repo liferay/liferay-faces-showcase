@@ -4,10 +4,6 @@
 	vertical-align: -3px;
 }
 
-.aui .showcase-note td {
-	vertical-align: top;	
-}
-
 .aui code {
 	color: rgb(0, 22, 142);
 }
@@ -19,12 +15,6 @@
 .aui .showcase-nav-col .logo {
 	display: table-caption;
 	margin: 0 auto;
-}
-
-.aui .showcase-container {
-	margin: 0px 4px 0px 4px;
-	padding: 10px 10px 10px;
-	*padding-top: 10px;
 }
 
 .aui .showcase-info {
@@ -78,41 +68,6 @@
 	position: absolute;
 }
 
-.showcase-example,.showcase-attribute-value,.showcase-parameter-value,.showcase-model-value,.showcase-container {
-	border: 1px solid #ddd;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	margin: 15px 0;
-	position: relative;
-}
-
-.showcase-example,.showcase-attribute-value,.showcase-parameter-value,.showcase-model-value {
-	*padding-top: 19px;
-}
-
-.showcase-example label.example-label,.showcase-attribute-value label.attribute-label,.showcase-parameter-value label.parameter-label,.showcase-model-value label.model-label,.showcase-container label.container-label {
-	background-color: #f5f5f5;
-	border-bottom: 1px solid #ddd;
-	border-right: 1px solid #ddd;
-	-webkit-border-radius: 4px 0 4px 0;
-	-moz-border-radius: 4px 0 4px 0;
-	border-radius: 4px 0 4px 0;
-	color: #9da0a4;
-	font-size: 12px;
-	padding: 3px 7px;
-	float: left;
-}
-
-.example-content {
-	clear: both;
-	padding: 7px 19px 14px;
-}
-
-.showcase-example label.example-label span.example-number,.showcase-attribute-value label.attribute-label,.showcase-parameter-value label.parameter-label,.showcase-model-value label.model-label,.showcase-container label.container-label {
-	font-weight: bold;
-}
-
 .showcase-example .alloy-column {
 	line-height: 40px;
 	margin-top: 2px;
@@ -124,7 +79,7 @@
 	border-radius: 3px;
 }
 
-.showcase-panel {
+.showcase-example-panel {
 	border-style: dotted;
 	border-width: 1px;
 	text-align: center;
@@ -201,4 +156,8 @@
 
 .aui .alloy-select-many-listbox, .aui .alloy-select-many-menu, .aui .alloy-select-one-listbox, .aui .alloy-select-one-menu {
 	display: block;
+}
+
+.nav {
+	margin-bottom: 2px;
 }

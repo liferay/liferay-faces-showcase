@@ -1,5 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://liferay.com/faces/showcase"
 	template="/WEB-INF/templates/component-2col.xhtml">
 
 	<ui:define name="col1">
@@ -18,7 +18,7 @@
 		<h:form>
 			<showcase:example description="#{i18n['h-panelgroup-general-example-2']}" number="2" renderedCheckbox="true">
 				<h:panelGroup layout="block" rendered="#{showcaseModelBean.selectedComponent.rendered}"
-					styleClass="showcase-panel">
+					styleClass="showcase-example-panel">
 					#{i18n['this-text-is-inside-a-div-html-tag']}
 				</h:panelGroup>
 			</showcase:example>

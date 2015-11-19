@@ -151,6 +151,24 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.3</version>
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Built-By>Release Manager</Built-By>
+								<Implementation-Title>${project.name}</Implementation-Title>
+								<Implementation-Version>${full.version}</Implementation-Version>
+								<Implementation-Vendor-Id>com.liferay</Implementation-Vendor-Id>
+								<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+							</manifestEntries>
+						</archive>
+						<dependentWarExcludes>WEB-INF/lib/*</dependentWarExcludes>
+						<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${surefire.version}</version>
 				</plugin>

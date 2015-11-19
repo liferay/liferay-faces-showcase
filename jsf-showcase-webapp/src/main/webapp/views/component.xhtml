@@ -1,6 +1,6 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:showcaseFn="http://liferay.com/faces/showcase-fn"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:showcase="http://liferay.com/faces/showcase"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/WEB-INF/templates/showcase-#{showcaseModelBean.deploymentType}.xhtml">
 
@@ -14,11 +14,7 @@
 				<f:converter converterId="com.liferay.faces.showcase.converter.CountryConverter" />
 			</f:viewParam>
 		</f:metadata>
-		<h:outputScript library="prettify" name="run_prettify.js" target="head" />
-		<h:outputStylesheet library="bootstrap" name="css/bootstrap-ext.css" />
 		<h:outputStylesheet library="css" name="component.css" />
-		<h:outputStylesheet library="prettify" name="prettify.css" />
-		<h:outputStylesheet library="prettify" name="prettify-ext.css" />
 		<c:set value="#{showcaseModelBean.selectedComponent}" var="selectedComponent" />
 		<c:set value="#{selectedComponent.camelCaseName}" var="selectedComponentCamelCaseName" />
 		<c:set value="#{selectedComponent.lowerCaseName}" var="selectedComponentLowerCaseName" />
@@ -30,7 +26,7 @@
 		<c:set value="#{i18n[selectedComponentKey]}" var="selectedComponentDescription" />
 		<c:set value="#{i18n[selectedComponentUseCaseKey]}" var="selectedComponentUseCaseDescription" />
 		<c:set value="vdldoc:#{selectedComponentFullName}" var="selectedComponentDocKey" />
-		<h:button onclick="window.open('#{showcaseFn:encodeVDLDocURL(selectedComponentDocKey)}')" style="float: right;"
+		<h:button onclick="window.open('#{showcase:encodeVDLDocURL(selectedComponentDocKey)}')" style="float: right;"
 			value="#{i18n['vdl-documentation']}" />
 		<ui:include src="/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/header.xhtml" />
 		<h3>#{selectedComponentFullName}</h3>
@@ -40,13 +36,13 @@
 		<ui:include
 			src="/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/#{selectedComponentUseCaseName}/#{selectedComponentCamelCaseName}.xhtml" />
 		<h4>#{i18n['source-code']}</h4>
-		<bootstrap:tabView labelFieldName="fileName" value="#{showcaseModelBean.selectedComponent.useCaseCodeExamples}">
-			<c:set value="#{tabViewVar}" var="useCaseCodeExample" />
-			<bootstrap:tab>
-				<pre class="prettyprint linenums lang-#{useCaseCodeExample.fileExtension}">#{useCaseCodeExample.rawText}</pre>
-			</bootstrap:tab>
-		</bootstrap:tabView>
-		<bootstrap:buttonRow styleClass="text-center">
+		<showcase:tabView value="#{showcaseModelBean.selectedComponent.useCaseCodeExamples}"
+			var="useCaseCodeExample">
+			<showcase:tab headerText="#{useCaseCodeExample.fileName}">
+				<showcase:outputSourceCode value="#{useCaseCodeExample.rawText}" />
+			</showcase:tab>
+		</showcase:tabView>
+		<showcase:buttonRow styleClass="text-center">
 			<c:set var="showcaseComponentSuite" value="alloy" />
 			<c:set var="showcaseSourceContainer" value="webapp" />
 			<c:if test="#{selectedComponentPrefix == 'bridge' || selectedComponentPrefix == 'portal' || selectedComponentPrefix == 'portlet'}">
@@ -56,13 +52,13 @@
 			<h:button
 				onclick="window.open('https://github.com/liferay/liferay-faces-#{showcaseComponentSuite}/edit/master/demos/showcase/showcase-#{showcaseSourceContainer}/src/main/webapp/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/#{selectedComponentUseCaseName}/#{selectedComponentCamelCaseName}.xhtml');"
 				value="#{i18n['improve-this-example']}!" styleClass="btn-default btn-xs">
-				<bootstrap:icon name="github" styleClass="showcase-btn-icon" />
+				<showcase:icon name="github" styleClass="showcase-btn-icon" />
 			</h:button>
 			<h:button
 				onclick="window.open('https://issues.liferay.com/secure/CreateIssue.jspa?pid=12081&amp;issuetype=4');"
 				styleClass="btn-default btn-xs" value="#{i18n['request-a-new-example']}">
 			</h:button>
-		</bootstrap:buttonRow>
+		</showcase:buttonRow>
 	</ui:define>
 
 </ui:composition>

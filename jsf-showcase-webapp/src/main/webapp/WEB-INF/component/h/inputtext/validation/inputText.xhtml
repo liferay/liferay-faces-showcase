@@ -1,25 +1,25 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://liferay.com/faces/showcase"
 	template="/WEB-INF/templates/component-2col.xhtml">
 
 	<ui:define name="col1">
 		<h:form>
 			<!-- Example 1: Validating an email address using the validator attribute. -->
 			<showcase:example description="#{i18n['validating-an-email-address-using-validator-attribute']}" number="1">
-				<bootstrap:field>
+				<showcase:field>
 					<h:inputText id="text" validator="#{inputTextBackingBean.emailAddressValidator}"
 						validatorMessage="#{i18n['validator-message']}" value="#{inputTextModelBean.text}" />
 					<h:message for="text" />
-				</bootstrap:field>
+				</showcase:field>
 				<hr />
 				<h:commandButton action="#{inputTextBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton>
 			</showcase:example>
-			<showcase:outputModel>
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText id="modelValue" value="#{inputTextModelBean.text}" />
-			</showcase:outputModel>
+			</showcase:results>
 		</h:form>
 	</ui:define>
 
@@ -27,21 +27,21 @@
 		<!-- Example 2: Validating an email address using an f:validateRegex child tag. -->
 		<h:form>
 			<showcase:example description="#{i18n['validating-an-email-address-using-f-validateregex']}" number="2">
-				<bootstrap:field>
+				<showcase:field>
 					<h:inputText id="text" validatorMessage="#{i18n['validator-message']}"
 						value="#{inputTextModelBean.text}">
 						<f:validateRegex pattern=".+[@].+[.].+" />
 					</h:inputText>
 					<h:message for="text" />
-				</bootstrap:field>
+				</showcase:field>
 				<hr />
 				<h:commandButton action="#{inputTextBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton>
 			</showcase:example>
-			<showcase:outputModel>
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText id="modelValue" value="#{inputTextModelBean.text}" />
-			</showcase:outputModel>
+			</showcase:results>
 		</h:form>
 	</ui:define>
 

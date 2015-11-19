@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:showcase="http://java.sun.com/jsf/composite/showcase" template="/WEB-INF/templates/component-1col-60.xhtml">
+	xmlns:showcase="http://liferay.com/faces/showcase" template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
 		<h:form>
@@ -10,9 +10,9 @@
 				</h:selectBooleanCheckbox>
 				<h:outputText value="#{i18n['i-agree-to-the-terms-of-the-license-agreement']}" />
 			</showcase:example>
-			<showcase:outputModel>
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText value="#{selectBooleanCheckboxModelBean.agree}" />
-			</showcase:outputModel>
+			</showcase:results>
 		</h:form>
 	</ui:define>
 

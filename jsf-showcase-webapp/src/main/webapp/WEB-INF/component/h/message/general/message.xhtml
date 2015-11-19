@@ -1,16 +1,16 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://liferay.com/faces/showcase"
 	template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example description="#{i18n['h-message-general-example-1']}">
-				<bootstrap:field id="field" label="#{i18n['text-field']}">
+				<showcase:field id="field" label="#{i18n['text-field']}">
 					<h:inputText id="inputText" required="true" styleClass="field"
 						valueChangeListener="#{messageBackingBean.valueChangeListener}" />
 					<h:message for="inputText" />
-				</bootstrap:field>
+				</showcase:field>
 				<h:commandButton value="#{i18n['submit-and-re-render-field']}">
 					<f:ajax execute="@form" render="field" />
 				</h:commandButton>

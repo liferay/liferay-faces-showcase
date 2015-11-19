@@ -1,0 +1,1539 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:vdldoc="http://vdldoc.omnifaces.org"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd http://vdldoc.omnifaces.org https://raw.githubusercontent.com/omnifaces/vdldoc/master/src/main/resources/org/omnifaces/vdldoc/resources/vdldoc.taglib.xml.xsd"
+	version="2.0">
+	<description><![CDATA[The Liferay Faces Alloy facelet component tags with the <code>showcase:</code> tag name prefix.]]></description>
+	<namespace>http://liferay.com/faces/showcase</namespace>
+	<function>
+		<description><![CDATA[Returns a URL representing the specified JavaDoc key.]]></description>
+		<function-name>encodeVDLDocURL</function-name>
+		<function-class>com.liferay.faces.showcase.util.ShowcaseUtil</function-class>
+		<function-signature>java.lang.String encodeVDLDocURL(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description><![CDATA[Returns an escaped representation of the specified client ID.]]></description>
+		<function-name>escapeClientId</function-name>
+		<function-class>com.liferay.faces.util.component.ComponentUtil</function-class>
+		<function-signature>java.lang.String escapeClientId(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description><![CDATA[Returns the client ID associated with the specified expression.]]></description>
+		<function-name>findClientId</function-name>
+		<function-class>com.liferay.faces.util.component.ComponentUtil</function-class>
+		<function-signature>java.lang.String findClientId(java.lang.String)</function-signature>
+	</function>
+	<tag>
+		<description><![CDATA[Accordion is a UIData (iterator) component that renders child tabs either statically or dynamically.]]></description>
+		<tag-name>accordion</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.accordion.Accordion</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.accordion.AccordionRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Integer representing the zero-based index representing the selected tab.]]></description>
+			<name>selectedIndex</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The value of this component, which is typically bound via EL to a model bean property. The value can be any of the following types:<ul><li>Any concrete subclass of <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/DataModel.html" target="_blank"><code>DataModel</code></a></li><li>Array (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ArrayDataModel.html" target="_blank"><code>ArrayDataModel</code></a>)</li><li>java.util.Collection (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/CollectionDataModel.html" target="_blank"><code>CollectionDataModel</code></a>)</li><li>java.util.List (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ListDataModel.html" target="_blank"><code>ListDataModel</code></a>)</li><li>java.sql.ResultSet (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ResultSetDataModel.html" target="_blank"><code>ResultSetDataModel</code></a>)</li></ul>]]></description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The name of the variable that is to be introduced into the EL representing the current iteration.]]></description>
+			<name>var</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/accordion/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[ButtonRow is a UIPanel component that renders a <code>&lt;div&gt;</code> element for grouping purposes. Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>buttonRow</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.buttonrow.ButtonRow</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.buttonrow.ButtonRowRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/buttonrow/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Column is a UIColumn component that renders a div with CSS class name <code>col-#{size}-#{span}</code> (for example: <code>col-md-1</code> or <code>col-lg-5</code>).]]></description>
+		<tag-name>column</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.column.Column</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.column.ColumnRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Space-delimited list of component ids that are to participate in the APPLY_REQUEST_VALUES, PROCESS_VALIDATIONS, UPDATE_MODEL_VALUES, and INVOKE_APPLICATION phases of the JSF lifecycle. The following keywords may also appear in the list: <code>@this</code>, <code>@form</code>, <code>@all</code>, <code>@none</code>, <code>@parent</code>. The default value is <code>@parent</code> (meaning, the parent showcase:dataTable).]]></description>
+			<name>execute</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTabe, this is the JavaBean property that is to be used for filtering.]]></description>
+			<name>filterBy</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTable, this is the name of the CSS class that is to be rendered within the class attribute of the table's <code>&lt;td&gt;</code> element inside the <code>&lt;tfoot&gt;</code> element.]]></description>
+			<name>footerClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTable, this is the name of the CSS class that is to be rendered within the class attribute of the table's <code>&lt;th&gt;</code> element inside the <code>&lt;thead&gt;</code> element.]]></description>
+			<name>headerClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTable, this is the text for the column header. This attribute can be used as a convenience instead of specifying a child <code>&lt;f:facet name="header" /&gt;</code> tag.]]></description>
+			<name>headerText</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width that the column will be offset by as a percent. This value selects the offset via the formula <code>offset = (offsetWidth/100)*12 (rounded to the nearest whole number)</code>. If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset.]]></description>
+			<name>offsetWidth</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Space-delimited list of component ids that are to participate in the RENDER_RESPONSE phase of the JSF lifecycle and be re-rendered in the DOM after the response is received from the XmlHttpRequest. The following keywords may also appear in the list: <code>@this</code>, <code>@form</code>, <code>@all</code>, <code>@none</code>, <code>@parent</code>. The default value is <code>@parent</code> (meaning, the parent showcase:dataTable).]]></description>
+			<name>render</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:row and this flag is true, then the column is to be rendered as a <code>&lt;th&gt;</code> element with <code>scope=row</code>.]]></description>
+			<name>rowHeader</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTabe, this is the JavaBean property that is to be used for sorting.]]></description>
+			<name>sortBy</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Indicates the sort order for the column. Valid values are <code>ascending</code>, <code>descending</code>, and <code>none</code>.]]></description>
+			<name>sortOrder</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width of this column as a unit from 1 to 12. This value is rendered as a CSS class as <code>col-#{size}-#{span}</code> (for example if span="4", the CSS class rendered will be <code>col-#{size}-4</code>). If both the width and span attributes are present, the width attribute determines the value of the span number. Please consider using width.]]></description>
+			<name>span</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width of the column as a percent. This value selects the span number via the formula <code>span = (width/100)*12 (rounded to the nearest whole number)</code>. If both the width and span attributes are present, the width attribute determines the value of the span number.]]></description>
+			<name>width</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/column/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Container is a UIPanel component that renders a <code>&lt;div&gt;</code> element and a <code>&lt;label&gt;</code> element in order to wrap/decorate results. Since it extends PanelGroup, it supports all the features of showcase:panelGroup.]]></description>
+		<tag-name>container</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.container.Container</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.container.ContainerRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>div</code> (default) or a <code>span</code>. If the value of this attribute is <code>block</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/container/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[DataItem is a UIColumn component component that is designed to be used as a child of DataList and renders its children inside a <code>&lt;li&gt;</code> or <code>&lt;dt&gt;</code> element.]]></description>
+		<tag-name>dataItem</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.dataitem.DataItem</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.dataitem.DataItemRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/dataitem/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[DataList is a UIData (iterator) component that renders <code>&lt;ul&gt;</code> (unordered), <code>&lt;ol&gt;</code> (ordered), or <code>&lt;dl&gt;</code> (description) lists.]]></description>
+		<tag-name>dataList</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.datalist.DataList</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.datalist.DataListRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The type of the list to render. Valid values are "unordered", "ordered" and "description". The default value is <code>"unordered"</code>.]]></description>
+			<name>type</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The value of this component, which is typically bound via EL to a model bean property. The value can be any of the following types:<ul><li>Any concrete subclass of <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/DataModel.html" target="_blank"><code>DataModel</code></a></li><li>Array (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ArrayDataModel.html" target="_blank"><code>ArrayDataModel</code></a>)</li><li>java.util.Collection (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/CollectionDataModel.html" target="_blank"><code>CollectionDataModel</code></a>)</li><li>java.util.List (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ListDataModel.html" target="_blank"><code>ListDataModel</code></a>)</li><li>java.sql.ResultSet (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ResultSetDataModel.html" target="_blank"><code>ResultSetDataModel</code></a>)</li></ul>]]></description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The name of the variable that is to be introduced into the EL representing the current iteration.]]></description>
+			<name>var</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/datalist/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Example is a UIPanel component that renders a <code>&lt;div&gt;</code> element. Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>example</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.example.Example</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.example.ExampleRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The description the component.]]></description>
+			<name>description</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>span</code> (default) or a <code>div</code>. If the value of this attribute is <code>"block"</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The number of the example. The default value is <code>0</code>.]]></description>
+			<name>number</name>
+			<required>false</required>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Flag indicating whether or not a "Rendered" checkbox should be included. The default value is <code>false</code>.]]></description>
+			<name>renderedCheckbox</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Flag indicating whether or not a "Required" checkbox should be included. The default value is <code>false</code>.]]></description>
+			<name>requiredCheckbox</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/example/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Field is a UIPanel component that renders a <code>&lt;div&gt;</code> element and a <code>&lt;label&gt;</code> element in order to wrap a field. Since it extends PanelGroup, it supports all the features of showcase:panelGroup.]]></description>
+		<tag-name>field</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.field.Field</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.field.FieldRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text value for the rendered &lt;label&gt; element.]]></description>
+			<name>label</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, the label will be rendered before the rendered children. The default value is <code>true</code>.]]></description>
+			<name>labelFirst</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>div</code> (default) or a <code>span</code>. If the value of this attribute is <code>block</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/field/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Icon is a component that renders a span which contains an icon specified by the name attribute.]]></description>
+		<tag-name>icon</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.icon.Icon</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.icon.IconRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The color of the icon which this component will render. Valid values include black (the default) and white.]]></description>
+			<name>color</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The icon which this component will render. A list of valid icons can be found at <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">Bootstrap Base CSS</a>. <b>Note:</b> icon names must be specified without the <code>glyphicon glyphicon-</code> prefix.]]></description>
+			<name>name</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/icon/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Note is a UIPanel component that renders a <code>&lt;div&gt;</code> element with with a special icon representing a note.]]></description>
+		<tag-name>note</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.note.Note</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.note.NoteRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>span</code> (default) or a <code>div</code>. If the value of this attribute is <code>"block"</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, the small version of the icon will be used. The default value is <code>false</code>.]]></description>
+			<name>smallIcon</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/note/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[outputSourceCode is an <a href="http://docs.oracle.com/javaee/7/api/javax/faces/component/html/HtmlOutputText.html" target="_blank"><code>HtmlOutputText</code></a> component that delegates rendering to its JSF renderer.]]></description>
+		<tag-name>outputSourceCode</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.outputsourcecode.OutputSourceCode</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.outputsourcecode.OutputSourceCodeRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The class name of the converter instance that is to be used by this component.]]></description>
+			<name>converter</name>
+			<required>false</required>
+			<type>javax.faces.convert.Converter</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the reading direction for the element For example, right to left (RTL), or left to right (LTR).]]></description>
+			<name>dir</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When false, markup will not be escaped. The default value is <code>true</code>.]]></description>
+			<name>escape</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the language code used in the element.]]></description>
+			<name>lang</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The name of the programming language that the editor is editing or displaying.]]></description>
+			<name>mode</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the various WAI-ARIA roles that the element is used for.]]></description>
+			<name>role</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the title of the element.]]></description>
+			<name>title</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The value of this component, which is typically bound via EL to a model bean property.]]></description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/outputsourcecode/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Panel is a UIPanel component that renders a <code>&lt;div&gt;</code> element with three child <code>&lt;div&gt;</code> elements (one for header, body, and footer). Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>panel</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.panel.Panel</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.panel.PanelRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text to place in the footer of the component.]]></description>
+			<name>footerText</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text to place in the header of the component.]]></description>
+			<name>headerText</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>span</code> (default) or a <code>div</code>. If the value of this attribute is <code>"block"</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/panel/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[PanelGroup is a UIPanel component that renders a <code>&lt;span&gt;</code> or a <code>&lt;div&gt;</code> element for grouping purposes. Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>panelGroup</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.panelgroup.PanelGroup</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.panelgroup.PanelGroupRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>span</code> (default) or a <code>div</code>. If the value of this attribute is <code>"block"</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/panelgroup/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[PanelValue is a UIPanel component that renders a <code>&lt;div&gt;</code> element and a <code>&lt;label&gt;</code> element in order to wrap/decorate results. Since it extends PanelGroup, it supports all the features of showcase:panelGroup.]]></description>
+		<tag-name>results</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.results.Results</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.results.ResultsRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text value for the rendered &lt;label&gt; element.]]></description>
+			<name>label</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>div</code> (default) or a <code>span</code>. If the value of this attribute is <code>block</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when this component is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a double click event occurs.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keydown event occurs.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keypress event occurs.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a keyup event occurs.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousedown event occurs.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mousemove event occurs.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseout event occurs.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseover event occurs.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to execute when a mouseup event occurs.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/results/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Row is a UIPanel component that renders a <code>&lt;div&gt;</code> and is designed to be used in conjunction with showcase:column child component tags.]]></description>
+		<tag-name>row</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.row.Row</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.row.RowRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/row/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Tab is a panel component that renders nested/child tags as content within itself.]]></description>
+		<tag-name>tab</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.tab.Tab</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.tab.TabRenderer</renderer-type>
+			<handler-class>com.liferay.faces.showcase.component.tab.internal.TabHandler</handler-class>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:tab is a child of showcase:accordion, this is the name of the CSS class that is to be rendered within the class attribute of the content &lt;div&gt;]]></description>
+			<name>contentClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, the component will be disabled, and the user will be unable to intercat with the component. The default value is <code>false</code>.]]></description>
+			<name>disabled</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:tab is a child of showcase:accordion, this is the name of the CSS class that is to be rendered within the class attribute of the header &lt;div&gt;]]></description>
+			<name>headerClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text to place in the header of the component.]]></description>
+			<name>headerText</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/tab/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[TabView is an iterator component that renders tabs either statically or dynamically.]]></description>
+		<tag-name>tabView</tag-name>
+		<component>
+			<component-type>com.liferay.faces.showcase.component.tabview.TabView</component-type>
+			<renderer-type>com.liferay.faces.showcase.component.tabview.TabViewRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The the height (in pixels) of the rendered <code>&lt;div&gt;</code>.]]></description>
+			<name>height</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A unique identifier for this component.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When this flag is true, this component will be rendered to there response. When false, it will not be rendered to the response. The default value is <code>true</code>.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Integer representing the zero-based index representing the selected tab.]]></description>
+			<name>selectedIndex</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML passthrough attribute specifying the css style of the element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[List of CSS class names (separated by spaces) that are to be rendered within the class attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The value of this component, which is typically bound via EL to a model bean property. The value can be any of the following types:<ul><li>Any concrete subclass of <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/DataModel.html" target="_blank"><code>DataModel</code></a></li><li>Array (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ArrayDataModel.html" target="_blank"><code>ArrayDataModel</code></a>)</li><li>java.util.Collection (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/CollectionDataModel.html" target="_blank"><code>CollectionDataModel</code></a>)</li><li>java.util.List (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ListDataModel.html" target="_blank"><code>ListDataModel</code></a>)</li><li>java.sql.ResultSet (automatically wrapped with <a href="http://docs.oracle.com/javaee/7/api/javax/faces/model/ResultSetDataModel.html" target="_blank"><code>ResultSetDataModel</code></a>)</li></ul>]]></description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The name of the variable that is to be introduced into the EL representing the current iteration.]]></description>
+			<name>var</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<tag-extension>
+			<vdldoc:example-url>http://www.liferayfaces.org/web/guest/showcase/-/component/showcase/tabview/general</vdldoc:example-url>
+			<vdldoc:since>2.0.0</vdldoc:since>
+		</tag-extension>
+	</tag>
+</facelet-taglib>

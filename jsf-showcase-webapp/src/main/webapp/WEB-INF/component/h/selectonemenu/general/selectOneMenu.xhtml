@@ -1,12 +1,12 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:bootstrap="http://java.sun.com/jsf/composite/bootstrap"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://java.sun.com/jsf/composite/showcase"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:showcase="http://liferay.com/faces/showcase"
 	template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example renderedCheckbox="true" requiredCheckbox="true">
-				<bootstrap:field label="#{i18n['favorite-liferay-benefit']}">
+				<showcase:field label="#{i18n['favorite-liferay-benefit']}">
 					<h:selectOneMenu id="selectOneMenu" rendered="#{showcaseModelBean.selectedComponent.rendered}"
 						required="#{showcaseModelBean.selectedComponent.required}"
 						value="#{selectOneModelBean.favoriteId}">
@@ -18,15 +18,15 @@
 						<f:selectItem itemLabel="Open Source" itemValue="5" />
 					</h:selectOneMenu>
 					<h:message for="selectOneMenu" />
-				</bootstrap:field>
+				</showcase:field>
 				<hr />
 				<h:commandButton action="#{selectOneBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton>
 			</showcase:example>
-			<showcase:outputModel>
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText id="modelValue" value="#{selectOneModelBean.favoriteId}" />
-			</showcase:outputModel>
+			</showcase:results>
 		</h:form>
 	</ui:define>
 

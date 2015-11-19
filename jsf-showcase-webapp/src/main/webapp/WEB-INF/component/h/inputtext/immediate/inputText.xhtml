@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:showcase="http://java.sun.com/jsf/composite/showcase" template="/WEB-INF/templates/component-2col.xhtml">
+	xmlns:showcase="http://liferay.com/faces/showcase" template="/WEB-INF/templates/component-2col.xhtml">
 
 	<ui:define name="col1">
 		<!-- Example 1: ValueChangeListener execution when immediate is true -->
@@ -14,9 +14,9 @@
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton>
 			</showcase:example>
-			<showcase:outputModel>
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText id="modelValue" value="#{inputTextModelBean.text}" />
-			</showcase:outputModel>
+			</showcase:results>
 		</h:form>
 	</ui:define>
 
@@ -32,9 +32,9 @@
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton>
 			</showcase:example>
-			<showcase:outputModel>
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText id="modelValue" value="#{inputTextModelBean.text}" />
-			</showcase:outputModel>
+			</showcase:results>
 		</h:form>
 	</ui:define>
 

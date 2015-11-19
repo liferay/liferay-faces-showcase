@@ -1,0 +1,433 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<facelet-taglib>
+	<description><![CDATA[The Liferay Faces Alloy facelet component tags with the <code>showcase:</code> tag name prefix.]]></description>
+	<namespace>http://liferay.com/faces/showcase</namespace>
+	<taglib-extension>
+		<component-output-directory>${project.build.sourceDirectory}/com/liferay/faces</component-output-directory>
+		<taglib-xml-output-directory>${project.build.sourceDirectory}/../resources/META-INF</taglib-xml-output-directory>
+		<authors>
+			Bruno Basto,
+			Kyle Stiemann
+		</authors>
+		<copyright-year>${copyright.year}</copyright-year>
+		<default-since>2.0.0</default-since>
+		<faces-spec-version>${faces.spec.version}</faces-spec-version>
+	</taglib-extension>
+	<function>
+		<description><![CDATA[Returns an escaped representation of the specified client ID.]]></description>
+		<function-name>escapeClientId</function-name>
+		<function-class><![CDATA[com.liferay.faces.util.component.ComponentUtil]]></function-class>
+		<function-signature><![CDATA[java.lang.String escapeClientId(java.lang.String)]]></function-signature>
+	</function>
+	<function>
+		<description><![CDATA[Returns the client ID associated with the specified expression.]]></description>
+		<function-name>findClientId</function-name>
+		<function-class><![CDATA[com.liferay.faces.util.component.ComponentUtil]]></function-class>
+		<function-signature><![CDATA[java.lang.String findClientId(java.lang.String)]]></function-signature>
+	</function>
+	<function>
+		<description><![CDATA[Returns a URL representing the specified JavaDoc key.]]></description>
+		<function-name>encodeVDLDocURL</function-name>
+		<function-class>com.liferay.faces.showcase.util.ShowcaseUtil</function-class>
+		<function-signature>java.lang.String encodeVDLDocURL(java.lang.String)</function-signature>
+	</function>
+	<!-- generate-taglib-xml="false" tags for common attributes -->
+	<!-- /Common -->
+	<!-- /generate-taglib-xml="false" tags for common attributes -->
+	<tag>
+		<description><![CDATA[Accordion is a UIData (iterator) component that renders child tabs either statically or dynamically.]]></description>
+		<tag-name>accordion</tag-name>
+		<attribute>
+			<description><![CDATA[Integer representing the zero-based index representing the selected tab.]]></description>
+			<name>selectedIndex</name>
+			<type><![CDATA[java.lang.Integer]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited uiDataInherited</extends-tags>
+			<parent-class><![CDATA[javax.faces.component.UIData]]></parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[ButtonRow is a UIPanel component that renders a <code>&lt;div&gt;</code> element for grouping purposes. Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>buttonRow</tag-name>
+		<tag-extension>
+			<delegate-renderer-type><![CDATA["javax.faces.Group"]]></delegate-renderer-type>
+			<extends-tags>htmlCommonEventsInherited</extends-tags>
+			<extra-style-classes>btn-group</extra-style-classes>
+			<parent-class><![CDATA[javax.faces.component.html.HtmlPanelGroup]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.util.render.DelegatingRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Column is a UIColumn component that renders a div with CSS class name <code>col-#{size}-#{span}</code> (for example: <code>col-md-1</code> or <code>col-lg-5</code>).]]></description>
+		<tag-name>column</tag-name>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA["@parent"]]></default-value>
+			</attribute-extension>
+			<description><![CDATA[Space-delimited list of component ids that are to participate in the APPLY_REQUEST_VALUES, PROCESS_VALIDATIONS, UPDATE_MODEL_VALUES, and INVOKE_APPLICATION phases of the JSF lifecycle. The following keywords may also appear in the list: <code>@this</code>, <code>@form</code>, <code>@all</code>, <code>@none</code>, <code>@parent</code>. The default value is <code>@parent</code> (meaning, the parent showcase:dataTable).]]></description>
+			<name>execute</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTabe, this is the JavaBean property that is to be used for filtering.]]></description>
+			<name>filterBy</name>
+			<type><![CDATA[java.lang.Object]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTable, this is the name of the CSS class that is to be rendered within the class attribute of the table's <code>&lt;td&gt;</code> element inside the <code>&lt;tfoot&gt;</code> element.]]></description>
+			<name>footerClass</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTable, this is the name of the CSS class that is to be rendered within the class attribute of the table's <code>&lt;th&gt;</code> element inside the <code>&lt;thead&gt;</code> element.]]></description>
+			<name>headerClass</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTable, this is the text for the column header. This attribute can be used as a convenience instead of specifying a child <code>&lt;f:facet name="header" /&gt;</code> tag.]]></description>
+			<name>headerText</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width that the column will be offset by as a percent. This value selects the offset via the formula <code>offset = (offsetWidth/100)*12 (rounded to the nearest whole number)</code>. If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset.]]></description>
+			<name>offsetWidth</name>
+			<type><![CDATA[java.lang.Integer]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA["@parent"]]></default-value>
+			</attribute-extension>
+			<description><![CDATA[Space-delimited list of component ids that are to participate in the RENDER_RESPONSE phase of the JSF lifecycle and be re-rendered in the DOM after the response is received from the XmlHttpRequest. The following keywords may also appear in the list: <code>@this</code>, <code>@form</code>, <code>@all</code>, <code>@none</code>, <code>@parent</code>. The default value is <code>@parent</code> (meaning, the parent showcase:dataTable).]]></description>
+			<name>render</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[When showcase:column is a child of showcase:row and this flag is true, then the column is to be rendered as a <code>&lt;th&gt;</code> element with <code>scope=row</code>.]]></description>
+			<name>rowHeader</name>
+			<type><![CDATA[boolean]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:dataTabe, this is the JavaBean property that is to be used for sorting.]]></description>
+			<name>sortBy</name>
+			<type><![CDATA[java.lang.Object]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Indicates the sort order for the column. Valid values are <code>ascending</code>, <code>descending</code>, and <code>none</code>.]]></description>
+			<name>sortOrder</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width of this column as a unit from 1 to 12. This value is rendered as a CSS class as <code>col-#{size}-#{span}</code> (for example if span="4", the CSS class rendered will be <code>col-#{size}-4</code>). If both the width and span attributes are present, the width attribute determines the value of the span number. Please consider using width.]]></description>
+			<name>span</name>
+			<type><![CDATA[java.lang.Integer]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width of the column as a percent. This value selects the span number via the formula <code>span = (width/100)*12 (rounded to the nearest whole number)</code>. If both the width and span attributes are present, the width attribute determines the value of the span number.]]></description>
+			<name>width</name>
+			<type><![CDATA[java.lang.Integer]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
+			<parent-class><![CDATA[javax.faces.component.html.HtmlColumn]]></parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Container is a UIPanel component that renders a <code>&lt;div&gt;</code> element and a <code>&lt;label&gt;</code> element in order to wrap/decorate results. Since it extends PanelGroup, it supports all the features of showcase:panelGroup.]]></description>
+		<tag-name>container</tag-name>
+		<attribute>
+			<attribute-extension>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>div</code> (default) or a <code>span</code>. If the value of this attribute is <code>block</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>panelGroupInherited</extends-tags>
+			<parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.PanelGroupBlockLayout]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.internal.PanelGroupRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[DataItem is a UIColumn component component that is designed to be used as a child of DataList and renders its children inside a <code>&lt;li&gt;</code> or <code>&lt;dt&gt;</code> element.]]></description>
+		<tag-name>dataItem</tag-name>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
+			<parent-class>javax.faces.component.UIColumn</parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[DataList is a UIData (iterator) component that renders <code>&lt;ul&gt;</code> (unordered), <code>&lt;ol&gt;</code> (ordered), or <code>&lt;dl&gt;</code> (description) lists.]]></description>
+		<tag-name>dataList</tag-name>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA["unordered"]]></default-value>
+			</attribute-extension>
+			<description><![CDATA[The type of the list to render. Valid values are "unordered", "ordered" and "description".]]></description>
+			<name>type</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited uiDataInherited</extends-tags>
+			<parent-class><![CDATA[javax.faces.component.UIData]]></parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Example is a UIPanel component that renders a <code>&lt;div&gt;</code> element. Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>example</tag-name>
+		<attribute>
+			<description><![CDATA[The description the component.]]></description>
+			<name>description</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<default-value>0</default-value>
+			</attribute-extension>
+			<description><![CDATA[The number of the example.]]></description>
+			<name>number</name>
+			<type><![CDATA[int]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<default-value>false</default-value>
+			</attribute-extension>
+			<description><![CDATA[Flag indicating whether or not a "Rendered" checkbox should be included.]]></description>
+			<name>renderedCheckbox</name>
+			<type><![CDATA[boolean]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<default-value>false</default-value>
+			</attribute-extension>
+			<description><![CDATA[Flag indicating whether or not a "Required" checkbox should be included.]]></description>
+			<name>requiredCheckbox</name>
+			<type><![CDATA[boolean]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>panelGroupInherited</extends-tags>
+			<parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.PanelGroupBlockLayout]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.internal.PanelGroupRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Field is a UIPanel component that renders a <code>&lt;div&gt;</code> element and a <code>&lt;label&gt;</code> element in order to wrap a field. Since it extends PanelGroup, it supports all the features of showcase:panelGroup.]]></description>
+		<tag-name>field</tag-name>
+		<attribute>
+			<description><![CDATA[The text value for the rendered &lt;label&gt; element.]]></description>
+			<name>label</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA[true]]></default-value>
+			</attribute-extension>
+			<description><![CDATA[When this flag is true, the label will be rendered before the rendered children.]]></description>
+			<name>labelFirst</name>
+			<type><![CDATA[boolean]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>div</code> (default) or a <code>span</code>. If the value of this attribute is <code>block</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>panelGroupInherited</extends-tags>
+			<parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.PanelGroupBlockLayout]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.internal.PanelGroupRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Icon is a component that renders a span which contains an icon specified by the name attribute.]]></description>
+		<tag-name>icon</tag-name>
+		<attribute>
+			<description><![CDATA[The color of the icon which this component will render. Valid values include black (the default) and white.]]></description>
+			<name>color</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The icon which this component will render. A list of valid icons can be found at <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">Bootstrap Base CSS</a>. <b>Note:</b> icon names must be specified without the <code>glyphicon glyphicon-</code> prefix.]]></description>
+			<name>name</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Note is a UIPanel component that renders a <code>&lt;div&gt;</code> element with with a special icon representing a note.]]></description>
+		<tag-name>note</tag-name>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA[false]]></default-value>
+			</attribute-extension>
+			<description><![CDATA[When this flag is true, the small version of the icon will be used.]]></description>
+			<name>smallIcon</name>
+			<type><![CDATA[boolean]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>panelGroupInherited</extends-tags>
+			<parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.PanelGroupBlockLayout]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.internal.PanelGroupRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[outputSourceCode is an <a href="http://docs.oracle.com/javaee/7/api/javax/faces/component/html/HtmlOutputText.html" target="_blank"><code>HtmlOutputText</code></a> component that delegates rendering to its JSF renderer.]]></description>
+		<tag-name>outputSourceCode</tag-name>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA[true]]></default-value>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[When false, markup will not be escaped.]]></description>
+			<name>escape</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The name of the programming language that the editor is editing or displaying.]]></description>
+			<name>mode</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<delegate-renderer-type><![CDATA["javax.faces.Text"]]></delegate-renderer-type>
+			<extends-tags>htmlPassthroughInherited uiOutputInherited</extends-tags>
+			<extra-style-classes>prettyprint linenums</extra-style-classes>
+			<parent-class><![CDATA[javax.faces.component.html.HtmlOutputText]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.util.render.DelegatingRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Panel is a UIPanel component that renders a <code>&lt;div&gt;</code> element with three child <code>&lt;div&gt;</code> elements (one for header, body, and footer). Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>panel</tag-name>
+		<attribute>
+			<description><![CDATA[The text to place in the footer of the component.]]></description>
+			<name>footerText</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text to place in the header of the component.]]></description>
+			<name>headerText</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>panelGroupInherited</extends-tags>
+			<extra-style-classes>showcase-panel-default</extra-style-classes>
+			<parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.PanelGroupBlockLayout]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.internal.PanelGroupRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[PanelValue is a UIPanel component that renders a <code>&lt;div&gt;</code> element and a <code>&lt;label&gt;</code> element in order to wrap/decorate results. Since it extends PanelGroup, it supports all the features of showcase:panelGroup.]]></description>
+		<tag-name>results</tag-name>
+		<attribute>
+			<description><![CDATA[The text value for the rendered &lt;label&gt; element.]]></description>
+			<name>label</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>div</code> (default) or a <code>span</code>. If the value of this attribute is <code>block</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>panelGroupInherited</extends-tags>
+			<parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.PanelGroupBlockLayout]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.showcase.component.panelgroup.internal.PanelGroupRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[PanelGroup is a UIPanel component that renders a <code>&lt;span&gt;</code> or a <code>&lt;div&gt;</code> element for grouping purposes. Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
+		<tag-name>panelGroup</tag-name>
+		<attribute>
+			<attribute-extension>
+				<inherited>true</inherited>
+			</attribute-extension>
+			<description><![CDATA[Specifies whether the HTML element rendered by this component will be a <code>span</code> (default) or a <code>div</code>. If the value of this attribute is <code>"block"</code>, the rendered element will be a <code>div</code>.]]></description>
+			<name>layout</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<delegate-renderer-type><![CDATA["javax.faces.Group"]]></delegate-renderer-type>
+			<extends-tags>htmlCommonEventsInherited</extends-tags>
+			<parent-class><![CDATA[javax.faces.component.html.HtmlPanelGroup]]></parent-class>
+			<renderer-parent-class><![CDATA[com.liferay.faces.util.render.DelegatingRendererBase]]></renderer-parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Row is a UIPanel component that renders a <code>&lt;div&gt;</code> and is designed to be used in conjunction with showcase:column child component tags.]]></description>
+		<tag-name>row</tag-name>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
+			<parent-class><![CDATA[javax.faces.component.UIPanel]]></parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[Tab is a panel component that renders nested/child tags as content within itself.]]></description>
+		<tag-name>tab</tag-name>
+		<handler-class>com.liferay.faces.showcase.component.tab.internal.TabHandler</handler-class>
+		<attribute>
+			<description><![CDATA[When showcase:tab is a child of showcase:accordion, this is the name of the CSS class that is to be rendered within the class attribute of the content &lt;div&gt;]]></description>
+			<name>contentClass</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA[false]]></default-value>
+			</attribute-extension>
+			<description><![CDATA[When this flag is true, the component will be disabled, and the user will be unable to intercat with the component.]]></description>
+			<name>disabled</name>
+			<type><![CDATA[boolean]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When showcase:tab is a child of showcase:accordion, this is the name of the CSS class that is to be rendered within the class attribute of the header &lt;div&gt;]]></description>
+			<name>headerClass</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text to place in the header of the component.]]></description>
+			<name>headerText</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
+			<parent-class><![CDATA[javax.faces.component.UIColumn]]></parent-class>
+		</tag-extension>
+	</tag>
+	<tag>
+		<description><![CDATA[TabView is an iterator component that renders tabs either statically or dynamically.]]></description>
+		<tag-name>tabView</tag-name>
+		<attribute>
+			<attribute-extension>
+				<alloy-ui>true</alloy-ui>
+			</attribute-extension>
+			<description><![CDATA[The the height (in pixels) of the rendered <code>&lt;div&gt;</code>.]]></description>
+			<name>height</name>
+			<type><![CDATA[java.lang.String]]></type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Integer representing the zero-based index representing the selected tab.]]></description>
+			<name>selectedIndex</name>
+			<type><![CDATA[java.lang.Integer]]></type>
+		</attribute>
+		<tag-extension>
+			<extends-tags>styleable uiComponentBaseInherited uiDataInherited</extends-tags>
+			<parent-class><![CDATA[javax.faces.component.UIData]]></parent-class>
+		</tag-extension>
+	</tag>
+</facelet-taglib>
