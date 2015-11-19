@@ -1,15 +1,17 @@
 /**
  * Copyright (c) 2000-2015 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.liferay.faces.showcase.component.accordion.internal;
 
@@ -93,12 +95,14 @@ public class AccordionRenderer extends AccordionRendererBase {
 
 				for (int i = 0; i < rowCount; i++) {
 					accordion.setRowIndex(i);
+
 					String accordionIteratedClientId = accordion.getClientId();
 
 					boolean selected = ((selectedIndex != null) && (i == selectedIndex));
 					responseWriter.startElement("div", null);
 					responseWriter.writeAttribute("class", "accordion-group", null);
-					encodeHeader(facesContext, responseWriter, accordionClientId, accordionIteratedClientId, prototypeChildTab);
+					encodeHeader(facesContext, responseWriter, accordionClientId, accordionIteratedClientId,
+						prototypeChildTab);
 					encodeContent(facesContext, responseWriter, accordionIteratedClientId, prototypeChildTab, selected);
 					responseWriter.endElement("div");
 				}
@@ -150,7 +154,8 @@ public class AccordionRenderer extends AccordionRendererBase {
 		facesRequestContext.addScript(script);
 	}
 
-	protected void encodeContent(FacesContext facesContext, ResponseWriter responseWriter, String accordionIteratedClientId, Tab tab, boolean selected) throws IOException {
+	protected void encodeContent(FacesContext facesContext, ResponseWriter responseWriter,
+		String accordionIteratedClientId, Tab tab, boolean selected) throws IOException {
 
 		// Encode the starting <div> element that represents the specified tab's content.
 		responseWriter.startElement("div", tab);
@@ -187,7 +192,8 @@ public class AccordionRenderer extends AccordionRendererBase {
 		responseWriter.endElement("div");
 	}
 
-	protected void encodeHeader(FacesContext facesContext, ResponseWriter responseWriter, String accordionClientId, String accordionIteratedClientId, Tab tab) throws IOException {
+	protected void encodeHeader(FacesContext facesContext, ResponseWriter responseWriter, String accordionClientId,
+		String accordionIteratedClientId, Tab tab) throws IOException {
 
 		// Encode the starting <div> element that represents the specified tab's header.
 		responseWriter.startElement("div", tab);
@@ -206,9 +212,11 @@ public class AccordionRenderer extends AccordionRendererBase {
 
 		responseWriter.startElement("a", null);
 		responseWriter.writeAttribute("class", "accordion-toggle collapsed", null);
+
 		String escapedAccordionClientId = "#".concat(ShowcaseUtil.singleEscapeClientId(accordionClientId));
 		responseWriter.writeAttribute("data-parent", escapedAccordionClientId, null);
 		responseWriter.writeAttribute("data-toggle", "collapse", null);
+
 		String escapedTabClientId = "#".concat(ShowcaseUtil.singleEscapeClientId(accordionIteratedClientId));
 		responseWriter.writeAttribute("href", escapedTabClientId, null);
 

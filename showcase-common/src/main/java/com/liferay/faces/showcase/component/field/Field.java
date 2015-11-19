@@ -1,19 +1,25 @@
 /**
  * Copyright (c) 2000-2015 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.liferay.faces.showcase.component.field;
 
-import com.liferay.faces.util.component.ComponentUtil;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.EditableValueHolder;
@@ -24,19 +30,15 @@ import javax.faces.component.UIMessage;
 import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.context.FacesContext;
 import javax.faces.context.PartialViewContext;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import com.liferay.faces.util.component.ComponentUtil;
 
 
 /**
- * @author	Kyle Stiemann
+ * @author  Kyle Stiemann
  */
 @FacesComponent(value = Field.COMPONENT_TYPE)
 public class Field extends FieldBase {
-
 
 	// Private Constants
 	private static final String FORM_GROUP = "form-group";
@@ -137,7 +139,7 @@ public class Field extends FieldBase {
 	}
 
 	private FacesMessage.Severity getHighestMessageSeverityRecurse(FacesContext facesContext, UIComponent uiComponent,
-																   FacesMessage.Severity severity) {
+		FacesMessage.Severity severity) {
 
 		List<UIComponent> children = uiComponent.getChildren();
 
@@ -156,7 +158,7 @@ public class Field extends FieldBase {
 					FacesMessage.Severity currentSeverity = facesMessage.getSeverity();
 
 					if ((currentSeverity == FacesMessage.SEVERITY_ERROR) ||
-						(currentSeverity == FacesMessage.SEVERITY_FATAL)) {
+							(currentSeverity == FacesMessage.SEVERITY_FATAL)) {
 
 						severity = FacesMessage.SEVERITY_FATAL;
 
