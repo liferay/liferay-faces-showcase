@@ -1,15 +1,17 @@
 /**
  * Copyright (c) 2000-2015 Liferay, Inc. All rights reserved.
  *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package com.liferay.faces.showcase.component.tabview.internal;
 
@@ -63,6 +65,16 @@ public class TabViewRenderer extends TabViewRendererBase {
 	private static final Logger logger = LoggerFactory.getLogger(TabViewRenderer.class);
 
 	@Override
+	public void encodeBegin(FacesContext facesContext, UIComponent uiComponent) throws IOException {
+
+		// Encode the starting <div> element that represents the component.
+		ResponseWriter responseWriter = facesContext.getResponseWriter();
+		responseWriter.startElement("div", uiComponent);
+		responseWriter.writeAttribute("id", uiComponent.getClientId(facesContext), "id");
+		RendererUtil.encodeStyleable(responseWriter, (Styleable) uiComponent);
+	}
+
+	@Override
 	public void encodeChildren(FacesContext facesContext, UIComponent uiComponent) throws IOException {
 
 		// Get the "value" and "var" attributes of the TabView component and determine if iteration should take place
@@ -88,7 +100,8 @@ public class TabViewRenderer extends TabViewRendererBase {
 				for (int i = 0; i < rowCount; i++) {
 					tabView.setRowIndex(i);
 
-					boolean selected = ((selectedIndex == null) && (i == 0) || ((selectedIndex != null) && (i == selectedIndex)));
+					boolean selected = (((selectedIndex == null) && (i == 0)) ||
+							((selectedIndex != null) && (i == selectedIndex)));
 					encodeTabListItem(facesContext, responseWriter, prototypeChildTab, selected);
 				}
 
@@ -108,7 +121,8 @@ public class TabViewRenderer extends TabViewRendererBase {
 
 				if ((child instanceof Tab) && child.isRendered()) {
 					Tab childTab = (Tab) child;
-					boolean selected = ((selectedIndex == null) && (i == 0) || ((selectedIndex != null) && (i == selectedIndex)));
+					boolean selected = (((selectedIndex == null) && (i == 0)) ||
+							((selectedIndex != null) && (i == selectedIndex)));
 					encodeTabListItem(facesContext, responseWriter, childTab, selected);
 				}
 				else {
@@ -152,16 +166,6 @@ public class TabViewRenderer extends TabViewRendererBase {
 	}
 
 	@Override
-	public void encodeBegin(FacesContext facesContext, UIComponent uiComponent) throws IOException {
-
-		// Encode the starting <div> element that represents the component.
-		ResponseWriter responseWriter = facesContext.getResponseWriter();
-		responseWriter.startElement("div", uiComponent);
-		responseWriter.writeAttribute("id", uiComponent.getClientId(facesContext), "id");
-		RendererUtil.encodeStyleable(responseWriter, (Styleable) uiComponent);
-	}
-
-	@Override
 	public void encodeEnd(FacesContext facesContext, UIComponent uiComponent) throws IOException {
 
 		// Encode the closing </div> element.
@@ -197,7 +201,8 @@ public class TabViewRenderer extends TabViewRendererBase {
 			responseWriter.writeAttribute("disabled", "disabled", null);
 		}
 
-		responseWriter.writeAttribute("href", "#" + ShowcaseUtil.singleEscapeClientId(tab.getClientId(facesContext)), null);
+		responseWriter.writeAttribute("href", "#" + ShowcaseUtil.singleEscapeClientId(tab.getClientId(facesContext)),
+			null);
 
 		// If the header facet exists for the specified tab, then encode the header facet.
 		UIComponent headerFacet = tab.getFacet("header");

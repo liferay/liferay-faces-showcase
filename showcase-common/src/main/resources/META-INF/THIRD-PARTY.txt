@@ -1,0 +1,6 @@
+
+Lists of 4 third-party dependencies.
+     (The Apache Software License, Version 2.0) Prettify (https://github.com/google/code-prettify#license)
+     (MIT License) Twitter Bootstrap (http://getbootstrap.com/getting-started/#license-faqs)
+     (MIT License) jQuery (https://jquery.org/license/)
+     The JSF logo is dual licensed under the CDDL and GPL v2 with the Classpath Exception.

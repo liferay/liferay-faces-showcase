@@ -35,6 +35,9 @@ import com.liferay.faces.showcase.service.CustomerService;
 @ViewScoped
 public class CommandModelBean implements Serializable {
 
+	// serialVersionUID
+	private static final long serialVersionUID = 332271404377673109L;
+
 	// Injections
 	@ManagedProperty(value = "#{customerService}")
 	private CustomerService customerService;
