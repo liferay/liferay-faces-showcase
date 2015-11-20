@@ -5,7 +5,7 @@
 	<ui:define name="col1">
 		<!-- Example 1: Context-relative path to a resource via the value attribute -->
 		<h:form>
-			<showcase:example description="#{i18n['h-image-general-example-1']}" number="1" renderedCheckbox="true">
+			<showcase:example description="#{i18n['h-graphicimage-general-example-1']}" number="1" renderedCheckbox="true">
 				<h:graphicImage rendered="#{showcaseModelBean.selectedComponent.rendered}"
 					value="#{resource['images:jsf-logo-small.png']}" />
 			</showcase:example>
@@ -15,7 +15,7 @@
 	<ui:define name="col2">
 		<!-- Example 2: JSF resource via the #{resource} EL keyword -->
 		<h:form>
-			<showcase:example description="#{i18n['h-image-general-example-2']}" number="2">
+			<showcase:example description="#{i18n['h-graphicimage-general-example-2']}" number="2">
 				<h:graphicImage value="#{resource['images:jsf-logo-small.png']}" />
 			</showcase:example>
 		</h:form>
@@ -24,7 +24,7 @@
 	<ui:define name="col3">
 		<!-- Example 3: JSF resource via the library and name attributes -->
 		<h:form>
-			<showcase:example description="#{i18n['h-image-general-example-3']}" number="3">
+			<showcase:example description="#{i18n['h-graphicimage-general-example-3']}" number="3">
 				<h:graphicImage library="images" name="jsf-logo-small.png" />
 			</showcase:example>
 		</h:form>
@@ -33,7 +33,7 @@
 	<ui:define name="col4">
 		<!-- Example 4: Clickable areas via the usemap attribute -->
 		<h:form>
-			<showcase:example description="#{i18n['h-image-general-example-4']}" number="4">
+			<showcase:example description="#{i18n['h-graphicimage-general-example-4']}" number="4">
 				<h:graphicImage usemap="#logoMapName" value="#{resource['images:jsf-logo-small.png']}" />
 				<map name="logoMapName">
 					<area alt="JSR 362" coords="1,1,110,136" href="https://jcp.org/en/jsr/detail?id=344" shape="rect" target="_blank"

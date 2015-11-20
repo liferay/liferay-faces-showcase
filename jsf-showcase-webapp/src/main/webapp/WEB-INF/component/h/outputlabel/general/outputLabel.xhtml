@@ -3,14 +3,14 @@
 	xmlns:showcase="http://liferay.com/faces/showcase" template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
-		<h:form id="myForm">
+		<h:form>
 			<showcase:example renderedCheckbox="true">
 				<h:messages globalOnly="true" layout="table" />
 				<h:panelGroup id="container" layout="block" styleClass="form-inline">
 					<h:outputLabel for="firstName" rendered="#{showcaseModelBean.selectedComponent.rendered}"
 						value="#{i18n['first-name']}" />
 					<h:inputText id="firstName" required="true" value="#{fieldModelBean.firstName}">
-						<f:ajax render="container :myForm:outputModel:modelValue" />
+						<f:ajax render="container modelValue" />
 					</h:inputText>
 					<h:outputText value="*" />
 					<h:message for="firstName" />
@@ -20,7 +20,7 @@
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton>
 			</showcase:example>
-			<showcase:results label="#{i18n['model-value']}" id="outputModel">
+			<showcase:results label="#{i18n['model-value']}">
 				<h:outputText id="modelValue" value="#{fieldModelBean.firstName}" />
 			</showcase:results>
 		</h:form>
