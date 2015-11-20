@@ -155,7 +155,7 @@ div.showcase-panel-default>div.panel-footer+div.panel-collapse>div.panel-body {
     float: left;
 }
 
-.showcase-results div {
+.showcase-results .results-content {
     clear: both;
     padding: 7px 19px 14px;
 }

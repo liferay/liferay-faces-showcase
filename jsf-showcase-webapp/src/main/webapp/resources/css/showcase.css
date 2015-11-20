@@ -12,6 +12,10 @@
 	font-weight: bold;
 }
 
+.aui pre:after {
+	content: ' ';
+}
+
 .aui .showcase-nav-col .logo {
 	display: table-caption;
 	margin: 0 auto;
