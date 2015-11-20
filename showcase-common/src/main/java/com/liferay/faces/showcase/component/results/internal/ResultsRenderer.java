@@ -50,7 +50,10 @@ public class ResultsRenderer extends ResultsRendererBase {
 
 		ResponseWriter responseWriter = facesContext.getResponseWriter();
 		responseWriter.startElement("div", null);
+		responseWriter.writeAttribute("class", "results-content", null);
+		responseWriter.startElement("pre", null);
 		super.encodeChildren(facesContext, uiComponent);
+		responseWriter.endElement("pre");
 		responseWriter.endElement("div");
 	}
 
