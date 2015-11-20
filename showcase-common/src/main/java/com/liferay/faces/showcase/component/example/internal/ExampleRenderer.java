@@ -18,6 +18,7 @@ package com.liferay.faces.showcase.component.example.internal;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
@@ -26,6 +27,7 @@ import javax.faces.application.Application;
 import javax.faces.application.ProjectStage;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.context.FacesContext;
@@ -156,6 +158,7 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 					"#{showcaseModelBean.selectedComponent.rendered}");
 			htmlSelectBooleanCheckbox.setId("renderedCheckbox");
 			exampleChildren.add(htmlSelectBooleanCheckbox);
+			addFacesAjaxResourceDependency(facesContext);
 		}
 
 		Boolean requiredCheckbox = example.isRequiredCheckbox();
@@ -166,6 +169,54 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 					"#{showcaseModelBean.selectedComponent.required}");
 			htmlSelectBooleanCheckbox.setId("requiredCheckbox");
 			exampleChildren.add(htmlSelectBooleanCheckbox);
+			addFacesAjaxResourceDependency(facesContext);
+		}
+	}
+
+	private void addFacesAjaxResourceDependency(FacesContext facesContext) {
+
+		UIViewRoot viewRoot = facesContext.getViewRoot();
+		boolean foundDependency = false;
+		List<UIComponent> headResourceComponents = viewRoot.getComponentResources(facesContext, "head");
+
+		for (UIComponent headResourceComponent : headResourceComponents) {
+			Map<String, Object> headResourceComponentAttributes = headResourceComponent.getAttributes();
+			String library = (String) headResourceComponentAttributes.get("library");
+			String name = (String) headResourceComponentAttributes.get("name");
+
+			if ("javax.faces".equals(library) && "jsf.js".equals(name)) {
+				foundDependency = true;
+
+				break;
+			}
+		}
+
+		if (!foundDependency) {
+
+			List<UIComponent> bodyResourceComponents = viewRoot.getComponentResources(facesContext, "body");
+
+			for (UIComponent bodyResourceComponent : bodyResourceComponents) {
+				Map<String, Object> headResourceComponentAttributes = bodyResourceComponent.getAttributes();
+				String library = (String) headResourceComponentAttributes.get("library");
+				String name = (String) headResourceComponentAttributes.get("name");
+
+				if ("javax.faces".equals(library) && "jsf.js".equals(name)) {
+					foundDependency = true;
+
+					break;
+				}
+			}
+		}
+
+		if (!foundDependency) {
+
+			Application application = facesContext.getApplication();
+			UIComponent scriptComponent = application.createComponent("javax.faces.Output");
+			scriptComponent.getAttributes().put("library", "javax.faces");
+			scriptComponent.getAttributes().put("name", "jsf.js");
+			scriptComponent.getAttributes().put("target", "head");
+			scriptComponent.setRendererType("javax.faces.resource.Script");
+			viewRoot.addComponentResource(facesContext, scriptComponent);
 		}
 	}
 
