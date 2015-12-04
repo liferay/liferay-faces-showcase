@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.showcase.context;
+package com.liferay.faces.showcase.context.internal;
 
 import com.liferay.faces.util.context.MessageContext;
 import com.liferay.faces.util.context.MessageContextFactory;
@@ -22,15 +22,15 @@ import com.liferay.faces.util.context.MessageContextFactory;
 /**
  * @author  Neil Griffin
  */
-public class ShowcaseMessageContextFactory extends MessageContextFactory {
+public class MessageContextFactoryShowcaseImpl extends MessageContextFactory {
 
 	// Private Data Members
 	private MessageContext messageContext;
 	private MessageContextFactory wrappedMessageContextFactory;
 
-	public ShowcaseMessageContextFactory(MessageContextFactory messageContextFactory) {
+	public MessageContextFactoryShowcaseImpl(MessageContextFactory messageContextFactory) {
 		MessageContext wrappedMessageContext = messageContextFactory.getMessageContext();
-		this.messageContext = new ShowcaseMessageContext(wrappedMessageContext);
+		this.messageContext = new MessageContextShowcaseImpl(wrappedMessageContext);
 		this.wrappedMessageContextFactory = messageContextFactory;
 	}
 

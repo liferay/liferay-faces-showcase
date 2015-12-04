@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.showcase.context;
+package com.liferay.faces.showcase.context.internal;
 
 import java.util.Locale;
 
@@ -25,12 +25,12 @@ import com.liferay.faces.util.context.MessageContextWrapper;
 /**
  * @author  Neil Griffin
  */
-public class ShowcaseMessageContext extends MessageContextWrapper {
+public class MessageContextShowcaseImpl extends MessageContextWrapper {
 
 	// Private Data Members
 	private MessageContext wrappedMessageContext;
 
-	public ShowcaseMessageContext(MessageContext messageContext) {
+	public MessageContextShowcaseImpl(MessageContext messageContext) {
 		this.wrappedMessageContext = messageContext;
 	}
 
