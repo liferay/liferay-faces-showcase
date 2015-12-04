@@ -17,8 +17,8 @@
 }
 
 .aui .showcase-nav-col .logo {
-	display: table-caption;
-	margin: 0 auto;
+	margin-top: 4px;
+	margin-left: 8px;
 }
 
 .aui .showcase-info {
@@ -41,32 +41,41 @@
 	-moz-border-radius: 3px;
 }
 
-.aui .showcase-nav-col .alloy-accordion {
+.aui .showcase-nav-col .showcase-accordion {
 	margin: 4px 4px 4px 4px;
 }
 
-.aui .showcase-nav-col .alloy-accordion .toggler-header {
+.aui .showcase-nav-col .showcase-accordion .accordion-group .accordion-heading .accordion-toggle {
+	padding-left: 6px;
+}
+
+.aui .showcase-nav-col .showcase-accordion .accordion-group .accordion-heading, .aui .showcase-nav-col .showcase-accordion .toggler-header {
 	border-top: 1px solid #ffffff;
+}
+
+.aui .showcase-nav-col .showcase-accordion .toggler-header {
 	font-weight: bold;
 	padding: 6px;
 }
 
-.aui .showcase-nav-col .alloy-accordion .toggler-header h3 {
+.aui .showcase-nav-col .showcase-accordion .toggler-header h3 {
 	display: inline;
 	margin: 0px;
 	vertical-align: middle;
 }
 
-.aui .showcase-nav-col .alloy-accordion .toggler-header img {
+.aui .showcase-nav-col .showcase-accordion .toggler-header img {
 	vertical-align: middle;
 }
 	
-.aui .showcase-nav-col .alloy-accordion .toggler-content {
+.aui .showcase-nav-col .showcase-accordion .toggler-content {
 	padding: 0px 0px 10px 0px;
 }
 
-.aui .showcase-nav-col .alloy-accordion .category-name {
+.aui .showcase-nav-col .showcase-accordion .category-name {
+	color: #000000;
 	font-size: 12pt;
+	font-weight: bold;
 	margin-top: 2px;
 	margin-left: 4px;
 	position: absolute;
@@ -162,6 +171,6 @@
 	display: block;
 }
 
-.nav {
+.aui .nav {
 	margin-bottom: 2px;
 }
