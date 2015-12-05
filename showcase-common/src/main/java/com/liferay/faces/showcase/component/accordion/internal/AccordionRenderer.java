@@ -36,6 +36,8 @@ import com.liferay.faces.util.context.FacesRequestContext;
 import com.liferay.faces.util.factory.FactoryExtensionFinder;
 import com.liferay.faces.util.logging.Logger;
 import com.liferay.faces.util.logging.LoggerFactory;
+import com.liferay.faces.util.product.ProductConstants;
+import com.liferay.faces.util.product.ProductMap;
 import com.liferay.faces.util.render.RendererUtil;
 
 
@@ -57,6 +59,7 @@ import com.liferay.faces.util.render.RendererUtil;
 public class AccordionRenderer extends AccordionRendererBase {
 
 	// Private Constants
+	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL).isDetected();
 
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(AccordionRenderer.class);
@@ -146,7 +149,15 @@ public class AccordionRenderer extends AccordionRendererBase {
 		ResponseWriter responseWriter = facesContext.getResponseWriter();
 		responseWriter.endElement("div");
 
-		String escapedClientId = ShowcaseUtil.singleEscapeClientId(uiComponent.getClientId());
+		String escapedClientId;
+
+		if (LIFERAY_PORTAL_DETECTED) {
+			escapedClientId = ShowcaseUtil.doubleEscapeClientId(uiComponent.getClientId());
+		}
+		else {
+			escapedClientId = ShowcaseUtil.singleEscapeClientId(uiComponent.getClientId());
+		}
+
 		String scriptSource = "$('#".concat(escapedClientId.concat("').collapse();"));
 		ScriptFactory scriptFactory = (ScriptFactory) FactoryExtensionFinder.getFactory(ScriptFactory.class);
 		Script script = scriptFactory.getScript(scriptSource);

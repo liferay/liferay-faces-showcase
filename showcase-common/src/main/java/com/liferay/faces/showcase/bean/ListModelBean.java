@@ -58,12 +58,17 @@ public class ListModelBean {
 	private static final Logger logger = LoggerFactory.getLogger(ListModelBean.class);
 
 	// Private Constants
+	private static final boolean LIFERAY_FACES_ALLOY_DETECTED = ProductMap.getInstance().get(
+			ProductConstants.LIFERAY_FACES_ALLOY).isDetected();
 	private static final boolean LIFERAY_FACES_BRIDGE_DETECTED = ProductMap.getInstance().get(
 			ProductConstants.LIFERAY_FACES_BRIDGE).isDetected();
-	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL)
-		.isDetected();
+	private static final boolean LIFERAY_FACES_CRYSTAL_DETECTED = ProductMap.getInstance().get(
+			ProductConstants.LIFERAY_FACES_CRYSTAL).isDetected();
+	private static final boolean LIFERAY_FACES_PORTAL_DETECTED = ProductMap.getInstance().get(
+			ProductConstants.LIFERAY_FACES_PORTAL).isDetected();
 	private static final String[] PACKAGE_NAMES = new String[] {
-			"com.liferay.faces.showcase.bean", "com.liferay.faces.showcase.constants", "com.liferay.faces.showcase.dto",
+			"com.liferay.faces.bridge.demos.bean", "com.liferay.faces.showcase.bean",
+			"com.liferay.faces.showcase.constants", "com.liferay.faces.showcase.dto",
 			"com.liferay.faces.showcase.converter", "com.liferay.faces.showcase.model",
 			"com.liferay.faces.showcase.portlet", "com.liferay.faces.showcase.validator",
 			"com.liferay.faces.showcase.service"
@@ -80,23 +85,26 @@ public class ListModelBean {
 
 		FacesContext startupFacesContext = FacesContext.getCurrentInstance();
 		boolean developmentMode = startupFacesContext.isProjectStage(ProjectStage.Development);
-		boolean systemTestMode = startupFacesContext.isProjectStage(ProjectStage.SystemTest);
 		boolean productionMode = startupFacesContext.isProjectStage(ProjectStage.Production);
 		showcaseCategoryList = new ArrayList<String>();
-		showcaseCategoryList.add("buttonlink");
-		showcaseCategoryList.add("data");
-		showcaseCategoryList.add("input");
-		showcaseCategoryList.add("misc");
-		showcaseCategoryList.add("multimedia");
-		showcaseCategoryList.add("output");
-		showcaseCategoryList.add("panel");
-		showcaseCategoryList.add("select");
 
-		if (LIFERAY_PORTAL_DETECTED) {
-			showcaseCategoryList.add("portal");
+		if (LIFERAY_FACES_PORTAL_DETECTED) {
+			showcaseCategoryList.add("input");
+			showcaseCategoryList.add("misc");
+		}
+		else {
+			showcaseCategoryList.add("buttonlink");
+			showcaseCategoryList.add("data");
+			showcaseCategoryList.add("input");
+			showcaseCategoryList.add("misc");
+			showcaseCategoryList.add("multimedia");
+			showcaseCategoryList.add("output");
+			showcaseCategoryList.add("panel");
+			showcaseCategoryList.add("select");
 		}
 
-		if (LIFERAY_FACES_BRIDGE_DETECTED) {
+		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_CRYSTAL_DETECTED &&
+			!LIFERAY_FACES_PORTAL_DETECTED) {
 			showcaseCategoryList.add("portlet");
 		}
 
@@ -117,7 +125,7 @@ public class ListModelBean {
 		namespaces.add("f");
 		namespaces.add("h");
 
-		if (LIFERAY_PORTAL_DETECTED) {
+		if (LIFERAY_FACES_PORTAL_DETECTED) {
 
 			if (developmentMode) {
 				namespaces.add("aui");
@@ -127,7 +135,7 @@ public class ListModelBean {
 			namespaces.add("portal");
 		}
 
-		if (LIFERAY_FACES_BRIDGE_DETECTED) {
+		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_CRYSTAL_DETECTED) {
 			namespaces.add("portlet");
 		}
 
@@ -297,7 +305,11 @@ public class ListModelBean {
 			ProductMap productMap = ProductMap.getInstance();
 			Product[] products = new Product[] {
 					productMap.get(ProductConstants.LIFERAY_FACES_ALLOY),
-					productMap.get(ProductConstants.LIFERAY_FACES_CRYSTAL), productMap.get(ProductConstants.JSF)
+					productMap.get(ProductConstants.LIFERAY_FACES_BRIDGE),
+					productMap.get(ProductConstants.LIFERAY_FACES_CRYSTAL),
+					productMap.get(ProductConstants.LIFERAY_FACES_PORTAL),
+					productMap.get(ProductConstants.LIFERAY_FACES_SHOWCASE),
+					productMap.get(ProductConstants.LIFERAY_FACES_UTIL), productMap.get(ProductConstants.JSF)
 				};
 
 			for (Product product : products) {
