@@ -17,13 +17,14 @@ package com.liferay.faces.showcase.component.column.internal;
 
 import java.io.IOException;
 
-import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.component.html.HtmlPanelGrid;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
 import javax.faces.render.FacesRenderer;
 
 import com.liferay.faces.showcase.component.column.Column;
@@ -33,15 +34,8 @@ import com.liferay.faces.util.render.RendererUtil;
 /**
  * @author  Kyle Stiemann
  */
-//J-
 @FacesRenderer(componentFamily = Column.COMPONENT_FAMILY, rendererType = Column.RENDERER_TYPE)
-@ResourceDependencies(
-	{
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css"),
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap-responsive.min.css"),
-	}
-)
-//J+
+@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css")
 public class ColumnRenderer extends ColumnRendererBase {
 
 	protected static Integer getColumnUnitSize(Integer width) {
@@ -65,6 +59,9 @@ public class ColumnRenderer extends ColumnRendererBase {
 			Column column = (Column) uiComponent;
 			StringBuilder classNames = new StringBuilder();
 
+			String size = column.getSize();
+			size = getColumnCSSClassSize(size);
+
 			Integer span = column.getSpan();
 
 			if (span != null) {
@@ -85,8 +82,46 @@ public class ColumnRenderer extends ColumnRendererBase {
 				span = getColumnUnitSize(width);
 			}
 
+			classNames.append("col-");
+			classNames.append(size);
+			classNames.append("-");
+			classNames.append(span);
+
+			classNames.append(" ");
 			classNames.append("span");
 			classNames.append(span);
+
+			Integer offset = column.getOffset();
+
+			if (offset != null) {
+
+				if ((offset < 1) || (offset > Column.COLUMNS)) {
+					throw new IOException("offset must be between 1 and " + Column.COLUMNS);
+				}
+			}
+
+			Integer offsetWidth = column.getOffsetWidth();
+
+			if (offsetWidth != null) {
+
+				if ((offsetWidth < 1) || (offsetWidth > 100)) {
+					throw new IOException("offsetWidth must be between 1 and 100");
+				}
+
+				offset = getColumnUnitSize(offsetWidth);
+			}
+
+			if (offset != null) {
+				classNames.append(" ");
+				classNames.append("col-");
+				classNames.append(size);
+				classNames.append("-offset-");
+				classNames.append(offset);
+
+				classNames.append(" ");
+				classNames.append("offset");
+				classNames.append(span);
+			}
 
 			RendererUtil.encodeStyleable(responseWriter, column, classNames.toString());
 		}
@@ -102,5 +137,26 @@ public class ColumnRenderer extends ColumnRendererBase {
 		if (!((parent instanceof HtmlDataTable) || (parent instanceof HtmlPanelGrid))) {
 			responseWriter.endElement("div");
 		}
+	}
+
+	private String getColumnCSSClassSize(String size) throws IOException {
+
+		if ("extra-small".equals(size) || "xs".equals(size)) {
+			size = "xs";
+		}
+		else if ("small".equals(size) || "sm".equals(size)) {
+			size = "sm";
+		}
+		else if ("medium".equals(size) || "md".equals(size)) {
+			size = "md";
+		}
+		else if ("large".equals(size) || "lg".equals(size)) {
+			size = "lg";
+		}
+		else {
+			throw new IOException(size + " is not a valid value for size.");
+		}
+
+		return size;
 	}
 }

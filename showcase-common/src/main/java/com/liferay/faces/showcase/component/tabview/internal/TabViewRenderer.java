@@ -48,10 +48,8 @@ import com.liferay.faces.util.render.RendererUtil;
 @ResourceDependencies(
 	{
 		@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css"),
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap-responsive.min.css"),
 		@ResourceDependency(library = "bootstrap", name = "js/jquery.min.js"),
-		@ResourceDependency(library = "bootstrap", name = "js/bootstrap.min.js"),
-		@ResourceDependency(library = "bootstrap", name = "js/bootstrap-collapse.js")
+		@ResourceDependency(library = "bootstrap", name = "js/bootstrap.min.js")
 	}
 )
 //J+
@@ -222,13 +220,6 @@ public class TabViewRenderer extends TabViewRendererBase {
 
 		responseWriter.endElement("a");
 		responseWriter.endElement("li");
-
-		String escapedClientId = ShowcaseUtil.doubleEscapeClientId(tab.getParent().getClientId());
-		String scriptSource = "$('#".concat(escapedClientId.concat("').tab('show');"));
-		ScriptFactory scriptFactory = (ScriptFactory) FactoryExtensionFinder.getFactory(ScriptFactory.class);
-		Script script = scriptFactory.getScript(scriptSource);
-		FacesRequestContext facesRequestContext = FacesRequestContext.getCurrentInstance();
-		facesRequestContext.addScript(script);
 	}
 
 	@Override

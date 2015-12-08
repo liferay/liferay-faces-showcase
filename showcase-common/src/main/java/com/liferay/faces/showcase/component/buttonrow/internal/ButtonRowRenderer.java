@@ -15,7 +15,6 @@
  */
 package com.liferay.faces.showcase.component.buttonrow.internal;
 
-import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.render.FacesRenderer;
 
@@ -25,15 +24,8 @@ import com.liferay.faces.showcase.component.buttonrow.ButtonRow;
 /**
  * @author  Vernon Singleton
  */
-//J-
 @FacesRenderer(componentFamily = ButtonRow.COMPONENT_FAMILY, rendererType = ButtonRow.RENDERER_TYPE)
-@ResourceDependencies(
-	{
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css"),
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap-responsive.min.css"),
-	}
-)
-//J+
+@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css")
 public class ButtonRowRenderer extends ButtonRowRendererBase {
 	// Initial Generation
 }

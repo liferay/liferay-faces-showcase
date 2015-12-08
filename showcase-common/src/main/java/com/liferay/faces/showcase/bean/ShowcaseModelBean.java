@@ -24,6 +24,7 @@ import javax.faces.bean.ViewScoped;
 import com.liferay.faces.showcase.dto.SelectedComponent;
 import com.liferay.faces.showcase.dto.SelectedComponentImpl;
 import com.liferay.faces.showcase.dto.ShowcaseComponent;
+import com.liferay.faces.util.product.Product;
 import com.liferay.faces.util.product.ProductConstants;
 import com.liferay.faces.util.product.ProductMap;
 
@@ -34,6 +35,19 @@ import com.liferay.faces.util.product.ProductMap;
 @ManagedBean
 @ViewScoped
 public class ShowcaseModelBean implements Serializable {
+
+	// Public Constants
+	public static final boolean BOOTSTRAP_2;
+
+	static {
+
+		final Product LIFERAY_PORTAL = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL);
+		final Product ALLOY = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_ALLOY);
+		final boolean LIFERAY_PORTAL_6_2_DETECTED = LIFERAY_PORTAL.isDetected() &&
+			((LIFERAY_PORTAL.getMajorVersion() == 6) && (LIFERAY_PORTAL.getMinorVersion() == 2));
+		final boolean ALLOY_2_DETECTED = ALLOY.isDetected() && (ALLOY.getMajorVersion() == 2);
+		BOOTSTRAP_2 = (ALLOY_2_DETECTED || LIFERAY_PORTAL_6_2_DETECTED);
+	}
 
 	// serialVersionUID
 	private static final long serialVersionUID = 3339667513222866249L;
@@ -50,6 +64,10 @@ public class ShowcaseModelBean implements Serializable {
 	private String deploymentType;
 	private SelectedComponent selectedComponent;
 	private ViewParameters viewParameters;
+
+	public boolean isBootstrap2() {
+		return BOOTSTRAP_2;
+	}
 
 	public String getDeploymentType() {
 

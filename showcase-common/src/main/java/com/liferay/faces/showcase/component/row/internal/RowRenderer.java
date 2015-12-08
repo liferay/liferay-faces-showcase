@@ -17,13 +17,13 @@ package com.liferay.faces.showcase.component.row.internal;
 
 import java.io.IOException;
 
-import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import com.liferay.faces.showcase.bean.ShowcaseModelBean;
 import com.liferay.faces.showcase.component.row.Row;
 import com.liferay.faces.util.render.RendererUtil;
 
@@ -31,15 +31,8 @@ import com.liferay.faces.util.render.RendererUtil;
 /**
  * @author  Kyle Stiemann
  */
-//J-
 @FacesRenderer(componentFamily = Row.COMPONENT_FAMILY, rendererType = Row.RENDERER_TYPE)
-@ResourceDependencies(
-	{
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css"),
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap-responsive.min.css"),
-	}
-)
-//J+
+@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css")
 public class RowRenderer extends RowRendererBase {
 
 	@Override
@@ -52,7 +45,13 @@ public class RowRenderer extends RowRendererBase {
 		responseWriter.writeAttribute("id", clientId, null);
 
 		Row row = (Row) uiComponent;
-		RendererUtil.encodeStyleable(responseWriter, row, "row-fluid");
+		String rowStyleClass = "row";
+
+		if (ShowcaseModelBean.BOOTSTRAP_2) {
+			rowStyleClass = rowStyleClass.concat("-fluid");
+		}
+
+		RendererUtil.encodeStyleable(responseWriter, row, rowStyleClass);
 	}
 
 	@Override

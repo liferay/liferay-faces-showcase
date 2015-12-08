@@ -18,7 +18,6 @@ package com.liferay.faces.showcase.component.field.internal;
 import java.io.IOException;
 import java.util.List;
 
-import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlSelectBooleanCheckbox;
@@ -32,15 +31,8 @@ import com.liferay.faces.showcase.component.field.Field;
 /**
  * @author  Kyle Stiemann
  */
-//J-
 @FacesRenderer(componentFamily = Field.COMPONENT_FAMILY, rendererType = Field.RENDERER_TYPE)
-@ResourceDependencies(
-	{
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css"),
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap-responsive.min.css"),
-	}
-)
-//J+
+@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css")
 public class FieldRenderer extends FieldRendererBase {
 
 	@Override
@@ -71,15 +63,6 @@ public class FieldRenderer extends FieldRendererBase {
 		responseWriter.writeAttribute("class", "control-label", null);
 
 		if (labelFacet != null) {
-
-			UIComponent checkboxLabelFacetChild = getSelectBooleanCheckboxLabelFacetChild(labelFacet);
-
-			if (checkboxLabelFacetChild != null) {
-
-				String checkboxClientId = checkboxLabelFacetChild.getClientId(facesContext);
-				responseWriter.writeAttribute("for", checkboxClientId, null);
-			}
-
 			labelFacet.encodeAll(facesContext);
 		}
 
@@ -88,31 +71,5 @@ public class FieldRenderer extends FieldRendererBase {
 		}
 
 		responseWriter.endElement(LABEL);
-	}
-
-	private UIComponent getSelectBooleanCheckboxLabelFacetChild(UIComponent uiComponent) {
-
-		UIComponent labelFacet = uiComponent.getFacet("label");
-		UIComponent selectBooleanCheckboxChild = null;
-
-		if (labelFacet != null) {
-
-			if (labelFacet instanceof HtmlSelectBooleanCheckbox) {
-				selectBooleanCheckboxChild = labelFacet;
-			}
-			else if (labelFacet.getChildCount() > 0) {
-
-				List<UIComponent> children = labelFacet.getChildren();
-
-				for (UIComponent child : children) {
-
-					selectBooleanCheckboxChild = child;
-
-					break;
-				}
-			}
-		}
-
-		return selectBooleanCheckboxChild;
 	}
 }

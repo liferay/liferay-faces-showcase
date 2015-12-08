@@ -32,8 +32,10 @@ public abstract class ColumnRendererBase extends Renderer {
 	protected static final String EXECUTE = "execute";
 	protected static final String FILTER_BY = "filterBy";
 	protected static final String HEADER_TEXT = "headerText";
+	protected static final String OFFSET = "offset";
 	protected static final String OFFSET_WIDTH = "offsetWidth";
 	protected static final String RENDER = "render";
+	protected static final String SIZE = "size";
 	protected static final String SORT_BY = "sortBy";
 	protected static final String SORT_ORDER = "sortOrder";
 	protected static final String SPAN = "span";

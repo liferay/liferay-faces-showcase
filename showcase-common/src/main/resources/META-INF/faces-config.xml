@@ -10,6 +10,7 @@
 	</ordering>
 	<factory>
 		<factory-extension>
+			<util:component-resource-factory>com.liferay.faces.showcase.application.internal.ComponentResourceFactoryShowcaseImpl</util:component-resource-factory>
 			<util:message-context-factory>com.liferay.faces.showcase.context.internal.MessageContextFactoryShowcaseImpl</util:message-context-factory>
 		</factory-extension>
 	</factory>
