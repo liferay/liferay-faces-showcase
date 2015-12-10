@@ -7,7 +7,7 @@
 		<h:form>
 			<showcase:example renderedCheckbox="true" requiredCheckbox="true">
 				<showcase:field label="#{i18n['text-field']}">
-					<h:inputTextarea id="textarea" rendered="#{showcaseModelBean.selectedComponent.rendered}"
+					<h:inputTextarea id="textarea" label="#{i18n['text-field']}" rendered="#{showcaseModelBean.selectedComponent.rendered}"
 						required="#{showcaseModelBean.selectedComponent.required}" value="#{inputTextModelBean.text}" />
 					<h:message for="textarea" />
 				</showcase:field>

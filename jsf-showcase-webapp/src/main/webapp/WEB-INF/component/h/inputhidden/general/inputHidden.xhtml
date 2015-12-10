@@ -12,7 +12,7 @@
 							value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
 						<h:outputText rendered="#{!showcaseModelBean.selectedComponent.rendered}"
 							value="#{i18n['the-hidden-input-is-not-rendered']}" />
-						<h:inputHidden id="hidden" binding="#{inputHidden}"
+						<h:inputHidden id="hidden" binding="#{inputHidden}" label="#{i18n['hidden-field']}"
 							rendered="#{showcaseModelBean.selectedComponent.rendered}"
 							required="#{showcaseModelBean.selectedComponent.required}"
 							value="#{inputHiddenModelBean.text}" />
