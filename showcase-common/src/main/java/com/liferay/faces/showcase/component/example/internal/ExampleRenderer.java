@@ -154,8 +154,13 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 
 		if ((renderedCheckbox != null) && renderedCheckbox && !facesContext.isProjectStage(ProjectStage.Production)) {
 
-			HtmlSelectBooleanCheckbox htmlSelectBooleanCheckbox = createHtmlBooleanCheckbox(facesContext,
+			Application application = facesContext.getApplication();
+			HtmlSelectBooleanCheckbox htmlSelectBooleanCheckbox = createHtmlBooleanCheckbox(application, facesContext,
 					"#{showcaseModelBean.selectedComponent.rendered}");
+			AjaxBehavior ajaxBehavior = (AjaxBehavior) application.createBehavior(AjaxBehavior.BEHAVIOR_ID);
+			List<String> renderIds = Arrays.asList(new String[] { "@form" });
+			ajaxBehavior.setRender(renderIds);
+			htmlSelectBooleanCheckbox.addClientBehavior("valueChange", ajaxBehavior);
 			htmlSelectBooleanCheckbox.setId("renderedCheckbox");
 			exampleChildren.add(htmlSelectBooleanCheckbox);
 			addFacesAjaxResourceDependency(facesContext);
@@ -165,8 +170,11 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 
 		if ((requiredCheckbox != null) && requiredCheckbox) {
 
-			HtmlSelectBooleanCheckbox htmlSelectBooleanCheckbox = createHtmlBooleanCheckbox(facesContext,
+			Application application = facesContext.getApplication();
+			HtmlSelectBooleanCheckbox htmlSelectBooleanCheckbox = createHtmlBooleanCheckbox(application, facesContext,
 					"#{showcaseModelBean.selectedComponent.required}");
+			AjaxBehavior ajaxBehavior = (AjaxBehavior) application.createBehavior(AjaxBehavior.BEHAVIOR_ID);
+			htmlSelectBooleanCheckbox.addClientBehavior("valueChange", ajaxBehavior);
 			htmlSelectBooleanCheckbox.setId("requiredCheckbox");
 			exampleChildren.add(htmlSelectBooleanCheckbox);
 			addFacesAjaxResourceDependency(facesContext);
@@ -220,22 +228,17 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 		}
 	}
 
-	private HtmlSelectBooleanCheckbox createHtmlBooleanCheckbox(FacesContext facesContext, String elExpression) {
+	private HtmlSelectBooleanCheckbox createHtmlBooleanCheckbox(Application application, FacesContext facesContext,
+		String elExpression) {
 
 		HtmlSelectBooleanCheckbox htmlSelectBooleanCheckbox = new HtmlSelectBooleanCheckbox();
 		htmlSelectBooleanCheckbox.setImmediate(true);
 
-		Application application = facesContext.getApplication();
 		ExpressionFactory expressionFactory = application.getExpressionFactory();
 		ELContext elContext = facesContext.getELContext();
 		ValueExpression valueExpression = expressionFactory.createValueExpression(elContext, elExpression,
 				boolean.class);
 		htmlSelectBooleanCheckbox.setValueExpression("value", valueExpression);
-
-		AjaxBehavior ajaxBehavior = (AjaxBehavior) application.createBehavior(AjaxBehavior.BEHAVIOR_ID);
-		List<String> renderIds = Arrays.asList(new String[] { "@form" });
-		ajaxBehavior.setRender(renderIds);
-		htmlSelectBooleanCheckbox.addClientBehavior("valueChange", ajaxBehavior);
 
 		return htmlSelectBooleanCheckbox;
 	}
