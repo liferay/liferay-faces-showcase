@@ -235,6 +235,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[When alloy:column is a child of alloy:row, this is the width that the column will be offset by as a unit from 1 to 12. This value is rendered as a CSS class as <code>col-#{size}-offset-#{offset}</code> (for example if offset="4", the CSS class rendered will be <code>col-#{size}-offset-4</code>). If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset. Please consider using offsetWidth.]]></description>
+			<name>offset</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width that the column will be offset by as a percent. This value selects the offset via the formula <code>offset = (offsetWidth/100)*12 (rounded to the nearest whole number)</code>. If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset.]]></description>
 			<name>offsetWidth</name>
 			<required>false</required>
@@ -257,6 +263,12 @@
 			<name>rowHeader</name>
 			<required>false</required>
 			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[When alloy:column is a child of alloy:row, this is the size of the column. This value is rendered as a CSS class as <code>col-#{size}-#{span}</code> (for example if size="medium", the CSS class rendered will be <code>col-md-#{span}</code>). Valid values include <code>"extra-small"</code> (or <code>"xs"</code>), <code>"small"</code> (or <code>"sm"</code>), <code>"medium"</code> (or <code>"md"</code>), and <code>"large"</code> (or <code>"lg"</code>). The default value is <code>"medium"</code>.]]></description>
+			<name>size</name>
+			<required>false</required>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[When showcase:column is a child of showcase:dataTabe, this is the JavaBean property that is to be used for sorting.]]></description>

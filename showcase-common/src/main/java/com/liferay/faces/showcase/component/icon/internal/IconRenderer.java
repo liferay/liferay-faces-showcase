@@ -17,7 +17,6 @@ package com.liferay.faces.showcase.component.icon.internal;
 
 import java.io.IOException;
 
-import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -31,15 +30,8 @@ import com.liferay.faces.util.render.RendererUtil;
 /**
  * @author  Kyle Stiemann
  */
-//J-
 @FacesRenderer(componentFamily = Icon.COMPONENT_FAMILY, rendererType = Icon.RENDERER_TYPE)
-@ResourceDependencies(
-	{
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css"),
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap-responsive.min.css"),
-	}
-)
-//J+
+@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css")
 public class IconRenderer extends IconRendererBase {
 
 	@Override

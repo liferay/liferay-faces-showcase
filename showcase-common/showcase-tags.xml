@@ -96,6 +96,11 @@
 			<type><![CDATA[java.lang.String]]></type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[When alloy:column is a child of alloy:row, this is the width that the column will be offset by as a unit from 1 to 12. This value is rendered as a CSS class as <code>col-#{size}-offset-#{offset}</code> (for example if offset="4", the CSS class rendered will be <code>col-#{size}-offset-4</code>). If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset. Please consider using offsetWidth.]]></description>
+			<name>offset</name>
+			<type><![CDATA[java.lang.Integer]]></type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[When showcase:column is a child of showcase:row, this is the width that the column will be offset by as a percent. This value selects the offset via the formula <code>offset = (offsetWidth/100)*12 (rounded to the nearest whole number)</code>. If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset.]]></description>
 			<name>offsetWidth</name>
 			<type><![CDATA[java.lang.Integer]]></type>
@@ -115,6 +120,14 @@
 			<description><![CDATA[When showcase:column is a child of showcase:row and this flag is true, then the column is to be rendered as a <code>&lt;th&gt;</code> element with <code>scope=row</code>.]]></description>
 			<name>rowHeader</name>
 			<type><![CDATA[boolean]]></type>
+		</attribute>
+		<attribute>
+			<attribute-extension>
+				<default-value><![CDATA["medium"]]></default-value>
+			</attribute-extension>
+			<description><![CDATA[When alloy:column is a child of alloy:row, this is the size of the column. This value is rendered as a CSS class as <code>col-#{size}-#{span}</code> (for example if size="medium", the CSS class rendered will be <code>col-md-#{span}</code>). Valid values include <code>"extra-small"</code> (or <code>"xs"</code>), <code>"small"</code> (or <code>"sm"</code>), <code>"medium"</code> (or <code>"md"</code>), and <code>"large"</code> (or <code>"lg"</code>).]]></description>
+			<name>size</name>
+			<type><![CDATA[java.lang.String]]></type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[When showcase:column is a child of showcase:dataTabe, this is the JavaBean property that is to be used for sorting.]]></description>

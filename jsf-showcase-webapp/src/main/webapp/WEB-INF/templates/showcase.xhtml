@@ -7,7 +7,7 @@
 	<c:set value="#{selectedComponent.key}" var="selectedComponentKey" />
 	<c:set value="#{selectedComponent.useCaseName}" var="selectedComponentUseCaseName" />
 	<h:outputStylesheet library="css" name="showcase.css" />
-	<showcase:row>
+	<showcase:row class="#{showcaseModelBean.bootstrap2 ? ' bootstrap2' : ''}">
 		<showcase:column styleClass="showcase-nav-col" width="#{browserSniffer.ipad ? '30' : '25'}">
 			<h:link outcome="home">
 				<h:graphicImage library="images" name="logo-nav.png" styleClass="logo" />
@@ -24,7 +24,7 @@
 					<showcase:dataList styleClass="nav" value="#{listModelBean.showcaseCategoryMap[showcaseCategory]}"
 						var="showcaseComponent">
 						<showcase:dataItem styleClass="#{(selectedComponentKey == showcaseComponent.key) ? 'active' : ''}">
-							<h:link outcome="component" styleClass="alloy-link" value="#{showcaseComponent}">
+							<h:link outcome="component" styleClass="showcase-link" value="#{showcaseComponent}">
 								<f:param name="componentPrefix" value="#{showcaseComponent.prefix}" />
 								<f:param name="componentName" value="#{showcaseComponent.lowerCaseName}" />
 								<f:param name="componentUseCase" value="general" />
@@ -34,7 +34,7 @@
 								<showcase:dataList styleClass="nav" value="#{selectedComponent.useCases}" var="useCase">
 									<showcase:dataItem styleClass="#{(selectedComponentUseCaseName == useCase.name) ? 'active' : ''}"
 										style="white-space: nowrap;">
-										<h:link styleClass="alloy-link" value="#{i18n[useCase.name]}">
+										<h:link styleClass="showcase-link" value="#{i18n[useCase.name]}">
 											<f:param name="componentPrefix" value="#{selectedComponent.prefix}" />
 											<f:param name="componentName" value="#{selectedComponent.lowerCaseName}" />
 											<f:param name="componentUseCase" value="#{useCase.name}" />

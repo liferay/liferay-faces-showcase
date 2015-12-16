@@ -8,10 +8,20 @@
 	color: rgb(0, 22, 142);
 }
 
-.aui div.showcase-home span.alloy-panel-title {
-	font-weight: bold;
+.aui .showcase-note td {
+	vertical-align: top;	
 }
 
+.aui .showcase-nav-col .logo {
+	display: table-caption;
+	margin: 0 auto;
+}
+
+.aui .showcase-container {
+	margin: 0px 4px 0px 4px;
+	padding: 10px 10px 10px;
+	*padding-top: 10px;
+}
 .aui pre:after {
 	content: ' ';
 }
@@ -81,15 +91,39 @@
 	position: absolute;
 }
 
-.showcase-example .alloy-column {
-	line-height: 40px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	min-height: 40px;
-	text-align: center;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+.showcase-example,.showcase-attribute-value,.showcase-parameter-value,.showcase-model-value,.showcase-container {
+	border: 1px solid #ddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin: 15px 0;
+	position: relative;
+}
+
+.showcase-example,.showcase-attribute-value,.showcase-parameter-value,.showcase-model-value {
+	*padding-top: 19px;
+}
+
+.showcase-example label.example-label,.showcase-attribute-value label.attribute-label,.showcase-parameter-value label.parameter-label,.showcase-model-value label.model-label,.showcase-container label.container-label {
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	-webkit-border-radius: 4px 0 4px 0;
+	-moz-border-radius: 4px 0 4px 0;
+	border-radius: 4px 0 4px 0;
+	color: #9da0a4;
+	font-size: 12px;
+	padding: 3px 7px;
+	float: left;
+}
+
+.example-content {
+	clear: both;
+	padding: 7px 19px 14px;
+}
+
+.showcase-example label.example-label span.example-number,.showcase-attribute-value label.attribute-label,.showcase-parameter-value label.parameter-label,.showcase-model-value label.model-label,.showcase-container label.container-label {
+	font-weight: bold;
 }
 
 .showcase-example-panel {
@@ -102,37 +136,32 @@
 	padding-left: 15px;
 }
 
-.aui .nav>li>a.alloy-link {
+.aui .nav>li>a.showcase-link {
 	padding: 0px 0px 0px 30px;
 	white-space: nowrap;
 }
 
-.aui .nav>li>a>.alloy-icon {
-	margin-left: 4px;
-	text-decoration: none;
-}
-
-.aui .nav>.active>a.alloy-link,.aui .nav>.active>a.alloy-link:hover {
+.aui .nav>.active>a.showcase-link,.aui .nav>.active>a.showcase-link:hover {
 	text-shadow: none;
 }
 
-.aui .nav>li>a.alloy-link:hover {
+.aui .nav>li>a.showcase-link:hover {
 	text-decoration: underline;
 }
 
-.aui .nav .nav>li>a.alloy-link {
+.aui .nav .nav>li>a.showcase-link {
 	background-color: transparent;
 	font-size: 0.9em;
 	white-space: nowrap;
 }
 
-.aui .nav .nav>.active>a.alloy-link {
+.aui .nav .nav>.active>a.showcase-link {
 	color: #000000;
 	font-weight: bold;
 	text-shadow: none;
 }
 
-.aui a, .aui .alloy-output-text a {
+.aui a {
 	color: #0058ba;
 }
 
@@ -144,7 +173,7 @@
 	color: #999999;
 }
 
-.aui .nav>li a.alloy-link,.aui .nav>li a.alloy-link:hover,.aui .nav>li.active a.alloy-link,.aui .nav>li.active a.alloy-link:hover,.aui .nav .nav>li>a.alloy-link:hover {
+.aui .nav>li a.showcase-link,.aui .nav>li a.showcase-link:hover,.aui .nav>li.active a.showcase-link,.aui .nav>li.active a.showcase-link:hover,.aui .nav .nav>li>a.showcase-link:hover {
 	background-color: transparent;
 	color: #0058ba;
 }
@@ -159,18 +188,25 @@
 	width: 300px;
 }
 
-.aui .alloy-body>.row, .aui.alloy-body>.row {
+.aui body>.row, body.aui>.row {
 	margin-right: 0px;
 }
 
-.aui .alloy-output-text.pad-left {
+.aui .pad-left {
 	padding-left: 15px;
 }
 
-.aui .alloy-select-many-listbox, .aui .alloy-select-many-menu, .aui .alloy-select-one-listbox, .aui .alloy-select-one-menu {
+.aui select {
 	display: block;
 }
 
 .aui .nav {
 	margin-bottom: 2px;
+}
+
+/*
+	Turn off transitions in bootstrap 2.
+*/
+.bootstrap2 .collapsing {
+	display: none;
 }

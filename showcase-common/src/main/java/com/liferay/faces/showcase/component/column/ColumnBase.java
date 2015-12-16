@@ -38,8 +38,10 @@ public abstract class ColumnBase extends HtmlColumn implements Styleable {
 		execute,
 		filterBy,
 		headerText,
+		offset,
 		offsetWidth,
 		render,
+		size,
 		sortBy,
 		sortOrder,
 		span,
@@ -108,6 +110,24 @@ public abstract class ColumnBase extends HtmlColumn implements Styleable {
 	}
 
 	/**
+	 * <code>offset</code> attribute description:
+	 * <br /><br />
+	 * When alloy:column is a child of alloy:row, this is the width that the column will be offset by as a unit from 1 to 12. This value is rendered as a CSS class as <code>col-#{size}-offset-#{offset}</code> (for example if offset="4", the CSS class rendered will be <code>col-#{size}-offset-4</code>). If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset. Please consider using offsetWidth.
+	 */
+	public Integer getOffset() {
+		return (Integer) getStateHelper().eval(ColumnPropertyKeys.offset, null);
+	}
+
+	/**
+	 * <code>offset</code> attribute description:
+	 * <br /><br />
+	 * When alloy:column is a child of alloy:row, this is the width that the column will be offset by as a unit from 1 to 12. This value is rendered as a CSS class as <code>col-#{size}-offset-#{offset}</code> (for example if offset="4", the CSS class rendered will be <code>col-#{size}-offset-4</code>). If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset. Please consider using offsetWidth.
+	 */
+	public void setOffset(Integer offset) {
+		getStateHelper().put(ColumnPropertyKeys.offset, offset);
+	}
+
+	/**
 	 * <code>offsetWidth</code> attribute description:
 	 * <br /><br />
 	 * When showcase:column is a child of showcase:row, this is the width that the column will be offset by as a percent. This value selects the offset via the formula <code>offset = (offsetWidth/100)*12 (rounded to the nearest whole number)</code>. If both the offsetWidth and offset attributes are present, the offsetWidth attribute determines the value of the offset.
@@ -141,6 +161,24 @@ public abstract class ColumnBase extends HtmlColumn implements Styleable {
 	 */
 	public void setRender(String render) {
 		getStateHelper().put(ColumnPropertyKeys.render, render);
+	}
+
+	/**
+	 * <code>size</code> attribute description:
+	 * <br /><br />
+	 * When alloy:column is a child of alloy:row, this is the size of the column. This value is rendered as a CSS class as <code>col-#{size}-#{span}</code> (for example if size="medium", the CSS class rendered will be <code>col-md-#{span}</code>). Valid values include <code>"extra-small"</code> (or <code>"xs"</code>), <code>"small"</code> (or <code>"sm"</code>), <code>"medium"</code> (or <code>"md"</code>), and <code>"large"</code> (or <code>"lg"</code>).
+	 */
+	public String getSize() {
+		return (String) getStateHelper().eval(ColumnPropertyKeys.size, "medium");
+	}
+
+	/**
+	 * <code>size</code> attribute description:
+	 * <br /><br />
+	 * When alloy:column is a child of alloy:row, this is the size of the column. This value is rendered as a CSS class as <code>col-#{size}-#{span}</code> (for example if size="medium", the CSS class rendered will be <code>col-md-#{span}</code>). Valid values include <code>"extra-small"</code> (or <code>"xs"</code>), <code>"small"</code> (or <code>"sm"</code>), <code>"medium"</code> (or <code>"md"</code>), and <code>"large"</code> (or <code>"lg"</code>).
+	 */
+	public void setSize(String size) {
+		getStateHelper().put(ColumnPropertyKeys.size, size);
 	}
 
 	/**

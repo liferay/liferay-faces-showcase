@@ -104,7 +104,7 @@ public class ListModelBean {
 		}
 
 		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_CRYSTAL_DETECTED &&
-			!LIFERAY_FACES_PORTAL_DETECTED) {
+				!LIFERAY_FACES_PORTAL_DETECTED) {
 			showcaseCategoryList.add("portlet");
 		}
 
@@ -121,6 +121,7 @@ public class ListModelBean {
 		List<String> namespaces = new ArrayList<String>();
 		namespaces.add("alloy");
 		namespaces.add("bridge");
+		namespaces.add("crystal");
 		namespaces.add("c");
 		namespaces.add("f");
 		namespaces.add("h");

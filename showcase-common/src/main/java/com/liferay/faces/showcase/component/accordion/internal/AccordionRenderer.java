@@ -29,11 +29,7 @@ import com.liferay.faces.showcase.component.accordion.Accordion;
 import com.liferay.faces.showcase.component.tab.Tab;
 import com.liferay.faces.showcase.component.tab.TabUtil;
 import com.liferay.faces.showcase.util.ShowcaseUtil;
-import com.liferay.faces.util.client.Script;
-import com.liferay.faces.util.client.ScriptFactory;
 import com.liferay.faces.util.component.Styleable;
-import com.liferay.faces.util.context.FacesRequestContext;
-import com.liferay.faces.util.factory.FactoryExtensionFinder;
 import com.liferay.faces.util.logging.Logger;
 import com.liferay.faces.util.logging.LoggerFactory;
 import com.liferay.faces.util.product.ProductConstants;
@@ -49,17 +45,16 @@ import com.liferay.faces.util.render.RendererUtil;
 @ResourceDependencies(
 	{
 		@ResourceDependency(library = "bootstrap", name = "css/bootstrap.min.css"),
-		@ResourceDependency(library = "bootstrap", name = "css/bootstrap-responsive.min.css"),
 		@ResourceDependency(library = "bootstrap", name = "js/jquery.min.js"),
-		@ResourceDependency(library = "bootstrap", name = "js/bootstrap.min.js"),
-		@ResourceDependency(library = "bootstrap", name = "js/bootstrap-collapse.js")
+		@ResourceDependency(library = "bootstrap", name = "js/bootstrap.min.js")
 	}
 )
 //J+
 public class AccordionRenderer extends AccordionRendererBase {
 
 	// Private Constants
-	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL).isDetected();
+	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL)
+		.isDetected();
 
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(AccordionRenderer.class);
@@ -71,7 +66,7 @@ public class AccordionRenderer extends AccordionRendererBase {
 		ResponseWriter responseWriter = facesContext.getResponseWriter();
 		responseWriter.startElement("div", uiComponent);
 		responseWriter.writeAttribute("id", uiComponent.getClientId(facesContext), "id");
-		RendererUtil.encodeStyleable(responseWriter, (Styleable) uiComponent, "accordion");
+		RendererUtil.encodeStyleable(responseWriter, (Styleable) uiComponent, "accordion", "panel-group");
 	}
 
 	@Override
@@ -103,7 +98,7 @@ public class AccordionRenderer extends AccordionRendererBase {
 
 					boolean selected = ((selectedIndex != null) && (i == selectedIndex));
 					responseWriter.startElement("div", null);
-					responseWriter.writeAttribute("class", "accordion-group", null);
+					responseWriter.writeAttribute("class", "accordion-group panel panel-default", null);
 					encodeHeader(facesContext, responseWriter, accordionClientId, accordionIteratedClientId,
 						prototypeChildTab);
 					encodeContent(facesContext, responseWriter, accordionIteratedClientId, prototypeChildTab, selected);
@@ -157,12 +152,6 @@ public class AccordionRenderer extends AccordionRendererBase {
 		else {
 			escapedClientId = ShowcaseUtil.singleEscapeClientId(uiComponent.getClientId());
 		}
-
-		String scriptSource = "$('#".concat(escapedClientId.concat("').collapse();"));
-		ScriptFactory scriptFactory = (ScriptFactory) FactoryExtensionFinder.getFactory(ScriptFactory.class);
-		Script script = scriptFactory.getScript(scriptSource);
-		FacesRequestContext facesRequestContext = FacesRequestContext.getCurrentInstance();
-		facesRequestContext.addScript(script);
 	}
 
 	protected void encodeContent(FacesContext facesContext, ResponseWriter responseWriter,
@@ -173,13 +162,10 @@ public class AccordionRenderer extends AccordionRendererBase {
 		responseWriter.writeAttribute("id", accordionIteratedClientId, null);
 
 		// Encode the div's class attribute according to the specified tab's collapsed/expanded state.
-		String contentClass = "accordion-body";
+		String contentClass = "accordion-body panel-body panel-collapse collapse";
 
 		if (selected) {
-			contentClass = contentClass.concat(" in collapse");
-		}
-		else {
-			contentClass = contentClass.concat(" collapse");
+			contentClass = contentClass.concat(" in");
 		}
 
 		// If the specified tab has a contentClass, then append it to the class attribute before encoding.
@@ -210,7 +196,7 @@ public class AccordionRenderer extends AccordionRendererBase {
 		responseWriter.startElement("div", tab);
 
 		// Encode the div's class attribute according to the specified tab's collapsed/expanded state.
-		String headerClass = "accordion-heading";
+		String headerClass = "accordion-heading panel-heading";
 
 		// If the specified tab has a headerClass, then append it to the class attribute before encoding.
 		String tabHeaderClass = tab.getHeaderClass();
@@ -222,7 +208,7 @@ public class AccordionRenderer extends AccordionRendererBase {
 		responseWriter.writeAttribute("class", headerClass, Styleable.STYLE_CLASS);
 
 		responseWriter.startElement("a", null);
-		responseWriter.writeAttribute("class", "accordion-toggle collapsed", null);
+		responseWriter.writeAttribute("class", "accordion-toggle panel-title collapsed", null);
 
 		String escapedAccordionClientId = "#".concat(ShowcaseUtil.singleEscapeClientId(accordionClientId));
 		responseWriter.writeAttribute("data-parent", escapedAccordionClientId, null);

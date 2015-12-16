@@ -7,9 +7,11 @@
 		<h:form>
 			<showcase:example>
 				<showcase:field label="#{i18n['ajax']}">
-					<h:selectBooleanCheckbox value="#{commandModelBean.ajax}">
-						<f:ajax render="nav" />
-					</h:selectBooleanCheckbox>
+					<f:facet name="label">
+						<h:selectBooleanCheckbox value="#{commandModelBean.ajax}">
+							<f:ajax render="nav" />
+						</h:selectBooleanCheckbox>
+					</f:facet>
 				</showcase:field>
 				<!-- Navigation based on outcome of navigation-case defined in navigation-rule.xml -->
 				<h:commandButton id="nav" action="toParam" value="#{i18n['to-param-page']} >">
