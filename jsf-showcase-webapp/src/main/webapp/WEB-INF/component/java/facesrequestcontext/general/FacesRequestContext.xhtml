@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:showcase="http://liferay.com/faces/showcase" template="/WEB-INF/templates/component-1col-60.xhtml">
+
+	<ui:define name="col1">
+		<showcase:example>
+			<h:form>
+				<h:commandButton actionListener="#{facesRequestContextBacking.openDialog}"
+					value="#{i18n['show-modal']}">
+					<f:ajax />
+				</h:commandButton>
+			</h:form>
+			<h:panelGroup styleClass="modal">
+				<h:panelGroup layout="block" styleClass="modal-dialog">
+					<h:panelGroup layout="block" styleClass="modal-content">
+						<h:panelGroup layout="block" styleClass="modal-body">
+							<h:form>
+								<showcase:field label="#{i18n['please-enter-your-email']}">
+									<h:inputText id="text" value="#{facesRequestContextBacking.email}" required="true" />
+									<h:message for="text" />
+								</showcase:field>
+								<h:commandButton actionListener="#{facesRequestContextBacking.closeDialog}"
+									value="#{i18n['submit']}">
+									<f:ajax execute="@form" render="@form" />
+								</h:commandButton>
+							</h:form>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+			</h:panelGroup>
+		</showcase:example>
+		<h:outputScript target="body">
+			$('.modal').modal({ backdrop: 'static', keyboard : false, show : false });
+		</h:outputScript>
+	</ui:define>
+
+</ui:composition>

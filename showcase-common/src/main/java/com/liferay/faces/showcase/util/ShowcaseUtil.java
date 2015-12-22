@@ -141,6 +141,14 @@ public class ShowcaseUtil {
 					stringBuilder.append(javaDocURL);
 					stringBuilder.append(ANCHOR_ELEMENT_OPEN_FINISH);
 					stringBuilder.append(javaDocKey.getClassName());
+
+					String fragment = javaDocKey.getFragment();
+
+					if (fragment != null) {
+						stringBuilder.append(".");
+						stringBuilder.append(fragment);
+					}
+
 					stringBuilder.append(ANCHOR_ELEMENT_CLOSE);
 				}
 				else if (part.startsWith(VDLDOC_PREFIX)) {
@@ -211,6 +219,14 @@ public class ShowcaseUtil {
 		String javaClassURLPath = fqcn.replaceAll(REGEX_DOT, "/");
 		javaDocURL.append(javaClassURLPath);
 		javaDocURL.append(HTML_EXTENSION);
+
+		String fragment = javaDocKey.getFragment();
+
+		if (fragment != null) {
+
+			javaDocURL.append("#");
+			javaDocURL.append(fragment);
+		}
 
 		return javaDocURL.toString();
 	}
@@ -351,6 +367,7 @@ public class ShowcaseUtil {
 
 		private String className;
 		private String fqcn;
+		private String fragment;
 
 		public JavaDocKey(String key) {
 
@@ -359,7 +376,16 @@ public class ShowcaseUtil {
 				String[] keyParts = COLON_DELIMITER_PATTERN.split(key);
 
 				if (keyParts.length > 1) {
-					this.fqcn = keyParts[1];
+
+					if (keyParts[1].contains("#")) {
+
+						String[] fqcnAndFragment = keyParts[1].split("#");
+						this.fqcn = fqcnAndFragment[0];
+						this.fragment = fqcnAndFragment[1];
+					}
+					else {
+						this.fqcn = keyParts[1];
+					}
 
 					int pos = this.fqcn.lastIndexOf(".");
 
@@ -376,6 +402,10 @@ public class ShowcaseUtil {
 
 		public String getFQCN() {
 			return fqcn;
+		}
+
+		public String getFragment() {
+			return fragment;
 		}
 	}
 
