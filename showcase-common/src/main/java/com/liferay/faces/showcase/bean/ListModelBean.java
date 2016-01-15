@@ -62,8 +62,8 @@ public class ListModelBean {
 			ProductConstants.LIFERAY_FACES_ALLOY).isDetected();
 	private static final boolean LIFERAY_FACES_BRIDGE_DETECTED = ProductMap.getInstance().get(
 			ProductConstants.LIFERAY_FACES_BRIDGE).isDetected();
-	private static final boolean LIFERAY_FACES_CRYSTAL_DETECTED = ProductMap.getInstance().get(
-			ProductConstants.LIFERAY_FACES_CRYSTAL).isDetected();
+	private static final boolean LIFERAY_FACES_METAL_DETECTED = ProductMap.getInstance().get(
+			ProductConstants.LIFERAY_FACES_METAL).isDetected();
 	private static final boolean LIFERAY_FACES_PORTAL_DETECTED = ProductMap.getInstance().get(
 			ProductConstants.LIFERAY_FACES_PORTAL).isDetected();
 	private static final String[] PACKAGE_NAMES = new String[] {
@@ -103,7 +103,7 @@ public class ListModelBean {
 			showcaseCategoryList.add("select");
 		}
 
-		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_CRYSTAL_DETECTED &&
+		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_METAL_DETECTED &&
 				!LIFERAY_FACES_PORTAL_DETECTED) {
 			showcaseCategoryList.add("portlet");
 		}
@@ -121,7 +121,7 @@ public class ListModelBean {
 		List<String> namespaces = new ArrayList<String>();
 		namespaces.add("alloy");
 		namespaces.add("bridge");
-		namespaces.add("crystal");
+		namespaces.add("metal");
 		namespaces.add("c");
 		namespaces.add("f");
 		namespaces.add("h");
@@ -136,7 +136,7 @@ public class ListModelBean {
 			namespaces.add("portal");
 		}
 
-		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_CRYSTAL_DETECTED) {
+		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_METAL_DETECTED) {
 			namespaces.add("portlet");
 		}
 
@@ -307,7 +307,7 @@ public class ListModelBean {
 			Product[] products = new Product[] {
 					productMap.get(ProductConstants.LIFERAY_FACES_ALLOY),
 					productMap.get(ProductConstants.LIFERAY_FACES_BRIDGE),
-					productMap.get(ProductConstants.LIFERAY_FACES_CRYSTAL),
+					productMap.get(ProductConstants.LIFERAY_FACES_METAL),
 					productMap.get(ProductConstants.LIFERAY_FACES_PORTAL),
 					productMap.get(ProductConstants.LIFERAY_FACES_SHOWCASE),
 					productMap.get(ProductConstants.LIFERAY_FACES_UTIL), productMap.get(ProductConstants.JSF)
