@@ -32,11 +32,11 @@ public class ResourceDependencyVerifierShowcaseImpl extends ResourceDependencyVe
 	// Private Constants
 	private static final boolean ALLOY_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_ALLOY)
 		.isDetected();
-	private static final boolean CRYSTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_CRYSTAL)
-		.isDetected();
 	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL)
 		.isDetected();
-	private static final boolean BOOTSTRAP_SATISFIED = (ALLOY_DETECTED || CRYSTAL_DETECTED || LIFERAY_PORTAL_DETECTED);
+	private static final boolean METAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_METAL)
+		.isDetected();
+	private static final boolean BOOTSTRAP_SATISFIED = (ALLOY_DETECTED || LIFERAY_PORTAL_DETECTED || METAL_DETECTED);
 	private static final String BOOTSTRAP_RESOURCE_ID = ResourceUtil.getResourceDependencyId("bootstrap",
 			"css/bootstrap.min.css");
 
