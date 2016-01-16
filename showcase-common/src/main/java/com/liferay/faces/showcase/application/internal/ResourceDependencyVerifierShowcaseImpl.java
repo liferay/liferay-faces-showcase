@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2015 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,29 +35,25 @@ public class ResourceDependencyVerifierShowcaseImpl extends ResourceDependencyVe
 		.isDetected();
 	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL)
 		.isDetected();
+	private static final boolean BOOTSTRAP_SATISFIED = (ALLOY_DETECTED || CRYSTAL_DETECTED || LIFERAY_PORTAL_DETECTED);
 	private static final String BOOTSTRAP_RESOURCE_ID = getResourceDependencyId("bootstrap", "css/bootstrap.min.css");
 
 	// Private Members
 	private ResourceDependencyVerifier wrappedResourceDependencyHandler;
 
-	public ResourceDependencyVerifierShowcaseImpl(ResourceDependencyVerifier wrappedResourceDependencyHandler) {
-		this.wrappedResourceDependencyHandler = wrappedResourceDependencyHandler;
+	public ResourceDependencyVerifierShowcaseImpl(ResourceDependencyVerifier resourceDependencyVerifier) {
+		this.wrappedResourceDependencyHandler = resourceDependencyVerifier;
 	}
 
 	@Override
 	public boolean isResourceDependencySatisfied(UIComponent componentResource) {
 
-		boolean resourceDependencySatisfied;
-
-		if ((ALLOY_DETECTED || CRYSTAL_DETECTED || LIFERAY_PORTAL_DETECTED) &&
-				BOOTSTRAP_RESOURCE_ID.equals(getResourceDependencyId(componentResource))) {
-			resourceDependencySatisfied = true;
+		if (BOOTSTRAP_SATISFIED && BOOTSTRAP_RESOURCE_ID.equals(getResourceDependencyId(componentResource))) {
+			return true;
 		}
 		else {
-			resourceDependencySatisfied = super.isResourceDependencySatisfied(componentResource);
+			return super.isResourceDependencySatisfied(componentResource);
 		}
-
-		return resourceDependencySatisfied;
 	}
 
 	@Override
