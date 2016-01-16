@@ -19,6 +19,7 @@ import javax.faces.component.UIComponent;
 
 import com.liferay.faces.util.application.ResourceDependencyVerifier;
 import com.liferay.faces.util.application.ResourceDependencyVerifierWrapper;
+import com.liferay.faces.util.application.ResourceUtil;
 import com.liferay.faces.util.product.ProductConstants;
 import com.liferay.faces.util.product.ProductMap;
 
@@ -36,7 +37,8 @@ public class ResourceDependencyVerifierShowcaseImpl extends ResourceDependencyVe
 	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL)
 		.isDetected();
 	private static final boolean BOOTSTRAP_SATISFIED = (ALLOY_DETECTED || CRYSTAL_DETECTED || LIFERAY_PORTAL_DETECTED);
-	private static final String BOOTSTRAP_RESOURCE_ID = getResourceDependencyId("bootstrap", "css/bootstrap.min.css");
+	private static final String BOOTSTRAP_RESOURCE_ID = ResourceUtil.getResourceDependencyId("bootstrap",
+			"css/bootstrap.min.css");
 
 	// Private Members
 	private ResourceDependencyVerifier wrappedResourceDependencyHandler;
@@ -48,7 +50,8 @@ public class ResourceDependencyVerifierShowcaseImpl extends ResourceDependencyVe
 	@Override
 	public boolean isResourceDependencySatisfied(UIComponent componentResource) {
 
-		if (BOOTSTRAP_SATISFIED && BOOTSTRAP_RESOURCE_ID.equals(getResourceDependencyId(componentResource))) {
+		if (BOOTSTRAP_SATISFIED &&
+				BOOTSTRAP_RESOURCE_ID.equals(ResourceUtil.getResourceDependencyId(componentResource))) {
 			return true;
 		}
 		else {
