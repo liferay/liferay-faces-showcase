@@ -108,10 +108,10 @@ public class ListModelBean {
 			showcaseCategoryList.add("portlet");
 		}
 
-		showcaseCategoryList.add("javautilities");
 		showcaseCategoryList.add("jstl");
 		showcaseCategoryList.add("facescore");
 		showcaseCategoryList.add("facelets");
+		showcaseCategoryList.add("extensions");
 
 		this.showcaseComponents = new ArrayList<ShowcaseComponent>();
 		this.showcaseCategoryMap = new HashMap<String, List<ShowcaseComponent>>();
@@ -123,10 +123,10 @@ public class ListModelBean {
 		namespaces.add("alloy");
 		namespaces.add("bridge");
 		namespaces.add("metal");
-		namespaces.add("java");
 		namespaces.add("c");
 		namespaces.add("f");
 		namespaces.add("h");
+		namespaces.add("util");
 
 		if (LIFERAY_FACES_PORTAL_DETECTED) {
 
@@ -151,8 +151,8 @@ public class ListModelBean {
 			Properties properties = new Properties();
 			String filename;
 
-			if ("java".equals(namespace)) {
-				filename = namespace + "-utilities.properties";
+			if ("util".equals(namespace)) {
+				filename = namespace + "-extensions.properties";
 			}
 			else {
 				filename = namespace + "-tags.properties";

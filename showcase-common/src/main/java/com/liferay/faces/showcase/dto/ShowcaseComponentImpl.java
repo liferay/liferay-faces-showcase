@@ -44,7 +44,7 @@ public class ShowcaseComponentImpl implements Serializable, ShowcaseComponent {
 		this.lowerCaseName = lowerCaseName;
 		this.useCases = useCases;
 
-		if ("java".equals(prefix)) {
+		if ("util".equals(prefix)) {
 			this.fullName = camelCaseName;
 		}
 		else {
