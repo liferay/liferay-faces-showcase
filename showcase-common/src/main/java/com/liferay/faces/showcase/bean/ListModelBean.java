@@ -108,6 +108,7 @@ public class ListModelBean {
 			showcaseCategoryList.add("portlet");
 		}
 
+		showcaseCategoryList.add("javautilities");
 		showcaseCategoryList.add("jstl");
 		showcaseCategoryList.add("facescore");
 		showcaseCategoryList.add("facelets");
@@ -122,6 +123,7 @@ public class ListModelBean {
 		namespaces.add("alloy");
 		namespaces.add("bridge");
 		namespaces.add("metal");
+		namespaces.add("java");
 		namespaces.add("c");
 		namespaces.add("f");
 		namespaces.add("h");
@@ -147,7 +149,15 @@ public class ListModelBean {
 		for (String namespace : namespaceArray) {
 
 			Properties properties = new Properties();
-			String filename = namespace + "-tags.properties";
+			String filename;
+
+			if ("java".equals(namespace)) {
+				filename = namespace + "-utilities.properties";
+			}
+			else {
+				filename = namespace + "-tags.properties";
+			}
+
 			URL resource = classLoader.getResource(filename);
 
 			if (resource == null) {

@@ -34,8 +34,6 @@ public class ShowcaseComponentImpl implements Serializable, ShowcaseComponent {
 	private String key;
 	private String lowerCaseName;
 	private String prefix;
-	private boolean resetToString = true;
-	private String toString;
 	private List<UseCase> useCases;
 
 	public ShowcaseComponentImpl(int categoryIndex, String prefix, String camelCaseName, String lowerCaseName,
@@ -45,24 +43,20 @@ public class ShowcaseComponentImpl implements Serializable, ShowcaseComponent {
 		this.camelCaseName = camelCaseName;
 		this.lowerCaseName = lowerCaseName;
 		this.useCases = useCases;
-		this.fullName = prefix + ":" + camelCaseName;
+
+		if ("java".equals(prefix)) {
+			this.fullName = camelCaseName;
+		}
+		else {
+			this.fullName = prefix + ":" + camelCaseName;
+		}
+
 		this.key = prefix + "-" + lowerCaseName;
 	}
 
 	@Override
 	public String toString() {
-
-		if (resetToString) {
-
-			toString = null;
-
-			if ((prefix != null) && (camelCaseName != null)) {
-
-				return prefix + ":" + camelCaseName;
-			}
-		}
-
-		return toString;
+		return fullName;
 	}
 
 	@Override
@@ -70,6 +64,7 @@ public class ShowcaseComponentImpl implements Serializable, ShowcaseComponent {
 		return camelCaseName;
 	}
 
+	@Override
 	public int getCategoryIndex() {
 		return categoryIndex;
 	}
