@@ -16,7 +16,7 @@
 						<h:panelGroup layout="block" styleClass="modal-body">
 							<h:form>
 								<showcase:field label="#{i18n['please-enter-your-email']}">
-									<h:inputText id="text" value="#{facesRequestContextBacking.email}" required="true" />
+									<h:inputText id="text" label="#{i18n['email']}" value="#{facesRequestContextBacking.email}" required="true" />
 									<h:message for="text" />
 								</showcase:field>
 								<h:commandButton actionListener="#{facesRequestContextBacking.closeDialog}"

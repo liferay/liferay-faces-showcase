@@ -34,7 +34,8 @@ public class FacesRequestContextBacking {
 
 		if (email != null) {
 
-			FacesRequestContext facesRequestContext = FacesRequestContext.getCurrentInstance();
+			com.liferay.faces.util.context.FacesRequestContext facesRequestContext =
+				FacesRequestContext.getCurrentInstance();
 			facesRequestContext.addScript("$('.modal').modal('hide');");
 		}
 	}
