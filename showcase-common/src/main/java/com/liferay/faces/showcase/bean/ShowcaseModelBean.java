@@ -106,6 +106,56 @@ public class ShowcaseModelBean implements Serializable {
 		return selectedComponent;
 	}
 
+	public String getSourceControlURL() {
+
+		StringBuilder sourceControlURL = new StringBuilder();
+		sourceControlURL.append("https://github.com/liferay/liferay-faces-");
+
+		String selectedComponentPrefix = selectedComponent.getPrefix();
+		String componentRepoSuffix = selectedComponentPrefix;
+		String componentShowcaseFolderPrefix = selectedComponentPrefix;
+		String componentShowcaseContainer = "webapp";
+
+		if ("c".equals(selectedComponentPrefix) || "f".equals(selectedComponentPrefix) ||
+				"h".equals(selectedComponentPrefix) || "java".equals(selectedComponentPrefix) ||
+				"ui".equals(selectedComponentPrefix)) {
+
+			componentRepoSuffix = "showcase";
+			componentShowcaseFolderPrefix = "jsf";
+		}
+		else if ("bridge".equals(selectedComponentPrefix) || "portlet".equals(selectedComponentPrefix)) {
+
+			componentRepoSuffix = "bridge-impl";
+			componentShowcaseFolderPrefix = "jsf";
+			componentShowcaseContainer = "portlet";
+		}
+		else if ("portal".equals(selectedComponentPrefix)) {
+			componentShowcaseContainer = "portlet";
+		}
+
+		sourceControlURL.append(componentRepoSuffix);
+		sourceControlURL.append("/edit/master/");
+
+		if (!"showcase".equals(componentRepoSuffix)) {
+			sourceControlURL.append("demos/");
+		}
+
+		sourceControlURL.append(componentShowcaseFolderPrefix);
+		sourceControlURL.append("-showcase-");
+		sourceControlURL.append(componentShowcaseContainer);
+		sourceControlURL.append("/src/main/webapp/WEB-INF/component/");
+		sourceControlURL.append(selectedComponentPrefix);
+		sourceControlURL.append("/");
+		sourceControlURL.append(selectedComponent.getLowerCaseName());
+		sourceControlURL.append("/");
+		sourceControlURL.append(selectedComponent.getUseCaseName());
+		sourceControlURL.append("/");
+		sourceControlURL.append(selectedComponent.getCamelCaseName());
+		sourceControlURL.append(".xhtml");
+
+		return sourceControlURL.toString();
+	}
+
 	public ViewParameters getViewParameters() {
 
 		if (viewParameters == null) {
