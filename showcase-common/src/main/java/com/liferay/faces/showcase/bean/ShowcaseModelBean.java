@@ -63,6 +63,7 @@ public class ShowcaseModelBean implements Serializable {
 	// Private Data Members
 	private String deploymentType;
 	private SelectedComponent selectedComponent;
+	private String sourceControlURL;
 	private ViewParameters viewParameters;
 
 	public boolean isBootstrap2() {
@@ -108,52 +109,58 @@ public class ShowcaseModelBean implements Serializable {
 
 	public String getSourceControlURL() {
 
-		StringBuilder sourceControlURL = new StringBuilder();
-		sourceControlURL.append("https://github.com/liferay/liferay-faces-");
+		if (sourceControlURL == null) {
 
-		String selectedComponentPrefix = selectedComponent.getPrefix();
-		String componentRepoSuffix = selectedComponentPrefix;
-		String componentShowcaseFolderPrefix = selectedComponentPrefix;
-		String componentShowcaseContainer = "webapp";
+			StringBuilder urlBuilder = new StringBuilder();
+			urlBuilder.append("https://github.com/liferay/liferay-faces-");
 
-		if ("c".equals(selectedComponentPrefix) || "f".equals(selectedComponentPrefix) ||
-				"h".equals(selectedComponentPrefix) || "java".equals(selectedComponentPrefix) ||
-				"ui".equals(selectedComponentPrefix)) {
+			String selectedComponentPrefix = selectedComponent.getPrefix();
+			String componentRepoSuffix = selectedComponentPrefix;
+			String componentShowcaseFolderPrefix = selectedComponentPrefix;
+			String componentShowcaseContainer = "webapp";
 
-			componentRepoSuffix = "showcase";
-			componentShowcaseFolderPrefix = "jsf";
+			if ("c".equals(selectedComponentPrefix) || "f".equals(selectedComponentPrefix) ||
+					"h".equals(selectedComponentPrefix) || "util".equals(selectedComponentPrefix) ||
+					"ui".equals(selectedComponentPrefix)) {
+
+				componentRepoSuffix = "showcase";
+				componentShowcaseFolderPrefix = "jsf";
+			}
+			else if ("bridge".equals(selectedComponentPrefix) || "portlet".equals(selectedComponentPrefix)) {
+
+				componentRepoSuffix = "bridge-impl";
+				componentShowcaseFolderPrefix = "jsf";
+				componentShowcaseContainer = "portlet";
+			}
+			else if ("portal".equals(selectedComponentPrefix)) {
+				componentShowcaseContainer = "portlet";
+			}
+
+			urlBuilder.append(componentRepoSuffix);
+			urlBuilder.append("/edit/master/");
+
+			if (!"showcase".equals(componentRepoSuffix)) {
+				urlBuilder.append("demos/");
+			}
+
+			urlBuilder.append(componentShowcaseFolderPrefix);
+			urlBuilder.append("-showcase-");
+			urlBuilder.append(componentShowcaseContainer);
+			urlBuilder.append("/src/main/webapp/WEB-INF/component/");
+			urlBuilder.append(selectedComponentPrefix);
+			urlBuilder.append("/");
+			urlBuilder.append(selectedComponent.getLowerCaseName());
+			urlBuilder.append("/");
+			urlBuilder.append(selectedComponent.getUseCaseName());
+			urlBuilder.append("/");
+			urlBuilder.append(selectedComponent.getCamelCaseName());
+			urlBuilder.append(".xhtml");
+
+			sourceControlURL = urlBuilder.toString();
+
 		}
-		else if ("bridge".equals(selectedComponentPrefix) || "portlet".equals(selectedComponentPrefix)) {
 
-			componentRepoSuffix = "bridge-impl";
-			componentShowcaseFolderPrefix = "jsf";
-			componentShowcaseContainer = "portlet";
-		}
-		else if ("portal".equals(selectedComponentPrefix)) {
-			componentShowcaseContainer = "portlet";
-		}
-
-		sourceControlURL.append(componentRepoSuffix);
-		sourceControlURL.append("/edit/master/");
-
-		if (!"showcase".equals(componentRepoSuffix)) {
-			sourceControlURL.append("demos/");
-		}
-
-		sourceControlURL.append(componentShowcaseFolderPrefix);
-		sourceControlURL.append("-showcase-");
-		sourceControlURL.append(componentShowcaseContainer);
-		sourceControlURL.append("/src/main/webapp/WEB-INF/component/");
-		sourceControlURL.append(selectedComponentPrefix);
-		sourceControlURL.append("/");
-		sourceControlURL.append(selectedComponent.getLowerCaseName());
-		sourceControlURL.append("/");
-		sourceControlURL.append(selectedComponent.getUseCaseName());
-		sourceControlURL.append("/");
-		sourceControlURL.append(selectedComponent.getCamelCaseName());
-		sourceControlURL.append(".xhtml");
-
-		return sourceControlURL.toString();
+		return sourceControlURL;
 	}
 
 	public ViewParameters getViewParameters() {
