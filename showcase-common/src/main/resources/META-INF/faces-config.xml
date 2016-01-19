@@ -11,7 +11,7 @@
 	<factory>
 		<factory-extension>
 			<util:message-context-factory>com.liferay.faces.showcase.context.internal.MessageContextFactoryShowcaseImpl</util:message-context-factory>
-			<util:resource-dependency-verifier-factory>com.liferay.faces.showcase.application.internal.ResourceDependencyVerifierFactoryShowcaseImpl</util:resource-dependency-verifier-factory>
+			<util:resource-verifier-factory>com.liferay.faces.showcase.application.internal.ResourceVerifierFactoryShowcaseImpl</util:resource-verifier-factory>
 		</factory-extension>
 	</factory>
 </faces-config>
