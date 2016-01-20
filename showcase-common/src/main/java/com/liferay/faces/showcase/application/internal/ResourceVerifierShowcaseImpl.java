@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2015 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,11 @@
 package com.liferay.faces.showcase.application.internal;
 
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 
-import com.liferay.faces.util.application.ResourceDependencyVerifier;
-import com.liferay.faces.util.application.ResourceDependencyVerifierWrapper;
 import com.liferay.faces.util.application.ResourceUtil;
+import com.liferay.faces.util.application.ResourceVerifier;
+import com.liferay.faces.util.application.ResourceVerifierWrapper;
 import com.liferay.faces.util.product.ProductConstants;
 import com.liferay.faces.util.product.ProductMap;
 
@@ -27,7 +28,7 @@ import com.liferay.faces.util.product.ProductMap;
 /**
  * @author  Kyle Stiemann
  */
-public class ResourceDependencyVerifierShowcaseImpl extends ResourceDependencyVerifierWrapper {
+public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper {
 
 	// Private Constants
 	private static final boolean ALLOY_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_ALLOY)
@@ -37,30 +38,29 @@ public class ResourceDependencyVerifierShowcaseImpl extends ResourceDependencyVe
 	private static final boolean METAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_METAL)
 		.isDetected();
 	private static final boolean BOOTSTRAP_SATISFIED = (ALLOY_DETECTED || LIFERAY_PORTAL_DETECTED || METAL_DETECTED);
-	private static final String BOOTSTRAP_RESOURCE_ID = ResourceUtil.getResourceDependencyId("bootstrap",
+	private static final String BOOTSTRAP_RESOURCE_ID = ResourceUtil.getResourceId("bootstrap",
 			"css/bootstrap.min.css");
 
 	// Private Members
-	private ResourceDependencyVerifier wrappedResourceDependencyHandler;
+	private ResourceVerifier wrappedResourceDependencyHandler;
 
-	public ResourceDependencyVerifierShowcaseImpl(ResourceDependencyVerifier resourceDependencyVerifier) {
-		this.wrappedResourceDependencyHandler = resourceDependencyVerifier;
+	public ResourceVerifierShowcaseImpl(ResourceVerifier resourceVerifier) {
+		this.wrappedResourceDependencyHandler = resourceVerifier;
 	}
 
 	@Override
-	public boolean isResourceDependencySatisfied(UIComponent componentResource) {
+	public boolean isDependencySatisfied(FacesContext facestContext, UIComponent componentResource) {
 
-		if (BOOTSTRAP_SATISFIED &&
-				BOOTSTRAP_RESOURCE_ID.equals(ResourceUtil.getResourceDependencyId(componentResource))) {
+		if (BOOTSTRAP_SATISFIED && BOOTSTRAP_RESOURCE_ID.equals(ResourceUtil.getResourceId(componentResource))) {
 			return true;
 		}
 		else {
-			return super.isResourceDependencySatisfied(componentResource);
+			return super.isDependencySatisfied(facestContext, componentResource);
 		}
 	}
 
 	@Override
-	public ResourceDependencyVerifier getWrapped() {
+	public ResourceVerifier getWrapped() {
 		return wrappedResourceDependencyHandler;
 	}
 }
