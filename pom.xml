@@ -89,7 +89,7 @@
 		<faces.spec.version>2.1</faces.spec.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<log4j.version>1.2.14</log4j.version>
-		<mojarra.version>2.1.29-04</mojarra.version>
+		<mojarra.version>2.1.29-05</mojarra.version>
 		<myfaces.version>UNSUPPORTED</myfaces.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire.version>2.12</surefire.version>
