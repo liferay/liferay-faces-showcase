@@ -172,7 +172,7 @@ public class ShowcaseModelBean implements Serializable {
 		return viewParameters;
 	}
 
-	public class ViewParameters implements Serializable {
+	public static class ViewParameters implements Serializable {
 
 		// serialVersionUID
 		private static final long serialVersionUID = 1629675419430845173L;

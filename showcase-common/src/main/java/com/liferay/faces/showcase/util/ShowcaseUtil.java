@@ -363,7 +363,7 @@ public class ShowcaseUtil {
 		return escapedClientId;
 	}
 
-	protected static class JavaDocKey {
+	private static class JavaDocKey {
 
 		private String className;
 		private String fqcn;
@@ -409,7 +409,7 @@ public class ShowcaseUtil {
 		}
 	}
 
-	protected static class VDLDocKey {
+	private static class VDLDocKey {
 
 		private String tagPrefix;
 		private String tagName;
