@@ -7,7 +7,7 @@
 	<c:set value="#{selectedComponent.key}" var="selectedComponentKey" />
 	<c:set value="#{selectedComponent.useCaseName}" var="selectedComponentUseCaseName" />
 	<h:outputStylesheet library="css" name="showcase.css" />
-	<showcase:row class="#{showcaseModelBean.bootstrap2 ? ' bootstrap2' : ''}">
+	<showcase:row class="showcase-outer-row#{showcaseModelBean.bootstrap2 ? ' bootstrap2' : ''}">
 		<showcase:column styleClass="showcase-nav-col" width="#{browserSniffer.ipad ? '30' : '25'}">
 			<h:link outcome="home">
 				<h:graphicImage library="images" name="logo-nav.png" styleClass="logo" />

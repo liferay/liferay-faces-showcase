@@ -12,6 +12,10 @@
 	position: relative;
 }
 
+#content .aui .showcase-outer-row, .aui .showcase-outer-row {
+	margin-left: 5px;
+}
+
 .aui .showcase-note td {
 	vertical-align: top;	
 }
@@ -86,13 +90,17 @@
 	padding: 0px 0px 10px 0px;
 }
 
+.aui .showcase-nav-col .showcase-accordion .accordion-group .accordion-heading a.accordion-toggle {
+	outline:none;
+}
+
 .aui .showcase-nav-col .showcase-accordion .category-name {
 	color: #000000;
 	font-size: 12pt;
 	font-weight: bold;
 	margin-top: 2px;
 	margin-left: 4px;
-	position: absolute;
+	display: inline;
 }
 
 .showcase-example,.showcase-attribute-value,.showcase-parameter-value,.showcase-model-value,.showcase-container {
@@ -180,6 +188,11 @@
 .aui .nav>li a.showcase-link,.aui .nav>li a.showcase-link:hover,.aui .nav>li.active a.showcase-link,.aui .nav>li.active a.showcase-link:hover,.aui .nav .nav>li>a.showcase-link:hover {
 	background-color: transparent;
 	color: #0058ba;
+}
+
+.aui .portlet-msg-alert, .aui .portlet-msg-error, .aui .portlet-msg-help, .aui .portlet-msg-info, .aui .portlet-msg-progress,
+.aui .portlet-msg-success {
+	display: block;
 }
 
 .showcase-video {
