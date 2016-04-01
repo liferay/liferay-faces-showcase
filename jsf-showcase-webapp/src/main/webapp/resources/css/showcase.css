@@ -8,6 +8,10 @@
 	color: rgb(0, 22, 142);
 }
 
+.aui .modal-dialog {
+	position: relative;
+}
+
 .aui .showcase-note td {
 	vertical-align: top;	
 }
