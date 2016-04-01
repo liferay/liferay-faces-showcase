@@ -12,16 +12,18 @@
 							value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
 						<h:outputText rendered="#{!showcaseModelBean.selectedComponent.rendered}"
 							value="#{i18n['the-hidden-input-is-not-rendered']}" />
-						<h:inputHidden id="hidden" binding="#{inputHidden}" label="#{i18n['hidden-field']}"
+						<h:inputHidden id="hidden" binding="#{inputHidden}"
 							rendered="#{showcaseModelBean.selectedComponent.rendered}"
 							required="#{showcaseModelBean.selectedComponent.required}"
 							value="#{inputHiddenModelBean.text}" />
 						<h:message for="hidden" />
 					</showcase:container>
-					<h:button onclick="document.getElementById('#{inputHidden.clientId}').value='1234'; return false;"
-						value="#{i18n['copy-1234-to-the-value-of-the-hidden-input']}" />
-					<h:button onclick="document.getElementById('#{inputHidden.clientId}').value=''; return false;"
-						value="#{i18n['clear-the-value-of-the-hidden-input']}" />
+					<button onclick="document.getElementById('#{inputHidden.clientId}').value='1234'; return false;">
+						#{i18n['copy-1234-to-the-value-of-the-hidden-input']}
+					</button>
+					<button onclick="document.getElementById('#{inputHidden.clientId}').value=''; return false;">
+						#{i18n['clear-the-value-of-the-hidden-input']}
+					</button>
 				</showcase:field>
 				<hr />
 				<h:commandButton action="#{inputHiddenBackingBean.submit}" value="#{i18n['submit']}">

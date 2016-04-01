@@ -89,3 +89,7 @@
 	background: whitesmoke;
 	color: #000;
 }
+
+.showcase-example-usage td {
+	padding:0 10px 0 10px;
+}

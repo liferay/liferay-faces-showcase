@@ -20,8 +20,7 @@
 		<h:form>
 			<showcase:example description="#{i18n['actionlistener-execution-when-immediate-is-false']}" number="2">
 				<h:messages globalOnly="true" styleClass="feedback" />
-				<h:commandButton actionListener="#{commandBackingBean.actionListener}" render="@form"
-					value="#{i18n['submit']}">
+				<h:commandButton actionListener="#{commandBackingBean.actionListener}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
 				</h:commandButton>
 			</showcase:example>

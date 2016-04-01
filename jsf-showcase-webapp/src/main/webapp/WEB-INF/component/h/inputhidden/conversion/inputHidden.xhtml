@@ -15,12 +15,12 @@
 						<h:message for="hidden1" />
 					</showcase:field>
 				</showcase:container>
-				<h:button onclick="document.getElementById('#{inputHidden1.clientId}').value=this.value; return false;"
-					value="#{inputHiddenModelBean.testDate1}">
-					<h:outputText value="#{i18n['copy-a-date-to-the-value-of-the-hidden-input']}" />
-				</h:button>
-				<h:button onclick="document.getElementById('#{inputHidden1.clientId}').value=''; return false;"
-					value="#{i18n['clear-the-value-of-the-hidden-input']}" />
+				<button onclick="document.getElementById('#{inputHidden1.clientId}').value='#{inputHiddenModelBean.testDate1}'; return false;">
+					#{i18n['copy-a-date-to-the-value-of-the-hidden-input']}
+				</button>
+				<button onclick="document.getElementById('#{inputHidden1.clientId}').value=''; return false;">
+					#{i18n['clear-the-value-of-the-hidden-input']}
+				</button>
 				<hr />
 				<h:commandButton action="#{inputHiddenBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
@@ -48,12 +48,12 @@
 						<h:message for="hidden2" />
 					</showcase:field>
 				</showcase:container>
-				<h:button onclick="document.getElementById('#{inputHidden2.clientId}').value=this.value; return false;"
-					value="#{inputHiddenModelBean.testDate2}">
-					<h:outputText value="#{i18n['copy-a-date-to-the-value-of-the-hidden-input']}" />
-				</h:button>
-				<h:button onclick="document.getElementById('#{inputHidden2.clientId}').value=''; return false;"
-					value="#{i18n['clear-the-value-of-the-hidden-input']}" />
+				<button onclick="document.getElementById('#{inputHidden2.clientId}').value='#{inputHiddenModelBean.testDate2}'; return false;">
+					#{i18n['copy-a-date-to-the-value-of-the-hidden-input']}
+				</button>
+				<button onclick="document.getElementById('#{inputHidden2.clientId}').value=''; return false;">
+					#{i18n['clear-the-value-of-the-hidden-input']}
+				</button>
 				<hr />
 				<h:commandButton action="#{inputHiddenBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form"  render="@form" />
