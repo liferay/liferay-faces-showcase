@@ -35,14 +35,14 @@ public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper {
 	private static final boolean ALLOY_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_ALLOY)
 		.isDetected();
 	private static final Product LIFERAY_PORTAL = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL);
-	private static final boolean LIFERAY_PORTAL_7_0_DETECTED = LIFERAY_PORTAL.isDetected() &&
-		((LIFERAY_PORTAL.getMajorVersion() == 7) && (LIFERAY_PORTAL.getMinorVersion() == 0));
 	private static final boolean METAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_METAL)
 		.isDetected();
 	private static final boolean BOOTSTRAP_SATISFIED = (ALLOY_DETECTED || LIFERAY_PORTAL.isDetected() ||
 			METAL_DETECTED);
 	private static final String BOOTSTRAP_RESOURCE_ID = ResourceUtil.getResourceId("bootstrap",
 			"css/bootstrap.min.css");
+	private static final boolean JQUERY_SATISFIED = (LIFERAY_PORTAL.isDetected() &&
+			(LIFERAY_PORTAL.getMajorVersion() >= 7));
 	private static final String JQUERY_JS_RESOURCE_ID = ResourceUtil.getResourceId("bootstrap", "js/jquery.min.js");
 
 	// Private Members
@@ -60,7 +60,7 @@ public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper {
 		if (BOOTSTRAP_SATISFIED && BOOTSTRAP_RESOURCE_ID.equals(resourceId)) {
 			return true;
 		}
-		else if (LIFERAY_PORTAL_7_0_DETECTED && JQUERY_JS_RESOURCE_ID.equals(resourceId)) {
+		else if (JQUERY_SATISFIED && JQUERY_JS_RESOURCE_ID.equals(resourceId)) {
 			return true;
 		}
 		else {
