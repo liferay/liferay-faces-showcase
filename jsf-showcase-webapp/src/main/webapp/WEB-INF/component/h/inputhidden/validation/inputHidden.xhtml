@@ -18,18 +18,17 @@
 						<h:message for="hidden1" />
 					</showcase:container>
 				</showcase:field>
-				<h:button onclick="document.getElementById('#{inputHidden1.clientId}').value=this.value; return false;"
-					value="test@liferay.com">
-					<h:outputText value="#{i18n['copy-a-valid-email-address-to-the-hidden-input']}" />
-				</h:button>
+				<button onclick="document.getElementById('#{inputHidden1.clientId}').value='test@liferay.com'; return false;">
+					#{i18n['copy-a-valid-email-address-to-the-hidden-input']}
+				</button>
 				<br />
-				<h:button onclick="document.getElementById('#{inputHidden1.clientId}').value=this.value; return false;"
-					value="testliferay.com">
-					<h:outputText value="#{i18n['copy-an-invalid-email-address-to-the-hidden-input']}" />
-				</h:button>
+				<button onclick="document.getElementById('#{inputHidden1.clientId}').value='testliferay.com'; return false;">
+					#{i18n['copy-an-invalid-email-address-to-the-hidden-input']}
+					</button>
 				<br />
-				<h:button onclick="document.getElementById('#{inputHidden1.clientId}').value=''; return false;"
-					value="#{i18n['clear-the-value-of-the-hidden-input']}" />
+				<button onclick="document.getElementById('#{inputHidden1.clientId}').value=''; return false;">
+					#{i18n['clear-the-value-of-the-hidden-input']}
+				</button>
 				<hr />
 				<h:commandButton action="#{inputHiddenBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
@@ -57,18 +56,17 @@
 						<h:message for="hidden2" />
 					</showcase:container>
 				</showcase:field>
-				<h:button onclick="document.getElementById('#{inputHidden2.clientId}').value=this.value; return false;"
-					value="test@liferay.com">
-					<h:outputText value="#{i18n['copy-a-valid-email-address-to-the-hidden-input']}" />
-				</h:button>
+				<button onclick="document.getElementById('#{inputHidden2.clientId}').value='test@liferay.com'; return false;">
+					#{i18n['copy-a-valid-email-address-to-the-hidden-input']}
+				</button>
 				<br />
-				<h:button onclick="document.getElementById('#{inputHidden2.clientId}').value=this.value; return false;"
-					value="testliferay.com">
-					<h:outputText value="#{i18n['copy-an-invalid-email-address-to-the-hidden-input']}" />
-				</h:button>
+				<button onclick="document.getElementById('#{inputHidden2.clientId}').value='testliferay.com'; return false;">
+					#{i18n['copy-an-invalid-email-address-to-the-hidden-input']}
+				</button>
 				<br />
-				<h:button onclick="document.getElementById('#{inputHidden2.clientId}').value=''; return false;"
-					value="#{i18n['clear-the-value-of-the-hidden-input']}" />
+				<button onclick="document.getElementById('#{inputHidden2.clientId}').value=''; return false;">
+					#{i18n['clear-the-value-of-the-hidden-input']}
+				</button>
 				<hr />
 				<h:commandButton action="#{inputHiddenBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
