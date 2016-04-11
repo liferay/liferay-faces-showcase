@@ -37,7 +37,7 @@ import com.liferay.faces.showcase.component.outputsourcecode.OutputSourceCode;
 	{
 		@ResourceDependency(library = "prettify", name = "prettify.css"),
 		@ResourceDependency(library = "prettify", name = "prettify-ext.css"),
-		@ResourceDependency(library = "prettify", name = "run_prettify.js")
+		@ResourceDependency(library = "prettify", name = "prettify.min.js")
 	}
 )
 //J+
