@@ -19,7 +19,6 @@ import javax.faces.context.FacesContext;
 
 import com.liferay.faces.util.context.MessageContext;
 import com.liferay.faces.util.context.MessageContextFactory;
-import com.liferay.faces.util.factory.FactoryExtensionFinder;
 
 
 /**
@@ -29,9 +28,7 @@ public class ValidatorHelper {
 
 	public static String getMessage(FacesContext facesContext, String messageId) {
 
-		MessageContextFactory messageContextFactory = (MessageContextFactory) FactoryExtensionFinder.getFactory(
-				MessageContextFactory.class);
-		final MessageContext messageContext = messageContextFactory.getMessageContext();
+		final MessageContext messageContext = MessageContextFactory.getMessageContextInstance();
 
 		return messageContext.getMessage(facesContext.getViewRoot().getLocale(), messageId);
 	}
