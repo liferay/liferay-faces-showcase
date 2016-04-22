@@ -42,7 +42,7 @@ public class InputSecretRedisplayTester extends InputSecretTester {
 		WebElement input = browser.getElement(inputSecretXpath);
 		String text = "Hello World!";
 		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath, modelValueXpath);
+		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButtonXpath), modelValueXpath);
 		browser.assertElementTextVisible(modelValueXpath, text);
 
 		String redisplayMessage = "//td[contains(text(),'was intentionally not re-rendered')]";

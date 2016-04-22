@@ -25,7 +25,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -93,6 +96,20 @@ public class Browser {
 			"\". Instead it contains text \"" + elementText + "\".", text, elementText);
 	}
 
+	// Currently unused:
+	public void assertElementValue(String xpath, String value) {
+
+		WebElement element = getElement(xpath);
+		Assert.assertNotNull("Element " + xpath + " is not present in the DOM.", element);
+
+		boolean elementDisplayed = element.isDisplayed();
+		Assert.assertTrue("Element " + xpath + " is not displayed.", elementDisplayed);
+
+		String elementValue = element.getAttribute("value");
+		Assert.assertEquals("Element " + xpath + " does contain the value \"" + value +
+			"\". Instead it contains the value \"" + elementValue + "\".", value, elementValue);
+	}
+
 	public void assertElementVisible(String xpath) {
 
 		WebElement element = getElement(xpath);
@@ -106,30 +123,85 @@ public class Browser {
 		getElement(xpath).click();
 	}
 
+	/**
+	 * Clicks on the element specified via xpath and waits for the clicked element to be rerendered via Ajax. This
+	 * method will only work if the element clicked is also rerendered via Ajax. If the clicked element will not be
+	 * rerendered via Ajax, then use {@link
+	 * Browser#performAndWaitForAjaxRerender(org.openqa.selenium.interactions.Action, java.lang.String)} with {@link
+	 * Browser#createClickAction(java.lang.String)} and the xpath of an element which will be rerendered instead.
+	 *
+	 * @param  xpath  The xpath of the element to be clicked and rerendered.
+	 */
 	public void clickAndWaitForAjaxRerender(String xpath) {
-		clickAndWaitForAjaxRerender(xpath, xpath);
+		performAndWaitForAjaxRerender(createClickAction(xpath), xpath);
 	}
 
-	public void clickAndWaitForAjaxRerender(String clickXpath, String rerenderXpath) {
+	// Currently unused:
+	public Actions createActions() {
+		return new Actions(webDriver);
+	}
 
-		WebElement rerenderElement = getElement(rerenderXpath);
-		click(clickXpath);
-		logger.log(Level.INFO, "Waiting for element {0} to be stale.", rerenderXpath);
-		wait.until(ExpectedConditions.stalenessOf(rerenderElement));
-		logger.log(Level.INFO, "Element {0} is stale.", rerenderXpath);
-		waitForElementVisible(rerenderXpath);
+	public Action createClickAction(String xpath) {
+
+		Actions actions = new Actions(webDriver);
+		WebElement element = getElement(xpath);
+		actions.click(element);
+
+		return actions.build();
+	}
+
+	// Currently unused:
+	public Action createSendKeysAction(String xpath, CharSequence... keys) {
+
+		Actions actions = new Actions(webDriver);
+		WebElement element = getElement(xpath);
+		actions.sendKeys(element, keys);
+
+		return actions.build();
 	}
 
 	public void navigateToURL(String url) {
 		webDriver.navigate().to(url);
 	}
 
+	/**
+	 * Performs an {@link Action} and waits for an element to be rerendered via Ajax.
+	 *
+	 * @param  action         The action which will cause the Ajax rerender.
+	 * @param  rerenderXpath  The xpath of the element which will be rerendered.
+	 */
+	public void performAndWaitForAjaxRerender(Action action, String rerenderXpath) {
+
+		WebElement rerenderElement = getElement(rerenderXpath);
+		action.perform();
+		logger.log(Level.INFO, "Waiting for element {0} to be stale.", rerenderXpath);
+		wait.until(ExpectedConditions.stalenessOf(rerenderElement));
+		logger.log(Level.INFO, "Element {0} is stale.", rerenderXpath);
+		waitForElementVisible(rerenderXpath);
+	}
+
 	public void quit() {
 		webDriver.quit();
 	}
 
-	public void sendKeys(String xpath, String keys) {
+	public void sendKeys(String xpath, CharSequence... keys) {
 		getElement(xpath).sendKeys(keys);
+	}
+
+	// Currently unused:
+	/**
+	 * Sends keys to the element specified via xpath and waits for the element to be rerendered via Ajax. This method
+	 * will only work if the element receiving the keys is also rerendered via Ajax. If the element receiving the keys
+	 * will not be rerendered via Ajax, then use {@link
+	 * Browser#performAndWaitForAjaxRerender(org.openqa.selenium.interactions.Action, java.lang.String)} with {@link
+	 * Browser#createSendKeysAction(java.lang.String, java.lang.CharSequence...)} and the xpath of an element which will
+	 * be rerendered instead.
+	 *
+	 * @param  xpath  The xpath of the element to be clicked and rerendered.
+	 * @param  keys   The keys to be sent.
+	 */
+	public void sendKeysAndWaitForAjaxRerender(String xpath, CharSequence... keys) {
+		performAndWaitForAjaxRerender(createSendKeysAction(xpath, keys), xpath);
 	}
 
 	// Currently unused:
@@ -158,11 +230,26 @@ public class Browser {
 		logger.log(Level.INFO, "Element {0} is visible and contains text \"{1}\".", loggerArgs);
 	}
 
+	// Currently unused:
+	public void waitForElementValue(String xpath, String value) {
+
+		String[] loggerArgs = new String[] { xpath, value };
+		waitForElementVisible(xpath);
+		logger.log(Level.INFO, "Waiting for element {0} to contain value \"{1}\".", loggerArgs);
+		wait.until(ExpectedConditions.textToBePresentInElementValue(By.ByXPath.xpath(xpath), value));
+		logger.log(Level.INFO, "Element {0} is visible and contains value \"{1}\".", loggerArgs);
+	}
+
 	public void waitForElementVisible(String xpath) {
 
 		logger.log(Level.INFO, "Waiting for element {0} to be visible.", xpath);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.ByXPath.xpath(xpath)));
 		logger.log(Level.INFO, "Element {0} is visible.", xpath);
+	}
+
+	// Currently unused:
+	public void waitUntil(ExpectedCondition expectedCondition) {
+		wait.until(expectedCondition);
 	}
 
 	public WebElement getElement(String xpath) {

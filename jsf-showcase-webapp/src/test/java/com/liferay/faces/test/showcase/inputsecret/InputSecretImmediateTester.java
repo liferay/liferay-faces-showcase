@@ -42,7 +42,7 @@ public class InputSecretImmediateTester extends InputSecretTester {
 		WebElement input = browser.getElement(inputXpath);
 		String text = "Hello World!";
 		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath, modelValueXpath);
+		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButtonXpath), modelValueXpath);
 		browser.assertElementTextVisible(modelValueXpath, text);
 		browser.assertElementVisible(immediateMessage);
 
@@ -50,7 +50,7 @@ public class InputSecretImmediateTester extends InputSecretTester {
 		// PROCESS_VALIDATIONS phase.
 		input = browser.getElement(inputXpathRight);
 		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight, modelValueXpathRight);
+		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButtonXpathRight), modelValueXpathRight);
 		browser.assertElementTextVisible(modelValueXpathRight, text);
 		browser.assertElementVisible(immediateMessageRight);
 	}
