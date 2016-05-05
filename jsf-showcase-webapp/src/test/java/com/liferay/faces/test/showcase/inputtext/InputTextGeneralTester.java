@@ -17,7 +17,7 @@ package com.liferay.faces.test.showcase.inputtext;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.showcase.Browser;
+import com.liferay.faces.test.Browser;
 
 
 /**
@@ -30,7 +30,7 @@ public class InputTextGeneralTester extends InputTextTester {
 	public void runInputTextGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputTextURL + "general");
+		browser.navigateToURL(inputTextURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);

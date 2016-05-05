@@ -17,7 +17,7 @@ package com.liferay.faces.test.showcase.inputsecret;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.showcase.Browser;
+import com.liferay.faces.test.Browser;
 
 
 /**
@@ -30,7 +30,7 @@ public class InputSecretGeneralTester extends InputSecretTester {
 	public void runInputSecretGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputSecretURL + "general");
+		browser.navigateToURL(inputSecretURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);
