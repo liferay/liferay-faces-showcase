@@ -17,7 +17,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.showcase.Browser;
+import com.liferay.faces.test.Browser;
 
 
 /**
@@ -30,7 +30,7 @@ public class InputHiddenValidationTester extends InputHiddenTester {
 	public void runInputHiddenValidationTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputHiddenURL + "validation");
+		browser.navigateToURL(inputHiddenURL + "/validation");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);

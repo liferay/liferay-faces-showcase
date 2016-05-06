@@ -24,7 +24,7 @@ import com.liferay.faces.test.showcase.input.InputTester;
  */
 public class InputHiddenTester extends InputTester {
 
-	protected static final String inputHiddenURL = testBaseURL + "inputhidden/";
+	protected static final String inputHiddenURL = TEST_CONTEXT_URL + "/inputhidden";
 	protected static final String modelValueEmptyXpath =
 		"(//span[contains(@id,':modelValue')][not(normalize-space())])[1]";
 	protected static final String copyValidValueButtonXpath = "(//button[contains(text(),'Copy')])[1]";

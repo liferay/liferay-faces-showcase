@@ -15,13 +15,13 @@
  */
 package com.liferay.faces.test.showcase.input;
 
-import com.liferay.faces.test.showcase.IntegrationTesterBase;
+import com.liferay.faces.test.showcase.TesterBase;
 
 
 /**
  * @author  Kyle Stiemann
  */
-public class InputTester extends IntegrationTesterBase {
+public class InputTester extends TesterBase {
 
 	protected static final String immediateMessageRight =
 		"//ul[@class='feedback']/li[contains(text(),'PROCESS_VALIDATIONS')]";

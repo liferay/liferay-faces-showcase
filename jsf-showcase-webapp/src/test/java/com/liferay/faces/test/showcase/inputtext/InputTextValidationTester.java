@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import org.openqa.selenium.WebElement;
 
-import com.liferay.faces.test.showcase.Browser;
+import com.liferay.faces.test.Browser;
 
 
 /**
@@ -32,7 +32,7 @@ public class InputTextValidationTester extends InputTextTester {
 	public void runInputTextValidationTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputTextURL + "validation");
+		browser.navigateToURL(inputTextURL + "/validation");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);

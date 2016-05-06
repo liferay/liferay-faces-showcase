@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import org.openqa.selenium.WebElement;
 
-import com.liferay.faces.test.showcase.Browser;
+import com.liferay.faces.test.Browser;
 
 
 /**
@@ -32,7 +32,7 @@ public class InputSecretImmediateTester extends InputSecretTester {
 	public void runInputSecretImmediateTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputSecretURL + "immediate");
+		browser.navigateToURL(inputSecretURL + "/immediate");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);

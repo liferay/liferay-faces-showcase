@@ -24,7 +24,7 @@ import com.liferay.faces.test.showcase.input.InputTester;
  */
 public class InputSecretTester extends InputTester {
 
-	protected static final String inputSecretURL = testBaseURL + "inputsecret/";
+	protected static final String inputSecretURL = TEST_CONTEXT_URL + "/inputsecret";
 	protected static final String inputXpath = "(//input[contains(@id,':text')])[1]";
 	protected static final String inputSecretXpath = "(//input[contains(@id,':secret')])[1]";
 	protected static final String inputXpathRight = "(//input[contains(@id,':text')])[2]";

@@ -316,56 +316,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-
-			<!-- Integration test dependencies. -->
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-java</artifactId>
-				<version>2.53.0</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-chrome-driver</artifactId>
-				<version>2.53.0</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<!-- Note: The offical version of phantomjsdriver is under the groupId com.github.detro. However, the
-				version of selenium that it depends on is old and conflicts with newer versions of selenium. The
-				com.codeborne version that we are depending on is a patched version which works with newer versions of
-				selenium. If a new official version of phantomjsdriver is ever released, we should probably switch to
-				that. For more details, see this post:
-				https://github.com/detro/ghostdriver/issues/397#issuecomment-65539540 -->
-				<groupId>com.codeborne</groupId>
-				<artifactId>phantomjsdriver</artifactId>
-				<version>1.2.1</version>
-				<scope>test</scope>
-				<!-- Don't download the version of selenium that phantomjsdriver depends on since it is older than the
-				version we specify. -->
-				<exclusions>
-					<exclusion>
-						<artifactId>org.seleniumhq.selenium</artifactId>
-						<groupId>selenium-java</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>org.seleniumhq.selenium</artifactId>
-						<groupId>selenium-server</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>org.seleniumhq.selenium</artifactId>
-						<groupId>selenium-remote-driver</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.10</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- End integration test dependencies. -->
-
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
