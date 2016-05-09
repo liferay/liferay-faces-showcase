@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import org.openqa.selenium.WebElement;
 
-import com.liferay.faces.test.Browser;
+import com.liferay.faces.test.selenium.Browser;
 
 
 /**

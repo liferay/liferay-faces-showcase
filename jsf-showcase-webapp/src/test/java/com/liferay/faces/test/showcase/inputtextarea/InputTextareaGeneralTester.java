@@ -17,7 +17,7 @@ package com.liferay.faces.test.showcase.inputtextarea;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.Browser;
+import com.liferay.faces.test.selenium.Browser;
 
 
 /**
