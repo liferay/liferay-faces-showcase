@@ -43,6 +43,11 @@
 								<integration.port>${integration.port}</integration.port>
 								<integration.context>${integration.context}</integration.context>
 								<integration.sign.in.context>${integration.sign.in.context}</integration.sign.in.context>
+								<integration.login.xpath>${integration.login.xpath}</integration.login.xpath>
+								<integration.password.xpath>${integration.password.xpath}</integration.password.xpath>
+								<integration.sign.in.button.xpath>${integration.sign.in.button.xpath}</integration.sign.in.button.xpath>
+								<integration.login>${integration.login}</integration.login>
+								<integration.password>${integration.password}</integration.password>
 							</systemPropertyVariables>
 							<properties>
 								<property>
@@ -91,7 +96,7 @@
 		<!-- Integration test dependencies. -->
 		<dependency>
 			<groupId>com.liferay.faces.test</groupId>
-			<artifactId>liferay-faces-test</artifactId>
+			<artifactId>com.liferay.faces.test.selenium</artifactId>
 			<version>0.1.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
