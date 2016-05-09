@@ -15,8 +15,8 @@
  */
 package com.liferay.faces.test.showcase;
 
-import com.liferay.faces.test.IntegrationTesterBase;
-import com.liferay.faces.test.TestUtil;
+import com.liferay.faces.test.selenium.IntegrationTesterBase;
+import com.liferay.faces.test.selenium.TestUtil;
 
 
 /**
