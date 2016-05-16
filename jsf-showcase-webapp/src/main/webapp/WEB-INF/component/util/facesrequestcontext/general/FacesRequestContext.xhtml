@@ -3,6 +3,8 @@
 	xmlns:showcase="http://liferay.com/faces/showcase" template="/WEB-INF/templates/component-1col-60.xhtml">
 
 	<ui:define name="col1">
+		<h:outputScript library="bootstrap" name="js/jquery.min.js" target="head" />
+		<h:outputScript library="bootstrap" name="js/bootstrap.min.js" target="head" />
 		<showcase:example>
 			<h:form>
 				<h:commandButton actionListener="#{facesRequestContextBacking.openDialog}"
@@ -10,7 +12,7 @@
 					<f:ajax />
 				</h:commandButton>
 			</h:form>
-			<h:panelGroup styleClass="modal" style="display: none;">
+			<h:panelGroup styleClass="modal showcase-modal-dialog" style="display: none;">
 				<h:panelGroup layout="block" styleClass="modal-dialog">
 					<h:panelGroup layout="block" styleClass="modal-content">
 						<h:panelGroup layout="block" styleClass="modal-body">
