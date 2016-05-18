@@ -18,6 +18,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
@@ -30,26 +31,26 @@ public class InputHiddenGeneralTester extends InputHiddenTester {
 	public void runInputHiddenGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputHiddenURL + "/general");
+		browser.get(inputHiddenURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);
 
 		// Test that an empty value submits successfully.
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementVisible(successXpath);
+		SeleniumAssert.assertElementVisible(browser, successXpath);
 
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
 		browser.click(requiredCheckboxXpath);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementVisible(errorXpath);
+		SeleniumAssert.assertElementVisible(browser, errorXpath);
 
 		// Test that a hidden value submits successfully.
 		browser.click(copyValidValueButtonXpath);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 
 		String text = "1234";
-		browser.assertElementTextVisible(modelValueXpath, text);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
 
 		// Test that a hidden value clears successfully.
 		browser.click(requiredCheckboxXpath);
@@ -57,6 +58,6 @@ public class InputHiddenGeneralTester extends InputHiddenTester {
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 		browser.click(clearButtonXpath);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementPresent(modelValueEmptyXpath);
+		SeleniumAssert.assertElementPresent(browser, modelValueEmptyXpath);
 	}
 }

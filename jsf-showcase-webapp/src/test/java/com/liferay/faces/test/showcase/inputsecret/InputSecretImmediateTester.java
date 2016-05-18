@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
@@ -32,26 +33,26 @@ public class InputSecretImmediateTester extends InputSecretTester {
 	public void runInputSecretImmediateTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputSecretURL + "/immediate");
+		browser.get(inputSecretURL + "/immediate");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		WebElement input = browser.getElement(inputXpath);
+		WebElement input = browser.findElementByXpath(inputXpath);
 		String text = "Hello World!";
 		input.sendKeys(text);
 		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButtonXpath), modelValueXpath);
-		browser.assertElementTextVisible(modelValueXpath, text);
-		browser.assertElementVisible(immediateMessage);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
+		SeleniumAssert.assertElementVisible(browser, immediateMessage);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
-		input = browser.getElement(inputXpathRight);
+		input = browser.findElementByXpath(inputXpathRight);
 		input.sendKeys(text);
 		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButtonXpathRight), modelValueXpathRight);
-		browser.assertElementTextVisible(modelValueXpathRight, text);
-		browser.assertElementVisible(immediateMessageRight);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpathRight, text);
+		SeleniumAssert.assertElementVisible(browser, immediateMessageRight);
 	}
 }
