@@ -18,6 +18,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
@@ -30,7 +31,7 @@ public class InputHiddenValidationTester extends InputHiddenTester {
 	public void runInputHiddenValidationTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputHiddenURL + "/validation");
+		browser.get(inputHiddenURL + "/validation");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);
@@ -40,39 +41,39 @@ public class InputHiddenValidationTester extends InputHiddenTester {
 		String hiddenButtonValid = "(//button[contains(text(),'a valid')])[1]";
 		browser.click(hiddenButtonValid);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementTextVisible(modelValueXpath, text);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
 		String hiddenButtonInvalid = "(//button[contains(text(),'an invalid')])[1]";
 		browser.click(hiddenButtonInvalid);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementVisible(errorXpath);
+		SeleniumAssert.assertElementVisible(browser, errorXpath);
 
 		// Test that the hidden value clears successfully.
 		browser.click(hiddenButtonValid);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 		browser.click(clearButtonXpath);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementVisible(errorXpath);
+		SeleniumAssert.assertElementVisible(browser, errorXpath);
 
 		// Test that a hidden valid value submits successfully.
 		hiddenButtonValid = "(//button[contains(text(),'a valid')])[2]";
 		browser.click(hiddenButtonValid);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		browser.assertElementTextVisible(modelValueXpathRight, text);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpathRight, text);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
 		hiddenButtonInvalid = "(//button[contains(text(),'an invalid')])[2]";
 		browser.click(hiddenButtonInvalid);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		browser.assertElementVisible(errorXpathRight);
+		SeleniumAssert.assertElementVisible(browser, errorXpathRight);
 
 		// Test that the hidden value clears successfully.
 		browser.click(hiddenButtonValid);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
 		browser.click(clearButtonXpathRight);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		browser.assertElementVisible(errorXpathRight);
+		SeleniumAssert.assertElementVisible(browser, errorXpathRight);
 
 	}
 }

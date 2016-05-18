@@ -18,6 +18,7 @@ package com.liferay.faces.test.showcase.inputsecret;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
@@ -30,24 +31,24 @@ public class InputSecretGeneralTester extends InputSecretTester {
 	public void runInputSecretGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputSecretURL + "/general");
+		browser.get(inputSecretURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);
 
 		// Test that an empty value submits successfully.
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementVisible(successXpath);
+		SeleniumAssert.assertElementVisible(browser, successXpath);
 
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
 		browser.click(requiredCheckboxXpath);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementVisible(errorXpath);
+		SeleniumAssert.assertElementVisible(browser, errorXpath);
 
 		// Test that a text value submits successfully.
 		String text = "Hello World!";
 		browser.sendKeys(inputXpath, text);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementTextVisible(modelValueXpath, text);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
 	}
 }

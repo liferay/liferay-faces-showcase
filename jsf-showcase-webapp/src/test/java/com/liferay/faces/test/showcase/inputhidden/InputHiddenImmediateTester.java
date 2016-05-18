@@ -18,6 +18,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
@@ -30,7 +31,7 @@ public class InputHiddenImmediateTester extends InputHiddenTester {
 	public void runInputHiddenImmediateTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.navigateToURL(inputHiddenURL + "/immediate");
+		browser.get(inputHiddenURL + "/immediate");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButtonXpath);
@@ -41,22 +42,22 @@ public class InputHiddenImmediateTester extends InputHiddenTester {
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 
 		String text = "1234";
-		browser.assertElementTextVisible(modelValueXpath, text);
-		browser.assertElementVisible(immediateMessage);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
+		SeleniumAssert.assertElementVisible(browser, immediateMessage);
 
 		browser.click(clearButtonXpath);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.assertElementPresent(modelValueEmptyXpath);
+		SeleniumAssert.assertElementPresent(browser, modelValueEmptyXpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
 		browser.click(copyValidValueButtonXpathRight);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		browser.assertElementTextVisible(modelValueXpathRight, text);
-		browser.assertElementVisible(immediateMessageRight);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpathRight, text);
+		SeleniumAssert.assertElementVisible(browser, immediateMessageRight);
 
 		browser.click(clearButtonXpathRight);
 		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		browser.assertElementPresent(modelValueEmptyXpathRight);
+		SeleniumAssert.assertElementPresent(browser, modelValueEmptyXpathRight);
 	}
 }
