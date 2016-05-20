@@ -33,41 +33,41 @@ public class InputTextareaValidationTester extends InputTextareaTester {
 	public void runInputTextareaValidationTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputTextURL + "/validation");
+		browser.get(inputTextareaURL + "/validation");
 
 		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButtonXpath);
+		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
-		WebElement input = browser.findElementByXpath(inputXpath);
+		WebElement input = browser.findElementByXpath(textarea1Xpath);
 		input.clear();
 
 		String invalidText = "HelloWorldcom";
 		input.sendKeys(invalidText);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementVisible(browser, errorXpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementVisible(browser, error1Xpath);
 
 		// Test that a valid value submits successfully.
-		input = browser.findElementByXpath(inputXpath);
+		input = browser.findElementByXpath(textarea1Xpath);
 		input.clear();
 
 		String text = "Hello@World.com";
 		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
-		input = browser.findElementByXpath(inputXpathRight);
+		input = browser.findElementByXpath(textarea2Xpath);
 		input.clear();
 		input.sendKeys(invalidText);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		SeleniumAssert.assertElementVisible(browser, errorXpath);
+		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
+		SeleniumAssert.assertElementVisible(browser, error1Xpath);
 
 		// Test that a valid value submits successfully.
-		input = browser.findElementByXpath(inputXpathRight);
+		input = browser.findElementByXpath(textarea2Xpath);
 		input.clear();
 		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpathRight, text);
+		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
 	}
 }

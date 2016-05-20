@@ -36,23 +36,21 @@ public class InputSecretImmediateTester extends InputSecretTester {
 		browser.get(inputSecretURL + "/immediate");
 
 		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButtonXpath);
+		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		WebElement input = browser.findElementByXpath(inputXpath);
 		String text = "Hello World!";
-		input.sendKeys(text);
-		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButtonXpath), modelValueXpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage);
+		browser.sendKeys(input1Xpath, text);
+		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButton1Xpath), modelValue1Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
+		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
-		input = browser.findElementByXpath(inputXpathRight);
-		input.sendKeys(text);
-		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButtonXpathRight), modelValueXpathRight);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpathRight, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessageRight);
+		browser.sendKeys(input2Xpath, text);
+		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButton2Xpath), modelValue2Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
+		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
 	}
 }

@@ -34,30 +34,28 @@ public class InputHiddenGeneralTester extends InputHiddenTester {
 		browser.get(inputHiddenURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButtonXpath);
+		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that an empty value submits successfully.
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementVisible(browser, successXpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementVisible(browser, success1Xpath);
 
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		browser.click(requiredCheckboxXpath);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementVisible(browser, errorXpath);
+		browser.click(requiredCheckbox1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementVisible(browser, error1Xpath);
 
 		// Test that a hidden value submits successfully.
-		browser.click(copyValidValueButtonXpath);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-
-		String text = "1234";
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
+		browser.click(copyValidValueButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1234");
 
 		// Test that a hidden value clears successfully.
-		browser.click(requiredCheckboxXpath);
-		browser.click(copyValidValueButtonXpath);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		browser.click(clearButtonXpath);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementPresent(browser, modelValueEmptyXpath);
+		browser.click(requiredCheckbox1Xpath);
+		browser.click(copyValidValueButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		browser.click(clearButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementPresent(browser, modelValueEmpty1Xpath);
 	}
 }

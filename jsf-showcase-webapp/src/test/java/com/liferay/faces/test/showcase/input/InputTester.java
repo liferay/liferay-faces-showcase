@@ -23,16 +23,16 @@ import com.liferay.faces.test.showcase.TesterBase;
  */
 public class InputTester extends TesterBase {
 
-	protected static final String immediateMessageRight =
-		"//ul[@class='feedback']/li[contains(text(),'PROCESS_VALIDATIONS')]";
-	protected static final String immediateMessage =
+	protected static final String error1Xpath = "(//div[contains(@class,'field form-group has-error')])[1]";
+	protected static final String error2Xpath = "(//div[contains(@class,'field form-group has-error')])[2]";
+	protected static final String immediateMessage1Xpath =
 		"//ul[@class='feedback']/li[contains(text(),'APPLY_REQUEST_VALUES')]";
-	protected static final String requiredCheckboxXpath = "//input[contains(@id,':requiredCheckbox')]";
-	protected static final String modelValueXpath = "(//span[contains(@id,':modelValue')])[1]";
-	protected static final String submitButtonXpath = "(//input[@value='Submit'])[1]";
-	protected static final String errorXpath = "(//div[contains(@class,'field form-group has-error')])[1]";
-	protected static final String submitButtonXpathRight = "(//input[@value='Submit'])[2]";
-	protected static final String modelValueXpathRight = "(//span[contains(@id,':modelValue')])[2]";
-	protected static final String errorXpathRight = "(//div[contains(@class,'field form-group has-error')])[2]";
-	protected static final String successXpath = "(//div[contains(@class,'field form-group has-success')])[1]";
+	protected static final String immediateMessage2Xpath =
+		"//ul[@class='feedback']/li[contains(text(),'PROCESS_VALIDATIONS')]";
+	protected static final String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
+	protected static final String modelValue2Xpath = "(//span[contains(@id,':modelValue')])[2]";
+	protected static final String requiredCheckbox1Xpath = "//input[contains(@id,':requiredCheckbox')]";
+	protected static final String submitButton1Xpath = "(//input[@value='Submit'])[1]";
+	protected static final String submitButton2Xpath = "(//input[@value='Submit'])[2]";
+	protected static final String success1Xpath = "(//div[contains(@class,'field form-group has-success')])[1]";
 }

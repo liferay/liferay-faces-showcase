@@ -38,17 +38,17 @@ public class OutputTextConversionTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		browser.get(TEST_CONTEXT_URL + "/outputtext/conversion");
 
-		// Wait to begin the test until an attribute is rendered.
-		browser.waitForElementVisible(exampleTextXpath);
+		// Wait to begin the test until the example text is rendered.
+		browser.waitForElementVisible(exampleText1Xpath);
 
-		// Test that today's date renders on the page successfully.
+		// Test that today's date is rendered on the page.
 		Date today = GregorianCalendar.getInstance().getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM dd, yyyy");
 		TimeZone gmtTimeZone = TimeZone.getTimeZone("GMT");
 		dateFormat.setTimeZone(gmtTimeZone);
 
 		String todayString = dateFormat.format(today);
-		String exampleConversionDateXpath = "(//div[@class='showcase-example-usage'][text()])";
-		SeleniumAssert.assertElementTextVisible(browser, exampleConversionDateXpath, todayString);
+		String exampleConversionDate1Xpath = "(//div[@class='showcase-example-usage'][text()])";
+		SeleniumAssert.assertElementTextVisible(browser, exampleConversionDate1Xpath, todayString);
 	}
 }

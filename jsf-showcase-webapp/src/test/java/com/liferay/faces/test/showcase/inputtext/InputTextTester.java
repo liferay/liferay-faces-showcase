@@ -24,6 +24,6 @@ import com.liferay.faces.test.showcase.input.InputTester;
 public class InputTextTester extends InputTester {
 
 	protected static final String inputTextURL = TEST_CONTEXT_URL + "/inputtext";
-	protected static final String inputXpath = "(//input[contains(@id,':text')])[1]";
-	protected static final String inputXpathRight = "(//input[contains(@id,':text')])[2]";
+	protected static final String input1Xpath = "(//input[contains(@id,':text')])[1]";
+	protected static final String input2Xpath = "(//input[contains(@id,':text')])[2]";
 }

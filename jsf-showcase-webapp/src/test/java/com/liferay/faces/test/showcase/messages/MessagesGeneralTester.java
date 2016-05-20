@@ -33,33 +33,27 @@ public class MessagesGeneralTester extends OutputTester {
 		browser.get(TEST_CONTEXT_URL + "/messages/general");
 
 		// Wait to begin the test until the submit button is rendered.
-		String submitButtonXpath1 =
-			"(//div[@class='showcase-example-usage'])[1]/input[2][contains(@value, 'Submit and Re-Render')]";
-		browser.waitForElementVisible(submitButtonXpath1);
+		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the first value submits successfully and message text is displayed
 		String text = "hello";
-		String messagesXpath1 = "(//div[@class='showcase-example-usage'])[1]/ul/li";
-		testCharCountMessage(browser, inputTextXpath, submitButtonXpath1, messagesXpath1);
+		String messages1Xpath = "(//div[@class='showcase-example-usage'])[1]/ul/li";
+		testCharCountMessage(browser, input1Xpath, submitButton1Xpath, messages1Xpath);
 
 		// Test that the second value submits successfully and message text is displayed
-		String inputTextXpath2 = "(//input[contains(@id,':inputText')])[2]";
-		String messagesXpath2 = "(//div[@class='showcase-example-usage'])[2]/table/tbody/tr/td";
-		String submitButtonXpath2 =
-			"(//div[@class='showcase-example-usage'])[2]/input[2][contains(@value, 'Submit and Re-Render')]";
-		testCharCountMessage(browser, inputTextXpath2, submitButtonXpath2, messagesXpath2);
+		String input2Xpath = "(//input[contains(@id,':inputText')])[2]";
+		String messages2Xpath = "(//div[@class='showcase-example-usage'])[2]/table/tbody/tr/td";
+		String submitButton2Xpath =
+			"(//div[@class='showcase-example-usage'])[2]/input[contains(@value, 'Submit and Re-Render')]";
+		testCharCountMessage(browser, input2Xpath, submitButton2Xpath, messages2Xpath);
 
 		// Test that the third value submits successfully and message text is displayed
-// browser.navigate().refresh();
-		String inputTextXpath3 = "(//input[contains(@id,':inputText')])[3]";
-		String messagesXpath3 = "(//div[@class='showcase-example-usage'])[3]/table/tbody/tr/td";
-		String submitButtonXpath3 =
-			"(//div[@class='showcase-example-usage'])[3]/input[2][contains(@value, 'Submit and Re-Render')]";
-		browser.centerElementInView(submitButtonXpath3);
-
-//      browser.executeScript("arguments[0].scrollIntoView()", browser.findElementByXpath("(//div[@class='showcase-example-usage'])[3]"));
-//      browser.waitUntil(ExpectedConditions.elementToBeClickable(By.xpath(submitButtonXpath3)));
-		testMessage(browser, inputTextXpath3, text, submitButtonXpath3, messagesXpath3,
+		String input3Xpath = "(//input[contains(@id,':inputText')])[3]";
+		String messages3Xpath = "(//div[@class='showcase-example-usage'])[3]/table/tbody/tr/td";
+		String submitButton3Xpath =
+			"(//div[@class='showcase-example-usage'])[3]/input[contains(@value, 'Submit and Re-Render')]";
+		browser.centerElementInView(submitButton3Xpath);
+		testMessage(browser, input3Xpath, text, submitButton3Xpath, messages3Xpath,
 			"Your request processed successfully.");
 	}
 }
