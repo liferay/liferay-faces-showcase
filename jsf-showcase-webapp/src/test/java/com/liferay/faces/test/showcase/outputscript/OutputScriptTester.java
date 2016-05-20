@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.test.showcase.inputtextarea;
+package com.liferay.faces.test.showcase.outputscript;
 
-import org.junit.Test;
+import com.liferay.faces.test.showcase.output.OutputTester;
 
 
 /**
- * @author  Kyle Stiemann
- * @author  Philip White
+ * @author  Neil Griffin
  */
-public class InputTextareaGeneralTester extends InputTextareaTester {
+public class OutputScriptTester extends OutputTester {
 
-	@Test
-	public void runInputTextareaGeneralTest() throws Exception {
-		runInputTextGeneralTest(inputTextareaURL, textarea1Xpath);
-	}
+	protected static final String outputScriptURL = TEST_CONTEXT_URL + "/outputscript";
+	protected static final String exampleScriptText1Xpath = "(//div[@class='showcase-example-usage'])[1]/span[text()]";
 }
