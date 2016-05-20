@@ -15,13 +15,13 @@
  */
 package com.liferay.faces.test.showcase.inputtextarea;
 
-import com.liferay.faces.test.showcase.input.InputTester;
+import com.liferay.faces.test.showcase.inputtext.InputTextTester;
 
 
 /**
  * @author  Kyle Stiemann
  */
-public class InputTextareaTester extends InputTester {
+public class InputTextareaTester extends InputTextTester {
 
 	protected static final String inputTextareaURL = TEST_CONTEXT_URL + "/inputtextarea";
 	protected static final String textarea1Xpath = "(//textarea[contains(@id,':textarea')])[1]";
