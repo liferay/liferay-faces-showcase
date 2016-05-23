@@ -17,11 +17,6 @@ package com.liferay.faces.test.showcase.inputtext;
 
 import org.junit.Test;
 
-import org.openqa.selenium.WebElement;
-
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-
 
 /**
  * @author  Kyle Stiemann
@@ -31,28 +26,6 @@ public class InputTextImmediateTester extends InputTextTester {
 
 	@Test
 	public void runInputTextImmediateTest() throws Exception {
-
-		Browser browser = Browser.getInstance();
-		browser.get(inputTextURL + "/immediate");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButtonXpath);
-
-		// Test that the value submits successfully and the valueChangeListener method is called during the
-		// APPLY_REQUEST_VALUES phase.
-		WebElement input = browser.findElementByXpath(inputXpath);
-		String text = "Hello World!";
-		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage);
-
-		// Test that the value submits successfully and the valueChangeListener method is called during the
-		// PROCESS_VALIDATIONS phase.
-		input = browser.findElementByXpath(inputXpathRight);
-		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpathRight);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpathRight, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessageRight);
+		runInputTextImmediateTest(inputTextURL, input1Xpath, input2Xpath);
 	}
 }
