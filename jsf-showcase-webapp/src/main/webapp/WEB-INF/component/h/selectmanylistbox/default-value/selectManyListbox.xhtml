@@ -6,7 +6,7 @@
 		<h:form>
 			<showcase:example>
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
-				<h:selectManyListbox value="#{selectManyModelBean.benefitIds}">
+				<h:selectManyListbox id="selectManyListbox" value="#{selectManyModelBean.benefitIds}">
 					<f:converter converterId="javax.faces.Long" />
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
 					<f:selectItem itemLabel="Enterprise Ready" itemValue="2" />
@@ -20,10 +20,11 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<ui:repeat id="modelValue" value="#{selectManyModelBean.benefitIds}" var="benefitId">
-					<h:outputText value="#{benefitId}" />
-					<br />
-				</ui:repeat>
+				<h:panelGroup id="modelValue">
+					<ui:repeat value="#{selectManyModelBean.benefitIds}" var="benefitId">
+						<h:outputText value="#{benefitId}" /><br />
+					</ui:repeat>
+				</h:panelGroup>
 			</showcase:results>
 		</h:form>
 	</ui:define>

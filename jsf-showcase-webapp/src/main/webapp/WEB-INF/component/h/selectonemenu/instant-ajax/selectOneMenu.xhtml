@@ -6,7 +6,7 @@
 		<h:form>
 			<showcase:example>
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
-				<h:selectOneMenu value="#{selectOneModelBean.favoriteId}">
+				<h:selectOneMenu id="selectOneMenu" value="#{selectOneModelBean.favoriteId}">
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
 					<f:selectItem itemLabel="Enterprise Ready" itemValue="2" />
 					<f:selectItem itemLabel="Powerful Integration" itemValue="3" />
@@ -16,7 +16,7 @@
 				</h:selectOneMenu>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<h:outputText value="#{selectOneModelBean.favoriteId}" />
+				<h:outputText id="modelValue" value="#{selectOneModelBean.favoriteId}" />
 			</showcase:results>
 		</h:form>
 	</ui:define>

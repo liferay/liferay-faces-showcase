@@ -7,7 +7,7 @@
 			<showcase:example description="#{i18n['conversion-to-a-date-using-f-convertdatetime']}">
 				<h:outputLabel value="#{i18n['when-was-the-us-declaration-of-independence-signed']}" />
 				<h:messages globalOnly="true" styleClass="feedback" />
-				<h:selectOneListbox value="#{selectOneModelBean.date}">
+				<h:selectOneListbox id="selectOneListbox" value="#{selectOneModelBean.date}">
 					<f:convertDateTime pattern="MM/dd/yyyy G" />
 					<f:selectItem itemLabel="October 31, 1517 AD" itemValue="10/31/1517 AD" />
 					<f:selectItem itemLabel="July 4, 1776 AD" itemValue="07/04/1776 AD" />

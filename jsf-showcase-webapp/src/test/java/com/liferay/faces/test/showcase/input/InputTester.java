@@ -20,10 +20,10 @@ import com.liferay.faces.test.showcase.TesterBase;
 
 /**
  * @author  Kyle Stiemann
+ * @author  Philip White
  */
 public class InputTester extends TesterBase {
 
-	protected static final String error1Xpath = "(//div[contains(@class,'field form-group has-error')])[1]";
 	protected static final String error2Xpath = "(//div[contains(@class,'field form-group has-error')])[2]";
 	protected static final String requiredCheckbox1Xpath = "//input[contains(@id,':requiredCheckbox')]";
 	protected static final String success1Xpath = "(//div[contains(@class,'field form-group has-success')])[1]";

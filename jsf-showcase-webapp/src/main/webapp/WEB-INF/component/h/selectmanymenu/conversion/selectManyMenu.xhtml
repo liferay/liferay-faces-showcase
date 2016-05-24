@@ -7,7 +7,7 @@
 			<showcase:example description="#{i18n['conversion-to-a-date-using-f-convertdatetime']}">
 				<h:outputLabel value="#{i18n['which-of-the-following-dates-are-in-the-18th-century']}" />
 				<h:messages globalOnly="true" styleClass="feedback" />
-				<h:selectManyMenu value="#{selectManyModelBean.dates}">
+				<h:selectManyMenu id="selectManyMenu" value="#{selectManyModelBean.dates}">
 					<f:convertDateTime pattern="MM/dd/yyyy G" />
 					<f:selectItem itemLabel="April 5, 33 AD" itemValue="04/05/0033 AD" />
 					<f:selectItem itemLabel="October 31, 1517 AD" itemValue="10/31/1517 AD" />
@@ -23,12 +23,13 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<ui:repeat id="modelValue" value="#{selectManyModelBean.dates}" var="date">
-					<h:outputText value="#{date}">
-						<f:convertDateTime pattern="MMM d, yyyy G" />
-					</h:outputText>
-					<br />
-				</ui:repeat>
+				<h:panelGroup id="modelValue">
+					<ui:repeat value="#{selectManyModelBean.dates}" var="date">
+						<h:outputText value="#{date}">
+							<f:convertDateTime pattern="MMM d, yyyy G" />
+						</h:outputText><br />
+					</ui:repeat>
+				</h:panelGroup>
 			</showcase:results>
 		</h:form>
 	</ui:define>

@@ -27,10 +27,11 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<ui:repeat id="modelValue" value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
-					<h:outputText value="#{favoriteId}" />
-					<br />
-				</ui:repeat>
+				<h:panelGroup id="modelValue">
+					<ui:repeat value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
+						<h:outputText value="#{favoriteId}" /><br />
+					</ui:repeat>
+				</h:panelGroup>
 			</showcase:results>
 		</h:form>
 	</ui:define>
