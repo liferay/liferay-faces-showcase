@@ -23,7 +23,7 @@ import com.liferay.faces.test.showcase.inputtext.InputTextTester;
  */
 public class InputTextareaTester extends InputTextTester {
 
-	protected static final String inputTextURL = TEST_CONTEXT_URL + "/inputtextarea";
-	protected static final String inputXpath = "(//textarea[contains(@id,':textarea')])[1]";
-	protected static final String inputXpathRight = "(//textarea[contains(@id,':textarea')])[2]";
+	protected static final String inputTextareaURL = TEST_CONTEXT_URL + "/inputtextarea";
+	protected static final String textarea1Xpath = "(//textarea[contains(@id,':textarea')])[1]";
+	protected static final String textarea2Xpath = "(//textarea[contains(@id,':textarea')])[2]";
 }

@@ -15,9 +15,7 @@
  */
 package com.liferay.faces.test.showcase.output;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
@@ -29,31 +27,28 @@ import com.liferay.faces.test.showcase.TesterBase;
  */
 public class OutputTester extends TesterBase {
 
-	protected static final String exampleTextXpath = "(//div[@class='showcase-example-usage'])[1]";
-	protected static final String inputTextXpath = "(//input[contains(@id,':inputText')])[1]";
-	protected static final String submitButtonXpath = "(//input[contains(@value,'Submit and Re-Render')][1])";
+	protected static final String exampleText1Xpath = "(//div[@class='showcase-example-usage'])[1]";
+	protected static final String input1Xpath = "(//input[contains(@id,':inputText')])[1]";
+	protected static final String submitButton1Xpath = "(//input[contains(@value,'Submit and Re-Render')][1])";
 
-	protected void testCharCountMessage(Browser browser, String inputTextXpath, String submitButtonXpath,
+	protected void testCharCountMessage(Browser browser, String inputXpath, String submitButtonXpath,
 		String messageXpath) {
+
 		String text = "hello";
-		testMessage(browser, inputTextXpath, text, submitButtonXpath, messageXpath,
+		testMessage(browser, inputXpath, text, submitButtonXpath, messageXpath,
 			"You typed " + text.length() + " characters.");
 	}
 
 	/**
-	 * Tests that the text submits successfully and the message is displayed.
+	 * Tests that the text value submits successfully and the message is displayed.
 	 */
-	protected void testMessage(Browser browser, String inputTextXpath, String text, String submitButtonXpath,
+	protected void testMessage(Browser browser, String inputXpath, String text, String submitButtonXpath,
 		String messageXpath, String message) {
 
-		browser.sendKeys(inputTextXpath, text);
+		browser.sendKeys(inputXpath, text);
 
-		System.out.println(submitButtonXpath);
-//		browser.executeScript("arguments[0].scrollIntoView()", browser.findElementByXpath(submitButtonXpath));
-//		browser.executeScript("window.scrollBy(0, -1000)");
-//		browser.waitUntil(ExpectedConditions.elementToBeClickable(By.xpath(submitButtonXpath)));
 		Action submitButtonClickAction = browser.createClickAction(submitButtonXpath);
-		browser.performAndWaitForAjaxRerender(submitButtonClickAction, inputTextXpath);
+		browser.performAndWaitForAjaxRerender(submitButtonClickAction, inputXpath);
 		SeleniumAssert.assertElementTextVisible(browser, messageXpath, message);
 	}
 }

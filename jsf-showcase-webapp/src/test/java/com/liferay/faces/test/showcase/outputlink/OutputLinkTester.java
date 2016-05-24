@@ -34,18 +34,21 @@ public class OutputLinkTester extends OutputTester {
 
 	protected static final String outputLinkURL = TEST_CONTEXT_URL + "/outputlink";
 
-	protected void testLink(Browser browser, String exampleLinkXpath, String domainName) {
-		SeleniumAssert.assertElementVisible(browser, exampleLinkXpath);
+	/**
+	 * Click the link and assert that it opens a new window/tab with the correct domain name.
+	 */
+	protected void testLink(Browser browser, String exampleLink1Xpath, String domainName) {
+		SeleniumAssert.assertElementVisible(browser, exampleLink1Xpath);
 
-		WebElement linkElement = browser.findElementByXpath(exampleLinkXpath);
+		WebElement linkElement = browser.findElementByXpath(exampleLink1Xpath);
 		linkElement.click();
 
-		String mainWindowHandle = browser.getWindowHandle();
+		String originalWindowHandle = browser.getWindowHandle();
 		Set<String> windowHandles = browser.getWindowHandles();
 
 		for (String windowHandle : windowHandles) {
 
-			if (!mainWindowHandle.equals(windowHandle)) {
+			if (!originalWindowHandle.equals(windowHandle)) {
 				browser.switchTo().window(windowHandle);
 			}
 		}
@@ -53,9 +56,9 @@ public class OutputLinkTester extends OutputTester {
 		browser.waitUntil(new PageLoaded());
 
 		String currentURL = browser.getCurrentUrl();
-		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + currentURL,
+		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + currentURL + ".",
 			currentURL.contains(domainName));
 		browser.close();
-		browser.switchTo().window(mainWindowHandle);
+		browser.switchTo().window(originalWindowHandle);
 	}
 }

@@ -33,11 +33,10 @@ public class OutputTextGeneralTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		browser.get(TEST_CONTEXT_URL + "/outputtext/general");
 
-		// Wait to begin the test until an attribute is rendered.
-		browser.waitForElementVisible(exampleTextXpath);
+		// Wait to begin the test until the example text is rendered.
+		browser.waitForElementVisible(exampleText1Xpath);
 
-		// Test that a text property renders on the page successfully.
-		String text = "This is text from a model bean property.";
-		SeleniumAssert.assertElementTextVisible(browser, exampleTextXpath, text);
+		// Test that the text property is rendered on the page.
+		SeleniumAssert.assertElementTextVisible(browser, exampleText1Xpath, "This is text from a model bean property.");
 	}
 }

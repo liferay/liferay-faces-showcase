@@ -36,27 +36,29 @@ public class OutputStylesheetGeneralTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		browser.get(TEST_CONTEXT_URL + "/outputstylesheet/general");
 
-		// Wait to begin the test until an attribute is rendered.
-		String buttonXpath = "(//input[@type='button'])[1]";
-		browser.waitForElementVisible(buttonXpath);
+		// Wait to begin the test until a button is rendered.
+		String button1Xpath = "(//input[@type='button'])[1]";
+		browser.waitForElementVisible(button1Xpath);
 
 		// Test that both buttons render on the page successfully.
-		SeleniumAssert.assertElementVisible(browser, buttonXpath);
+		SeleniumAssert.assertElementVisible(browser, button1Xpath);
 
-		String buttonXpathRight = "(//input[@type='button'])[2]";
-		SeleniumAssert.assertElementVisible(browser, buttonXpathRight);
+		String button2Xpath = "(//input[@type='button'])[2]";
+		SeleniumAssert.assertElementVisible(browser, button2Xpath);
 
-		// Test that the first button's styling CSS renders on the page successfully.
-		WebElement buttonElement = browser.findElementByXpath(buttonXpath);
+		// Test that the first button's opacity is correct.
+		WebElement buttonElement = browser.findElementByXpath(button1Xpath);
 		String buttonOpacity = buttonElement.getCssValue("opacity");
-		Assert.assertTrue("The button's opacity is not .65, instead it is " + buttonOpacity,
-			buttonOpacity.contains(".64") || buttonOpacity.contains(".65") || buttonOpacity.contains(".66"));
 
-		// Test that the second button's styling CSS renders on the page successfully.
-		buttonElement = browser.findElementByXpath(buttonXpathRight);
+		// Since the opacity is a floating point value, it's value may not match .65 exactly.
+		Assert.assertTrue("The button's opacity is not .65, instead it is " + buttonOpacity,
+			(buttonOpacity.contains(".649") || buttonOpacity.contains(".65")));
+
+		// Test that the second button's display is block.
+		buttonElement = browser.findElementByXpath(button2Xpath);
 
 		String buttonDisplay = buttonElement.getCssValue("display");
-		Assert.assertEquals("The button's display is not block, instead it is " + buttonDisplay, buttonDisplay,
-			"block");
+		Assert.assertEquals("The button's display is not block, instead it is " + buttonDisplay, "block",
+			buttonDisplay);
 	}
 }

@@ -31,20 +31,20 @@ public class OutputLinkGeneralTester extends OutputLinkTester {
 		Browser browser = Browser.getInstance();
 		browser.get(outputLinkURL + "/general");
 
-		// Wait to begin the test until a property is rendered.
-		String exampleLinkXpath1 = "(//div[@class='showcase-example-usage'])[1]/a";
-		browser.waitForElementVisible(exampleLinkXpath1);
+		// Wait to begin the test until the example link is rendered.
+		String link1Xpath = "(//div[@class='showcase-example-usage'])[1]/a";
+		browser.waitForElementVisible(link1Xpath);
 
-		// Test that the first example text property renders on the page successfully.
-		testLink(browser, exampleLinkXpath1, "liferay.com");
+		// Click the link and check that it opens a new window/tab with the correct domain name.
+		testLink(browser, link1Xpath, "liferay.com");
 
-		// Test that the second example text property renders on the page successfully.
-		String exampleLinkXpath2 = "(//div[@class='showcase-example-usage'])[2]/a";
-		testLink(browser, exampleLinkXpath2, "liferay.com");
+		// Click the link and check that it opens a new window/tab with the correct domain name.
+		String exampleLink2Xpath = "(//div[@class='showcase-example-usage'])[2]/a";
+		testLink(browser, exampleLink2Xpath, "liferay.com");
 
-		// Test that the third example text property renders on the page successfully.
-		String exampleLinkXpath3 = "(//div[@class='showcase-example-usage'])[3]/a";
-		browser.centerElementInView(exampleLinkXpath3);
-		testLink(browser, exampleLinkXpath3, "google.com");
+		// Click the link and check that it opens a new window/tab with the correct domain name.
+		String exampleLink3Xpath = "(//div[@class='showcase-example-usage'])[3]/a";
+		browser.centerElementInView(exampleLink3Xpath);
+		testLink(browser, exampleLink3Xpath, "google.com");
 	}
 }

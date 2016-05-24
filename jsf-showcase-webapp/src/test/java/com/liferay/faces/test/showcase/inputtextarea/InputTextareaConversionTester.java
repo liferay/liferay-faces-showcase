@@ -17,6 +17,11 @@ package com.liferay.faces.test.showcase.inputtextarea;
 
 import org.junit.Test;
 
+import org.openqa.selenium.WebElement;
+
+import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+
 
 /**
  * @author  Kyle Stiemann
@@ -26,6 +31,51 @@ public class InputTextareaConversionTester extends InputTextareaTester {
 
 	@Test
 	public void runInputTextareaConversionTest() throws Exception {
-		runInputTextConversionTest(inputTextareaURL, textarea1Xpath, textarea2Xpath);
+
+		Browser browser = Browser.getInstance();
+		browser.get(inputTextareaURL + "/conversion");
+
+		// Wait to begin the test until the submit button is rendered.
+		browser.waitForElementVisible(submitButton1Xpath);
+
+		// Test that the web page shows an error message when an invalid value is submitted.
+		WebElement input = browser.findElementByXpath(textarea1Xpath);
+		input.clear();
+
+		String invalidText1 = "apr 3 33";
+		input.sendKeys(invalidText1);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+
+		// Test that a valid value submits successfully.
+		input = browser.findElementByXpath(textarea1Xpath);
+		input.clear();
+
+		String text1 = "apr 3, 33";
+		input.sendKeys(text1);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+
+		String textOutput1 = "Apr 3, 0033";
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, textOutput1);
+
+		// Test that the web page shows an error message when an invalid value is submitted.
+		input = browser.findElementByXpath(textarea2Xpath);
+		input.clear();
+
+		String invalidText2 = "4/333";
+		input.sendKeys(invalidText2);
+		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
+		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+
+		// Test that a valid value submits successfully.
+		input = browser.findElementByXpath(textarea2Xpath);
+		input.clear();
+
+		String text2 = "4/3/33";
+		input.sendKeys(text2);
+		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
+
+		String textOutput2 = "04/03/0033";
+		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, textOutput2);
 	}
 }

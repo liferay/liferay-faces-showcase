@@ -34,18 +34,20 @@ public class OutputLinkConversionTester extends OutputLinkTester {
 		Browser browser = Browser.getInstance();
 		browser.get(outputLinkURL + "/conversion");
 
-		// Wait to begin the test until a property is rendered.
-		String selectXpath = "(//select[contains(@id,':selectOneMenuId')])";
-		browser.waitForElementVisible(selectXpath);
+		// Wait to begin the test until the select is rendered.
+		String select1Xpath = "(//select[contains(@id,':selectOneMenuId')])";
+		browser.waitForElementVisible(select1Xpath);
 
-		// Test that selecting a different link option renders on the page successfully.
-		Select select = new Select(browser.findElementByXpath(selectXpath));
+		// Test that selecting a different country changes the text in the link.
+		Select select = new Select(browser.findElementByXpath(select1Xpath));
 		select.selectByVisibleText("United States");
 
-		String mapLinkXpath = "(//a[contains(text(),'United States')])";
-		browser.centerElementInView(mapLinkXpath);
-		browser.waitForElementVisible(mapLinkXpath);
-		SeleniumAssert.assertElementTextVisible(browser, mapLinkXpath, "Link to a map of United States");
-		testLink(browser, mapLinkXpath, "google.com");
+		String mapLink1Xpath = "(//a[contains(text(),'United States')])";
+		browser.waitForElementVisible(mapLink1Xpath);
+		browser.centerElementInView(mapLink1Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, mapLink1Xpath, "Link to a map of United States");
+
+		// Click the link and check that it opens a new window/tab with the correct domain name.
+		testLink(browser, mapLink1Xpath, "google.com");
 	}
 }

@@ -33,11 +33,11 @@ public class OutputFormatGeneralTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		browser.get(TEST_CONTEXT_URL + "/outputformat/general");
 
-		// Wait to begin the test until an attribute is rendered.
-		browser.waitForElementVisible(exampleTextXpath);
+		// Wait to begin the test until the formatted text is rendered.
+		browser.waitForElementVisible(exampleText1Xpath);
 
-		// Test that attributes render on the page successfully.
-		SeleniumAssert.assertElementVisible(browser, exampleTextXpath);
-		SeleniumAssert.assertElementTextVisible(browser, exampleTextXpath, "First: Alpha, Last: Omega");
+		// Test that the formatted text renders on the page successfully.
+		SeleniumAssert.assertElementVisible(browser, exampleText1Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, exampleText1Xpath, "First: Alpha, Last: Omega");
 	}
 }

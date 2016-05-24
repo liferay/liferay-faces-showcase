@@ -32,17 +32,15 @@ public class OutputScriptGeneralTester extends OutputScriptTester {
 		Browser browser = Browser.getInstance();
 		browser.get(outputScriptURL + "/general");
 
-		// Wait to begin the test until an attribute is rendered.
-		browser.waitForElementVisible(exampleScriptTextXpath);
+		// Wait to begin the test until the example text is rendered.
+		browser.waitForElementVisible(exampleScriptText1Xpath);
 
-		// Test that a text property renders on the page successfully.
-		String text = "rendered inline";
-		SeleniumAssert.assertElementTextVisible(browser, exampleScriptTextXpath, text);
+		// Test that the script has successfully added the text to the page.
+		SeleniumAssert.assertElementTextVisible(browser, exampleScriptText1Xpath, "rendered inline");
 
-		// Test that a text property renders on the page successfully.
-		text = "rendered immediately before the closing";
-
-		String exampleScriptTextXpathRight = "(//div[@class='showcase-example-usage'])[2]/span";
-		SeleniumAssert.assertElementTextVisible(browser, exampleScriptTextXpathRight, text);
+		// Test that the script has successfully added the text to the page.
+		String exampleScriptText2Xpath = "(//div[@class='showcase-example-usage'])[2]/span[text()]";
+		SeleniumAssert.assertElementTextVisible(browser, exampleScriptText2Xpath,
+			"rendered immediately before the closing");
 	}
 }

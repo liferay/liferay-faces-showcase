@@ -25,15 +25,14 @@ import com.liferay.faces.test.showcase.input.InputTester;
 public class InputHiddenTester extends InputTester {
 
 	protected static final String inputHiddenURL = TEST_CONTEXT_URL + "/inputhidden";
-	protected static final String modelValueEmptyXpath =
+	protected static final String modelValueEmpty1Xpath =
 		"(//span[contains(@id,':modelValue')][not(normalize-space())])[1]";
-	protected static final String copyValidValueButtonXpath = "(//button[contains(text(),'Copy')])[1]";
-	protected static final String clearButtonXpath = "(//button[contains(text(),'Clear')])[1]";
-	protected static final String hiddenValueEmptyXpath = "(//input[contains(@id,':hidden')][contains(@value,'')])[1]";
-	protected static final String modelValueEmptyXpathRight =
+	protected static final String copyValidValueButton1Xpath = "(//button[contains(text(),'Copy')])[1]";
+	protected static final String clearButton1Xpath = "(//button[contains(text(),'Clear')])[1]";
+	protected static final String hiddenValueEmpty1Xpath = "(//input[contains(@id,':hidden')][contains(@value,'')])[1]";
+	protected static final String modelValueEmpty2Xpath =
 		"(//span[contains(@id,':modelValue')][not(normalize-space())])[2]";
-	protected static final String copyValidValueButtonXpathRight = "(//button[contains(text(),'Copy')])[2]";
-	protected static final String clearButtonXpathRight = "(//button[contains(text(),'Clear')])[2]";
-	protected static final String hiddenValueEmptyXpathRight =
-		"(//input[contains(@id,':hidden')][contains(@value,'')])[2]";
+	protected static final String copyValidValueButton2Xpath = "(//button[contains(text(),'Copy')])[2]";
+	protected static final String clearButton2Xpath = "(//button[contains(text(),'Clear')])[2]";
+	protected static final String hiddenValueEmpty2Xpath = "(//input[contains(@id,':hidden')][contains(@value,'')])[2]";
 }
