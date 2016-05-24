@@ -17,9 +17,6 @@ package com.liferay.faces.test.showcase.inputtext;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-
 
 /**
  * @author  Kyle Stiemann
@@ -29,26 +26,6 @@ public class InputTextGeneralTester extends InputTextTester {
 
 	@Test
 	public void runInputTextGeneralTest() throws Exception {
-
-		Browser browser = Browser.getInstance();
-		browser.get(inputTextURL + "/general");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that an empty value submits successfully.
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, success1Xpath);
-
-		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		browser.click(requiredCheckbox1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
-
-		// Test that a text value submits successfully.
-		String text = "Hello World!";
-		browser.sendKeys(input1Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
+		runInputTextGeneralTest(inputTextURL, input1Xpath);
 	}
 }
