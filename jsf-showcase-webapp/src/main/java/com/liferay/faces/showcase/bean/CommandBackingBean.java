@@ -124,6 +124,14 @@ public class CommandBackingBean {
 		facesContext.addMessage(null, facesMessage);
 	}
 
+	public Map<String, Object> getAttributes() {
+		Map<String, Object> attributes = new HashMap<String, Object>();
+		attributes.put("attribute1", "value1");
+		attributes.put("attribute2", "value2");
+
+		return attributes;
+	}
+
 	public void parameterActionListener() {
 
 		FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -144,14 +152,6 @@ public class CommandBackingBean {
 		UICommand uiCommand = (UICommand) actionEvent.getComponent();
 		Customer customer = (Customer) uiCommand.getValue();
 		commandModelBean.setSelectedCustomer(customer);
-	}
-
-	public Map<String, Object> getAttributes() {
-		Map<String, Object> attributes = new HashMap<String, Object>();
-		attributes.put("attribute1", "value1");
-		attributes.put("attribute2", "value2");
-
-		return attributes;
 	}
 
 	public void setCommandModelBean(CommandModelBean commandModelBean) {

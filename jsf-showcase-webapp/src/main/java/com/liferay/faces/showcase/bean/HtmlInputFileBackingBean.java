@@ -77,14 +77,14 @@ public class HtmlInputFileBackingBean {
 		}
 	}
 
+	public Part getUploadedPart() {
+		return uploadedPart;
+	}
+
 	public void setHtmlInputFileModelBean(HtmlInputFileModelBean htmlInputFileModelBean) {
 
 		// Injected via @ManagedProperty annotation
 		this.htmlInputFileModelBean = htmlInputFileModelBean;
-	}
-
-	public Part getUploadedPart() {
-		return uploadedPart;
 	}
 
 	public void setUploadedPart(Part uploadedPart) {

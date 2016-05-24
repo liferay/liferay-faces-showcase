@@ -36,6 +36,7 @@ import com.liferay.faces.util.render.RendererUtil;
 /**
  * @author  Vernon Singleton
  */
+
 //J-
 @FacesRenderer(componentFamily = DataList.COMPONENT_FAMILY, rendererType = DataList.RENDERER_TYPE)
 //J+
@@ -179,6 +180,11 @@ public class DataListRenderer extends DataListRendererBase {
 		}
 	}
 
+	@Override
+	public boolean getRendersChildren() {
+		return true;
+	}
+
 	protected List<DataItem> getChildDataItems(UIData uiData) {
 
 		List<DataItem> childDataItems = new ArrayList<DataItem>();
@@ -206,10 +212,5 @@ public class DataListRenderer extends DataListRendererBase {
 		}
 
 		return prototypeChildType;
-	}
-
-	@Override
-	public boolean getRendersChildren() {
-		return true;
 	}
 }

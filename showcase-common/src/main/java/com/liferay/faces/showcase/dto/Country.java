@@ -41,20 +41,20 @@ public class Country implements Serializable {
 		return countryCode;
 	}
 
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
-
 	public long getCountryId() {
 		return countryId;
 	}
 
-	public void setCountryId(long countryId) {
-		this.countryId = countryId;
-	}
-
 	public String getCountryName() {
 		return countryName;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public void setCountryId(long countryId) {
+		this.countryId = countryId;
 	}
 
 	public void setCountryName(String countryName) {

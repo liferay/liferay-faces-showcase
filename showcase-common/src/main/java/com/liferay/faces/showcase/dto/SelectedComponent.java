@@ -23,6 +23,10 @@ import java.util.List;
  */
 public interface SelectedComponent extends ShowcaseComponent {
 
+	public String getUseCaseKey();
+
+	public String getUseCaseName();
+
 	public boolean isRendered();
 
 	public boolean isRequired();
@@ -32,8 +36,4 @@ public interface SelectedComponent extends ShowcaseComponent {
 	public void setRequired(boolean required);
 
 	List<CodeExample> getUseCaseCodeExamples();
-
-	public String getUseCaseKey();
-
-	public String getUseCaseName();
 }

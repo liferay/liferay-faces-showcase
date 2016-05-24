@@ -36,12 +36,12 @@ public class InputSecretModelBean {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public String getPassword() {
 		return password;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public void setPassword(String password) {

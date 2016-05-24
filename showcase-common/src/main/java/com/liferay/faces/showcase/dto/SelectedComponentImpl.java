@@ -57,26 +57,6 @@ public class SelectedComponentImpl extends ShowcaseComponentWrapper implements S
 	}
 
 	@Override
-	public boolean isRendered() {
-		return rendered;
-	}
-
-	@Override
-	public boolean isRequired() {
-		return required;
-	}
-
-	@Override
-	public void setRendered(boolean rendered) {
-		this.rendered = rendered;
-	}
-
-	@Override
-	public void setRequired(boolean required) {
-		this.required = required;
-	}
-
-	@Override
 	public List<CodeExample> getUseCaseCodeExamples() {
 		return useCaseCodeExamples;
 	}
@@ -94,5 +74,25 @@ public class SelectedComponentImpl extends ShowcaseComponentWrapper implements S
 	@Override
 	public ShowcaseComponent getWrapped() {
 		return wrappedShowcaseComponent;
+	}
+
+	@Override
+	public boolean isRendered() {
+		return rendered;
+	}
+
+	@Override
+	public boolean isRequired() {
+		return required;
+	}
+
+	@Override
+	public void setRendered(boolean rendered) {
+		this.rendered = rendered;
+	}
+
+	@Override
+	public void setRequired(boolean required) {
+		this.required = required;
 	}
 }

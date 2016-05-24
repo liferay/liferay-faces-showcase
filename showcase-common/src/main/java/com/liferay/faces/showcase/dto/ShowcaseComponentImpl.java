@@ -55,11 +55,6 @@ public class ShowcaseComponentImpl implements Serializable, ShowcaseComponent {
 	}
 
 	@Override
-	public String toString() {
-		return fullName;
-	}
-
-	@Override
 	public String getCamelCaseName() {
 		return camelCaseName;
 	}
@@ -92,5 +87,10 @@ public class ShowcaseComponentImpl implements Serializable, ShowcaseComponent {
 	@Override
 	public List<UseCase> getUseCases() {
 		return useCases;
+	}
+
+	@Override
+	public String toString() {
+		return fullName;
 	}
 }

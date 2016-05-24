@@ -33,6 +33,22 @@ public class ViewMetadataBackingBean {
 	private String viewActionText;
 	private Country viewCountry;
 
+	public String getViewActionText() {
+		return viewActionText;
+	}
+
+	public Country getViewCountry() {
+		return viewCountry;
+	}
+
+	public void setViewActionText(String viewActionText) {
+		this.viewActionText = viewActionText;
+	}
+
+	public void setViewCountry(Country viewCountry) {
+		this.viewCountry = viewCountry;
+	}
+
 	public String viewAction() {
 		PhaseId phaseId = FacesContext.getCurrentInstance().getCurrentPhaseId();
 
@@ -41,21 +57,5 @@ public class ViewMetadataBackingBean {
 		this.viewActionText = "View action was executed in phase " + phaseName;
 
 		return null;
-	}
-
-	public String getViewActionText() {
-		return viewActionText;
-	}
-
-	public void setViewActionText(String viewActionText) {
-		this.viewActionText = viewActionText;
-	}
-
-	public Country getViewCountry() {
-		return viewCountry;
-	}
-
-	public void setViewCountry(Country viewCountry) {
-		this.viewCountry = viewCountry;
 	}
 }

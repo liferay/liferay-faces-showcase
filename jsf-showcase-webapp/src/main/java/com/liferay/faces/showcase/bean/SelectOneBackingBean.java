@@ -45,6 +45,23 @@ public class SelectOneBackingBean {
 	@ManagedProperty(name = "selectOneModelBean", value = "#{selectOneModelBean}")
 	private SelectOneModelBean selectOneModelBean;
 
+	public SelectItem[] getSelectItems() {
+		SelectItem[] selectItems = new SelectItem[3];
+
+		for (int i = 0; i < 3; i++) {
+			SelectItem item = new SelectItem();
+			item.setLabel("Item " + (i + 1));
+			item.setValue(i + 1);
+			selectItems[i] = item;
+		}
+
+		return selectItems;
+	}
+
+	public void setSelectOneModelBean(SelectOneModelBean selectOneModelBean) {
+		this.selectOneModelBean = selectOneModelBean;
+	}
+
 	public void submit() {
 		PhaseId phaseId = FacesContext.getCurrentInstance().getCurrentPhaseId();
 		logger.info("submit: phaseId=[{0}] favoriteId=[{1}]", phaseId.toString(), selectOneModelBean.getFavoriteId());
@@ -87,22 +104,5 @@ public class SelectOneBackingBean {
 		FacesMessage facesMessage = new FacesMessage("The valueChangeListener method was called during the " +
 				phaseName + " phase of the JSF lifecycle.");
 		facesContext.addMessage(null, facesMessage);
-	}
-
-	public SelectItem[] getSelectItems() {
-		SelectItem[] selectItems = new SelectItem[3];
-
-		for (int i = 0; i < 3; i++) {
-			SelectItem item = new SelectItem();
-			item.setLabel("Item " + (i + 1));
-			item.setValue(i + 1);
-			selectItems[i] = item;
-		}
-
-		return selectItems;
-	}
-
-	public void setSelectOneModelBean(SelectOneModelBean selectOneModelBean) {
-		this.selectOneModelBean = selectOneModelBean;
 	}
 }

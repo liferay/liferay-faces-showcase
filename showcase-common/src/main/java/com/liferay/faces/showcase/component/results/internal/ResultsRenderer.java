@@ -30,6 +30,7 @@ import com.liferay.faces.showcase.component.results.Results;
  * @author  Bruno Basto
  * @author  Kyle Stiemann
  */
+
 //J-
 @FacesRenderer(componentFamily = Results.COMPONENT_FAMILY, rendererType = Results.RENDERER_TYPE)
 @ResourceDependency(library = "showcase", name = "showcase-components.css")

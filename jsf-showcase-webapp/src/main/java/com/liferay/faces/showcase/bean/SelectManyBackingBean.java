@@ -45,6 +45,10 @@ public class SelectManyBackingBean {
 	@ManagedProperty(name = "selectManyModelBean", value = "#{selectManyModelBean}")
 	private SelectManyModelBean selectManyModelBean;
 
+	public void setSelectManyModelBean(SelectManyModelBean selectManyModelBean) {
+		this.selectManyModelBean = selectManyModelBean;
+	}
+
 	public void submit() {
 		PhaseId phaseId = FacesContext.getCurrentInstance().getCurrentPhaseId();
 		logger.info("submit: phaseId=[{0}] favoriteId=[{1}]", phaseId.toString(), selectManyModelBean.getFavoriteIds());
@@ -94,9 +98,5 @@ public class SelectManyBackingBean {
 		FacesMessage facesMessage = new FacesMessage("The valueChangeListener method was called during the " +
 				phaseName + " phase of the JSF lifecycle.");
 		facesContext.addMessage(null, facesMessage);
-	}
-
-	public void setSelectManyModelBean(SelectManyModelBean selectManyModelBean) {
-		this.selectManyModelBean = selectManyModelBean;
 	}
 }

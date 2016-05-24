@@ -46,32 +46,16 @@ public class Customer implements Serializable {
 		return country;
 	}
 
-	public void setCountry(Country country) {
-		this.country = country;
-	}
-
 	public long getCustomerId() {
 		return customerId;
-	}
-
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
 	}
 
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
 	public String getFirstName() {
 		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
 	}
 
 	public String getFullName() {
@@ -80,6 +64,22 @@ public class Customer implements Serializable {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public void setCustomerId(long customerId) {
+		this.customerId = customerId;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public void setLastName(String lastName) {

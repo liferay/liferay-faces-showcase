@@ -48,6 +48,18 @@ public class InputFileModelBean implements Serializable {
 	private boolean auto;
 	private List<UploadedFile> uploadedFiles;
 
+	public List<UploadedFile> getUploadedFiles() {
+		return uploadedFiles;
+	}
+
+	public boolean isAppendNewFiles() {
+		return appendNewFiles;
+	}
+
+	public boolean isAuto() {
+		return auto;
+	}
+
 	@PostConstruct
 	public void postConstruct() {
 		this.uploadedFiles = new ArrayList<UploadedFile>();
@@ -84,17 +96,5 @@ public class InputFileModelBean implements Serializable {
 		if (auto) {
 			this.appendNewFiles = false;
 		}
-	}
-
-	public boolean isAuto() {
-		return auto;
-	}
-
-	public boolean isAppendNewFiles() {
-		return appendNewFiles;
-	}
-
-	public List<UploadedFile> getUploadedFiles() {
-		return uploadedFiles;
 	}
 }

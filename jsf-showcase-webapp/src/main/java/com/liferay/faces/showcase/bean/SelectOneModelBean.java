@@ -45,36 +45,36 @@ public class SelectOneModelBean {
 		return benefitId;
 	}
 
-	public void setBenefitId(Long benefitId) {
-		this.benefitId = benefitId;
-	}
-
 	public Date getDate() {
 		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public Long getFavoriteId() {
 		return favoriteId;
 	}
 
-	public void setFavoriteId(Long favoriteId) {
-		this.favoriteId = favoriteId;
-	}
-
 	public List<LiferayBenefit> getLiferayBenefits() {
 		return liferayBenefitService.getLiferayBenefits();
 	}
 
-	public void setLiferayBenefitService(LiferayBenefitService liferayBenefitService) {
-		this.liferayBenefitService = liferayBenefitService;
-	}
-
 	public String getPhase() {
 		return phase;
+	}
+
+	public void setBenefitId(Long benefitId) {
+		this.benefitId = benefitId;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public void setFavoriteId(Long favoriteId) {
+		this.favoriteId = favoriteId;
+	}
+
+	public void setLiferayBenefitService(LiferayBenefitService liferayBenefitService) {
+		this.liferayBenefitService = liferayBenefitService;
 	}
 
 	public void setPhase(String phase) {

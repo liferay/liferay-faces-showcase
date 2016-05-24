@@ -33,12 +33,12 @@ public class ShowcaseCategory {
 		return icon;
 	}
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-
 	public String getName() {
 		return name;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	public void setName(String name) {

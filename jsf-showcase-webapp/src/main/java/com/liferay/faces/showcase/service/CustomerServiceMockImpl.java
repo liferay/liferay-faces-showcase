@@ -51,6 +51,40 @@ public class CustomerServiceMockImpl implements CustomerService, Serializable {
 	@ManagedProperty(value = "#{countryService}")
 	private CountryService countryService;
 
+	@Override
+	public List<Customer> getAllCustomers() {
+		return allCustomers;
+	}
+
+	@Override
+	public int getCustomerCount() {
+		return allCustomers.size();
+	}
+
+	@Override
+	public List<Customer> getCustomers(int start, int finish) {
+		return allCustomers.subList(start, finish + 1);
+	}
+
+	@Override
+	public List<Customer> getCustomers(int start, int finish, Comparator<Customer> comparator) {
+
+		List<Customer> customerList = new ArrayList<Customer>(getAllCustomers());
+		Collections.sort(customerList, comparator);
+
+		return customerList.subList(start, finish + 1);
+	}
+
+	public Date getDate(int month, int day, int year) {
+		TimeZone gmtTimeZone = TimeZone.getTimeZone("GMT");
+		Calendar calendar = new GregorianCalendar(gmtTimeZone);
+		calendar.set(Calendar.MONTH, month);
+		calendar.set(Calendar.DATE, day);
+		calendar.set(Calendar.YEAR, year);
+
+		return calendar.getTime();
+	}
+
 	@PostConstruct
 	public void postConstruct() {
 
@@ -229,41 +263,7 @@ public class CustomerServiceMockImpl implements CustomerService, Serializable {
 		allCustomers.add(new Customer(userId++, unitedKingdom, "Francis", "Simpson", getDate(7, 7, 1614)));
 	}
 
-	@Override
-	public List<Customer> getAllCustomers() {
-		return allCustomers;
-	}
-
 	public void setCountryService(CountryService countryService) {
 		this.countryService = countryService;
-	}
-
-	@Override
-	public int getCustomerCount() {
-		return allCustomers.size();
-	}
-
-	@Override
-	public List<Customer> getCustomers(int start, int finish) {
-		return allCustomers.subList(start, finish + 1);
-	}
-
-	@Override
-	public List<Customer> getCustomers(int start, int finish, Comparator<Customer> comparator) {
-
-		List<Customer> customerList = new ArrayList<Customer>(getAllCustomers());
-		Collections.sort(customerList, comparator);
-
-		return customerList.subList(start, finish + 1);
-	}
-
-	public Date getDate(int month, int day, int year) {
-		TimeZone gmtTimeZone = TimeZone.getTimeZone("GMT");
-		Calendar calendar = new GregorianCalendar(gmtTimeZone);
-		calendar.set(Calendar.MONTH, month);
-		calendar.set(Calendar.DATE, day);
-		calendar.set(Calendar.YEAR, year);
-
-		return calendar.getTime();
 	}
 }

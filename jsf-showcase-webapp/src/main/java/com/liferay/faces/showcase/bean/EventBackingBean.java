@@ -30,11 +30,11 @@ public class EventBackingBean {
 
 	private StringBuilder text = new StringBuilder();
 
-	public void preRenderComponent(ComponentSystemEvent event) throws AbortProcessingException {
-		text.append("Component with id " + event.getComponent().getId() + " generated an event.<br/>");
-	}
-
 	public String getText() {
 		return text.toString();
+	}
+
+	public void preRenderComponent(ComponentSystemEvent event) throws AbortProcessingException {
+		text.append("Component with id " + event.getComponent().getId() + " generated an event.<br/>");
 	}
 }

@@ -43,6 +43,7 @@ import com.liferay.faces.util.render.RendererUtil;
  * @author  Neil Griffin
  * @author  Vernon Singleton
  */
+
 //J-
 @FacesRenderer(componentFamily = TabView.COMPONENT_FAMILY, rendererType = TabView.RENDERER_TYPE)
 @ResourceDependencies(
@@ -171,6 +172,11 @@ public class TabViewRenderer extends TabViewRendererBase {
 		responseWriter.endElement("div");
 	}
 
+	@Override
+	public boolean getRendersChildren() {
+		return true;
+	}
+
 	protected void encodeTabListItem(FacesContext facesContext, ResponseWriter responseWriter, Tab tab,
 		boolean selected) throws IOException {
 
@@ -220,10 +226,5 @@ public class TabViewRenderer extends TabViewRendererBase {
 
 		responseWriter.endElement("a");
 		responseWriter.endElement("li");
-	}
-
-	@Override
-	public boolean getRendersChildren() {
-		return true;
 	}
 }

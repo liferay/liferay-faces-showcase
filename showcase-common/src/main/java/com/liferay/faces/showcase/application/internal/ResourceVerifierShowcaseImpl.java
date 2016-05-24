@@ -53,6 +53,11 @@ public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper {
 	}
 
 	@Override
+	public ResourceVerifier getWrapped() {
+		return wrappedResourceDependencyHandler;
+	}
+
+	@Override
 	public boolean isDependencySatisfied(FacesContext facestContext, UIComponent componentResource) {
 
 		String resourceId = ResourceUtil.getResourceId(componentResource);
@@ -66,10 +71,5 @@ public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper {
 		else {
 			return super.isDependencySatisfied(facestContext, componentResource);
 		}
-	}
-
-	@Override
-	public ResourceVerifier getWrapped() {
-		return wrappedResourceDependencyHandler;
 	}
 }

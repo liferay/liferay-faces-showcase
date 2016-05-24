@@ -36,12 +36,12 @@ public class InputTextModelBean {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public String getText() {
 		return text;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public void setText(String text) {

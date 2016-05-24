@@ -42,23 +42,6 @@ public class CountryServiceMockImpl implements CountryService, Serializable {
 	private List<Country> countryList;
 	private Map<Long, Country> countryMap;
 
-	@PostConstruct
-	public void postConstruct() {
-		countryMap = new HashMap<Long, Country>();
-
-		Country country = new Country(1, "CN", "China");
-		countryMap.put(country.getCountryId(), country);
-		country = new Country(2, "CH", "Switzerland");
-		countryMap.put(country.getCountryId(), country);
-		country = new Country(3, "US", "United States");
-		countryMap.put(country.getCountryId(), country);
-		country = new Country(4, "UK", "United Kingdom");
-		countryMap.put(country.getCountryId(), country);
-		country = new Country(5, "VN", "Vietnam");
-		countryMap.put(country.getCountryId(), country);
-		countryList = new ArrayList<Country>(countryMap.values());
-	}
-
 	@Override
 	public List<Country> getAllCountries() {
 		return countryList;
@@ -84,5 +67,22 @@ public class CountryServiceMockImpl implements CountryService, Serializable {
 	@Override
 	public Map<Long, Country> getCountryMap() {
 		return countryMap;
+	}
+
+	@PostConstruct
+	public void postConstruct() {
+		countryMap = new HashMap<Long, Country>();
+
+		Country country = new Country(1, "CN", "China");
+		countryMap.put(country.getCountryId(), country);
+		country = new Country(2, "CH", "Switzerland");
+		countryMap.put(country.getCountryId(), country);
+		country = new Country(3, "US", "United States");
+		countryMap.put(country.getCountryId(), country);
+		country = new Country(4, "UK", "United Kingdom");
+		countryMap.put(country.getCountryId(), country);
+		country = new Country(5, "VN", "Vietnam");
+		countryMap.put(country.getCountryId(), country);
+		countryList = new ArrayList<Country>(countryMap.values());
 	}
 }

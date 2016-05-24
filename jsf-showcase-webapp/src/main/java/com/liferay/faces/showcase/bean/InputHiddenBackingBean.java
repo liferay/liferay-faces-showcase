@@ -54,6 +54,10 @@ public class InputHiddenBackingBean {
 		}
 	}
 
+	public void setInputHiddenModelBean(InputHiddenModelBean inputHiddenModelBean) {
+		this.inputHiddenModelBean = inputHiddenModelBean;
+	}
+
 	public void submit() {
 
 		Object value = inputHiddenModelBean.getText();
@@ -75,9 +79,5 @@ public class InputHiddenBackingBean {
 		FacesMessage facesMessage = new FacesMessage("The valueChangeListener method was called during the " +
 				phaseName + " phase of the JSF lifecycle.");
 		facesContext.addMessage(null, facesMessage);
-	}
-
-	public void setInputHiddenModelBean(InputHiddenModelBean inputHiddenModelBean) {
-		this.inputHiddenModelBean = inputHiddenModelBean;
 	}
 }

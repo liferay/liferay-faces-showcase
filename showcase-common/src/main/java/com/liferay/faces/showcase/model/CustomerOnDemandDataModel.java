@@ -66,6 +66,11 @@ public class CustomerOnDemandDataModel extends OnDemandDataModel<Customer> imple
 		return customers;
 	}
 
+	@Override
+	public int getRowsPerPage() {
+		return rowsPerPage;
+	}
+
 	protected CustomerService getCustomerService() {
 
 		if (customerService == null) {
@@ -80,10 +85,5 @@ public class CustomerOnDemandDataModel extends OnDemandDataModel<Customer> imple
 		}
 
 		return customerService;
-	}
-
-	@Override
-	public int getRowsPerPage() {
-		return rowsPerPage;
 	}
 }

@@ -37,28 +37,28 @@ public class ValidationModelBean {
 		return doubleNumber;
 	}
 
-	public void setDoubleNumber(Double doubleNumber) {
-		this.doubleNumber = doubleNumber;
-	}
-
 	public String getEmail() {
 		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public Long getLongNumber() {
 		return longNumber;
 	}
 
-	public void setLongNumber(Long longNumber) {
-		this.longNumber = longNumber;
-	}
-
 	public String getOtherText() {
 		return otherText;
+	}
+
+	public void setDoubleNumber(Double doubleNumber) {
+		this.doubleNumber = doubleNumber;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setLongNumber(Long longNumber) {
+		this.longNumber = longNumber;
 	}
 
 	public void setOtherText(String otherText) {

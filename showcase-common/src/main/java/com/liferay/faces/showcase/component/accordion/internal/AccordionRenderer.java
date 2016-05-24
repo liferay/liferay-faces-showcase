@@ -40,6 +40,7 @@ import com.liferay.faces.util.render.RendererUtil;
 /**
  * @author  Vernon Singleton
  */
+
 //J-
 @FacesRenderer(componentFamily = Accordion.COMPONENT_FAMILY, rendererType = Accordion.RENDERER_TYPE)
 @ResourceDependencies(
@@ -154,6 +155,11 @@ public class AccordionRenderer extends AccordionRendererBase {
 		}
 	}
 
+	@Override
+	public boolean getRendersChildren() {
+		return true;
+	}
+
 	protected void encodeContent(FacesContext facesContext, ResponseWriter responseWriter,
 		String accordionIteratedClientId, Tab tab, boolean selected) throws IOException {
 
@@ -237,10 +243,5 @@ public class AccordionRenderer extends AccordionRendererBase {
 
 		// Encode the closing </div> element for the specified tab.
 		responseWriter.endElement("div");
-	}
-
-	@Override
-	public boolean getRendersChildren() {
-		return true;
 	}
 }

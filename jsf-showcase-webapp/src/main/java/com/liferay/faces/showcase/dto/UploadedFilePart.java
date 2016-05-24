@@ -76,11 +76,6 @@ public class UploadedFilePart implements UploadedFile, FacesWrapper<Part> {
 	}
 
 	@Override
-	public void write(String fileName) throws IOException {
-		getWrapped().write(fileName);
-	}
-
-	@Override
 	public String getAbsolutePath() {
 		throw new UnsupportedOperationException();
 	}
@@ -166,5 +161,10 @@ public class UploadedFilePart implements UploadedFile, FacesWrapper<Part> {
 	@Override
 	public Part getWrapped() {
 		return wrappedPart;
+	}
+
+	@Override
+	public void write(String fileName) throws IOException {
+		getWrapped().write(fileName);
 	}
 }

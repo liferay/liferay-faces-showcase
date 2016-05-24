@@ -66,10 +66,6 @@ public class ShowcaseModelBean implements Serializable {
 	private String sourceControlURL;
 	private ViewParameters viewParameters;
 
-	public boolean isBootstrap2() {
-		return BOOTSTRAP_2;
-	}
-
 	public String getDeploymentType() {
 
 		if (deploymentType == null) {
@@ -83,10 +79,6 @@ public class ShowcaseModelBean implements Serializable {
 		}
 
 		return deploymentType;
-	}
-
-	public void setListModelBean(ListModelBean listModelBean) {
-		this.listModelBean = listModelBean;
 	}
 
 	public SelectedComponent getSelectedComponent() {
@@ -172,6 +164,14 @@ public class ShowcaseModelBean implements Serializable {
 		return viewParameters;
 	}
 
+	public boolean isBootstrap2() {
+		return BOOTSTRAP_2;
+	}
+
+	public void setListModelBean(ListModelBean listModelBean) {
+		this.listModelBean = listModelBean;
+	}
+
 	public static class ViewParameters implements Serializable {
 
 		// serialVersionUID
@@ -186,28 +186,28 @@ public class ShowcaseModelBean implements Serializable {
 			return componentName;
 		}
 
-		public void setComponentName(String componentName) {
-			this.componentName = componentName;
-		}
-
 		public String getComponentPrefix() {
 			return componentPrefix;
-		}
-
-		public void setComponentPrefix(String componentPrefix) {
-			this.componentPrefix = componentPrefix;
 		}
 
 		public String getComponentUseCase() {
 			return componentUseCase;
 		}
 
-		public void setComponentUseCase(String componentUseCase) {
-			this.componentUseCase = componentUseCase;
-		}
-
 		public boolean isValid() {
 			return ((componentPrefix != null) && (componentName != null));
+		}
+
+		public void setComponentName(String componentName) {
+			this.componentName = componentName;
+		}
+
+		public void setComponentPrefix(String componentPrefix) {
+			this.componentPrefix = componentPrefix;
+		}
+
+		public void setComponentUseCase(String componentUseCase) {
+			this.componentUseCase = componentUseCase;
 		}
 	}
 }
