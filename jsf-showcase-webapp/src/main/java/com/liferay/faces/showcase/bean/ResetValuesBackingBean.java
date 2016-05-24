@@ -34,22 +34,22 @@ public class ResetValuesBackingBean {
 		postConstruct();
 	}
 
+	public String getRequiredText1() {
+		return requiredText1;
+	}
+
+	public String getRequiredText2() {
+		return requiredText2;
+	}
+
 	@PostConstruct
 	public void postConstruct() {
 		this.requiredText1 = null;
 		this.requiredText2 = null;
 	}
 
-	public String getRequiredText1() {
-		return requiredText1;
-	}
-
 	public void setRequiredText1(String requiredText) {
 		this.requiredText1 = requiredText;
-	}
-
-	public String getRequiredText2() {
-		return requiredText2;
 	}
 
 	public void setRequiredText2(String nonRequiredText) {

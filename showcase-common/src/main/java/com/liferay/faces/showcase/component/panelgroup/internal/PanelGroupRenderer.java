@@ -24,6 +24,7 @@ import com.liferay.faces.showcase.component.panelgroup.PanelGroup;
  * @author  Bruno Basto
  * @author  Kyle Stiemann
  */
+
 //J-
 @FacesRenderer(componentFamily = PanelGroup.COMPONENT_FAMILY, rendererType = PanelGroup.RENDERER_TYPE)
 //J+

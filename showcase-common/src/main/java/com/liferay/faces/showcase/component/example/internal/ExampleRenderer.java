@@ -46,6 +46,7 @@ import com.liferay.faces.util.context.FacesContextHelperUtil;
 /**
  * @author  Neil Griffin
  */
+
 //J-
 @FacesRenderer(componentFamily = Example.COMPONENT_FAMILY, rendererType = Example.RENDERER_TYPE)
 @ListenerFor(systemEventClass = PostAddToViewEvent.class)

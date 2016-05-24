@@ -47,6 +47,18 @@ public class CommandModelBean implements Serializable {
 	private Customer selectedCustomer;
 	private List<Customer> customers;
 
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public Customer getSelectedCustomer() {
+		return selectedCustomer;
+	}
+
+	public boolean isAjax() {
+		return ajax;
+	}
+
 	@PostConstruct
 	public void postConstruct() {
 		customers = customerService.getCustomers(0, 5);
@@ -56,23 +68,11 @@ public class CommandModelBean implements Serializable {
 		this.ajax = ajax;
 	}
 
-	public List<Customer> getCustomers() {
-		return customers;
-	}
-
 	public void setCustomerService(CustomerService customerService) {
 		this.customerService = customerService;
 	}
 
-	public Customer getSelectedCustomer() {
-		return selectedCustomer;
-	}
-
 	public void setSelectedCustomer(Customer selectedCustomer) {
 		this.selectedCustomer = selectedCustomer;
-	}
-
-	public boolean isAjax() {
-		return ajax;
 	}
 }

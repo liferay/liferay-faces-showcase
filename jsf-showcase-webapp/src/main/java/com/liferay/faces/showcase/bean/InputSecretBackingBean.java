@@ -54,6 +54,10 @@ public class InputSecretBackingBean {
 		}
 	}
 
+	public void setInputSecretModelBean(InputSecretModelBean inputSecretModelBean) {
+		this.inputSecretModelBean = inputSecretModelBean;
+	}
+
 	public void submit() {
 		Object value = inputSecretModelBean.getPassword();
 
@@ -93,9 +97,5 @@ public class InputSecretBackingBean {
 		facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
 		facesMessage.setSummary(summary);
 		facesContext.addMessage(null, facesMessage);
-	}
-
-	public void setInputSecretModelBean(InputSecretModelBean inputSecretModelBean) {
-		this.inputSecretModelBean = inputSecretModelBean;
 	}
 }

@@ -26,6 +26,9 @@ import javax.faces.FacesWrapper;
 public abstract class ShowcaseComponentWrapper implements ShowcaseComponent, FacesWrapper<ShowcaseComponent> {
 
 	@Override
+	public abstract ShowcaseComponent getWrapped();
+
+	@Override
 	public String getCamelCaseName() {
 		return getWrapped().getCamelCaseName();
 	}
@@ -59,7 +62,4 @@ public abstract class ShowcaseComponentWrapper implements ShowcaseComponent, Fac
 	public List<UseCase> getUseCases() {
 		return getWrapped().getUseCases();
 	}
-
-	@Override
-	public abstract ShowcaseComponent getWrapped();
 }

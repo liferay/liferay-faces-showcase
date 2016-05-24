@@ -47,6 +47,11 @@ public class OutputSourceCodeResponseWriter extends ResponseWriterWrapper {
 	}
 
 	@Override
+	public ResponseWriter getWrapped() {
+		return wrappedResponseWriter;
+	}
+
+	@Override
 	public void startElement(String name, UIComponent component) throws IOException {
 
 		if ("span".equals(name)) {
@@ -73,10 +78,5 @@ public class OutputSourceCodeResponseWriter extends ResponseWriterWrapper {
 		}
 
 		super.writeAttribute(name, value, property);
-	}
-
-	@Override
-	public ResponseWriter getWrapped() {
-		return wrappedResponseWriter;
 	}
 }

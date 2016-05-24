@@ -46,53 +46,91 @@ public class Field extends FieldBase {
 	private static final String HAS_WARNING = "has-warning";
 	private static final String HAS_SUCCESS = "has-success";
 
-	private boolean hasSelectBooleanCheckboxChild() {
+	@Override
+	public String getStyleClass() {
 
-		boolean hasSelectBooleanCheckboxChild = hasSelectBooleanCheckboxChild(this);
+		String controlGroupCssClass = FORM_GROUP;
 
-		if (!hasSelectBooleanCheckboxChild) {
+		boolean editableValueHoldersExist = false;
+		boolean editableValueHoldersValid = false;
 
-			Map<String, UIComponent> facets = getFacets();
-			Set<Map.Entry<String, UIComponent>> entrySet = facets.entrySet();
+		FacesMessage.Severity severity = null;
 
-			for (Map.Entry<String, UIComponent> facetEntry : entrySet) {
+		List<EditableValueHolder> editableValueHolders = getEditableValueHoldersRecurse(this);
 
-				UIComponent uiComponent = facetEntry.getValue();
+		if (editableValueHolders != null) {
 
-				if (uiComponent instanceof HtmlSelectBooleanCheckbox) {
+			editableValueHoldersExist = true;
 
-					hasSelectBooleanCheckboxChild = true;
+			for (EditableValueHolder editableValueHolder : editableValueHolders) {
 
-					break;
+				if (editableValueHolder.isValid()) {
+
+					if (editableValueHolder.isRequired()) {
+
+						if (editableValueHolder.isLocalValueSet()) {
+							editableValueHoldersValid = true;
+						}
+						else {
+
+							if (editableValueHolder instanceof UIInput) {
+								UIInput uiInput = (UIInput) editableValueHolder;
+
+								if (!UIInput.isEmpty(uiInput.getValue())) {
+									editableValueHoldersValid = true;
+								}
+							}
+						}
+					}
+					else {
+						editableValueHoldersValid = true;
+					}
 				}
-				else if (uiComponent.getChildCount() > 0) {
-
-					hasSelectBooleanCheckboxChild = hasSelectBooleanCheckboxChild(uiComponent);
+				else {
+					editableValueHoldersValid = false;
+					severity = FacesMessage.SEVERITY_FATAL;
 
 					break;
 				}
 			}
 		}
 
-		return hasSelectBooleanCheckboxChild;
-	}
+		FacesContext facesContext = FacesContext.getCurrentInstance();
 
-	private boolean hasSelectBooleanCheckboxChild(UIComponent uiComponent) {
+		if (severity == null) {
+			severity = getHighestMessageSeverityRecurse(facesContext, this, null);
+		}
 
-		boolean hasSelectBooleanCheckboxChild = false;
-		List<UIComponent> children = uiComponent.getChildren();
+		if (severity == null) {
 
-		for (UIComponent child : children) {
+			PartialViewContext partialViewContext = facesContext.getPartialViewContext();
 
-			if (child instanceof HtmlSelectBooleanCheckbox) {
+			if (editableValueHoldersExist && editableValueHoldersValid && partialViewContext.isAjaxRequest()) {
+				controlGroupCssClass = controlGroupCssClass + " " + HAS_SUCCESS;
+			}
+		}
+		else {
 
-				hasSelectBooleanCheckboxChild = true;
-
-				break;
+			if ((severity == FacesMessage.SEVERITY_FATAL) || (severity == FacesMessage.SEVERITY_ERROR)) {
+				controlGroupCssClass = controlGroupCssClass + " " + HAS_ERROR;
+			}
+			else if (severity == FacesMessage.SEVERITY_WARN) {
+				controlGroupCssClass = controlGroupCssClass + " " + HAS_WARNING;
+			}
+			else if (severity == FacesMessage.SEVERITY_INFO) {
+				// no-op Bootstrap 3 does not contain a has-info CSS class
 			}
 		}
 
-		return hasSelectBooleanCheckboxChild;
+		if (hasSelectBooleanCheckboxChild()) {
+			controlGroupCssClass = controlGroupCssClass + " checkbox";
+		}
+
+		// getStateHelper().eval(PropertyKeys.styleClass, null) is called because super.getStyleClass() may return the
+		// STYLE_CLASS_NAME of the super class.
+		String styleClass = (String) getStateHelper().eval(PropertyKeys.styleClass, null);
+
+		return ComponentUtil.concatCssClasses(styleClass, "showcase-field", controlGroupCssClass);
 	}
 
 	private List<EditableValueHolder> getEditableValueHoldersRecurse(UIComponent uiComponent) {
@@ -181,90 +219,52 @@ public class Field extends FieldBase {
 		return severity;
 	}
 
-	@Override
-	public String getStyleClass() {
+	private boolean hasSelectBooleanCheckboxChild() {
 
-		String controlGroupCssClass = FORM_GROUP;
+		boolean hasSelectBooleanCheckboxChild = hasSelectBooleanCheckboxChild(this);
 
-		boolean editableValueHoldersExist = false;
-		boolean editableValueHoldersValid = false;
+		if (!hasSelectBooleanCheckboxChild) {
 
-		FacesMessage.Severity severity = null;
+			Map<String, UIComponent> facets = getFacets();
+			Set<Map.Entry<String, UIComponent>> entrySet = facets.entrySet();
 
-		List<EditableValueHolder> editableValueHolders = getEditableValueHoldersRecurse(this);
+			for (Map.Entry<String, UIComponent> facetEntry : entrySet) {
 
-		if (editableValueHolders != null) {
+				UIComponent uiComponent = facetEntry.getValue();
 
-			editableValueHoldersExist = true;
+				if (uiComponent instanceof HtmlSelectBooleanCheckbox) {
 
-			for (EditableValueHolder editableValueHolder : editableValueHolders) {
+					hasSelectBooleanCheckboxChild = true;
 
-				if (editableValueHolder.isValid()) {
-
-					if (editableValueHolder.isRequired()) {
-
-						if (editableValueHolder.isLocalValueSet()) {
-							editableValueHoldersValid = true;
-						}
-						else {
-
-							if (editableValueHolder instanceof UIInput) {
-								UIInput uiInput = (UIInput) editableValueHolder;
-
-								if (!UIInput.isEmpty(uiInput.getValue())) {
-									editableValueHoldersValid = true;
-								}
-							}
-						}
-					}
-					else {
-						editableValueHoldersValid = true;
-					}
+					break;
 				}
-				else {
-					editableValueHoldersValid = false;
-					severity = FacesMessage.SEVERITY_FATAL;
+				else if (uiComponent.getChildCount() > 0) {
+
+					hasSelectBooleanCheckboxChild = hasSelectBooleanCheckboxChild(uiComponent);
 
 					break;
 				}
 			}
 		}
 
-		FacesContext facesContext = FacesContext.getCurrentInstance();
+		return hasSelectBooleanCheckboxChild;
+	}
 
-		if (severity == null) {
-			severity = getHighestMessageSeverityRecurse(facesContext, this, null);
-		}
+	private boolean hasSelectBooleanCheckboxChild(UIComponent uiComponent) {
 
-		if (severity == null) {
+		boolean hasSelectBooleanCheckboxChild = false;
+		List<UIComponent> children = uiComponent.getChildren();
 
-			PartialViewContext partialViewContext = facesContext.getPartialViewContext();
+		for (UIComponent child : children) {
 
-			if (editableValueHoldersExist && editableValueHoldersValid && partialViewContext.isAjaxRequest()) {
-				controlGroupCssClass = controlGroupCssClass + " " + HAS_SUCCESS;
-			}
-		}
-		else {
+			if (child instanceof HtmlSelectBooleanCheckbox) {
 
-			if ((severity == FacesMessage.SEVERITY_FATAL) || (severity == FacesMessage.SEVERITY_ERROR)) {
-				controlGroupCssClass = controlGroupCssClass + " " + HAS_ERROR;
-			}
-			else if (severity == FacesMessage.SEVERITY_WARN) {
-				controlGroupCssClass = controlGroupCssClass + " " + HAS_WARNING;
-			}
-			else if (severity == FacesMessage.SEVERITY_INFO) {
-				// no-op Bootstrap 3 does not contain a has-info CSS class
+				hasSelectBooleanCheckboxChild = true;
+
+				break;
 			}
 		}
 
-		if (hasSelectBooleanCheckboxChild()) {
-			controlGroupCssClass = controlGroupCssClass + " checkbox";
-		}
-
-		// getStateHelper().eval(PropertyKeys.styleClass, null) is called because super.getStyleClass() may return the
-		// STYLE_CLASS_NAME of the super class.
-		String styleClass = (String) getStateHelper().eval(PropertyKeys.styleClass, null);
-
-		return ComponentUtil.concatCssClasses(styleClass, "showcase-field", controlGroupCssClass);
+		return hasSelectBooleanCheckboxChild;
 	}
 }

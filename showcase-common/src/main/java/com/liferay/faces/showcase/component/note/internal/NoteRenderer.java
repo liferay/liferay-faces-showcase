@@ -32,6 +32,7 @@ import com.liferay.faces.showcase.component.note.Note;
 /**
  * @author  Neil Griffin
  */
+
 //J-
 @FacesRenderer(componentFamily = Note.COMPONENT_FAMILY, rendererType = Note.RENDERER_TYPE)
 @ResourceDependency(library = "showcase", name = "showcase-components.css")

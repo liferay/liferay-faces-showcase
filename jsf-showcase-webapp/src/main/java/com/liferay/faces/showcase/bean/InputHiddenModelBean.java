@@ -40,10 +40,6 @@ public class InputHiddenModelBean {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public String getTestDate1() {
 
 		// Example 1 requires a date formatted by the user's locale.
@@ -69,6 +65,10 @@ public class InputHiddenModelBean {
 
 	public String getText() {
 		return text;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public void setText(String text) {

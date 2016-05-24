@@ -31,6 +31,7 @@ import com.liferay.faces.showcase.component.outputsourcecode.OutputSourceCode;
  * @author  Bruno Basto
  * @author  Kyle Stiemann
  */
+
 //J-
 @FacesRenderer(componentFamily = OutputSourceCode.COMPONENT_FAMILY, rendererType = OutputSourceCode.RENDERER_TYPE)
 @ResourceDependencies(

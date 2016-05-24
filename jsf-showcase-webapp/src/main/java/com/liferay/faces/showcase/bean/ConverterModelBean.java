@@ -38,29 +38,29 @@ public class ConverterModelBean {
 	private Country country;
 	private double number = 3.141516;
 
-	@PostConstruct
-	public void postConstruct() {
-		this.country = countryService.getAllCountries().get(0);
-	}
-
 	public Country getCountry() {
 		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
 	}
 
 	public CountryService getCountryService() {
 		return countryService;
 	}
 
-	public void setCountryService(CountryService countryService) {
-		this.countryService = countryService;
-	}
-
 	public double getNumber() {
 		return number;
+	}
+
+	@PostConstruct
+	public void postConstruct() {
+		this.country = countryService.getAllCountries().get(0);
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public void setCountryService(CountryService countryService) {
+		this.countryService = countryService;
 	}
 
 	public void setNumber(double number) {

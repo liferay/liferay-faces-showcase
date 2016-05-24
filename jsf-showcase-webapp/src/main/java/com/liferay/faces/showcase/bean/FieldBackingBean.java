@@ -57,6 +57,10 @@ public class FieldBackingBean {
 		facesContext.addMessage(uiComponent.getClientId(), facesMessage);
 	}
 
+	public void setFieldModelBean(FieldModelBean fieldModelBean) {
+		this.fieldModelBean = fieldModelBean;
+	}
+
 	public void submit() {
 
 		FacesMessage globalFacesMessage = new FacesMessage("Your request processed successfully.");
@@ -73,9 +77,5 @@ public class FieldBackingBean {
 		facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
 		facesMessage.setDetail("This is a warning message.");
 		facesContext.addMessage(uiComponent.getClientId(), facesMessage);
-	}
-
-	public void setFieldModelBean(FieldModelBean fieldModelBean) {
-		this.fieldModelBean = fieldModelBean;
 	}
 }

@@ -46,36 +46,36 @@ public class SelectManyModelBean {
 		return benefitIds;
 	}
 
-	public void setBenefitIds(List<Long> benefitIds) {
-		this.benefitIds = benefitIds;
-	}
-
 	public List<Date> getDates() {
 		return dates;
-	}
-
-	public void setDates(List<Date> dates) {
-		this.dates = dates;
 	}
 
 	public List<Long> getFavoriteIds() {
 		return favoriteIds;
 	}
 
-	public void setFavoriteIds(List<Long> favoriteIds) {
-		this.favoriteIds = favoriteIds;
-	}
-
 	public List<LiferayBenefit> getLiferayBenefits() {
 		return liferayBenefitService.getLiferayBenefits();
 	}
 
-	public void setLiferayBenefitService(LiferayBenefitService liferayBenefitService) {
-		this.liferayBenefitService = liferayBenefitService;
-	}
-
 	public String getPhase() {
 		return phase;
+	}
+
+	public void setBenefitIds(List<Long> benefitIds) {
+		this.benefitIds = benefitIds;
+	}
+
+	public void setDates(List<Date> dates) {
+		this.dates = dates;
+	}
+
+	public void setFavoriteIds(List<Long> favoriteIds) {
+		this.favoriteIds = favoriteIds;
+	}
+
+	public void setLiferayBenefitService(LiferayBenefitService liferayBenefitService) {
+		this.liferayBenefitService = liferayBenefitService;
 	}
 
 	public void setPhase(String phase) {

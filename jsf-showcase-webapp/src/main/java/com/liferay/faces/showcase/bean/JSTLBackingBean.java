@@ -29,16 +29,16 @@ public class JSTLBackingBean {
 
 	private boolean rendered;
 
-	public void toggleRendered(ActionEvent event) {
-		this.rendered = !rendered;
-	}
-
 	public boolean isRendered() {
 		return rendered;
 	}
 
 	public void setRendered(boolean rendered) {
 		this.rendered = rendered;
+	}
+
+	public void toggleRendered(ActionEvent event) {
+		this.rendered = !rendered;
 	}
 
 }

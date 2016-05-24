@@ -34,20 +34,20 @@ public class FacesRequestContextBacking {
 
 		if (email != null) {
 
-			com.liferay.faces.util.context.FacesRequestContext facesRequestContext =
-				FacesRequestContext.getCurrentInstance();
+			com.liferay.faces.util.context.FacesRequestContext facesRequestContext = FacesRequestContext
+				.getCurrentInstance();
 			facesRequestContext.addScript("$('.modal').modal('hide');");
 		}
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	public void openDialog() {
 
 		FacesRequestContext facesRequestContext = FacesRequestContext.getCurrentInstance();
 		facesRequestContext.addScript("$('.modal').modal('show');");
-	}
-
-	public String getEmail() {
-		return email;
 	}
 
 	public void setEmail(String email) {

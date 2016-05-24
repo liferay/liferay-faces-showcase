@@ -67,30 +67,30 @@ public class DataTableBacking implements Serializable {
 		return customerOnDemandDataModel;
 	}
 
-	public void setCustomerService(CustomerService customerService) {
-
-		// Injected via @ManagedProperty annotation.
-		this.customerService = customerService;
-	}
-
 	public int getRowsPerPage() {
 		return rowsPerPage;
-	}
-
-	public void setRowsPerPage(int rowsPerPage) {
-		this.rowsPerPage = rowsPerPage;
 	}
 
 	public String getSelectionMode() {
 		return selectionMode;
 	}
 
-	public void setSelectionMode(String selectionMode) {
-		this.selectionMode = selectionMode;
-	}
-
 	public String getSummaryPosition() {
 		return summaryPosition;
+	}
+
+	public void setCustomerService(CustomerService customerService) {
+
+		// Injected via @ManagedProperty annotation.
+		this.customerService = customerService;
+	}
+
+	public void setRowsPerPage(int rowsPerPage) {
+		this.rowsPerPage = rowsPerPage;
+	}
+
+	public void setSelectionMode(String selectionMode) {
+		this.selectionMode = selectionMode;
 	}
 
 	public void setSummaryPosition(String summaryPosition) {

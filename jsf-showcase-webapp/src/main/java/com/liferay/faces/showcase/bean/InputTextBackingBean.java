@@ -54,6 +54,10 @@ public class InputTextBackingBean {
 		}
 	}
 
+	public void setInputTextModelBean(InputTextModelBean inputTextModelBean) {
+		this.inputTextModelBean = inputTextModelBean;
+	}
+
 	public void submit() {
 
 		Object value = inputTextModelBean.getText();
@@ -75,9 +79,5 @@ public class InputTextBackingBean {
 		FacesMessage facesMessage = new FacesMessage("The valueChangeListener method was called during the " +
 				phaseName + " phase of the JSF lifecycle.");
 		facesContext.addMessage(null, facesMessage);
-	}
-
-	public void setInputTextModelBean(InputTextModelBean inputTextModelBean) {
-		this.inputTextModelBean = inputTextModelBean;
 	}
 }

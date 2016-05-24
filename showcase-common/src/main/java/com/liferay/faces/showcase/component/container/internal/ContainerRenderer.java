@@ -24,6 +24,7 @@ import com.liferay.faces.showcase.component.container.Container;
 /**
  * @author  Neil Griffin
  */
+
 //J-
 @FacesRenderer(componentFamily = Container.COMPONENT_FAMILY, rendererType = Container.RENDERER_TYPE)
 @ResourceDependency(library = "showcase", name = "showcase-components.css")

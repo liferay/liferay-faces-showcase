@@ -39,6 +39,10 @@ public class SelectBooleanCheckboxBackingBean {
 	@ManagedProperty(name = "selectBooleanCheckboxModelBean", value = "#{selectBooleanCheckboxModelBean}")
 	private SelectBooleanCheckboxModelBean selectBooleanCheckboxModelBean;
 
+	public void setSelectBooleanCheckboxModelBean(SelectBooleanCheckboxModelBean selectBooleanCheckboxModelBean) {
+		this.selectBooleanCheckboxModelBean = selectBooleanCheckboxModelBean;
+	}
+
 	public void submit() {
 		PhaseId phaseId = FacesContext.getCurrentInstance().getCurrentPhaseId();
 		logger.info("submit: phaseId=[{0}] agree=[{1}]", phaseId.toString(), selectBooleanCheckboxModelBean.getAgree());
@@ -54,9 +58,5 @@ public class SelectBooleanCheckboxBackingBean {
 		FacesMessage facesMessage = new FacesMessage("The valueChangeListener method was called during the " +
 				phaseName + " phase of the JSF lifecycle.");
 		facesContext.addMessage(null, facesMessage);
-	}
-
-	public void setSelectBooleanCheckboxModelBean(SelectBooleanCheckboxModelBean selectBooleanCheckboxModelBean) {
-		this.selectBooleanCheckboxModelBean = selectBooleanCheckboxModelBean;
 	}
 }

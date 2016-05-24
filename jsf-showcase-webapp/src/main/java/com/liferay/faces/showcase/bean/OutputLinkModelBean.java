@@ -37,21 +37,21 @@ public class OutputLinkModelBean {
 	// Private properties
 	private Country country;
 
+	public Country getCountry() {
+		return country;
+	}
+
+	public CountryService getCountryService() {
+		return countryService;
+	}
+
 	@PostConstruct
 	public void postConstruct() {
 		this.country = countryService.getAllCountries().get(0);
 	}
 
-	public Country getCountry() {
-		return country;
-	}
-
 	public void setCountry(Country country) {
 		this.country = country;
-	}
-
-	public CountryService getCountryService() {
-		return countryService;
 	}
 
 	public void setCountryService(CountryService countryService) {
