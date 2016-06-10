@@ -32,8 +32,8 @@ import com.liferay.faces.showcase.util.ShowcaseUtil;
 import com.liferay.faces.util.component.Styleable;
 import com.liferay.faces.util.logging.Logger;
 import com.liferay.faces.util.logging.LoggerFactory;
-import com.liferay.faces.util.product.ProductConstants;
-import com.liferay.faces.util.product.ProductMap;
+import com.liferay.faces.util.product.Product;
+import com.liferay.faces.util.product.ProductFactory;
 import com.liferay.faces.util.render.RendererUtil;
 
 
@@ -54,7 +54,7 @@ import com.liferay.faces.util.render.RendererUtil;
 public class AccordionRenderer extends AccordionRendererBase {
 
 	// Private Constants
-	private static final boolean LIFERAY_PORTAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL)
+	private static final boolean LIFERAY_PORTAL_DETECTED = ProductFactory.getProduct(Product.Name.LIFERAY_PORTAL)
 		.isDetected();
 
 	// Logger

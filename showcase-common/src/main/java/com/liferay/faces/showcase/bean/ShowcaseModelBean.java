@@ -25,8 +25,7 @@ import com.liferay.faces.showcase.dto.SelectedComponent;
 import com.liferay.faces.showcase.dto.SelectedComponentImpl;
 import com.liferay.faces.showcase.dto.ShowcaseComponent;
 import com.liferay.faces.util.product.Product;
-import com.liferay.faces.util.product.ProductConstants;
-import com.liferay.faces.util.product.ProductMap;
+import com.liferay.faces.util.product.ProductFactory;
 
 
 /**
@@ -41,8 +40,8 @@ public class ShowcaseModelBean implements Serializable {
 
 	static {
 
-		final Product LIFERAY_PORTAL = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL);
-		final Product ALLOY = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_ALLOY);
+		final Product LIFERAY_PORTAL = ProductFactory.getProduct(Product.Name.LIFERAY_PORTAL);
+		final Product ALLOY = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_ALLOY);
 		final boolean LIFERAY_PORTAL_6_2_DETECTED = LIFERAY_PORTAL.isDetected() &&
 			((LIFERAY_PORTAL.getMajorVersion() == 6) && (LIFERAY_PORTAL.getMinorVersion() == 2));
 		final boolean ALLOY_2_DETECTED = ALLOY.isDetected() && (ALLOY.getMajorVersion() == 2);
@@ -53,8 +52,8 @@ public class ShowcaseModelBean implements Serializable {
 	private static final long serialVersionUID = 3339667513222866249L;
 
 	// Private Constants
-	private static final boolean LIFERAY_FACES_BRIDGE_DETECTED = ProductMap.getInstance().get(
-			ProductConstants.LIFERAY_FACES_BRIDGE).isDetected();
+	private static final boolean LIFERAY_FACES_BRIDGE_DETECTED = ProductFactory.getProduct(
+			Product.Name.LIFERAY_FACES_BRIDGE).isDetected();
 
 	// Injections
 	@ManagedProperty(name = "listModelBean", value = "#{listModelBean}")

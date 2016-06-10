@@ -22,8 +22,7 @@ import com.liferay.faces.util.application.ResourceUtil;
 import com.liferay.faces.util.application.ResourceVerifier;
 import com.liferay.faces.util.application.ResourceVerifierWrapper;
 import com.liferay.faces.util.product.Product;
-import com.liferay.faces.util.product.ProductConstants;
-import com.liferay.faces.util.product.ProductMap;
+import com.liferay.faces.util.product.ProductFactory;
 
 
 /**
@@ -32,10 +31,10 @@ import com.liferay.faces.util.product.ProductMap;
 public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper {
 
 	// Private Constants
-	private static final boolean ALLOY_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_ALLOY)
+	private static final boolean ALLOY_DETECTED = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_ALLOY)
 		.isDetected();
-	private static final Product LIFERAY_PORTAL = ProductMap.getInstance().get(ProductConstants.LIFERAY_PORTAL);
-	private static final boolean METAL_DETECTED = ProductMap.getInstance().get(ProductConstants.LIFERAY_FACES_METAL)
+	private static final Product LIFERAY_PORTAL = ProductFactory.getProduct(Product.Name.LIFERAY_PORTAL);
+	private static final boolean METAL_DETECTED = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_METAL)
 		.isDetected();
 	private static final boolean BOOTSTRAP_SATISFIED = (ALLOY_DETECTED || LIFERAY_PORTAL.isDetected() ||
 			METAL_DETECTED);
