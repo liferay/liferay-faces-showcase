@@ -43,8 +43,7 @@ import com.liferay.faces.showcase.util.CodeExampleUtil;
 import com.liferay.faces.util.logging.Logger;
 import com.liferay.faces.util.logging.LoggerFactory;
 import com.liferay.faces.util.product.Product;
-import com.liferay.faces.util.product.ProductConstants;
-import com.liferay.faces.util.product.ProductMap;
+import com.liferay.faces.util.product.ProductFactory;
 
 
 /**
@@ -58,14 +57,10 @@ public class ListModelBean {
 	private static final Logger logger = LoggerFactory.getLogger(ListModelBean.class);
 
 	// Private Constants
-	private static final boolean LIFERAY_FACES_ALLOY_DETECTED = ProductMap.getInstance().get(
-			ProductConstants.LIFERAY_FACES_ALLOY).isDetected();
-	private static final boolean LIFERAY_FACES_BRIDGE_DETECTED = ProductMap.getInstance().get(
-			ProductConstants.LIFERAY_FACES_BRIDGE).isDetected();
-	private static final boolean LIFERAY_FACES_METAL_DETECTED = ProductMap.getInstance().get(
-			ProductConstants.LIFERAY_FACES_METAL).isDetected();
-	private static final boolean LIFERAY_FACES_PORTAL_DETECTED = ProductMap.getInstance().get(
-			ProductConstants.LIFERAY_FACES_PORTAL).isDetected();
+	private static final Product LIFERAY_FACES_ALLOY = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_ALLOY);
+	private static final Product LIFERAY_FACES_BRIDGE = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_BRIDGE);
+	private static final Product LIFERAY_FACES_METAL = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_METAL);
+	private static final Product LIFERAY_FACES_PORTAL = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_PORTAL);
 	private static final String[] PACKAGE_NAMES = new String[] {
 			"com.liferay.faces.bridge.demos.bean", "com.liferay.faces.showcase.bean",
 			"com.liferay.faces.showcase.constants", "com.liferay.faces.showcase.dto",
@@ -88,7 +83,7 @@ public class ListModelBean {
 		boolean productionMode = startupFacesContext.isProjectStage(ProjectStage.Production);
 		showcaseCategoryList = new ArrayList<String>();
 
-		if (LIFERAY_FACES_PORTAL_DETECTED) {
+		if (LIFERAY_FACES_PORTAL.isDetected()) {
 			showcaseCategoryList.add("input");
 			showcaseCategoryList.add("misc");
 		}
@@ -103,8 +98,8 @@ public class ListModelBean {
 			showcaseCategoryList.add("select");
 		}
 
-		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_METAL_DETECTED &&
-				!LIFERAY_FACES_PORTAL_DETECTED) {
+		if (LIFERAY_FACES_BRIDGE.isDetected() && !LIFERAY_FACES_ALLOY.isDetected() &&
+				!LIFERAY_FACES_METAL.isDetected() && !LIFERAY_FACES_PORTAL.isDetected()) {
 			showcaseCategoryList.add("portlet");
 		}
 
@@ -128,7 +123,7 @@ public class ListModelBean {
 		namespaces.add("h");
 		namespaces.add("util");
 
-		if (LIFERAY_FACES_PORTAL_DETECTED) {
+		if (LIFERAY_FACES_PORTAL.isDetected()) {
 
 			if (developmentMode) {
 				namespaces.add("aui");
@@ -138,7 +133,8 @@ public class ListModelBean {
 			namespaces.add("portal");
 		}
 
-		if (LIFERAY_FACES_BRIDGE_DETECTED && !LIFERAY_FACES_ALLOY_DETECTED && !LIFERAY_FACES_METAL_DETECTED) {
+		if (LIFERAY_FACES_BRIDGE.isDetected() && !LIFERAY_FACES_ALLOY.isDetected() &&
+				!LIFERAY_FACES_METAL.isDetected()) {
 			namespaces.add("portlet");
 		}
 
@@ -313,14 +309,11 @@ public class ListModelBean {
 		if (dependencyInfo == null) {
 			boolean previousProductDetected = false;
 			StringBuilder buf = new StringBuilder();
-			ProductMap productMap = ProductMap.getInstance();
 			Product[] products = new Product[] {
-					productMap.get(ProductConstants.LIFERAY_FACES_ALLOY),
-					productMap.get(ProductConstants.LIFERAY_FACES_BRIDGE),
-					productMap.get(ProductConstants.LIFERAY_FACES_METAL),
-					productMap.get(ProductConstants.LIFERAY_FACES_PORTAL),
-					productMap.get(ProductConstants.LIFERAY_FACES_SHOWCASE),
-					productMap.get(ProductConstants.LIFERAY_FACES_UTIL), productMap.get(ProductConstants.JSF)
+					LIFERAY_FACES_ALLOY, LIFERAY_FACES_BRIDGE, LIFERAY_FACES_METAL, LIFERAY_FACES_PORTAL,
+					ProductFactory.getProduct(Product.Name.LIFERAY_FACES_SHOWCASE),
+					ProductFactory.getProduct(Product.Name.LIFERAY_FACES_UTIL),
+					ProductFactory.getProduct(Product.Name.JSF)
 				};
 
 			for (Product product : products) {
