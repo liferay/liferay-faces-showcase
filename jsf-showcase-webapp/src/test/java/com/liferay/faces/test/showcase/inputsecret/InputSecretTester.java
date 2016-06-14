@@ -15,18 +15,16 @@
  */
 package com.liferay.faces.test.showcase.inputsecret;
 
-import com.liferay.faces.test.showcase.input.InputTester;
+import com.liferay.faces.test.showcase.inputtext.InputTextTester;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class InputSecretTester extends InputTester {
+public class InputSecretTester extends InputTextTester {
 
 	protected static final String inputSecretURL = TEST_CONTEXT_URL + "/inputsecret";
-	protected static final String input1Xpath = "(//input[contains(@id,':text')])[1]";
 	protected static final String inputSecret1Xpath = "(//input[contains(@id,':secret')])[1]";
-	protected static final String input2Xpath = "(//input[contains(@id,':text')])[2]";
 	protected static final String inputSecret2Xpath = "(//input[contains(@id,':secret')])[2]";
 }
