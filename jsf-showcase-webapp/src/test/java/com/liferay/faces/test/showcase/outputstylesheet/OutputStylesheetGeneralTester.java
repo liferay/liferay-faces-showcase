@@ -37,13 +37,13 @@ public class OutputStylesheetGeneralTester extends OutputTester {
 		browser.get(TEST_CONTEXT_URL + "/outputstylesheet/general");
 
 		// Wait to begin the test until a button is rendered.
-		String button1Xpath = "(//input[@type='button'])[1]";
+		String button1Xpath = "(//button[normalize-space(text())='Button'])[1]";
 		browser.waitForElementVisible(button1Xpath);
 
 		// Test that both buttons render on the page successfully.
 		SeleniumAssert.assertElementVisible(browser, button1Xpath);
 
-		String button2Xpath = "(//input[@type='button'])[2]";
+		String button2Xpath = "(//button[normalize-space(text())='Button'])[2]";
 		SeleniumAssert.assertElementVisible(browser, button2Xpath);
 
 		// Test that the first button's opacity is correct.

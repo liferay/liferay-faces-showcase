@@ -43,15 +43,12 @@ public class MessagesGeneralTester extends OutputTester {
 		// Test that the second value submits successfully and message text is displayed
 		String input2Xpath = "(//input[contains(@id,':inputText')])[2]";
 		String messages2Xpath = "(//div[@class='showcase-example-usage'])[2]/table/tbody/tr/td";
-		String submitButton2Xpath =
-			"(//div[@class='showcase-example-usage'])[2]/input[contains(@value, 'Submit and Re-Render')]";
 		testCharCountMessage(browser, input2Xpath, submitButton2Xpath, messages2Xpath);
 
 		// Test that the third value submits successfully and message text is displayed
 		String input3Xpath = "(//input[contains(@id,':inputText')])[3]";
 		String messages3Xpath = "(//div[@class='showcase-example-usage'])[3]/table/tbody/tr/td";
-		String submitButton3Xpath =
-			"(//div[@class='showcase-example-usage'])[3]/input[contains(@value, 'Submit and Re-Render')]";
+		String submitButton3Xpath = "(//*[contains(@value, 'Submit')])[3]";
 		browser.centerElementInView(submitButton3Xpath);
 		testMessage(browser, input3Xpath, text, submitButton3Xpath, messages3Xpath,
 			"Your request processed successfully.");

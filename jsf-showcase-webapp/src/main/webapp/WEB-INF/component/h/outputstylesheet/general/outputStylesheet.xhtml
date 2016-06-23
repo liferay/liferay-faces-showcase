@@ -11,7 +11,9 @@
 					box-shadow: none;
 				}
 			</h:outputStylesheet>
-			<h:button styleClass="example-inline" value="#{i18n['button']}" />
+			<button class="example-inline">
+				#{i18n['button']}
+			</button>
 		</showcase:example>
 	</ui:define>
 
@@ -19,7 +21,9 @@
 		<!-- Example 2: Specifying a CSS class from a JSF resource -->
 		<showcase:example description="#{i18n['h-outputstylesheet-general-example-2']}" number="2">
 			<h:outputStylesheet library="css" name="example-resource.css" />
-			<h:button styleClass="example-resource" value="#{i18n['button']}" />
+			<button class="example-resource">
+				#{i18n['button']}
+			</button>
 		</showcase:example>
 	</ui:define>
 
