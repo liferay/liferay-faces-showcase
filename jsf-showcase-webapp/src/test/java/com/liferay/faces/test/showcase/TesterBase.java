@@ -27,6 +27,16 @@ public class TesterBase extends IntegrationTesterBase {
 	// Protected Constants
 	protected static final String TEST_CONTEXT_URL;
 
+	// Common Xpaths
+	protected static final String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
+	protected static final String modelValue2Xpath = "(//span[contains(@id,':modelValue')])[2]";
+	protected static final String error1Xpath = "(//div[contains(@class,'field form-group has-error')])[1]";
+	protected static final String requiredCheckboxXpath = "//input[contains(@id,':requiredCheckbox')]";
+	protected static final String submitButton1Xpath = "(//*[contains(@value,'Submit')])[1]";
+	protected static final String submitButton2Xpath = "(//*[contains(@value,'Submit')])[2]";
+	protected static final String immediateMessage1Xpath = "//li[contains(text(),'APPLY_REQUEST_VALUES')]";
+	protected static final String immediateMessage2Xpath = "//li[contains(text(),'PROCESS_VALIDATIONS')]";
+
 	static {
 
 		String defaultContext =
