@@ -24,7 +24,6 @@ import java.util.Map;
 import javax.faces.FacesWrapper;
 import javax.servlet.http.Part;
 
-import com.liferay.faces.util.HttpHeaders;
 import com.liferay.faces.util.model.UploadedFile;
 
 
@@ -51,7 +50,7 @@ public class UploadedFilePart implements UploadedFile, FacesWrapper<Part> {
 		this.status = status;
 		this.message = message;
 
-		String contentDisposition = getWrapped().getHeader(HttpHeaders.CONTENT_DISPOSITION);
+		String contentDisposition = getWrapped().getHeader("Content-Disposition");
 
 		if (contentDisposition != null) {
 			String[] nameValuePairs = contentDisposition.split(";");
