@@ -28,6 +28,7 @@ import com.liferay.faces.test.showcase.TesterBase;
  */
 public class OutputTester extends TesterBase {
 
+	// Common Xpath
 	protected static final String exampleText1Xpath = "(//div[@class='showcase-example-usage'])[1]";
 	protected static final String input1Xpath = "(//input[contains(@id,':inputText')])[1]";
 

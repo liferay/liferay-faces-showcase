@@ -26,7 +26,6 @@ public class SelectOneMenuInstantAjaxTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneMenuInstantAjaxTest() throws Exception {
-		String select1Xpath = "//select[contains(@id,':selectOneMenu')]";
-		runSelectOneMenuInstantAjaxTest(TEST_CONTEXT_URL + "/selectonemenu/instant-ajax", select1Xpath);
+		runSelectOneInstantAjaxTest(selectOneMenuURL + "/instant-ajax");
 	}
 }

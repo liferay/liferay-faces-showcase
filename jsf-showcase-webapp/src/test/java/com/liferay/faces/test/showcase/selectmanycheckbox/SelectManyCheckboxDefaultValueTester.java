@@ -17,9 +17,6 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-
 
 /**
  * @author  Kyle Stiemann
@@ -29,22 +26,7 @@ public class SelectManyCheckboxDefaultValueTester extends SelectManyCheckboxTest
 
 	@Test
 	public void runSelectManyCheckboxDefaultValueTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(selectManyCheckboxURL + "/default-value");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that the checked values are submitted by default.
-		String answer2 = "2";
-		String answer4 = "4";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer2);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer4);
-
-		// Test that the checked value submits successfully.
-		String answer1 = "1";
-		browser.click(manyCheckbox1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
+		runSelectManyDefaultValueTest(selectManyCheckboxURL + "/default-value", selectManyCheckbox1Xpath,
+			CHECKBOX_CHILD_XPATH);
 	}
 }

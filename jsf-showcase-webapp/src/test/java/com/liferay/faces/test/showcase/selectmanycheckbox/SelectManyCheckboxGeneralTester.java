@@ -18,6 +18,7 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
@@ -28,16 +29,16 @@ public class SelectManyCheckboxGeneralTester extends SelectManyCheckboxTester {
 
 	@Test
 	public void runSelectManyCheckboxGeneralTest() throws Exception {
+
 		Browser browser = Browser.getInstance();
 		browser.get(selectManyCheckboxURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
+		testRequiredCheckboxError(browser);
 
-		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		testRequiredCheckbox(browser);
-
-		// Test that the checked values submit successfully.
-		testManyCheckboxes(browser, submitButton1Xpath, modelValue1Xpath, selectManyCheckbox1Xpath);
+		// Test that the checked values submit successfully and the "required" error message disappears.
+		testSelectMany(browser, selectManyCheckbox1Xpath, CHECKBOX_CHILD_XPATH, submitButton1Xpath, modelValue1Xpath);
+		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 	}
 }

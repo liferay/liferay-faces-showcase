@@ -29,30 +29,30 @@ public class SelectManyCheckboxInstantAjaxTester extends SelectManyCheckboxTeste
 
 	@Test
 	public void runSelectManyCheckboxInstantAjaxTest() throws Exception {
+
 		Browser browser = Browser.getInstance();
 		browser.get(selectManyCheckboxURL + "/instant-ajax");
 
 		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(manyCheckbox4Xpath);
+		String checkbox1Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[1]";
+		browser.waitForElementVisible(checkbox1Xpath);
 
-		// Test that the first checkbox has not yet been clicked.
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
+		// Test that multiple checked checkboxes submit successfully.
+		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
 
-		// Test that the first checked value submits successfully.
-		browser.clickAndWaitForAjaxRerender(manyCheckbox1Xpath);
+		String checkbox3Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[3]";
+		browser.clickAndWaitForAjaxRerender(checkbox3Xpath);
 
-		String answer1 = "1";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
+		String checkbox4Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[4]";
+		browser.clickAndWaitForAjaxRerender(checkbox4Xpath);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "4");
 
-		// Click the same checkbox to deselect:
-		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
-		browser.clickAndWaitForAjaxRerender(manyCheckbox1Xpath);
-
-		// Test that only the fourth checkbox submits successfully.
-		browser.clickAndWaitForAjaxRerender(manyCheckbox4Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-
-		String answer4 = "4";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer4);
+		// Test that unchecking a checkbox removes the value from the model.
+		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
+		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, "1");
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "4");
 	}
 }

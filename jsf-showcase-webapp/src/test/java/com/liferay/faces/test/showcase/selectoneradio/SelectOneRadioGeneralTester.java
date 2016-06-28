@@ -29,20 +29,16 @@ public class SelectOneRadioGeneralTester extends SelectOneRadioTester {
 
 	@Test
 	public void runSelectOneRadioGeneralTest() throws Exception {
+
 		Browser browser = Browser.getInstance();
 		browser.get(selectOneRadioURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
+		testRequiredCheckboxError(browser);
 
-		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		testRequiredCheckbox(browser);
-
-		// Test that the first value of the radio has not yet been submitted
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		String answer1 = "1";
-		String answer4 = "4";
-		testOneRadios(browser, answer1, answer4);
+		// Test that a radio value submits successfully and the "required" error message disappears.
+		testSelectOne(browser, selectOneRadio1Xpath, RADIO_CHILD_XPATH, submitButton1Xpath, modelValue1Xpath);
+		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 	}
 }

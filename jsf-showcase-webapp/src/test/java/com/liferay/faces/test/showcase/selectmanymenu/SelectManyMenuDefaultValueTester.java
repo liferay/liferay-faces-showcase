@@ -26,6 +26,6 @@ public class SelectManyMenuDefaultValueTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyMenuDefaultValueTest() throws Exception {
-		runSelectManyMenuDefaultValueTest((TEST_CONTEXT_URL + "/selectmanymenu/default-value"));
+		runSelectManyDefaultValueTest(selectManyMenuURL + "/default-value", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

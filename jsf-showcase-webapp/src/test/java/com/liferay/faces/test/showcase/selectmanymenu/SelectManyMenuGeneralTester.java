@@ -17,8 +17,6 @@ package com.liferay.faces.test.showcase.selectmanymenu;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-
 
 /**
  * @author  Kyle Stiemann
@@ -28,19 +26,6 @@ public class SelectManyMenuGeneralTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyMenuGeneralTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/selectmanymenu/general");
-
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		testRequiredCheckbox(browser);
-
-		// Test that the first and fourth values in the menu submits successfully.
-		String answer2 = "2";
-		String answer3 = "3";
-		String answer4 = "4";
-		testManyMenuGeneral(browser, answer2, answer3, answer4);
+		runSelectManyMenuGeneralTest(selectManyMenuURL + "/general");
 	}
 }

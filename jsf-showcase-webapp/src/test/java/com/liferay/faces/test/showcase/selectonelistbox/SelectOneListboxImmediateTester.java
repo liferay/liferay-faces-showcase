@@ -28,6 +28,7 @@ public class SelectOneListboxImmediateTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneListboxImmediateTest() throws Exception {
-		runSelectOneMenuImmediateTest(TEST_CONTEXT_URL + "/selectonelistbox/immediate");
+		runSelectOneImmediateTest(TEST_CONTEXT_URL + "/selectonelistbox/immediate", select1Xpath, select2Xpath,
+			OPTION_CHILD_XPATH);
 	}
 }

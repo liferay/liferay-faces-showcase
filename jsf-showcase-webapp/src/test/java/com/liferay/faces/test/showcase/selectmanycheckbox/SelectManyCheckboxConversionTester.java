@@ -17,9 +17,6 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-
 
 /**
  * @author  Kyle Stiemann
@@ -29,29 +26,7 @@ public class SelectManyCheckboxConversionTester extends SelectManyCheckboxTester
 
 	@Test
 	public void runSelectManyCheckboxConversionTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(selectManyCheckboxURL + "/conversion");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that the first checkbox has not yet been clicked.
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		// Test that the checked values submit successfully.
-		browser.click(manyCheckbox1Xpath);
-		browser.click(manyCheckbox3Xpath);
-		browser.click(manyCheckbox4Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "Apr 5, 0033 AD");
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "Jul 4, 1776 AD");
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "Jul 14, 1789 AD");
-
-		// Test that the incorrect and correct checked values submit successfully.
-		SeleniumAssert.assertElementVisible(browser, conversionIncorrectMessage1Xpath);
-		browser.click(manyCheckbox1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, conversionCorrectMessage1Xpath);
-
+		runSelectManyConversionTest(selectManyCheckboxURL + "/conversion", selectManyCheckbox1Xpath,
+			CHECKBOX_CHILD_XPATH);
 	}
 }

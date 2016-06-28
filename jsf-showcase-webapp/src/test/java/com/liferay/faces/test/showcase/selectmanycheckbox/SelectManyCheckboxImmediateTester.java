@@ -17,9 +17,6 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-
 
 /**
  * @author  Kyle Stiemann
@@ -29,21 +26,7 @@ public class SelectManyCheckboxImmediateTester extends SelectManyCheckboxTester 
 
 	@Test
 	public void runSelectManyCheckboxImmediateTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(selectManyCheckboxURL + "/immediate");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that the first checkbox has not yet been clicked.
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		// Test that the checked values submit successfully.
-		testManyCheckboxes(browser, submitButton1Xpath, modelValue1Xpath, selectManyCheckbox1Xpath);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
-
-		// Test that the second checked values submit successfully.
-		testManyCheckboxes(browser, submitButton2Xpath, modelValue2Xpath, selectManyCheckbox2Xpath);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
+		runSelectManyImmediateTest(selectManyCheckboxURL + "/immediate", selectManyCheckbox1Xpath,
+			selectManyCheckbox2Xpath, CHECKBOX_CHILD_XPATH);
 	}
 }

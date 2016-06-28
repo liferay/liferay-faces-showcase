@@ -15,173 +15,74 @@
  */
 package com.liferay.faces.test.showcase.selectonemenu;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-import com.liferay.faces.test.showcase.select.SelectTester;
+import com.liferay.faces.test.showcase.select.SelectOneTester;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class SelectOneMenuTester extends SelectTester {
+public class SelectOneMenuTester extends SelectOneTester {
 
-	protected void runSelectOneMenuConversionTest(String url) {
+	// Component URL
+	protected static final String selectOneMenuURL = TEST_CONTEXT_URL + "/selectonemenu";
+
+	protected void runSelectOneInstantAjaxTest(String url) throws Exception {
+
 		Browser browser = Browser.getInstance();
 		browser.get(url);
 
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(option1Xpath);
+		// Wait to begin the test until the submit button is rendered.
+		browser.waitForElementVisible(select1Xpath);
 
-		// Test that the first value in the menu has not yet been clicked
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
+		// Test that the selected option submits successfully. Note: selectOneMenu will not perform an ajax request if
+		// the visible option is clicked, so the test clicks the third option instead.
+		String option3Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[3]";
+		clickOptionAndWaitForAjaxRerender(browser, option3Xpath);
 
-		// Test that the first incorrect value in the menu submits successfully.
-		browser.click(option1Xpath);
-
-		String answer1 = "Oct 31, 1517 AD";
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
-		SeleniumAssert.assertElementVisible(browser, conversionIncorrectMessage1Xpath);
-
-		// Test that only the third correct value in the menu submits successfully.
-		browser.click(option2Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "Jul 4, 1776 AD");
-		SeleniumAssert.assertElementVisible(browser, conversionCorrectMessage1Xpath);
-	}
-
-	protected void runSelectOneMenuDataModelTest(Browser browser) {
-
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(option1Xpath);
-
-		// Test that the first value in the menu has not yet been clicked
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		// Test that the first value in the menu submits successfully.
-		browser.click(option1Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-
-		String answer1 = "1";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
-
-		// Test that only the fourth value in the menu submits successfully.
-		browser.click(option4Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "4");
-	}
-
-	protected void runSelectOneMenuDefaultValueTest(String url) {
-		Browser browser = Browser.getInstance();
-		browser.get(url);
-
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(modelValue1Xpath);
-
-		// Test that the menu value is submitted by default.
 		String answer3 = "3";
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer3);
 
-		// Test that the menu value submits successfully.
-		browser.click(option1Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		// Test that selecting another value changes the model value.
+		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";
+		clickOptionAndWaitForAjaxRerender(browser, option1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer3);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
 	}
 
-	protected void runSelectOneMenuGeneralTest(Browser browser) {
+	protected void runSelectOneMenuGeneralTest(String url) {
+
+		Browser browser = Browser.getInstance();
+		browser.get(url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
+		testRequiredCheckboxError(browser);
 
-		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		testRequiredCheckbox(browser);
-
-		// Test that the first value in the menu submits successfully.
+		// Test that the selected option submits successfully and the "required" error message disappears. Note: In the
+		// general use case, the first option is the "-- Select --" noSelectionOption, so select the second option
+		// (which has a value of 1) instead of the first one.
+		String option2Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[2]";
 		browser.click(option2Xpath);
 		browser.centerElementInView(submitButton1Xpath);
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 
 		String answer1 = "1";
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
 
-		// Test that only the third value in the menu submits successfully.
+		// Test that selecting another value changes the model value.
+		String option4Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[4]";
 		browser.click(option4Xpath);
 		browser.centerElementInView(submitButton1Xpath);
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
-	}
-
-	protected void runSelectOneMenuImmediateTest(String url) {
-		Browser browser = Browser.getInstance();
-		browser.get(url);
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that the first value in the menu has not yet been clicked
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		// Test that the first value in the menu submits successfully.
-		browser.click(option1Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-
-		String answer1 = "1";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
-
-		// Test that only the third value in the menu submits successfully.
-		browser.click(option3Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-
-		String answer3 = "3";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer3);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
-
-		// Test the second group of menu values successfully.
-		browser.click(select2Option1Xpath);
-		browser.centerElementInView(submitButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, answer1);
-
-		browser.click(select2Option3Xpath);
-		browser.centerElementInView(submitButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue2Xpath, answer1);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, answer3);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
-	}
-
-	protected void runSelectOneMenuInstantAjaxTest(String url, String select1Xpath) {
-		Browser browser = Browser.getInstance();
-		browser.get(url);
-
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(option4Xpath);
-
-		// Test that the first value in the menu has not yet been clicked
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		// Test that the third value in the menu submits successfully.
-		String answer3 = "3";
-		selectByValueAndWaitForAjaxRerender(browser, select1Xpath, answer3);
-
-		// Test that only the first value in the menu submits successfully.
-		String answer1 = "1";
-		selectByValueAndWaitForAjaxRerender(browser, select1Xpath, answer1);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer3);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
 	}
 }

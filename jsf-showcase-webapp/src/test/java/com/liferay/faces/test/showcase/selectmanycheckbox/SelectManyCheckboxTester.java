@@ -15,39 +15,24 @@
  */
 package com.liferay.faces.test.showcase.selectmanycheckbox;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-import com.liferay.faces.test.showcase.select.SelectTester;
+import com.liferay.faces.test.showcase.select.SelectManyTester;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class SelectManyCheckboxTester extends SelectTester {
+public class SelectManyCheckboxTester extends SelectManyTester {
 
+	// Component URL
 	protected static final String selectManyCheckboxURL = TEST_CONTEXT_URL + "/selectmanycheckbox";
+
+	// Common Xpath
 	protected static final String selectManyCheckbox1Xpath =
 		"(//table[contains(@id,':selectManyCheckbox')]|//div[contains(@id,':selectManyCheckbox')])[1]";
 	protected static final String selectManyCheckbox2Xpath =
 		"(//table[contains(@id,':selectManyCheckbox')]|//div[contains(@id,':selectManyCheckbox')])[2]";
-	protected static final String manyCheckbox1Xpath = "(//input[contains(@id,':selectManyCheckbox')])[1]";
-	protected static final String manyCheckbox2Xpath = "(//input[contains(@id,':selectManyCheckbox')])[2]";
-	protected static final String manyCheckbox3Xpath = "(//input[contains(@id,':selectManyCheckbox')])[3]";
-	protected static final String manyCheckbox4Xpath = "(//input[contains(@id,':selectManyCheckbox')])[4]";
-	private static final String CHECKBOX_XPATH = "//input[contains(@id,':selectManyCheckbox')]";
 
-	protected void testManyCheckboxes(Browser browser, String submitButtonXpath, String modelValueXpath,
-		String selectManyCheckboxXpath) {
-		String checkbox1 = "(" + selectManyCheckboxXpath + CHECKBOX_XPATH + ")[1]";
-		String checkbox3 = "(" + selectManyCheckboxXpath + CHECKBOX_XPATH + ")[3]";
-		String checkbox4 = "(" + selectManyCheckboxXpath + CHECKBOX_XPATH + ")[4]";
-		browser.click(checkbox1);
-		browser.click(checkbox3);
-		browser.click(checkbox4);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, "1");
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, "3");
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, "4");
-	}
+	// Protected Constants
+	protected static final String CHECKBOX_CHILD_XPATH = "//input[contains(@id,':selectManyCheckbox')]";
 }

@@ -17,8 +17,6 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-
 
 /**
  * @author  Kyle Stiemann
@@ -28,13 +26,7 @@ public class SelectManyCheckboxDataModelTester extends SelectManyCheckboxTester 
 
 	@Test
 	public void runSelectManyCheckboxDataModelTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(selectManyCheckboxURL + "/data-model");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that the checked values submit successfully.
-		testManyCheckboxes(browser, submitButton1Xpath, modelValue1Xpath, selectManyCheckbox1Xpath);
+		runSelectManyDataModelTest(selectManyCheckboxURL + "/data-model", selectManyCheckbox1Xpath,
+			CHECKBOX_CHILD_XPATH);
 	}
 }

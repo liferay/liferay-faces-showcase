@@ -27,7 +27,10 @@ import com.liferay.faces.test.showcase.input.InputTester;
  */
 public class InputTextTester extends InputTester {
 
+	// Component URL
 	protected static final String inputTextURL = TEST_CONTEXT_URL + "/inputtext";
+
+	// Common Xpath
 	protected static final String input1Xpath = "(//input[contains(@id,':text')])[1]";
 	protected static final String input2Xpath = "(//input[contains(@id,':text')])[2]";
 
@@ -94,15 +97,14 @@ public class InputTextTester extends InputTester {
 		SeleniumAssert.assertElementVisible(browser, success1Xpath);
 
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		browser.click(requiredCheckbox1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		testRequiredCheckboxError(browser);
 
-		// Test that a text value submits successfully.
+		// Test that a text value submits successfully and the "required" error message disappears.
 		String text = "Hello World!";
 		browser.sendKeys(inputText1Xpath, text);
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
+		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 	}
 
 	protected void runInputTextImmediateTest(String inputTextURL, String inputText1Xpath, String inputText2Xpath)

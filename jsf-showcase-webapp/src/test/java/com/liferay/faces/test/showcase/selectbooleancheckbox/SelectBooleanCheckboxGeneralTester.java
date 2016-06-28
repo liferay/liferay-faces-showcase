@@ -28,12 +28,12 @@ public class SelectBooleanCheckboxGeneralTester extends SelectBooleanCheckboxTes
 
 	@Test
 	public void runSelectBooleanCheckboxGeneralTest() throws Exception {
+
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/selectbooleancheckbox/general");
+		browser.get(selectBooleanCheckboxURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
-
 		testSelectBooleanCheckbox(browser, submitButton1Xpath, modelValue1Xpath, checkbox1Xpath);
 	}
 }

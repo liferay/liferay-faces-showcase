@@ -29,26 +29,25 @@ public class SelectOneRadioInstantAjaxTester extends SelectOneRadioTester {
 
 	@Test
 	public void runSelectOneRadioInstantAjaxTest() throws Exception {
+
 		Browser browser = Browser.getInstance();
 		browser.get(selectOneRadioURL + "/instant-ajax");
 
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(oneRadio4Xpath);
+		// Wait to begin the test until the submit button is rendered.
+		String option1Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[1]";
+		browser.waitForElementVisible(option1Xpath);
 
-		// Test that the first value of the radio has not yet been submitted
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		// Test that the first value of the radio submits successfully.
-		browser.clickAndWaitForAjaxRerender(oneRadio1Xpath);
+		// Test that the selected option submits successfully. Note: selectOneMenu will not perform an ajax request if
+		// the visible option is clicked, so the test clicks the third option instead.
+		browser.clickAndWaitForAjaxRerender(option1Xpath);
 
 		String answer1 = "1";
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
 
-		// Test that only the fourth value of the radio submits successfully.
-		browser.clickAndWaitForAjaxRerender(oneRadio4Xpath);
+		// Test that selecting another value changes the model value.
+		String option3Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[3]";
+		browser.clickAndWaitForAjaxRerender(option3Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-
-		String answer4 = "4";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer4);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
 	}
 }
