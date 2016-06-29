@@ -39,8 +39,9 @@ public class TesterBase extends IntegrationTesterBase {
 
 	static {
 
-		String defaultContext =
-			"/com.liferay.faces.demo.jsf.showcase.webapp-3.0.0-SNAPSHOT/web/guest/showcase/-/component/h";
+		String projectVersion = System.getProperty("integration.showcase.version");
+		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp-" + projectVersion +
+			"/web/guest/showcase/-/component/h";
 
 		if (CONTAINER.contains("liferay")) {
 			defaultContext = "/web/guest/jsf-showcase/-/jsf-tag/h";
