@@ -26,6 +26,6 @@ public class InputSecretValidationTester extends InputSecretTester {
 
 	@Test
 	public void runInputSecretValidationTest() throws Exception {
-		runInputTextValidationTest(inputSecretURL, input1Xpath, input2Xpath);
+		runInputTextValidationTest(inputSecretURL + "/validation", inputSecret1Xpath, inputSecret2Xpath);
 	}
 }

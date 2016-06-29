@@ -34,11 +34,11 @@ public class InputTextTester extends InputTester {
 	protected static final String input1Xpath = "(//input[contains(@id,':text')])[1]";
 	protected static final String input2Xpath = "(//input[contains(@id,':text')])[2]";
 
-	protected void runInputTextConversionTest(String inputTextURL, String inputText1Xpath, String inputText2Xpath)
+	protected void runInputTextConversionTest(String url, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputTextURL + "/conversion");
+		browser.get(url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -84,10 +84,10 @@ public class InputTextTester extends InputTester {
 		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, textOutput2);
 	}
 
-	protected void runInputTextGeneralTest(String inputTextURL, String inputText1Xpath) throws Exception {
+	protected void runInputTextGeneralTest(String url, String inputText1Xpath) throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputTextURL + "/general");
+		browser.get(url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -107,11 +107,11 @@ public class InputTextTester extends InputTester {
 		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 	}
 
-	protected void runInputTextImmediateTest(String inputTextURL, String inputText1Xpath, String inputText2Xpath)
+	protected void runInputTextImmediateTest(String url, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputTextURL + "/immediate");
+		browser.get(url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -132,11 +132,11 @@ public class InputTextTester extends InputTester {
 		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
 	}
 
-	protected void runInputTextValidationTest(String inputTextURL, String inputText1Xpath, String inputText2Xpath)
+	protected void runInputTextValidationTest(String url, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputTextURL + "/validation");
+		browser.get(url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

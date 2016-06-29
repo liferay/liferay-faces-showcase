@@ -26,6 +26,6 @@ public class InputTextGeneralTester extends InputTextTester {
 
 	@Test
 	public void runInputTextGeneralTest() throws Exception {
-		runInputTextGeneralTest(inputTextURL, input1Xpath);
+		runInputTextGeneralTest(inputTextURL + "/general", input1Xpath);
 	}
 }

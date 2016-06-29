@@ -26,6 +26,6 @@ public class InputSecretGeneralTester extends InputSecretTester {
 
 	@Test
 	public void runInputSecretGeneralTest() throws Exception {
-		runInputTextGeneralTest(inputSecretURL, input1Xpath);
+		runInputTextGeneralTest(inputSecretURL + "/general", inputSecret1Xpath);
 	}
 }

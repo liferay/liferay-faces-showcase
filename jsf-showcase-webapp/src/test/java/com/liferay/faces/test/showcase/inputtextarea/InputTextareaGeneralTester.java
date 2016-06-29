@@ -26,6 +26,6 @@ public class InputTextareaGeneralTester extends InputTextareaTester {
 
 	@Test
 	public void runInputTextareaGeneralTest() throws Exception {
-		runInputTextGeneralTest(inputTextareaURL, textarea1Xpath);
+		runInputTextGeneralTest(inputTextareaURL + "/general", textarea1Xpath);
 	}
 }

@@ -26,6 +26,6 @@ public class InputTextareaImmediateTester extends InputTextareaTester {
 
 	@Test
 	public void runInputTextareaImmediateTest() throws Exception {
-		runInputTextImmediateTest(inputTextareaURL, textarea1Xpath, textarea2Xpath);
+		runInputTextImmediateTest(inputTextareaURL + "/immediate", textarea1Xpath, textarea2Xpath);
 	}
 }
