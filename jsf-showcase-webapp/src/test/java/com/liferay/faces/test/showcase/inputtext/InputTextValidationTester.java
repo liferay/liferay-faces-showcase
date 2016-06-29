@@ -26,6 +26,6 @@ public class InputTextValidationTester extends InputTextTester {
 
 	@Test
 	public void runInputTextValidationTest() throws Exception {
-		runInputTextValidationTest(inputTextURL, input1Xpath, input2Xpath);
+		runInputTextValidationTest(inputTextURL + "/validation", input1Xpath, input2Xpath);
 	}
 }

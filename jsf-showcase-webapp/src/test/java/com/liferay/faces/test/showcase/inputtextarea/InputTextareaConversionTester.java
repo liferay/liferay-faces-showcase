@@ -26,6 +26,6 @@ public class InputTextareaConversionTester extends InputTextareaTester {
 
 	@Test
 	public void runInputTextareaConversionTest() throws Exception {
-		runInputTextConversionTest(inputTextareaURL, textarea1Xpath, textarea2Xpath);
+		runInputTextConversionTest(inputTextareaURL + "/conversion", textarea1Xpath, textarea2Xpath);
 	}
 }
