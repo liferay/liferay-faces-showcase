@@ -11,7 +11,7 @@
 						rendered="#{showcaseModelBean.selectedComponent.rendered}"
 						required="#{showcaseModelBean.selectedComponent.required}"
 						value="#{selectManyModelBean.favoriteIds}">
-						<f:selectItem itemLabel="-- Select --" noSelectionOption="true" />
+						<f:selectItem itemValue="#{null}" itemLabel="-- Select --" noSelectionOption="true" />
 						<f:selectItem itemLabel="Compatible" itemValue="1" />
 						<f:selectItem itemLabel="Enterprise Ready" itemValue="2" />
 						<f:selectItem itemLabel="Powerful Integration" itemValue="3" />
@@ -26,10 +26,11 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<ui:repeat id="modelValue" value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
-					<h:outputText value="#{favoriteId}" />
-					<br />
-				</ui:repeat>
+				<h:panelGroup id="modelValue">
+					<ui:repeat value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
+						<h:outputText value="#{favoriteId}" /><br />
+					</ui:repeat>
+				</h:panelGroup>
 			</showcase:results>
 		</h:form>
 	</ui:define>

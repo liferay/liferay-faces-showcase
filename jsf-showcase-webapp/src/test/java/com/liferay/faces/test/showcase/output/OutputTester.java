@@ -23,7 +23,8 @@ import com.liferay.faces.test.showcase.TesterBase;
 
 
 /**
- * @author  Neil Griffin
+ * @author  Kyle Stiemann
+ * @author  Philip White
  */
 public class OutputTester extends TesterBase {
 

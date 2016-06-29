@@ -5,13 +5,13 @@
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example>
-				<h:selectBooleanCheckbox value="#{selectBooleanCheckboxModelBean.agree}">
+				<h:selectBooleanCheckbox id="checkbox" value="#{selectBooleanCheckboxModelBean.agree}">
 					<f:ajax render="@form" />
 				</h:selectBooleanCheckbox>
 				<h:outputText value="#{i18n['i-agree-to-the-terms-of-the-license-agreement']}" />
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<h:outputText value="#{selectBooleanCheckboxModelBean.agree}" />
+				<h:outputText id="modelValue" value="#{selectBooleanCheckboxModelBean.agree}" />
 			</showcase:results>
 		</h:form>
 	</ui:define>

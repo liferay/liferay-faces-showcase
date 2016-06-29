@@ -15,12 +15,15 @@
  */
 package com.liferay.faces.test.showcase;
 
+import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
+import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
  * @author  Kyle Stiemann
+ * @author  Philip White
  */
 public class TesterBase extends IntegrationTesterBase {
 
@@ -53,5 +56,13 @@ public class TesterBase extends IntegrationTesterBase {
 
 		String context = TestUtil.getSystemPropertyOrDefault("integration.context", defaultContext);
 		TEST_CONTEXT_URL = BASE_URL + context;
+	}
+
+	protected void testRequiredCheckbox(Browser browser) {
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementNotPresent(browser, error1Xpath);
+		browser.click(requiredCheckboxXpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		SeleniumAssert.assertElementVisible(browser, error1Xpath);
 	}
 }

@@ -21,7 +21,8 @@ import com.liferay.faces.test.selenium.Browser;
 
 
 /**
- * @author  Neil Griffin
+ * @author  Kyle Stiemann
+ * @author  Philip White
  */
 public class OutputLinkGeneralTester extends OutputLinkTester {
 

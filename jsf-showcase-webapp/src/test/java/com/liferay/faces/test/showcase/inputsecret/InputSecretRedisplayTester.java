@@ -17,8 +17,6 @@ package com.liferay.faces.test.showcase.inputsecret;
 
 import org.junit.Test;
 
-import org.openqa.selenium.WebElement;
-
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 

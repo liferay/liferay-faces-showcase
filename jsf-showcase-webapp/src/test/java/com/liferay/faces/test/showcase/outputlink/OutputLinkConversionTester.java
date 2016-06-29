@@ -24,7 +24,8 @@ import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
- * @author  Neil Griffin
+ * @author  Kyle Stiemann
+ * @author  Philip White
  */
 public class OutputLinkConversionTester extends OutputLinkTester {
 

@@ -8,7 +8,7 @@
 			<showcase:example description="#{i18n['valuechangelistener-execution-when-immediate-is-true']}" number="1">
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
 				<h:messages globalOnly="true" styleClass="feedback" />
-				<h:selectManyCheckbox immediate="true" layout="pageDirection" selectedClass="inline-label"
+				<h:selectManyCheckbox id="selectManyCheckbox" immediate="true" layout="pageDirection" selectedClass="inline-label"
 					unselectedClass="inline-label" value="#{selectManyModelBean.favoriteIds}"
 					valueChangeListener="#{selectManyBackingBean.valueChangeListener}">
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
@@ -23,10 +23,11 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<ui:repeat id="modelValue" value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
-					<h:outputText value="#{favoriteId}" />
-					<br />
-				</ui:repeat>
+				<h:panelGroup id="modelValue">
+					<ui:repeat value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
+						<h:outputText value="#{favoriteId}" /><br />
+					</ui:repeat>
+				</h:panelGroup>
 			</showcase:results>
 		</h:form>
 	</ui:define>
@@ -37,7 +38,7 @@
 			<showcase:example description="#{i18n['valuechangelistener-execution-when-immediate-is-false']}" number="2">
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
 				<h:messages globalOnly="true" styleClass="feedback" />
-				<h:selectManyCheckbox layout="pageDirection" selectedClass="inline-label"
+				<h:selectManyCheckbox id="selectManyCheckbox" layout="pageDirection" selectedClass="inline-label"
 					unselectedClass="inline-label" value="#{selectManyModelBean.favoriteIds}"
 					valueChangeListener="#{selectManyBackingBean.valueChangeListener}">
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
@@ -52,10 +53,11 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<ui:repeat id="modelValue" value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
-					<h:outputText value="#{favoriteId}" />
-					<br />
-				</ui:repeat>
+				<h:panelGroup id="modelValue">
+					<ui:repeat value="#{selectManyModelBean.favoriteIds}" var="favoriteId">
+						<h:outputText value="#{favoriteId}" /><br />
+					</ui:repeat>
+				</h:panelGroup>
 			</showcase:results>
 		</h:form>
 	</ui:define>

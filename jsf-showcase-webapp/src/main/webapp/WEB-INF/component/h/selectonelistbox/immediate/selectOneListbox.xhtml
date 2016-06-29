@@ -8,7 +8,7 @@
 			<showcase:example description="#{i18n['valuechangelistener-execution-when-immediate-is-true']}" number="1">
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
 				<h:messages globalOnly="true" styleClass="feedback" />
-				<h:selectOneListbox immediate="true" value="#{selectOneModelBean.favoriteId}"
+				<h:selectOneListbox id="selectOneListbox" immediate="true" value="#{selectOneModelBean.favoriteId}"
 					valueChangeListener="#{selectOneBackingBean.valueChangeListener}">
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
 					<f:selectItem itemLabel="Enterprise Ready" itemValue="2" />
@@ -33,7 +33,7 @@
 			<showcase:example description="#{i18n['valuechangelistener-execution-when-immediate-is-false']}" number="2">
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
 				<h:messages globalOnly="true" styleClass="feedback" />
-				<h:selectOneListbox value="#{selectOneModelBean.favoriteId}"
+				<h:selectOneListbox id="selectOneListbox" value="#{selectOneModelBean.favoriteId}"
 					valueChangeListener="#{selectOneBackingBean.valueChangeListener}">
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
 					<f:selectItem itemLabel="Enterprise Ready" itemValue="2" />

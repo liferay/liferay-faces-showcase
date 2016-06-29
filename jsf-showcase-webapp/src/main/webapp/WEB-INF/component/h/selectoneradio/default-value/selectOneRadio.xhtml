@@ -6,7 +6,7 @@
 		<h:form>
 			<showcase:example>
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
-				<h:selectOneRadio enabledClass="inline-label" value="#{selectOneModelBean.benefitId}">
+				<h:selectOneRadio id="selectOneRadio" enabledClass="inline-label" value="#{selectOneModelBean.benefitId}">
 					<f:converter converterId="javax.faces.Long" />
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
 					<f:selectItem itemLabel="Enterprise Ready" itemValue="2" />

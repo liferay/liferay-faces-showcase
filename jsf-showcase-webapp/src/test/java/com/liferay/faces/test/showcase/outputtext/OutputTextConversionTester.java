@@ -28,7 +28,8 @@ import com.liferay.faces.test.showcase.output.OutputTester;
 
 
 /**
- * @author  Neil Griffin
+ * @author  Kyle Stiemann
+ * @author  Philip White
  */
 public class OutputTextConversionTester extends OutputTester {
 
