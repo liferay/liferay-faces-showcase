@@ -17,26 +17,32 @@ package com.liferay.faces.test.showcase.selectbooleancheckbox;
 
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-import com.liferay.faces.test.showcase.select.SelectTester;
+import com.liferay.faces.test.showcase.TesterBase;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class SelectBooleanCheckboxTester extends SelectTester {
+public class SelectBooleanCheckboxTester extends TesterBase {
+
+	// Component URL
+	protected static final String selectBooleanCheckboxURL = TEST_CONTEXT_URL + "/selectbooleancheckbox";
+
+	// Common Xpath
+	protected static final String checkbox1Xpath = "(//input[contains(@id,':checkbox')])[1]";
+	protected static final String checkbox2Xpath = "(//input[contains(@id,':checkbox')])[2]";
+
 	protected void testSelectBooleanCheckbox(Browser browser, String submitButtonXpath, String modelValueXpath,
 		String checkboxXpath) {
 
 		// Test that an unchecked checkbox submits successfully.
-		String text = "false";
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, "false");
 
 		// Test that a checked checkbox submits successfully.
 		browser.click(checkboxXpath);
-		text = "true";
 		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, text);
+		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, "true");
 	}
 }

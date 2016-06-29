@@ -17,8 +17,6 @@ package com.liferay.faces.test.showcase.selectonemenu;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-
 
 /**
  * @author  Kyle Stiemann
@@ -28,9 +26,6 @@ public class SelectOneMenuGeneralTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneMenuGeneralTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/selectonemenu/general");
-
-		runSelectOneMenuGeneralTest(browser);
+		runSelectOneMenuGeneralTest(selectOneMenuURL + "/general");
 	}
 }

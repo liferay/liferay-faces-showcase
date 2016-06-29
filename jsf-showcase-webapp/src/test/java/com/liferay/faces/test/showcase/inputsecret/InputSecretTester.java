@@ -24,7 +24,10 @@ import com.liferay.faces.test.showcase.inputtext.InputTextTester;
  */
 public class InputSecretTester extends InputTextTester {
 
+	// Component URL
 	protected static final String inputSecretURL = TEST_CONTEXT_URL + "/inputsecret";
+
+	// Common Xpath
 	protected static final String inputSecret1Xpath = "(//input[contains(@id,':secret')])[1]";
 	protected static final String inputSecret2Xpath = "(//input[contains(@id,':secret')])[2]";
 }

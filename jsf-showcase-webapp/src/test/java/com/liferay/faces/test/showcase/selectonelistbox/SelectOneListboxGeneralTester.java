@@ -17,7 +17,6 @@ package com.liferay.faces.test.showcase.selectonelistbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.showcase.selectonemenu.SelectOneMenuTester;
 
 
@@ -29,9 +28,6 @@ public class SelectOneListboxGeneralTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneListboxGeneralTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/selectonelistbox/general");
-
-		runSelectOneMenuGeneralTest(browser);
+		runSelectOneMenuGeneralTest(TEST_CONTEXT_URL + "/selectonelistbox/general");
 	}
 }

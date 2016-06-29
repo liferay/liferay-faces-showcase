@@ -26,6 +26,6 @@ public class SelectOneMenuConversionTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneMenuConversionTest() throws Exception {
-		runSelectOneMenuConversionTest(TEST_CONTEXT_URL + "/selectonemenu/conversion");
+		runSelectOneConversionTest(selectOneMenuURL + "/conversion", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

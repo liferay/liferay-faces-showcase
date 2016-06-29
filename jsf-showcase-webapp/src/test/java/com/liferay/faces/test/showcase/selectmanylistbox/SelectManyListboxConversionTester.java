@@ -28,6 +28,7 @@ public class SelectManyListboxConversionTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyListboxConversionTest() throws Exception {
-		runSelectManyMenuConversionTest(TEST_CONTEXT_URL + "/selectmanylistbox/conversion");
+		runSelectManyConversionTest(TEST_CONTEXT_URL + "/selectmanylistbox/conversion", select1Xpath,
+			OPTION_CHILD_XPATH);
 	}
 }

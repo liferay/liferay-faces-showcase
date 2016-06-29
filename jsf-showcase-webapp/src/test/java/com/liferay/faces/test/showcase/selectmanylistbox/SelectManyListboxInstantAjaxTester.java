@@ -28,7 +28,6 @@ public class SelectManyListboxInstantAjaxTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyListboxInstantAjaxTest() throws Exception {
-		String select1Xpath = "//select[contains(@id,':selectManyListbox')]";
-		runSelectManyMenuInstantAjaxTest(TEST_CONTEXT_URL + "/selectmanylistbox/instant-ajax", select1Xpath);
+		runSelectManyMenuInstantAjaxTest(TEST_CONTEXT_URL + "/selectmanylistbox/instant-ajax");
 	}
 }

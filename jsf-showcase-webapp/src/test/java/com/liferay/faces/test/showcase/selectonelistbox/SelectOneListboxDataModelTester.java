@@ -17,7 +17,6 @@ package com.liferay.faces.test.showcase.selectonelistbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.showcase.selectonemenu.SelectOneMenuTester;
 
 
@@ -29,9 +28,6 @@ public class SelectOneListboxDataModelTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneListboxDataModelTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/selectonelistbox/data-model");
-
-		runSelectOneMenuDataModelTest(browser);
+		runSelectOneDataModelTest(TEST_CONTEXT_URL + "/selectonelistbox/data-model", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

@@ -15,12 +15,15 @@
  */
 package com.liferay.faces.test.showcase.select;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.showcase.TesterBase;
+import org.openqa.selenium.StaleElementReferenceException;
 
 
 /**
@@ -29,50 +32,53 @@ import com.liferay.faces.test.showcase.TesterBase;
  */
 public class SelectTester extends TesterBase {
 
-	protected static final String modelValueElement1Xpath = "(//div[@class='results-content'])[1]/pre/text()";
-	protected static final String checkbox1Xpath = "//input[contains(@id,':checkbox')]";
-	protected static final String checkbox2Xpath = "(//input[contains(@id,':checkbox')])[2]";
-	protected static final String option1Xpath = "(//select[contains(@id, 'select')]/option)[1]";
-	protected static final String option2Xpath = "(//select[contains(@id, 'select')]/option)[2]";
-	protected static final String option3Xpath = "(//select[contains(@id, 'select')]/option)[3]";
-	protected static final String option4Xpath = "(//select[contains(@id, 'select')]/option)[4]";
-	protected static final String select2Option1Xpath = "(//select[contains(@id, 'select')])[2]/option[1]";
-	protected static final String select2Option3Xpath = "(//select[contains(@id, 'select')])[2]/option[3]";
-	protected static final String conversionIncorrectMessage1Xpath = "//li[contains(text(),'Incorrect!')]";
+	// Common Xpath
 	protected static final String conversionCorrectMessage1Xpath = "//li[contains(text(),'Correct!')]";
+	protected static final String conversionIncorrectMessage1Xpath = "//li[contains(text(),'Incorrect!')]";
+	protected static final String select1Xpath = "(//select[contains(@id, 'select')])[1]";
+	protected static final String select2Xpath = "(//select[contains(@id, 'select')])[2]";
 
-	// When <select multiple="multiple">, it is necessary to deselect options.
-	protected void deselectByValueAndWaitForAjaxRerender(Browser browser, String selectXpath, String value) {
-		WebElement selectElement = browser.findElementByXpath(selectXpath);
-		Select select = new Select(selectElement);
-		select.deselectByValue(value);
+	// Protected Constants
+	protected static final String OPTION_CHILD_XPATH = "/option";
 
-		// phantomjs browser does not fire the change event when <select multiple="multiple">, so the event must be
-		// fired manually.
-		if ("phantomjs".equals(browser.getName()) && (select.isMultiple())) {
-			browser.executeScript(
-				"var changeEvent = document.createEvent('HTMLEvents'); changeEvent.initEvent('change', true, true); arguments[0].dispatchEvent(changeEvent);",
-				selectElement);
+	// Private Constants
+	private static final String FIRE_SELECT_CHANGE_EVENT_SCRIPT =
+		"var changeEvent = document.createEvent('HTMLEvents');" +
+		"changeEvent.initEvent('change', true, true); arguments[0].parentNode.dispatchEvent(changeEvent);";
+
+	/**
+	 * Click an option and wait for Ajax to rerender the option. This method exists because {@link
+	 * Browser#clickAndWaitForAjaxRerender(java.lang.String)} does not work on selectOneMenu, selectManyListbox, and
+	 * SelectManyMenu. For more information see method comments.
+	 */
+	protected void clickOptionAndWaitForAjaxRerender(Browser browser, String optionXpath) {
+
+		WebElement optionElement = browser.findElementByXpath(optionXpath);
+
+		// Note: clicking a selectOneMenu option on Chrome and PhantomJS via Actions.click(WebElement) (which is used
+		// by Browser.clickAndWaitForAjaxRerender(String)) does not fire the select element's change event, so the
+		// element must be clicked via Element.click().
+		optionElement.click();
+
+		// phantomjs browser does not fire a change event when a <select multiple="multiple"> <option> is clicked, so
+		// the event must be fired manually.
+		if ("phantomjs".equals(browser.getName())) {
+
+			try {
+
+				WebElement selectElement = optionElement.findElement(By.xpath(".."));
+				Select select = new Select(selectElement);
+
+				if (select.isMultiple()) {
+					browser.executeScript(FIRE_SELECT_CHANGE_EVENT_SCRIPT, optionElement);
+				}
+			}
+			catch (StaleElementReferenceException e) {
+				// do nothing. The element is stale because an ajax rerender has correctly occured.
+			}
 		}
 
-		browser.waitUntil(ExpectedConditions.stalenessOf(selectElement));
-		browser.waitForElementVisible(selectXpath);
-	}
-
-	protected void selectByValueAndWaitForAjaxRerender(Browser browser, String selectXpath, String value) {
-		WebElement selectElement = browser.findElementByXpath(selectXpath);
-		Select select = new Select(selectElement);
-		select.selectByValue(value);
-
-		// phantomjs browser does not fire the change event when <select multiple="multiple">, so the event must be
-		// fired manually.
-		if ("phantomjs".equals(browser.getName()) && select.isMultiple()) {
-			browser.executeScript(
-				"var changeEvent = document.createEvent('HTMLEvents'); changeEvent.initEvent('change', true, true); arguments[0].dispatchEvent(changeEvent);",
-				selectElement);
-		}
-
-		browser.waitUntil(ExpectedConditions.stalenessOf(selectElement));
-		browser.waitForElementVisible(selectXpath);
+		browser.waitUntil(ExpectedConditions.stalenessOf(optionElement));
+		browser.waitForElementVisible(optionXpath);
 	}
 }

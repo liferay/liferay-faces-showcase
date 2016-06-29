@@ -17,9 +17,6 @@ package com.liferay.faces.test.showcase.selectoneradio;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-
 
 /**
  * @author  Kyle Stiemann
@@ -29,17 +26,6 @@ public class SelectOneRadioDataModelTester extends SelectOneRadioTester {
 
 	@Test
 	public void runSelectOneRadioDataModelTest() throws Exception {
-		Browser browser = Browser.getInstance();
-		browser.get(selectOneRadioURL + "/data-model");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
-		// Test that the first value of the radio has not yet been submitted
-		SeleniumAssert.assertElementNotPresent(browser, modelValueElement1Xpath);
-
-		String answer1 = "1";
-		String answer4 = "4";
-		testOneRadios(browser, answer1, answer4);
+		runSelectOneDataModelTest(selectOneRadioURL + "/data-model", selectOneRadio1Xpath, RADIO_CHILD_XPATH);
 	}
 }

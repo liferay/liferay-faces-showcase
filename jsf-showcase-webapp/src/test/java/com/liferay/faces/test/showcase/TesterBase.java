@@ -30,15 +30,16 @@ public class TesterBase extends IntegrationTesterBase {
 	// Protected Constants
 	protected static final String TEST_CONTEXT_URL;
 
-	// Common Xpaths
-	protected static final String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
-	protected static final String modelValue2Xpath = "(//span[contains(@id,':modelValue')])[2]";
-	protected static final String error1Xpath = "(//div[contains(@class,'field form-group has-error')])[1]";
-	protected static final String requiredCheckboxXpath = "//input[contains(@id,':requiredCheckbox')]";
-	protected static final String submitButton1Xpath = "(//*[contains(@value,'Submit')])[1]";
-	protected static final String submitButton2Xpath = "(//*[contains(@value,'Submit')])[2]";
+	// Common Xpath
 	protected static final String immediateMessage1Xpath = "//li[contains(text(),'APPLY_REQUEST_VALUES')]";
 	protected static final String immediateMessage2Xpath = "//li[contains(text(),'PROCESS_VALIDATIONS')]";
+	protected static final String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
+	protected static final String modelValue2Xpath = "(//span[contains(@id,':modelValue')])[2]";
+	protected static final String requiredCheckbox1Xpath = "//input[contains(@id,':requiredCheckbox')]";
+	protected static final String submitButton1Xpath = "(//*[contains(@value,'Submit')])[1]";
+	protected static final String submitButton2Xpath = "(//*[contains(@value,'Submit')])[2]";
+	protected static final String valueIsRequiredError1Xpath =
+		"(//div[contains(@class,'field form-group has-error') and contains(., 'Validation Error: Value is required.')])[1]";
 
 	static {
 
@@ -58,11 +59,15 @@ public class TesterBase extends IntegrationTesterBase {
 		TEST_CONTEXT_URL = BASE_URL + context;
 	}
 
-	protected void testRequiredCheckbox(Browser browser) {
+	/**
+	 * Test that the web page shows an error message when a value is required and an empty value is submitted.
+	 */
+	protected void testRequiredCheckboxError(Browser browser) {
+
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementNotPresent(browser, error1Xpath);
-		browser.click(requiredCheckboxXpath);
+		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
+		browser.click(requiredCheckbox1Xpath);
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		SeleniumAssert.assertElementVisible(browser, valueIsRequiredError1Xpath);
 	}
 }
