@@ -32,7 +32,7 @@ public class OutputTextGeneralTester extends OutputTester {
 	public void runOutputTextGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/outputtext/general");
+		navigateToUseCase(browser, TEST_CONTEXT_URL + "/outputtext/general");
 
 		// Wait to begin the test until the example text is rendered.
 		browser.waitForElementVisible(exampleText1Xpath);

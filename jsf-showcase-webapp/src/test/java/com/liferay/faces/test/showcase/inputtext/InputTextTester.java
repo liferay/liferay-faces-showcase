@@ -38,7 +38,7 @@ public class InputTextTester extends InputTester {
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -87,7 +87,7 @@ public class InputTextTester extends InputTester {
 	protected void runInputTextGeneralTest(String url, String inputText1Xpath) throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -111,7 +111,7 @@ public class InputTextTester extends InputTester {
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -136,7 +136,7 @@ public class InputTextTester extends InputTester {
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

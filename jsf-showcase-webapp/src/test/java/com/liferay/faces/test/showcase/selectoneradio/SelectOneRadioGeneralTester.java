@@ -31,7 +31,7 @@ public class SelectOneRadioGeneralTester extends SelectOneRadioTester {
 	public void runSelectOneRadioGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(selectOneRadioURL + "/general");
+		navigateToUseCase(browser, selectOneRadioURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

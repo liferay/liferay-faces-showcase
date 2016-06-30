@@ -36,7 +36,7 @@ public class SelectOneMenuTester extends SelectOneTester {
 	protected void runSelectOneInstantAjaxTest(String url) throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(select1Xpath);
@@ -59,7 +59,7 @@ public class SelectOneMenuTester extends SelectOneTester {
 	protected void runSelectOneMenuGeneralTest(String url) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

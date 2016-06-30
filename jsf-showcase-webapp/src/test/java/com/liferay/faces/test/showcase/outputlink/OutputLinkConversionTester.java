@@ -33,7 +33,7 @@ public class OutputLinkConversionTester extends OutputLinkTester {
 	public void runOutputLinkConversionTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(outputLinkURL + "/conversion");
+		navigateToUseCase(browser, outputLinkURL + "/conversion");
 
 		// Wait to begin the test until the select is rendered.
 		String select1Xpath = "(//select[contains(@id,':selectOneMenuId')])";

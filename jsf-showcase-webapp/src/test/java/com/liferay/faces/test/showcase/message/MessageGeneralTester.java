@@ -31,7 +31,7 @@ public class MessageGeneralTester extends OutputTester {
 	public void runMessageGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/message/general");
+		navigateToUseCase(browser, TEST_CONTEXT_URL + "/message/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
