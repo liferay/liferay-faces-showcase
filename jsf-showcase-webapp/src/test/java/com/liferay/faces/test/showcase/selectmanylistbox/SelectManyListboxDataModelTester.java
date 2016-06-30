@@ -28,7 +28,6 @@ public class SelectManyListboxDataModelTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyListboxDataModelTest() throws Exception {
-		runSelectManyDataModelTest(TEST_CONTEXT_URL + "/selectmanylistbox/data-model", select1Xpath,
-			OPTION_CHILD_XPATH);
+		runSelectManyDataModelTest("selectManyListbox", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

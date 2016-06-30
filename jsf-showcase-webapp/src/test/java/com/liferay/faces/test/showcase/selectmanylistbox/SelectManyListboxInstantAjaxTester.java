@@ -28,6 +28,6 @@ public class SelectManyListboxInstantAjaxTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyListboxInstantAjaxTest() throws Exception {
-		runSelectManyMenuInstantAjaxTest(TEST_CONTEXT_URL + "/selectmanylistbox/instant-ajax");
+		runSelectManyMenuInstantAjaxTest("selectManyListbox");
 	}
 }

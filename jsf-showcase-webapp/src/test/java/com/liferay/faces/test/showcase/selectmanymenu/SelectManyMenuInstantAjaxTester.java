@@ -26,6 +26,6 @@ public class SelectManyMenuInstantAjaxTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyMenuInstantAjaxTest() throws Exception {
-		runSelectManyMenuInstantAjaxTest(selectManyMenuURL + "/instant-ajax");
+		runSelectManyMenuInstantAjaxTest("selectManyMenu");
 	}
 }

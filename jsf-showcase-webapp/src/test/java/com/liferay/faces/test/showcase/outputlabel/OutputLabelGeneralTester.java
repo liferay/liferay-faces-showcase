@@ -32,7 +32,7 @@ public class OutputLabelGeneralTester extends OutputTester {
 	public void runOutputLabelGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/outputlabel/general");
+		navigateToUseCase(browser, "outputLabel", "general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

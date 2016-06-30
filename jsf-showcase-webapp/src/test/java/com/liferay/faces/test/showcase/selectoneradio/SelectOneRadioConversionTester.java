@@ -26,6 +26,6 @@ public class SelectOneRadioConversionTester extends SelectOneRadioTester {
 
 	@Test
 	public void runSelectOneRadioConversionTest() throws Exception {
-		runSelectOneConversionTest(selectOneRadioURL + "/conversion", selectOneRadio1Xpath, RADIO_CHILD_XPATH);
+		runSelectOneConversionTest("selectOneRadio", selectOneRadio1Xpath, RADIO_CHILD_XPATH);
 	}
 }

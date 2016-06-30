@@ -28,7 +28,6 @@ public class SelectManyListboxDefaultValueTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyListboxDefaultValueTest() throws Exception {
-		runSelectManyDefaultValueTest(TEST_CONTEXT_URL + "/selectmanylistbox/default-value", select1Xpath,
-			OPTION_CHILD_XPATH);
+		runSelectManyDefaultValueTest("selectManyListbox", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

@@ -28,6 +28,6 @@ public class SelectManyListboxGeneralTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyListboxGeneralTest() throws Exception {
-		runSelectManyMenuGeneralTest(TEST_CONTEXT_URL + "/selectmanylistbox/general");
+		runSelectManyMenuGeneralTest("selectManyListbox");
 	}
 }

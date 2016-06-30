@@ -26,6 +26,6 @@ public class InputTextareaValidationTester extends InputTextareaTester {
 
 	@Test
 	public void runInputTextareaValidationTest() throws Exception {
-		runInputTextValidationTest(inputTextareaURL + "/validation", textarea1Xpath, textarea2Xpath);
+		runInputTextValidationTest("inputTextarea", textarea1Xpath, textarea2Xpath);
 	}
 }

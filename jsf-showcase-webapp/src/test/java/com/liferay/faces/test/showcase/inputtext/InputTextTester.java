@@ -27,18 +27,15 @@ import com.liferay.faces.test.showcase.input.InputTester;
  */
 public class InputTextTester extends InputTester {
 
-	// Component URL
-	protected static final String inputTextURL = TEST_CONTEXT_URL + "/inputtext";
-
 	// Common Xpath
 	protected static final String input1Xpath = "(//input[contains(@id,':text')])[1]";
 	protected static final String input2Xpath = "(//input[contains(@id,':text')])[2]";
 
-	protected void runInputTextConversionTest(String url, String inputText1Xpath, String inputText2Xpath)
+	protected void runInputTextConversionTest(String componentName, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "conversion");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -84,10 +81,10 @@ public class InputTextTester extends InputTester {
 		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, textOutput2);
 	}
 
-	protected void runInputTextGeneralTest(String url, String inputText1Xpath) throws Exception {
+	protected void runInputTextGeneralTest(String componentName, String inputText1Xpath) throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -107,11 +104,11 @@ public class InputTextTester extends InputTester {
 		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 	}
 
-	protected void runInputTextImmediateTest(String url, String inputText1Xpath, String inputText2Xpath)
+	protected void runInputTextImmediateTest(String componentName, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "immediate");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -132,11 +129,11 @@ public class InputTextTester extends InputTester {
 		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
 	}
 
-	protected void runInputTextValidationTest(String url, String inputText1Xpath, String inputText2Xpath)
+	protected void runInputTextValidationTest(String componentName, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "validation");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

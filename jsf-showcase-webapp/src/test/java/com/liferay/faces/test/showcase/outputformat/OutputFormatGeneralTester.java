@@ -32,7 +32,7 @@ public class OutputFormatGeneralTester extends OutputTester {
 	public void runOutputFormatGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/outputformat/general");
+		navigateToUseCase(browser, "outputFormat", "general");
 
 		// Wait to begin the test until the formatted text is rendered.
 		browser.waitForElementVisible(exampleText1Xpath);

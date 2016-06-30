@@ -31,7 +31,7 @@ public class SelectOneRadioInstantAjaxTester extends SelectOneRadioTester {
 	public void runSelectOneRadioInstantAjaxTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(selectOneRadioURL + "/instant-ajax");
+		navigateToUseCase(browser, "selectOneRadio", "instant-ajax");
 
 		// Wait to begin the test until the submit button is rendered.
 		String option1Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[1]";

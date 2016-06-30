@@ -26,9 +26,6 @@ import com.liferay.faces.test.showcase.TesterBase;
  */
 public class SelectBooleanCheckboxTester extends TesterBase {
 
-	// Component URL
-	protected static final String selectBooleanCheckboxURL = TEST_CONTEXT_URL + "/selectbooleancheckbox";
-
 	// Common Xpath
 	protected static final String checkbox1Xpath = "(//input[contains(@id,':checkbox')])[1]";
 	protected static final String checkbox2Xpath = "(//input[contains(@id,':checkbox')])[2]";

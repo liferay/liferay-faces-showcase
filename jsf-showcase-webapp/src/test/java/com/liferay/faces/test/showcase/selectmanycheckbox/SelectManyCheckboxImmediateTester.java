@@ -26,7 +26,7 @@ public class SelectManyCheckboxImmediateTester extends SelectManyCheckboxTester 
 
 	@Test
 	public void runSelectManyCheckboxImmediateTest() throws Exception {
-		runSelectManyImmediateTest(selectManyCheckboxURL + "/immediate", selectManyCheckbox1Xpath,
-			selectManyCheckbox2Xpath, CHECKBOX_CHILD_XPATH);
+		runSelectManyImmediateTest("selectManyCheckbox", selectManyCheckbox1Xpath, selectManyCheckbox2Xpath,
+			CHECKBOX_CHILD_XPATH);
 	}
 }

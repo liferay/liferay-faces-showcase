@@ -35,7 +35,7 @@ public class OutputStylesheetGeneralTester extends OutputTester {
 	public void runOutputStylesheetGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/outputstylesheet/general");
+		navigateToUseCase(browser, "outputStylesheet", "general");
 
 		// Wait to begin the test until a button is rendered.
 		String button1Xpath = "(//button[normalize-space(text())='Button'])[1]";

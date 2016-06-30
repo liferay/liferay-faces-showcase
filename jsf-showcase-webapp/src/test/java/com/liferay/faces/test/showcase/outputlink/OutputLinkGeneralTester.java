@@ -30,7 +30,7 @@ public class OutputLinkGeneralTester extends OutputLinkTester {
 	public void runOutputLinkGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(outputLinkURL + "/general");
+		navigateToUseCase(browser, "outputLink", "general");
 
 		// Wait to begin the test until the example link is rendered.
 		String link1Xpath = "(//div[@class='showcase-example-usage'])[1]/a";

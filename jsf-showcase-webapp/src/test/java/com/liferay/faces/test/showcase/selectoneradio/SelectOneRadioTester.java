@@ -15,7 +15,6 @@
  */
 package com.liferay.faces.test.showcase.selectoneradio;
 
-import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.showcase.select.SelectOneTester;
 
 
@@ -24,9 +23,6 @@ import com.liferay.faces.test.showcase.select.SelectOneTester;
  * @author  Philip White
  */
 public class SelectOneRadioTester extends SelectOneTester {
-
-	// Component URL
-	protected static final String selectOneRadioURL = TEST_CONTEXT_URL + "/selectoneradio";
 
 	// Common Xpath
 	protected static final String selectOneRadio1Xpath =

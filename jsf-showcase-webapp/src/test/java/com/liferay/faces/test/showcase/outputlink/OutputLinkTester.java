@@ -33,8 +33,6 @@ import com.liferay.faces.test.showcase.output.OutputTester;
  */
 public class OutputLinkTester extends OutputTester {
 
-	protected static final String outputLinkURL = TEST_CONTEXT_URL + "/outputlink";
-
 	/**
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
