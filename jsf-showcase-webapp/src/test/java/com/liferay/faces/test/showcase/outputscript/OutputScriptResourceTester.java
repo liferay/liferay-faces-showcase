@@ -31,7 +31,7 @@ public class OutputScriptResourceTester extends OutputScriptTester {
 	public void runOutputScriptResourceTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(outputScriptURL + "/resource");
+		navigateToUseCase(browser, outputScriptURL + "/resource");
 
 		// Wait to begin the test until the example text is rendered.
 		browser.waitForElementVisible(exampleScriptText1Xpath);

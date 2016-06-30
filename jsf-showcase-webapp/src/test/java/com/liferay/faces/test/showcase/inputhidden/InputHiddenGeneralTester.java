@@ -31,7 +31,7 @@ public class InputHiddenGeneralTester extends InputHiddenTester {
 	public void runInputHiddenGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputHiddenURL + "/general");
+		navigateToUseCase(browser, inputHiddenURL + "/general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

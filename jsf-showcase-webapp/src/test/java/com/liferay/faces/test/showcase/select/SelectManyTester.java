@@ -37,7 +37,7 @@ public class SelectManyTester extends SelectTester {
 	protected void runSelectManyConversionTest(String url, String selectMany1Xpath, String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -88,7 +88,7 @@ public class SelectManyTester extends SelectTester {
 	protected void runSelectManyDataModelTest(String url, String selectMany1Xpath, String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until an element is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -110,7 +110,7 @@ public class SelectManyTester extends SelectTester {
 	protected void runSelectManyDefaultValueTest(String url, String selectMany1Xpath, String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -160,7 +160,7 @@ public class SelectManyTester extends SelectTester {
 		String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until an element is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

@@ -34,7 +34,7 @@ public class SelectManyMenuTester extends SelectManyTester {
 	protected void runSelectManyMenuGeneralTest(String url) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -83,7 +83,7 @@ public class SelectManyMenuTester extends SelectManyTester {
 	protected void runSelectManyMenuInstantAjaxTest(String url) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, url);
 
 		// Wait to begin the test until an element is rendered.
 		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";

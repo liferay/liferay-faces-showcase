@@ -31,7 +31,7 @@ public class SelectBooleanCheckboxImmediateTester extends SelectBooleanCheckboxT
 	public void runSelectBooleanCheckboxImmediateTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(selectBooleanCheckboxURL + "/immediate");
+		navigateToUseCase(browser, selectBooleanCheckboxURL + "/immediate");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

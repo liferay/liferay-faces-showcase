@@ -15,6 +15,8 @@
  */
 package com.liferay.faces.test.showcase;
 
+import org.openqa.selenium.WebElement;
+
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
@@ -47,17 +49,50 @@ public class TesterBase extends IntegrationTesterBase {
 		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp-" + projectVersion +
 			"/web/guest/showcase/-/component/h";
 
-		if (CONTAINER.contains("liferay")) {
+		if ("liferay".equals(TestUtil.CONTAINER)) {
 			defaultContext = "/web/guest/jsf-showcase/-/jsf-tag/h";
 		}
-		else if (CONTAINER.contains("pluto")) {
-
-			// Note: the showcase tests will not work in pluto because pluto does not support friendly URLs.
-			defaultContext = DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
+		else if ("pluto".equals(TestUtil.CONTAINER)) {
+			defaultContext = TestUtil.DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
 		}
 
 		String context = TestUtil.getSystemPropertyOrDefault("integration.context", defaultContext);
-		TEST_CONTEXT_URL = BASE_URL + context;
+		TEST_CONTEXT_URL = TestUtil.BASE_URL + context;
+	}
+
+	// Private Members
+	private boolean firstPlutoUseCaseNavigation = true;
+
+	protected void navigateToUseCase(Browser browser, String useCaseURL) {
+
+		if ("pluto".equals(TestUtil.CONTAINER)) {
+
+			if (firstPlutoUseCaseNavigation) {
+
+				// Note: in pluto it is necessary to navigate to the showcase so that elements can be used to obtain the
+				// useCaseURL in the navigateToUseCase() method.
+				browser.get(TEST_CONTEXT_URL);
+				firstPlutoUseCaseNavigation = false;
+			}
+
+			// Since pluto does not support friendly URLs, obtain the "general" use case URL from the showcase accordion
+			// and replace "general" with the specified use case. Note: non-"general" use cases are shown conditionally
+			// so we cannot rely on those links being present, but the "general" use case links are always present.
+			int index = useCaseURL.lastIndexOf("/");
+			String componentUseCase = useCaseURL.substring(index + 1);
+			String showcaseURLWithoutUseCase = useCaseURL.substring(0, index);
+			index = showcaseURLWithoutUseCase.lastIndexOf("/");
+
+			String componentName = showcaseURLWithoutUseCase.substring(index + 1);
+			WebElement componentLinkElement = browser.findElementByXpath("//a[contains(@href, '" + componentName +
+					"') and contains(@href, 'general')]");
+			String hrefAttribute = componentLinkElement.getAttribute("href");
+			String plutoUseCaseURL = hrefAttribute.replace("general", componentUseCase);
+			browser.get(plutoUseCaseURL);
+		}
+		else {
+			browser.get(useCaseURL);
+		}
 	}
 
 	/**
