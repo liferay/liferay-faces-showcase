@@ -26,6 +26,6 @@ public class SelectOneMenuDefaultValueTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneMenuDefaultValueTest() throws Exception {
-		runSelectOneDefaultValueTest(selectOneMenuURL + "/default-value", select1Xpath, OPTION_CHILD_XPATH);
+		runSelectOneDefaultValueTest("selectOneMenu", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

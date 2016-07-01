@@ -25,7 +25,8 @@ import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 public class SelectManyTester extends SelectTester {
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -34,10 +35,10 @@ public class SelectManyTester extends SelectTester {
 	 *                           selectManyMenu) or an input (for selectManyCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	protected void runSelectManyConversionTest(String url, String selectMany1Xpath, String optionChildXpath) {
+	protected void runSelectManyConversionTest(String componentName, String selectMany1Xpath, String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "conversion");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -76,7 +77,8 @@ public class SelectManyTester extends SelectTester {
 	}
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -85,10 +87,10 @@ public class SelectManyTester extends SelectTester {
 	 *                           selectManyMenu) or an input (for selectManyCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	protected void runSelectManyDataModelTest(String url, String selectMany1Xpath, String optionChildXpath) {
+	protected void runSelectManyDataModelTest(String componentName, String selectMany1Xpath, String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "data-model");
 
 		// Wait to begin the test until an element is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -98,7 +100,8 @@ public class SelectManyTester extends SelectTester {
 	}
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -107,10 +110,11 @@ public class SelectManyTester extends SelectTester {
 	 *                           selectManyMenu) or an input (for selectManyCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	protected void runSelectManyDefaultValueTest(String url, String selectMany1Xpath, String optionChildXpath) {
+	protected void runSelectManyDefaultValueTest(String componentName, String selectMany1Xpath,
+		String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "default-value");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -144,7 +148,8 @@ public class SelectManyTester extends SelectTester {
 	}
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -156,11 +161,11 @@ public class SelectManyTester extends SelectTester {
 	 *                           selectManyMenu) or an input (for selectManyCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	protected void runSelectManyImmediateTest(String url, String selectMany1Xpath, String selectMany2Xpath,
+	protected void runSelectManyImmediateTest(String componentName, String selectMany1Xpath, String selectMany2Xpath,
 		String optionChildXpath) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "immediate");
 
 		// Wait to begin the test until an element is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

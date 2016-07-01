@@ -25,7 +25,8 @@ import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 public class SelectOneTester extends SelectTester {
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectOne1Xpath   The xpath for the first selectOne component. The element may be any element type that
 	 *                           is rendered by a selectOne component including a div (alloy:selectOneCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectOneMenu).
@@ -34,11 +35,11 @@ public class SelectOneTester extends SelectTester {
 	 *                           selectOneMenu) or an input (for selectOneCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	public void runSelectOneConversionTest(String url, String selectOne1Xpath, String optionChildXpath)
+	public void runSelectOneConversionTest(String componentName, String selectOne1Xpath, String optionChildXpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "conversion");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -64,7 +65,8 @@ public class SelectOneTester extends SelectTester {
 	}
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectOne1Xpath   The xpath for the first selectOne component. The element may be any element type that
 	 *                           is rendered by a selectOne component including a div (alloy:selectOneCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectOneMenu).
@@ -73,11 +75,11 @@ public class SelectOneTester extends SelectTester {
 	 *                           selectOneMenu) or an input (for selectOneCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	public void runSelectOneDataModelTest(String url, String selectOne1Xpath, String optionChildXpath)
+	public void runSelectOneDataModelTest(String componentName, String selectOne1Xpath, String optionChildXpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "data-model");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -87,7 +89,8 @@ public class SelectOneTester extends SelectTester {
 	}
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectOne1Xpath   The xpath for the first selectOne component. The element may be any element type that
 	 *                           is rendered by a selectOne component including a div (alloy:selectOneCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectOneMenu).
@@ -96,11 +99,11 @@ public class SelectOneTester extends SelectTester {
 	 *                           selectOneMenu) or an input (for selectOneCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	public void runSelectOneDefaultValueTest(String url, String selectOne1Xpath, String optionChildXpath)
+	public void runSelectOneDefaultValueTest(String componentName, String selectOne1Xpath, String optionChildXpath)
 		throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "default-value");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -119,7 +122,8 @@ public class SelectOneTester extends SelectTester {
 	}
 
 	/**
-	 * @param  url
+	 * @param  componentName
+	 * @param  componentUseCase
 	 * @param  selectOne1Xpath   The xpath for the first selectOne component. The element may be any element type that
 	 *                           is rendered by a selectOne component including a div (alloy:selectOneCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectOneMenu).
@@ -131,11 +135,11 @@ public class SelectOneTester extends SelectTester {
 	 *                           selectOneMenu) or an input (for selectOneCheckbox). The xpath should not include a
 	 *                           numeric qualifier since the method uses this xpath to obtain multiple elements.
 	 */
-	public void runSelectOneImmediateTest(String url, String selectOne1Xpath, String selectOne2Xpath,
+	public void runSelectOneImmediateTest(String componentName, String selectOne1Xpath, String selectOne2Xpath,
 		String optionChildXpath) throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "immediate");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

@@ -26,6 +26,6 @@ public class SelectManyMenuConversionTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyMenuConversionTest() throws Exception {
-		runSelectManyConversionTest(selectManyMenuURL + "/conversion", select1Xpath, OPTION_CHILD_XPATH);
+		runSelectManyConversionTest("selectManyMenu", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

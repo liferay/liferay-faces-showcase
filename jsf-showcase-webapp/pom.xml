@@ -39,13 +39,12 @@
 								<!-- Specify a property like so: -Dintegration.browser=phantomjs -->
 								<integration.browser>${integration.browser}</integration.browser>
 								<integration.log.level>${integration.log.level}</integration.log.level>
-								<!-- Note: the showcase tests will not work in pluto because pluto does not support -->
-								<!-- friendly URLs. -->
 								<integration.container>${integration.container}</integration.container>
 								<integration.host>${integration.host}</integration.host>
 								<integration.port>${integration.port}</integration.port>
 								<integration.showcase.version>${integration.showcase.version}</integration.showcase.version>
 								<integration.context>${integration.context}</integration.context>
+								<integration.default.component.prefix>${integration.default.component.prefix}</integration.default.component.prefix>
 								<integration.sign.in.context>${integration.sign.in.context}</integration.sign.in.context>
 								<integration.login.xpath>${integration.login.xpath}</integration.login.xpath>
 								<integration.password.xpath>${integration.password.xpath}</integration.password.xpath>
@@ -74,31 +73,57 @@
 			</properties>
 		</profile>
 		<profile>
+			<id>pluto</id>
+			<properties>
+				<integration.container>pluto</integration.container>
+			</properties>
+		</profile>
+		<profile>
 			<id>alloy</id>
 			<properties>
 				<integration.showcase.version>3.0.0-SNAPSHOT</integration.showcase.version>
-				<integration.context>/com.liferay.faces.demo.alloy.showcase.webapp-${integration.showcase.version}/web/guest/showcase/-/component/alloy</integration.context>
+				<integration.context>/com.liferay.faces.demo.alloy.showcase.webapp-${integration.showcase.version}/web/guest/showcase/-/component</integration.context>
+				<integration.default.component.prefix>alloy</integration.default.component.prefix>
 			</properties>
 		</profile>
 		<profile>
 			<id>metal</id>
 			<properties>
 				<integration.showcase.version>1.0.0-SNAPSHOT</integration.showcase.version>
-				<integration.context>/com.liferay.faces.demo.metal.showcase.webapp-${integration.showcase.version}/web/guest/showcase/-/component/metal</integration.context>
+				<integration.context>/com.liferay.faces.demo.metal.showcase.webapp-${integration.showcase.version}/web/guest/showcase/-/component</integration.context>
+				<integration.default.component.prefix>metal</integration.default.component.prefix>
 			</properties>
 		</profile>
 		<profile>
 			<id>liferay-alloy</id>
 			<properties>
 				<integration.container>liferay</integration.container>
-				<integration.context>/web/guest/alloy-showcase/-/alloy-tag/alloy</integration.context>
+				<integration.context>/web/guest/alloy-showcase/-/alloy-tag</integration.context>
+				<integration.default.component.prefix>alloy</integration.default.component.prefix>
 			</properties>
 		</profile>
 		<profile>
 			<id>liferay-metal</id>
 			<properties>
 				<integration.container>liferay</integration.container>
-				<integration.context>/web/guest/metal-showcase/-/metal-tag/metal</integration.context>
+				<integration.context>/web/guest/metal-showcase/-/metal-tag</integration.context>
+				<integration.default.component.prefix>metal</integration.default.component.prefix>
+			</properties>
+		</profile>
+		<profile>
+			<id>pluto-alloy</id>
+			<properties>
+				<integration.container>pluto</integration.container>
+				<integration.context>/pluto/portal/alloy-showcase</integration.context>
+				<integration.default.component.prefix>alloy</integration.default.component.prefix>
+			</properties>
+		</profile>
+		<profile>
+			<id>pluto-metal</id>
+			<properties>
+				<integration.container>pluto</integration.container>
+				<integration.context>/pluto/portal/metal-showcase</integration.context>
+				<integration.default.component.prefix>metal</integration.default.component.prefix>
 			</properties>
 		</profile>
 	</profiles>

@@ -31,7 +31,7 @@ public class SelectManyCheckboxInstantAjaxTester extends SelectManyCheckboxTeste
 	public void runSelectManyCheckboxInstantAjaxTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(selectManyCheckboxURL + "/instant-ajax");
+		navigateToUseCase(browser, "selectManyCheckbox", "instant-ajax");
 
 		// Wait to begin the test until an element is rendered.
 		String checkbox1Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[1]";

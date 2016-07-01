@@ -24,9 +24,6 @@ import com.liferay.faces.test.showcase.output.OutputTester;
  */
 public class OutputScriptTester extends OutputTester {
 
-	// Component URL
-	protected static final String outputScriptURL = TEST_CONTEXT_URL + "/outputscript";
-
 	// Common Xpath
 	protected static final String exampleScriptText1Xpath = "(//div[@class='showcase-example-usage'])[1]/span[text()]";
 }

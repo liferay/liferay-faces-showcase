@@ -26,6 +26,6 @@ public class SelectOneRadioDataModelTester extends SelectOneRadioTester {
 
 	@Test
 	public void runSelectOneRadioDataModelTest() throws Exception {
-		runSelectOneDataModelTest(selectOneRadioURL + "/data-model", selectOneRadio1Xpath, RADIO_CHILD_XPATH);
+		runSelectOneDataModelTest("selectOneRadio", selectOneRadio1Xpath, RADIO_CHILD_XPATH);
 	}
 }

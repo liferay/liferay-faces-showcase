@@ -31,7 +31,7 @@ public class InputHiddenImmediateTester extends InputHiddenTester {
 	public void runInputHiddenImmediateTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputHiddenURL + "/immediate");
+		navigateToUseCase(browser, "inputHidden", "immediate");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

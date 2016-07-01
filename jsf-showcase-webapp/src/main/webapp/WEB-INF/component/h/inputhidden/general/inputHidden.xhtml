@@ -7,7 +7,7 @@
 		<h:form>
 			<showcase:example renderedCheckbox="true" requiredCheckbox="true">
 				<showcase:field label="#{i18n['hidden-field']}">
-					<showcase:container>
+					<showcase:container style="clear: both">
 						<h:outputText rendered="#{showcaseModelBean.selectedComponent.rendered}"
 							value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
 						<h:outputText rendered="#{!showcaseModelBean.selectedComponent.rendered}"

@@ -15,10 +15,6 @@
  */
 package com.liferay.faces.test.showcase.selectonemenu;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 import com.liferay.faces.test.showcase.select.SelectOneTester;
@@ -30,13 +26,10 @@ import com.liferay.faces.test.showcase.select.SelectOneTester;
  */
 public class SelectOneMenuTester extends SelectOneTester {
 
-	// Component URL
-	protected static final String selectOneMenuURL = TEST_CONTEXT_URL + "/selectonemenu";
-
-	protected void runSelectOneInstantAjaxTest(String url) throws Exception {
+	protected void runSelectOneInstantAjaxTest(String componentName) throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "instant-ajax");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(select1Xpath);
@@ -56,10 +49,10 @@ public class SelectOneMenuTester extends SelectOneTester {
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
 	}
 
-	protected void runSelectOneMenuGeneralTest(String url) {
+	protected void runSelectOneMenuGeneralTest(String componentName) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

@@ -31,7 +31,7 @@ public class InputHiddenConversionTester extends InputHiddenTester {
 	public void runInputHiddenConversionTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputHiddenURL + "/conversion");
+		navigateToUseCase(browser, "inputHidden", "conversion");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

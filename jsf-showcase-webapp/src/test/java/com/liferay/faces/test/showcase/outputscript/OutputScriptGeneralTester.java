@@ -31,7 +31,7 @@ public class OutputScriptGeneralTester extends OutputScriptTester {
 	public void runOutputScriptGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(outputScriptURL + "/general");
+		navigateToUseCase(browser, "outputScript", "general");
 
 		// Wait to begin the test until the example text is rendered.
 		browser.waitForElementVisible(exampleScriptText1Xpath);

@@ -28,13 +28,10 @@ import com.liferay.faces.test.showcase.select.SelectManyTester;
  */
 public class SelectManyMenuTester extends SelectManyTester {
 
-	// Component URL
-	protected static final String selectManyMenuURL = TEST_CONTEXT_URL + "/selectmanymenu";
-
-	protected void runSelectManyMenuGeneralTest(String url) {
+	protected void runSelectManyMenuGeneralTest(String componentName) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);
@@ -80,10 +77,10 @@ public class SelectManyMenuTester extends SelectManyTester {
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer4);
 	}
 
-	protected void runSelectManyMenuInstantAjaxTest(String url) {
+	protected void runSelectManyMenuInstantAjaxTest(String componentName) {
 
 		Browser browser = Browser.getInstance();
-		browser.get(url);
+		navigateToUseCase(browser, componentName, "instant-ajax");
 
 		// Wait to begin the test until an element is rendered.
 		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";

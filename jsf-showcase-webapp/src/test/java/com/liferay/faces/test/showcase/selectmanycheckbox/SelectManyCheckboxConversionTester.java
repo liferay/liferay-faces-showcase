@@ -26,7 +26,6 @@ public class SelectManyCheckboxConversionTester extends SelectManyCheckboxTester
 
 	@Test
 	public void runSelectManyCheckboxConversionTest() throws Exception {
-		runSelectManyConversionTest(selectManyCheckboxURL + "/conversion", selectManyCheckbox1Xpath,
-			CHECKBOX_CHILD_XPATH);
+		runSelectManyConversionTest("selectManyCheckbox", selectManyCheckbox1Xpath, CHECKBOX_CHILD_XPATH);
 	}
 }

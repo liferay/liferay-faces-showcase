@@ -31,7 +31,7 @@ public class SelectBooleanCheckboxInstantAjaxTester extends SelectBooleanCheckbo
 	public void runSelectBooleanCheckboxInstantAjaxTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(selectBooleanCheckboxURL + "/instant-ajax");
+		navigateToUseCase(browser, "selectBooleanCheckbox", "instant-ajax");
 
 		// Wait to begin the test until an element is rendered.
 		browser.waitForElementVisible(checkbox1Xpath);

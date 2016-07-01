@@ -32,7 +32,7 @@ public class OutputTextRightToLeftTester extends OutputTester {
 	public void runOutputTextRightToLeftTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/outputtext/right-to-left");
+		navigateToUseCase(browser, "outputText", "right-to-left");
 
 		// Wait to begin the test until the example text is rendered.
 		String RTLModelValue1Xpath = "(//span[@dir='RTL'])";

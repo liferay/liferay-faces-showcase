@@ -31,7 +31,7 @@ public class InputHiddenValidationTester extends InputHiddenTester {
 	public void runInputHiddenValidationTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputHiddenURL + "/validation");
+		navigateToUseCase(browser, "inputHidden", "validation");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

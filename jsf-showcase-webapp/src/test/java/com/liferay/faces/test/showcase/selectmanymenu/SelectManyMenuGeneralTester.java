@@ -26,6 +26,6 @@ public class SelectManyMenuGeneralTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyMenuGeneralTest() throws Exception {
-		runSelectManyMenuGeneralTest(selectManyMenuURL + "/general");
+		runSelectManyMenuGeneralTest("selectManyMenu");
 	}
 }

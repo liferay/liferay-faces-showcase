@@ -37,7 +37,7 @@ public class OutputTextConversionTester extends OutputTester {
 	public void runOutputTextConversionTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(TEST_CONTEXT_URL + "/outputtext/conversion");
+		navigateToUseCase(browser, "outputText", "conversion");
 
 		// Wait to begin the test until the example text is rendered.
 		browser.waitForElementVisible(exampleText1Xpath);

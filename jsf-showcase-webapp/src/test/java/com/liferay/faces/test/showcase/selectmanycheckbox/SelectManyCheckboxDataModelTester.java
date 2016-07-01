@@ -26,7 +26,6 @@ public class SelectManyCheckboxDataModelTester extends SelectManyCheckboxTester 
 
 	@Test
 	public void runSelectManyCheckboxDataModelTest() throws Exception {
-		runSelectManyDataModelTest(selectManyCheckboxURL + "/data-model", selectManyCheckbox1Xpath,
-			CHECKBOX_CHILD_XPATH);
+		runSelectManyDataModelTest("selectManyCheckbox", selectManyCheckbox1Xpath, CHECKBOX_CHILD_XPATH);
 	}
 }

@@ -31,7 +31,7 @@ public class InputSecretRedisplayTester extends InputSecretTester {
 	public void runInputSecretRedisplayTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(inputSecretURL + "/redisplay");
+		navigateToUseCase(browser, "inputSecret", "redisplay");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

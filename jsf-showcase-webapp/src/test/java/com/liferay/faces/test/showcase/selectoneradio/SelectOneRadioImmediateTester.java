@@ -26,7 +26,6 @@ public class SelectOneRadioImmediateTester extends SelectOneRadioTester {
 
 	@Test
 	public void runSelectOneRadioImmediateTest() throws Exception {
-		runSelectOneImmediateTest(selectOneRadioURL + "/immediate", selectOneRadio1Xpath, selectOneRadio2Xpath,
-			RADIO_CHILD_XPATH);
+		runSelectOneImmediateTest("selectOneRadio", selectOneRadio1Xpath, selectOneRadio2Xpath, RADIO_CHILD_XPATH);
 	}
 }

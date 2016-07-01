@@ -24,9 +24,6 @@ import com.liferay.faces.test.showcase.select.SelectManyTester;
  */
 public class SelectManyCheckboxTester extends SelectManyTester {
 
-	// Component URL
-	protected static final String selectManyCheckboxURL = TEST_CONTEXT_URL + "/selectmanycheckbox";
-
 	// Common Xpath
 	protected static final String selectManyCheckbox1Xpath =
 		"(//table[contains(@id,':selectManyCheckbox')]|//div[contains(@id,':selectManyCheckbox')])[1]";

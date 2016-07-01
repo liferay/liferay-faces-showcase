@@ -28,7 +28,6 @@ public class SelectManyListboxImmediateTester extends SelectManyMenuTester {
 
 	@Test
 	public void runSelectManyListboxImmediateTest() throws Exception {
-		runSelectManyImmediateTest(TEST_CONTEXT_URL + "/selectmanylistbox/immediate", select1Xpath, select2Xpath,
-			OPTION_CHILD_XPATH);
+		runSelectManyImmediateTest("selectManyListbox", select1Xpath, select2Xpath, OPTION_CHILD_XPATH);
 	}
 }

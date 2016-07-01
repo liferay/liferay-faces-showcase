@@ -31,7 +31,7 @@ public class SelectManyCheckboxGeneralTester extends SelectManyCheckboxTester {
 	public void runSelectManyCheckboxGeneralTest() throws Exception {
 
 		Browser browser = Browser.getInstance();
-		browser.get(selectManyCheckboxURL + "/general");
+		navigateToUseCase(browser, "selectManyCheckbox", "general");
 
 		// Wait to begin the test until the submit button is rendered.
 		browser.waitForElementVisible(submitButton1Xpath);

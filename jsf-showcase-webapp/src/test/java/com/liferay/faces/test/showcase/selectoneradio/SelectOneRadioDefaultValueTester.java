@@ -26,6 +26,6 @@ public class SelectOneRadioDefaultValueTester extends SelectOneRadioTester {
 
 	@Test
 	public void runSelectOneRadioDefaultValueTest() throws Exception {
-		runSelectOneDefaultValueTest(selectOneRadioURL + "/default-value", selectOneRadio1Xpath, RADIO_CHILD_XPATH);
+		runSelectOneDefaultValueTest("selectOneRadio", selectOneRadio1Xpath, RADIO_CHILD_XPATH);
 	}
 }

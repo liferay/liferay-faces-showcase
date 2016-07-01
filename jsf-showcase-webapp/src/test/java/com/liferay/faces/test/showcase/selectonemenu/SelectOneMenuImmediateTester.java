@@ -26,6 +26,6 @@ public class SelectOneMenuImmediateTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneMenuImmediateTest() throws Exception {
-		runSelectOneImmediateTest(selectOneMenuURL + "/immediate", select1Xpath, select2Xpath, OPTION_CHILD_XPATH);
+		runSelectOneImmediateTest("selectOneMenu", select1Xpath, select2Xpath, OPTION_CHILD_XPATH);
 	}
 }

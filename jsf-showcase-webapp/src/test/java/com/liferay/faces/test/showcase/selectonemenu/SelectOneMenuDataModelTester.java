@@ -26,6 +26,6 @@ public class SelectOneMenuDataModelTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneMenuDataModelTest() throws Exception {
-		runSelectOneDataModelTest(selectOneMenuURL + "/data-model", select1Xpath, OPTION_CHILD_XPATH);
+		runSelectOneDataModelTest("selectOneMenu", select1Xpath, OPTION_CHILD_XPATH);
 	}
 }

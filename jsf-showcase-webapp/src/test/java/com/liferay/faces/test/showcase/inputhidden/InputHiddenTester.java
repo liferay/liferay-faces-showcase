@@ -24,9 +24,6 @@ import com.liferay.faces.test.showcase.input.InputTester;
  */
 public class InputHiddenTester extends InputTester {
 
-	// Component URL
-	protected static final String inputHiddenURL = TEST_CONTEXT_URL + "/inputhidden";
-
 	// Common Xpath
 	protected static final String modelValueEmpty1Xpath =
 		"(//span[contains(@id,':modelValue')][not(normalize-space())])[1]";

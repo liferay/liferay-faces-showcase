@@ -26,7 +26,6 @@ public class SelectManyCheckboxDefaultValueTester extends SelectManyCheckboxTest
 
 	@Test
 	public void runSelectManyCheckboxDefaultValueTest() throws Exception {
-		runSelectManyDefaultValueTest(selectManyCheckboxURL + "/default-value", selectManyCheckbox1Xpath,
-			CHECKBOX_CHILD_XPATH);
+		runSelectManyDefaultValueTest("selectManyCheckbox", selectManyCheckbox1Xpath, CHECKBOX_CHILD_XPATH);
 	}
 }

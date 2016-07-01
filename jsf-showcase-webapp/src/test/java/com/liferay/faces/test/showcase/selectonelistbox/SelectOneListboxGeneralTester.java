@@ -28,6 +28,6 @@ public class SelectOneListboxGeneralTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneListboxGeneralTest() throws Exception {
-		runSelectOneMenuGeneralTest(TEST_CONTEXT_URL + "/selectonelistbox/general");
+		runSelectOneMenuGeneralTest("selectOneListbox");
 	}
 }

@@ -15,6 +15,13 @@
  */
 package com.liferay.faces.test.showcase;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
@@ -41,23 +48,71 @@ public class TesterBase extends IntegrationTesterBase {
 	protected static final String valueIsRequiredError1Xpath =
 		"(//div[contains(@class,'field form-group has-error') and contains(., 'Validation Error: Value is required.')])[1]";
 
+	// Private Constants
+	private static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
+			"integration.default.component.prefix", "h");
+
 	static {
 
 		String projectVersion = System.getProperty("integration.showcase.version");
 		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp-" + projectVersion +
-			"/web/guest/showcase/-/component/h";
+			"/web/guest/showcase/-/component";
 
-		if (CONTAINER.contains("liferay")) {
-			defaultContext = "/web/guest/jsf-showcase/-/jsf-tag/h";
+		if ("liferay".equals(TestUtil.CONTAINER)) {
+			defaultContext = "/web/guest/jsf-showcase/-/jsf-tag";
 		}
-		else if (CONTAINER.contains("pluto")) {
-
-			// Note: the showcase tests will not work in pluto because pluto does not support friendly URLs.
-			defaultContext = DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
+		else if ("pluto".equals(TestUtil.CONTAINER)) {
+			defaultContext = TestUtil.DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
 		}
 
 		String context = TestUtil.getSystemPropertyOrDefault("integration.context", defaultContext);
-		TEST_CONTEXT_URL = BASE_URL + context;
+		TEST_CONTEXT_URL = TestUtil.BASE_URL + context;
+	}
+
+	protected void navigateToUseCase(Browser browser, String componentName, String componentUseCase) {
+		navigateToUseCase(browser, DEFAULT_COMPONENT_PREFIX, componentName, componentUseCase);
+	}
+
+	protected void navigateToUseCase(Browser browser, String componentPrefix, String componentName,
+		String componentUseCase) {
+
+		if ("pluto".equals(TestUtil.CONTAINER)) {
+
+			// Since pluto does not support friendly URLs, obtain the "general" use case URL from the showcase accordion
+			// and replace "general" with the specified use case. Note: non-"general" use cases are shown conditionally
+			// so we cannot rely on those links being present, but the "general" use case links are always present.
+			String componentLinkXpath = "//a[contains(@href, 'general') and normalize-space(text())='" +
+				componentPrefix + ":" + componentName + "']";
+			List<WebElement> componentLinkElements = browser.findElements(By.xpath(componentLinkXpath));
+
+			// Initially, navigateToUseCase() may be called when the browser is on the default pluto page, so navigate to
+			// the showcase if no component link element is found.
+			if (componentLinkElements.isEmpty()) {
+
+				browser.get(TEST_CONTEXT_URL);
+				componentLinkElements = browser.findElements(By.xpath(componentLinkXpath));
+			}
+
+			if (componentLinkElements.isEmpty()) {
+				throw new Error("Could not obtain pluto use case URL because no link for " + componentPrefix + ":" +
+					componentName + " was found on the page.");
+			}
+
+			if (componentLinkElements.size() > 1) {
+				throw new IllegalStateException(
+					"Could not obtain pluto use case URL because multiple links matching xpath \"" +
+					componentLinkXpath + "\" for " + componentPrefix + ":" + componentName +
+					" were found on the page.\nXpath is ambiguous.");
+			}
+
+			String hrefAttribute = componentLinkElements.get(0).getAttribute("href");
+			String plutoUseCaseURL = hrefAttribute.replace("general", componentUseCase);
+			browser.get(plutoUseCaseURL);
+		}
+		else {
+			browser.get(TEST_CONTEXT_URL + "/" + componentPrefix + "/" + componentName.toLowerCase(Locale.ENGLISH) +
+				"/" + componentUseCase);
+		}
 	}
 
 	/**

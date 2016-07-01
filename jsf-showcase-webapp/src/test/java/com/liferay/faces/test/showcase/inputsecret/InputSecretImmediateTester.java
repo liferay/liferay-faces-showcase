@@ -26,6 +26,6 @@ public class InputSecretImmediateTester extends InputSecretTester {
 
 	@Test
 	public void runInputSecretImmediateTest() throws Exception {
-		runInputTextImmediateTest(inputSecretURL + "/immediate", inputSecret1Xpath, inputSecret2Xpath);
+		runInputTextImmediateTest("inputSecret", inputSecret1Xpath, inputSecret2Xpath);
 	}
 }
