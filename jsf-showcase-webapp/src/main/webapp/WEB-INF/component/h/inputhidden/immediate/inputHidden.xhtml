@@ -6,13 +6,14 @@
 		<!-- Example 1: ValueChangeListener execution when immediate is true -->
 		<h:form>
 			<showcase:example description="#{i18n['valuechangelistener-execution-when-immediate-is-true']}" number="1">
-				<h:messages globalOnly="true" styleClass="feedback" />
 				<showcase:container>
 					<h:outputText value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
-					<h:inputHidden id="hidden1" binding="#{inputHidden1}" immediate="true"
-						value="#{inputHiddenModelBean.text}"
-						valueChangeListener="#{inputHiddenBackingBean.valueChangeListener}" />
-					<h:message for="hidden1" />
+					<showcase:field>
+						<h:messages globalOnly="true" styleClass="feedback" />
+						<h:inputHidden id="hidden1" binding="#{inputHidden1}" immediate="true"
+							value="#{inputHiddenModelBean.text}"
+							valueChangeListener="#{inputHiddenBackingBean.valueChangeListener}" />
+					</showcase:field>
 				</showcase:container>
 				<button onclick="document.getElementById('#{inputHidden1.clientId}').value='1234'; return false;">
 					#{i18n['copy-1234-to-the-value-of-the-hidden-input']}
@@ -35,12 +36,13 @@
 		<!-- Example 2: ValueChangeListener execution when immediate is false (the default) -->
 		<h:form>
 			<showcase:example description="#{i18n['valuechangelistener-execution-when-immediate-is-false']}" number="2">
-				<h:messages globalOnly="true" styleClass="feedback" />
 				<showcase:container>
 					<h:outputText value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
-					<h:inputHidden id="hidden2" binding="#{inputHidden2}" value="#{inputHiddenModelBean.text}"
-						valueChangeListener="#{inputHiddenBackingBean.valueChangeListener}" />
-					<h:message for="hidden2" />
+					<showcase:field>
+						<h:messages globalOnly="true" styleClass="feedback" />
+						<h:inputHidden id="hidden2" binding="#{inputHidden2}" value="#{inputHiddenModelBean.text}"
+							valueChangeListener="#{inputHiddenBackingBean.valueChangeListener}" />
+					</showcase:field>
 				</showcase:container>
 				<button onclick="document.getElementById('#{inputHidden2.clientId}').value='1234'; return false;">
 					#{i18n['copy-1234-to-the-value-of-the-hidden-input']}
