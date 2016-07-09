@@ -13,28 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.showcase.validator;
-
-import java.util.Locale;
-
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
+package com.liferay.faces.showcase.i18n.internal;
 
 import com.liferay.faces.util.i18n.I18n;
 import com.liferay.faces.util.i18n.I18nFactory;
 
 
 /**
- * @author  Juan Gonzalez
+ * @author  Neil Griffin
  */
-public class ValidatorHelper {
+public class I18nFactoryShowcaseImpl extends I18nFactory {
 
-	public static String getMessage(FacesContext facesContext, String messageId) {
+	// Private Data Members
+	private I18n i18n;
+	private I18nFactory wrappedI18nFactory;
 
-		I18n i18n = I18nFactory.getI18nInstance();
-		UIViewRoot viewRoot = facesContext.getViewRoot();
-		Locale locale = viewRoot.getLocale();
+	public I18nFactoryShowcaseImpl(I18nFactory i18nFactory) {
+		I18n wrappedI18n = i18nFactory.getI18n();
+		this.i18n = new I18nShowcaseImpl(wrappedI18n);
+		this.wrappedI18nFactory = i18nFactory;
+	}
 
-		return i18n.getMessage(facesContext, locale, messageId);
+	@Override
+	public I18n getI18n() {
+		return i18n;
+	}
+
+	@Override
+	public I18nFactory getWrapped() {
+		return wrappedI18nFactory;
 	}
 }
