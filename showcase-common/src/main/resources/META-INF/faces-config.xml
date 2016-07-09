@@ -10,7 +10,7 @@
 	</ordering>
 	<factory>
 		<factory-extension>
-			<util:message-context-factory>com.liferay.faces.showcase.context.internal.MessageContextFactoryShowcaseImpl</util:message-context-factory>
+			<util:i18n-factory>com.liferay.faces.showcase.i18n.internal.I18nFactoryShowcaseImpl</util:i18n-factory>
 			<util:resource-verifier-factory>com.liferay.faces.showcase.application.internal.ResourceVerifierFactoryShowcaseImpl</util:resource-verifier-factory>
 		</factory-extension>
 	</factory>

@@ -13,31 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.showcase.context.internal;
+package com.liferay.faces.showcase.i18n.internal;
 
 import java.util.Locale;
 
 import com.liferay.faces.showcase.util.ShowcaseUtil;
-import com.liferay.faces.util.context.MessageContext;
-import com.liferay.faces.util.context.MessageContextWrapper;
+import com.liferay.faces.util.i18n.I18n;
+import com.liferay.faces.util.i18n.I18nWrapper;
 
 
 /**
  * @author  Neil Griffin
  */
-public class MessageContextShowcaseImpl extends MessageContextWrapper {
+public class I18nShowcaseImpl extends I18nWrapper {
 
 	// Private Data Members
-	private MessageContext wrappedMessageContext;
+	private I18n wrappedI18n;
 
-	public MessageContextShowcaseImpl(MessageContext messageContext) {
-		this.wrappedMessageContext = messageContext;
+	public I18nShowcaseImpl(I18n i18n) {
+		this.wrappedI18n = i18n;
 	}
 
-	@Override
+	// TODO: Uncomment! @Override
 	public String getMessage(Locale locale, String messageId) {
 
-		String message = super.getMessage(locale, messageId);
+		// TODO: Uncomment!
+		// String message = super.getMessage(locale, messageId);
+		String message = null;
 
 		if (message != null) {
 			message = ShowcaseUtil.encodeDescription(message);
@@ -47,7 +49,7 @@ public class MessageContextShowcaseImpl extends MessageContextWrapper {
 	}
 
 	@Override
-	public MessageContext getWrapped() {
-		return wrappedMessageContext;
+	public I18n getWrapped() {
+		return wrappedI18n;
 	}
 }
