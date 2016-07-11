@@ -6,25 +6,21 @@
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example renderedCheckbox="true" requiredCheckbox="true">
-				<showcase:field label="#{i18n['hidden-field']}">
-					<showcase:container style="clear: both">
-						<h:outputText rendered="#{showcaseModelBean.selectedComponent.rendered}"
-							value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
-						<h:outputText rendered="#{!showcaseModelBean.selectedComponent.rendered}"
-							value="#{i18n['the-hidden-input-is-not-rendered']}" />
+				<showcase:container style="clear: both" rendered="#{showcaseModelBean.selectedComponent.rendered}">
+					<h:outputText value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
+					<showcase:field label="#{i18n['hidden-field']}">
 						<h:inputHidden id="hidden" binding="#{inputHidden}"
-							rendered="#{showcaseModelBean.selectedComponent.rendered}"
 							required="#{showcaseModelBean.selectedComponent.required}"
 							value="#{inputHiddenModelBean.text}" />
 						<h:message for="hidden" />
-					</showcase:container>
-					<button onclick="document.getElementById('#{inputHidden.clientId}').value='1234'; return false;">
-						#{i18n['copy-1234-to-the-value-of-the-hidden-input']}
-					</button>
-					<button onclick="document.getElementById('#{inputHidden.clientId}').value=''; return false;">
-						#{i18n['clear-the-value-of-the-hidden-input']}
-					</button>
-				</showcase:field>
+					</showcase:field>
+				</showcase:container>
+				<button onclick="document.getElementById('#{inputHidden.clientId}').value='1234'; return false;">
+					#{i18n['copy-1234-to-the-value-of-the-hidden-input']}
+				</button>
+				<button onclick="document.getElementById('#{inputHidden.clientId}').value=''; return false;">
+					#{i18n['clear-the-value-of-the-hidden-input']}
+				</button>
 				<hr />
 				<h:commandButton action="#{inputHiddenBackingBean.submit}" value="#{i18n['submit']}">
 					<f:ajax execute="@form" render="@form" />
