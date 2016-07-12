@@ -17,6 +17,8 @@ package com.liferay.faces.showcase.i18n.internal;
 
 import java.util.Locale;
 
+import javax.faces.context.FacesContext;
+
 import com.liferay.faces.showcase.util.ShowcaseUtil;
 import com.liferay.faces.util.i18n.I18n;
 import com.liferay.faces.util.i18n.I18nWrapper;
@@ -34,12 +36,10 @@ public class I18nShowcaseImpl extends I18nWrapper {
 		this.wrappedI18n = i18n;
 	}
 
-	// TODO: Uncomment! @Override
-	public String getMessage(Locale locale, String messageId) {
+	@Override
+	public String getMessage(FacesContext facesContext, Locale locale, String messageId) {
 
-		// TODO: Uncomment!
-		// String message = super.getMessage(locale, messageId);
-		String message = null;
+		String message = super.getMessage(facesContext, locale, messageId);
 
 		if (message != null) {
 			message = ShowcaseUtil.encodeDescription(message);
