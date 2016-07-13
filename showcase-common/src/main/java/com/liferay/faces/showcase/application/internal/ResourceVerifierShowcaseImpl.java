@@ -15,6 +15,8 @@
  */
 package com.liferay.faces.showcase.application.internal;
 
+import java.io.Serializable;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
@@ -28,7 +30,10 @@ import com.liferay.faces.util.product.ProductFactory;
 /**
  * @author  Kyle Stiemann
  */
-public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper {
+public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper implements Serializable {
+
+	// serialVersionUID
+	private static final long serialVersionUID = 4691201895912598647L;
 
 	// Private Constants
 	private static final boolean ALLOY_DETECTED = ProductFactory.getProduct(Product.Name.LIFERAY_FACES_ALLOY)

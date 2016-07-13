@@ -15,6 +15,8 @@
  */
 package com.liferay.faces.showcase.i18n.internal;
 
+import java.io.Serializable;
+
 import com.liferay.faces.util.i18n.I18n;
 import com.liferay.faces.util.i18n.I18nFactory;
 
@@ -22,7 +24,10 @@ import com.liferay.faces.util.i18n.I18nFactory;
 /**
  * @author  Neil Griffin
  */
-public class I18nFactoryShowcaseImpl extends I18nFactory {
+public class I18nFactoryShowcaseImpl extends I18nFactory implements Serializable {
+
+	// serialVersionUID
+	private static final long serialVersionUID = 8815090917803392581L;
 
 	// Private Data Members
 	private I18n i18n;

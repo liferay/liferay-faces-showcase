@@ -15,6 +15,7 @@
  */
 package com.liferay.faces.showcase.i18n.internal;
 
+import java.io.Serializable;
 import java.util.Locale;
 
 import javax.faces.context.FacesContext;
@@ -27,7 +28,10 @@ import com.liferay.faces.util.i18n.I18nWrapper;
 /**
  * @author  Neil Griffin
  */
-public class I18nShowcaseImpl extends I18nWrapper {
+public class I18nShowcaseImpl extends I18nWrapper implements Serializable {
+
+	// serialVersionUID
+	private static final long serialVersionUID = 37063121784542610L;
 
 	// Private Data Members
 	private I18n wrappedI18n;

@@ -15,6 +15,8 @@
  */
 package com.liferay.faces.showcase.application.internal;
 
+import java.io.Serializable;
+
 import com.liferay.faces.util.application.ResourceVerifier;
 import com.liferay.faces.util.application.ResourceVerifierFactory;
 
@@ -22,21 +24,25 @@ import com.liferay.faces.util.application.ResourceVerifierFactory;
 /**
  * @author  Kyle Stiemann
  */
-public class ResourceVerifierFactoryShowcaseImpl extends ResourceVerifierFactory {
+public class ResourceVerifierFactoryShowcaseImpl extends ResourceVerifierFactory implements Serializable {
+
+	// serialVersionUID
+	private static final long serialVersionUID = 670455091294165970L;
 
 	// Private Members
+	private ResourceVerifier resourceVerifier;
 	private ResourceVerifierFactory wrappedDependencyVerifierFactory;
 
 	public ResourceVerifierFactoryShowcaseImpl(ResourceVerifierFactory dependencyVerifierFactory) {
+
+		ResourceVerifier resourceVerifier = dependencyVerifierFactory.getResourceVerifier();
+		this.resourceVerifier = new ResourceVerifierShowcaseImpl(resourceVerifier);
 		this.wrappedDependencyVerifierFactory = dependencyVerifierFactory;
 	}
 
 	@Override
 	public ResourceVerifier getResourceVerifier() {
-
-		ResourceVerifier resourceVerifier = wrappedDependencyVerifierFactory.getResourceVerifier();
-
-		return new ResourceVerifierShowcaseImpl(resourceVerifier);
+		return resourceVerifier;
 	}
 
 	@Override
