@@ -26,9 +26,11 @@
 		<c:set value="#{i18n[selectedComponentKey]}" var="selectedComponentDescription" />
 		<c:set value="#{i18n[selectedComponentUseCaseKey]}" var="selectedComponentUseCaseDescription" />
 		<c:set value="vdldoc:#{selectedComponentFullName}" var="selectedComponentDocKey" />
-		<button onclick="window.open('#{showcase:encodeVDLDocURL(selectedComponentDocKey)}')" style="float: right;">
-			#{i18n['vdl-documentation']}
-		</button>
+		<c:if test="#{selectedComponentPrefix != 'util'}">
+			<button onclick="window.open('#{showcase:encodeVDLDocURL(selectedComponentDocKey)}')" style="float: right;">
+				#{i18n['vdl-documentation']}
+			</button>
+		</c:if>
 		<ui:include src="/WEB-INF/component/#{selectedComponentPrefix}/#{selectedComponentLowerCaseName}/header.xhtml" />
 		<h3>#{selectedComponentFullName}</h3>
 		<h:outputText escape="false" value="#{selectedComponentDescription}" />
@@ -47,11 +49,11 @@
 			PR.prettyPrint();
 		</h:outputScript>
 		<showcase:buttonRow styleClass="text-center">
-			<button class="btn-default btn-xs" onclick="window.open('#{showcaseModelBean.sourceControlURL}');">
-				<showcase:icon name="github" styleClass="showcase-btn-icon" />
+			<button class="btn-default btn-sm btn-small" onclick="window.open('#{showcaseModelBean.sourceControlURL}');">
+				<showcase:icon name="github" styleClass="showcase-btn-icon icon-large" />
 				#{i18n['improve-this-example']}!
 			</button>
-			<button	class="btn-default btn-xs"
+			<button	class="btn-default btn-sm btn-small"
 				onclick="window.open('https://issues.liferay.com/secure/CreateIssue.jspa?pid=12081&amp;issuetype=4');">
 				#{i18n['request-a-new-example']}
 			</button>

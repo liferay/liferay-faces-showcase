@@ -78,8 +78,7 @@ public class ShowcaseUtil {
 		LIFERAY_FACES_UTIL_PRODUCT.getMinorVersion();
 	private static final String LIFERAY_FACES_UTIL_JAVADOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/" +
 		LIFERAY_FACES_UTIL_VERSION + "/javadoc/util/";
-	private static final String LIFERAY_FACES_VDLDOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/" +
-		LIFERAY_FACES_ALLOY_VERSION + "/vdldoc/";
+	private static final String LIFERAY_FACES_VDLDOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/";
 	private static final String NAMESPACE_PREFIX_ALLOY = "alloy";
 	private static final String NAMESPACE_PREFIX_AUI = "aui";
 	private static final String NAMESPACE_PREFIX_BRIDGE = "bridge";
@@ -302,6 +301,18 @@ public class ShowcaseUtil {
 				tagPrefix.equals(NAMESPACE_PREFIX_BRIDGE) || tagPrefix.equals(NAMESPACE_PREFIX_LIFERAY_UI) ||
 				tagPrefix.equals(NAMESPACE_PREFIX_PORTET) || tagPrefix.equals(NAMESPACE_PREFIX_PORTAL)) {
 			vdldocURL.append(LIFERAY_FACES_VDLDOC_BASE_URL);
+
+			if (tagPrefix.equals(NAMESPACE_PREFIX_ALLOY)) {
+				vdldocURL.append(LIFERAY_FACES_ALLOY_VERSION);
+			}
+			else if (tagPrefix.equals(NAMESPACE_PREFIX_BRIDGE) || tagPrefix.equals(NAMESPACE_PREFIX_PORTET)) {
+				vdldocURL.append(LIFERAY_FACES_BRIDGE_VERSION);
+			}
+			else if (tagPrefix.equals(NAMESPACE_PREFIX_PORTAL)) {
+				vdldocURL.append(LIFERAY_FACES_PORTAL_VERSION);
+			}
+
+			vdldocURL.append("/vdldoc/");
 		}
 		else {
 			logger.error("Unknown VDLDoc tagPrefix=[{0}]", tagPrefix);

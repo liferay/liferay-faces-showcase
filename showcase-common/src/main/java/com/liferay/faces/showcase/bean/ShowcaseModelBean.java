@@ -131,7 +131,7 @@ public class ShowcaseModelBean implements Serializable {
 			urlBuilder.append("/edit/master/");
 
 			if (!"showcase".equals(componentRepoSuffix)) {
-				urlBuilder.append("demos/");
+				urlBuilder.append("demo/");
 			}
 
 			urlBuilder.append(componentShowcaseFolderPrefix);
