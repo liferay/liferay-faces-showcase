@@ -17,7 +17,6 @@ package com.liferay.faces.test.showcase;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -51,22 +50,35 @@ public class TesterBase extends IntegrationTesterBase {
 	// Private Constants
 	private static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
 			"integration.default.component.prefix", "h");
+	private static final boolean SIGN_IN;
 
 	static {
 
 		String projectVersion = System.getProperty("integration.showcase.version");
 		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp-" + projectVersion +
 			"/web/guest/showcase/-/component";
+		boolean signIn = false;
 
-		if ("liferay".equals(TestUtil.CONTAINER)) {
+		if (TestUtil.CONTAINER.contains("liferay")) {
 			defaultContext = "/web/guest/jsf-showcase/-/jsf-tag";
 		}
-		else if ("pluto".equals(TestUtil.CONTAINER)) {
+		else if (TestUtil.CONTAINER.contains("pluto")) {
+
 			defaultContext = TestUtil.DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
+			signIn = true;
 		}
 
 		String context = TestUtil.getSystemPropertyOrDefault("integration.context", defaultContext);
 		TEST_CONTEXT_URL = TestUtil.BASE_URL + context;
+		SIGN_IN = signIn;
+	}
+
+	@Override
+	protected void doSetUp() {
+
+		if (SIGN_IN) {
+			TestUtil.signIn(Browser.getInstance());
+		}
 	}
 
 	protected void navigateToUseCase(Browser browser, String componentName, String componentUseCase) {
@@ -76,7 +88,7 @@ public class TesterBase extends IntegrationTesterBase {
 	protected void navigateToUseCase(Browser browser, String componentPrefix, String componentName,
 		String componentUseCase) {
 
-		if ("pluto".equals(TestUtil.CONTAINER)) {
+		if (TestUtil.CONTAINER.contains("pluto")) {
 
 			// Since pluto does not support friendly URLs, obtain the "general" use case URL from the showcase accordion
 			// and replace "general" with the specified use case. Note: non-"general" use cases are shown conditionally
@@ -85,8 +97,8 @@ public class TesterBase extends IntegrationTesterBase {
 				componentPrefix + ":" + componentName + "']";
 			List<WebElement> componentLinkElements = browser.findElements(By.xpath(componentLinkXpath));
 
-			// Initially, navigateToUseCase() may be called when the browser is on the default pluto page, so navigate to
-			// the showcase if no component link element is found.
+			// Initially, navigateToUseCase() may be called when the browser is on the default pluto page, so navigate
+			// to the showcase if no component link element is found.
 			if (componentLinkElements.isEmpty()) {
 
 				browser.get(TEST_CONTEXT_URL);

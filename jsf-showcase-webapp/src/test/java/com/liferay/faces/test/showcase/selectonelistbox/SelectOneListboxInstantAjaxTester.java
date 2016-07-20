@@ -28,6 +28,6 @@ public class SelectOneListboxInstantAjaxTester extends SelectOneMenuTester {
 
 	@Test
 	public void runSelectOneListboxInstantAjaxTest() throws Exception {
-		runSelectOneInstantAjaxTest("selectOneListbox");
+		runSelectOneMenuInstantAjaxTest("selectOneListbox");
 	}
 }
