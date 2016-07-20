@@ -103,10 +103,6 @@
 	display: inline;
 }
 
-.showcase-example {
-	overflow: hidden;
-}
-
 .showcase-example,.showcase-attribute-value,.showcase-parameter-value,.showcase-model-value,.showcase-container {
 	border: 1px solid #ddd;
 	-webkit-border-radius: 4px;
@@ -146,6 +142,10 @@
 	border-style: dotted;
 	border-width: 1px;
 	text-align: center;
+}
+
+.showcase-results {
+	clear: both;
 }
 
 .aui .nav .nav {
