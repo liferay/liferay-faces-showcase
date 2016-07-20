@@ -15,6 +15,8 @@
  */
 package com.liferay.faces.showcase.bean;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -26,7 +28,10 @@ import com.liferay.faces.util.context.FacesRequestContext;
  */
 @ManagedBean
 @ViewScoped
-public class FacesRequestContextBacking {
+public class FacesRequestContextBacking implements Serializable {
+
+	// serialVersionUID
+	private static final long serialVersionUID = 5123157520254209271L;
 
 	private String email;
 
