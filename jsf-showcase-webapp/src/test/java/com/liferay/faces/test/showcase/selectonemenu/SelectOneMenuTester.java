@@ -26,7 +26,35 @@ import com.liferay.faces.test.showcase.select.SelectOneTester;
  */
 public class SelectOneMenuTester extends SelectOneTester {
 
-	protected void runSelectOneInstantAjaxTest(String componentName) throws Exception {
+	protected void runSelectOneMenuGeneralTest(String componentName) {
+
+		Browser browser = Browser.getInstance();
+		navigateToUseCase(browser, componentName, "general");
+
+		// Wait to begin the test until the submit button is rendered.
+		browser.waitForElementVisible(submitButton1Xpath);
+		testRequiredCheckboxError(browser);
+
+		// Test that the selected option submits successfully and the "required" error message disappears. Note: In the
+		// general use case, the first option is the "-- Select --" noSelectionOption, so select the second option
+		// (which has a value of 1) instead of the first one.
+		String option2Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[2]";
+		browser.click(option2Xpath);
+		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
+
+		String answer1 = "1";
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
+
+		// Test that selecting another value changes the model value.
+		String option4Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[4]";
+		browser.click(option4Xpath);
+		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
+	}
+
+	protected void runSelectOneMenuInstantAjaxTest(String componentName) throws Exception {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "instant-ajax");
@@ -47,35 +75,5 @@ public class SelectOneMenuTester extends SelectOneTester {
 		clickOptionAndWaitForAjaxRerender(browser, option1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer3);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
-	}
-
-	protected void runSelectOneMenuGeneralTest(String componentName) {
-
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "general");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-		testRequiredCheckboxError(browser);
-
-		// Test that the selected option submits successfully and the "required" error message disappears. Note: In the
-		// general use case, the first option is the "-- Select --" noSelectionOption, so select the second option
-		// (which has a value of 1) instead of the first one.
-		String option2Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[2]";
-		browser.click(option2Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
-
-		String answer1 = "1";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
-
-		// Test that selecting another value changes the model value.
-		String option4Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[4]";
-		browser.click(option4Xpath);
-		browser.centerElementInView(submitButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
 	}
 }

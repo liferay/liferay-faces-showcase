@@ -45,7 +45,6 @@ public class OutputLinkGeneralTester extends OutputLinkTester {
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
 		String exampleLink3Xpath = "(//div[@class='showcase-example-usage'])[3]/a";
-		browser.centerElementInView(exampleLink3Xpath);
 		testLink(browser, exampleLink3Xpath, "google.com");
 	}
 }

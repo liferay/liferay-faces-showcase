@@ -46,7 +46,6 @@ public class OutputLabelGeneralTester extends OutputTester {
 
 		// Test that the value submits successfully and is displayed in the model value
 		String inputFirstName1Xpath = "(//input[contains(@id,':firstName')])[1]";
-		browser.centerElementInView(inputFirstName1Xpath);
 
 		String text = "Philip";
 		browser.sendKeys(inputFirstName1Xpath, text);

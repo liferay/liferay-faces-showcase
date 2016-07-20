@@ -54,7 +54,7 @@ public class SelectManyMenuTester extends SelectManyTester {
 
 		String option5Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[5]";
 		browser.click(option5Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
 		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 
 		String answer1 = "1";
@@ -71,7 +71,7 @@ public class SelectManyMenuTester extends SelectManyTester {
 		// is not the case in selenium, so elements must be deselected by clicking them again.
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browser.click(option2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer3);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer4);
