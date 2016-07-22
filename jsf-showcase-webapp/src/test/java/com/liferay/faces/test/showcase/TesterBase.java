@@ -45,7 +45,7 @@ public class TesterBase extends IntegrationTesterBase {
 	protected static final String submitButton1Xpath = "(//*[contains(@value,'Submit')])[1]";
 	protected static final String submitButton2Xpath = "(//*[contains(@value,'Submit')])[2]";
 	protected static final String valueIsRequiredError1Xpath =
-		"(//div[contains(@class,'field form-group has-error') and contains(., 'Validation Error: Value is required.')])[1]";
+		"(//div[(contains(@class,'field form-group has-error') or contains(@class,'field control-group error')) and contains(., 'Validation Error: Value is required.')])[1]";
 
 	// Private Constants
 	private static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
@@ -54,7 +54,7 @@ public class TesterBase extends IntegrationTesterBase {
 
 	static {
 
-		String projectVersion = System.getProperty("integration.showcase.version");
+		String projectVersion = System.getProperty("integration.showcase.version", "3.0.0-SNAPSHOT");
 		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp-" + projectVersion +
 			"/web/guest/showcase/-/component";
 		boolean signIn = false;
