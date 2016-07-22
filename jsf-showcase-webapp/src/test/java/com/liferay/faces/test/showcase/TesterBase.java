@@ -54,7 +54,7 @@ public class TesterBase extends IntegrationTesterBase {
 
 	static {
 
-		String projectVersion = System.getProperty("integration.showcase.version", "3.0.0-SNAPSHOT");
+		String projectVersion = System.getProperty("integration.showcase.version", "2.0.0-SNAPSHOT");
 		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp-" + projectVersion +
 			"/web/guest/showcase/-/component";
 		boolean signIn = false;
