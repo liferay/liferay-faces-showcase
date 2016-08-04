@@ -300,7 +300,9 @@ public class ShowcaseUtil {
 		else if (tagPrefix.equals(NAMESPACE_PREFIX_ALLOY) || tagPrefix.equals(NAMESPACE_PREFIX_AUI) ||
 				tagPrefix.equals(NAMESPACE_PREFIX_BRIDGE) || tagPrefix.equals(NAMESPACE_PREFIX_LIFERAY_UI) ||
 				tagPrefix.equals(NAMESPACE_PREFIX_PORTET) || tagPrefix.equals(NAMESPACE_PREFIX_PORTAL)) {
+
 			vdldocURL.append(LIFERAY_FACES_VDLDOC_BASE_URL);
+			vdldocURL.append("vdldoc/");
 
 			if (tagPrefix.equals(NAMESPACE_PREFIX_ALLOY)) {
 				vdldocURL.append(LIFERAY_FACES_ALLOY_VERSION);
@@ -312,7 +314,7 @@ public class ShowcaseUtil {
 				vdldocURL.append(LIFERAY_FACES_PORTAL_VERSION);
 			}
 
-			vdldocURL.append("/vdldoc/");
+			vdldocURL.append("/");
 		}
 		else {
 			logger.error("Unknown VDLDoc tagPrefix=[{0}]", tagPrefix);
