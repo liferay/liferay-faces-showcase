@@ -8,8 +8,9 @@
 	color: rgb(0, 22, 142);
 }
 
-.aui .showcase-modal-dialog {
+.aui .showcase-modal-dialog .modal-dialog {
 	position: relative;
+	z-index: 1050;
 }
 
 #content .aui .showcase-outer-row, .aui .showcase-outer-row {
