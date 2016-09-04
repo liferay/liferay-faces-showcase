@@ -17,6 +17,8 @@ package com.liferay.faces.test.showcase;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -32,6 +34,9 @@ import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
  * @author  Philip White
  */
 public class TesterBase extends IntegrationTesterBase {
+
+	// Logger
+	private static final Logger logger = Logger.getLogger(TesterBase.class.getName());
 
 	// Protected Constants
 	protected static final String TEST_CONTEXT_URL;
@@ -66,7 +71,11 @@ public class TesterBase extends IntegrationTesterBase {
 			signIn = true;
 		}
 
+		logger.log(Level.INFO, "defaultContext = " + defaultContext);
+
 		String context = TestUtil.getSystemPropertyOrDefault("integration.context", defaultContext);
+		logger.log(Level.INFO, "context = " + context);
+
 		TEST_CONTEXT_URL = TestUtil.BASE_URL + context;
 		SIGN_IN = signIn;
 	}
