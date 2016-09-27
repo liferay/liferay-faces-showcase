@@ -17,18 +17,17 @@ package com.liferay.faces.test.showcase.button;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.showcase.commandbutton.CommandButtonTester;
+import com.liferay.faces.test.showcase.buttonlink.ButtonLinkTester;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class ButtonVariousStylesTester extends CommandButtonTester {
+public class ButtonVariousStylesTester extends ButtonLinkTester {
 
 	@Test
 	public void runButtonVariousStylesTest() throws Exception {
-
-		runVariousStylesTest("Button");
+		runVariousStylesTest("button");
 	}
 }

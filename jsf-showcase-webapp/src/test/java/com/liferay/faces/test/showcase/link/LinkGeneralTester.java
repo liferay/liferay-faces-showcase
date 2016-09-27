@@ -27,8 +27,7 @@ import com.liferay.faces.test.showcase.buttonlink.ButtonLinkTester;
 public class LinkGeneralTester extends ButtonLinkTester {
 
 	@Test
-	public void runLinkGeneralGeneralTest() throws Exception {
-
-		runButtonLinkGeneralTest("Link", divSubmitButton1Xpath, divSubmitButton2Xpath, "button");
+	public void runLinkGeneralTest() throws Exception {
+		runButtonLinkGeneralTest("link", generalLink1Xpath, generalLink1Xpath);
 	}
 }

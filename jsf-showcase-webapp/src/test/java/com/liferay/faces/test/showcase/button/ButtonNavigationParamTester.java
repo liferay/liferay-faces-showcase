@@ -28,7 +28,6 @@ public class ButtonNavigationParamTester extends ButtonLinkTester {
 
 	@Test
 	public void runButtonNavigationParamTest() throws Exception {
-
-		runButtonLinkNavigationParamTest("Button");
+		runButtonLinkNavigationParamTest("button");
 	}
 }

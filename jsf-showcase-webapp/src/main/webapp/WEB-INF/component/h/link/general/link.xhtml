@@ -3,23 +3,22 @@
 	template="/WEB-INF/templates/component-2col.xhtml">
 
 	<ui:define name="col1">
-		<!-- Example 1: Specifying hyperlink text via the value attribute -->
+		<!-- Example 1: Styling via children -->
 		<h:form>
 			<showcase:example description="#{i18n['h-link-general-example-1']}" number="1" renderedCheckbox="true">
-				<h:link includeViewParams="true" rendered="#{showcaseModelBean.selectedComponent.rendered}"
-					value="#{i18n['text-for-a-link']}" />
+				<h:link includeViewParams="true" rendered="#{showcaseModelBean.selectedComponent.rendered}">
+					<h:outputText value=" #{i18n['text-for-a-link']} " />
+					<h:graphicImage value="#{resource['images:jsf-logo-small.png']}" />
+				</h:link>
 			</showcase:example>
 		</h:form>
 	</ui:define>
 
 	<ui:define name="col2">
-		<!-- Example 2: Specifying children as hyperlink text/content -->
+		<!-- Example 2: Styling via value attribute -->
 		<h:form>
 			<showcase:example description="#{i18n['h-link-general-example-2']}" number="2">
-				<h:link includeViewParams="true" type="image/png">
-					<h:outputText value=" #{i18n['text-for-a-link']} " />
-					<h:graphicImage value="#{resource['images:jsf-logo-small.png']}" />
-				</h:link>
+				<h:link includeViewParams="true" value=" #{i18n['text-for-a-link']} " />
 			</showcase:example>
 		</h:form>
 	</ui:define>

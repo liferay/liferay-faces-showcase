@@ -28,7 +28,6 @@ public class CommandButtonImmediateTester extends ButtonLinkTester {
 
 	@Test
 	public void runCommandButtonImmediateTest() throws Exception {
-
 		runButtonLinkImmediateTest("commandButton");
 	}
 }

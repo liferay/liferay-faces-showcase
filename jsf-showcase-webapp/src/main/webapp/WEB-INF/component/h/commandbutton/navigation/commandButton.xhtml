@@ -6,17 +6,17 @@
 	<ui:define name="col1">
 		<h:form>
 			<showcase:example>
-				<showcase:field label="#{i18n['ajax']}">
+				<showcase:field id="field" label="#{i18n['ajax']}">
 					<f:facet name="label">
 						<h:selectBooleanCheckbox value="#{commandModelBean.ajax}">
-							<f:ajax render="nav" />
+							<f:ajax render="field" />
 						</h:selectBooleanCheckbox>
 					</f:facet>
+					<!-- Navigation based on outcome of navigation-case defined in navigation-rule.xml -->
+					<h:commandButton action="toParam" value="#{i18n['to-param-page']} >">
+						<f:ajax disabled="#{!commandModelBean.ajax}" />
+					</h:commandButton>
 				</showcase:field>
-				<!-- Navigation based on outcome of navigation-case defined in navigation-rule.xml -->
-				<h:commandButton id="nav" action="toParam" value="#{i18n['to-param-page']} >">
-					<f:ajax disabled="#{!commandModelBean.ajax}" execute="@form" render="@all" />
-				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['parameter-value']}">
 				<h:outputText id="parameterValue"

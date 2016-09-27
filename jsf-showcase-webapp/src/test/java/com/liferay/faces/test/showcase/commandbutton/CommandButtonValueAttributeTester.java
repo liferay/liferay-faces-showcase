@@ -35,17 +35,22 @@ public class CommandButtonValueAttributeTester extends ButtonLinkTester {
 		navigateToUseCase(browser, "commandButton", "value-attribute");
 
 		// Wait to begin the test until a button is rendered.
-		String johnAdamsButtonLinkXpath = "//*[contains(@onclick, 'mojarra.ab')][1]";
-		browser.waitForElementVisible(johnAdamsButtonLinkXpath);
+		String name = "John Adams";
+		String buttonXpath = getValueButton(name);
+		browser.waitForElementVisible(buttonXpath);
 
-		// Test that the first option submits successfully.
-		browser.clickAndWaitForAjaxRerender(johnAdamsButtonLinkXpath);
-		String answer1 = "John Adams";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
+		// Test that the "John Adams" option submits successfully.
+		browser.clickAndWaitForAjaxRerender(buttonXpath);
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, name);
 
-		// Test that the fourth option submits successfully.
-		browser.clickAndWaitForAjaxRerender("//*[contains(@onclick, 'mojarra.ab')][4]");
-		String answer4 = "Carter Braxton";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer4);
+		// Test that the "Carter Braxton" option submits successfully.
+		name = "Carter Braxton";
+		browser.clickAndWaitForAjaxRerender(getValueButton(name));
+		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, name);
+	}
+
+	private String getValueButton(String name) {
+		return "(//text()[contains(.,'" + name + "')]|//span[contains(text(),'" + name +
+			"')])/preceding-sibling::*[contains(@onclick,'mojarra.ab')][1]";
 	}
 }

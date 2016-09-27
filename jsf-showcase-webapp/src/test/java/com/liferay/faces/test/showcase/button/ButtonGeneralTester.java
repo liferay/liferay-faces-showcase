@@ -28,7 +28,6 @@ public class ButtonGeneralTester extends ButtonLinkTester {
 
 	@Test
 	public void runButtonGeneralTest() throws Exception {
-
-		runButtonLinkGeneralTest("Button", imageTypeButton1Xpath, buttonTypeButton1Xpath, "button");
+		runButtonLinkGeneralTest("button", generalButton1Xpath, "//input[@value='1234'][@type='button']");
 	}
 }

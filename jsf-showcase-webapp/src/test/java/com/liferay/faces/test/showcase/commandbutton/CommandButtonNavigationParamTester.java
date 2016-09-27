@@ -28,7 +28,6 @@ public class CommandButtonNavigationParamTester extends ButtonLinkTester {
 
 	@Test
 	public void runCommandButtonNavigationParamTest() throws Exception {
-
 		runButtonLinkNavigationParamTest("commandButton");
 	}
 }

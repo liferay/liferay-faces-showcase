@@ -17,16 +17,17 @@ package com.liferay.faces.test.showcase.commandbutton;
 
 import org.junit.Test;
 
+import com.liferay.faces.test.showcase.buttonlink.ButtonLinkTester;
+
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class CommandButtonGeneralTester extends CommandButtonTester {
+public class CommandButtonGeneralTester extends ButtonLinkTester {
 
 	@Test
 	public void runCommandButtonGeneralTest() throws Exception {
-
-		runButtonLinkGeneralTest("commandButton", imageTypeButton1Xpath, submitTypeButton1Xpath, "submit");
+		runButtonLinkGeneralTest("commandButton", generalButton1Xpath, "//input[@value='1234'][@type='submit']");
 	}
 }
