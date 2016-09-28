@@ -33,9 +33,6 @@ public class InputHiddenConversionTester extends InputHiddenTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "inputHidden", "conversion");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that a hidden valid value submits successfully.
 		browser.click(copyValidValueButton1Xpath);
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);

@@ -40,9 +40,6 @@ public class SelectManyTester extends SelectTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "conversion");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that multiple selected options submit successfully and the "Incorrect!" message appears.
 		String option1Xpath = "(" + selectMany1Xpath + optionChildXpath + ")[1]";
 		browser.click(option1Xpath);
@@ -92,9 +89,6 @@ public class SelectManyTester extends SelectTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "data-model");
 
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the selected values submit successfully.
 		testSelectMany(browser, selectMany1Xpath, optionChildXpath, submitButton1Xpath, modelValue1Xpath);
 	}
@@ -115,9 +109,6 @@ public class SelectManyTester extends SelectTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "default-value");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the default values are in the model.
 		String answer2 = "2";
@@ -166,9 +157,6 @@ public class SelectManyTester extends SelectTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "immediate");
-
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.

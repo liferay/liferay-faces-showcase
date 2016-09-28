@@ -33,9 +33,6 @@ public class InputHiddenValidationTester extends InputHiddenTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "inputHidden", "validation");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that a hidden valid value submits successfully.
 		String text = "test@liferay.com";
 		String validButton1Xpath = "(//button[contains(text(),'a valid')])[1]";

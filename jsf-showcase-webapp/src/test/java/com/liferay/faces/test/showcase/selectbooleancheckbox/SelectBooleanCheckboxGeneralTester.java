@@ -31,9 +31,6 @@ public class SelectBooleanCheckboxGeneralTester extends SelectBooleanCheckboxTes
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "selectBooleanCheckbox", "general");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 		testSelectBooleanCheckbox(browser, submitButton1Xpath, modelValue1Xpath, checkbox1Xpath);
 	}
 }

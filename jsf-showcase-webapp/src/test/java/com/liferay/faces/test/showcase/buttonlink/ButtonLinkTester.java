@@ -44,9 +44,6 @@ public class ButtonLinkTester extends TesterBase {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "general");
 
-		// Wait to begin the test until a button/link is rendered.
-		browser.waitForElementVisible(buttonLink2xpath);
-
 		// Test that both buttons/links render on the page visibly and are clickable.
 		SeleniumAssert.assertElementVisible(browser, buttonLink1xpath);
 		SeleniumAssert.assertElementVisible(browser, buttonLink2xpath);
@@ -59,16 +56,11 @@ public class ButtonLinkTester extends TesterBase {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "immediate");
 
-		String commandButtonLink1Xpath =
-			"(//*[contains(@onclick,'mojarra.ab')][contains(text(),'Submit') or contains(@value,'Submit')])[1]";
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(commandButtonLink1Xpath);
-
 		// Test that the value submits successfully and the valueChangeListener
 		// method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		browser.clickAndWaitForAjaxRerender(commandButtonLink1Xpath);
+		browser.clickAndWaitForAjaxRerender(
+			"(//*[contains(@onclick,'mojarra.ab')][contains(text(),'Submit') or contains(@value,'Submit')])[1]");
 		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener
@@ -83,12 +75,9 @@ public class ButtonLinkTester extends TesterBase {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "navigation");
-
-		// Wait to begin the test until a button is rendered.
-		String toParamPageXpath = "//*[contains(text(),'To Param page') or contains(@value,'To Param page')]";
-		browser.waitForElementVisible(toParamPageXpath);
 		SeleniumAssert.assertElementVisible(browser, "//pre/span[text()='foo=']");
 
+		String toParamPageXpath = "//*[contains(text(),'To Param page') or contains(@value,'To Param page')]";
 		String backToNavigationXpath =
 			"//*[contains(text(),'Back to Navigation with foo=1234') or contains(@value,'Back to Navigation with foo=1234')]";
 		testNavigationPage(browser, toParamPageXpath, backToNavigationXpath);
@@ -111,10 +100,6 @@ public class ButtonLinkTester extends TesterBase {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "various-styles");
-
-		// Wait to begin the test until a button is rendered.
-		browser.waitForElementVisible(
-			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Block' or contains(.,'Block')]");
 
 		// Test the values and classes of every button.
 		SeleniumAssert.assertElementVisible(browser,
@@ -161,9 +146,10 @@ public class ButtonLinkTester extends TesterBase {
 
 	private void testNavigationPage(Browser browser, String toParamPageXpath, String backToNavigationXpath) {
 
-		// Click "To Param page" and check that it opens the Param page
+		// Click "To Param page" and check that it opens the Param page.
 		browser.click(toParamPageXpath);
 		browser.waitForElementVisible(backToNavigationXpath);
+		waitForShowcasePageReady(browser);
 		SeleniumAssert.assertElementVisible(browser, backToNavigationXpath);
 	}
 
@@ -172,6 +158,7 @@ public class ButtonLinkTester extends TesterBase {
 		// Click "Back to Navigation with foo=1234" and assert that the value "1234" appears in the model value.
 		browser.click(backToNavigationXpath);
 		browser.waitForElementVisible(toParamPageXpath);
+		waitForShowcasePageReady(browser);
 		SeleniumAssert.assertElementVisible(browser, "//pre/span[text()='foo=1234']");
 	}
 }

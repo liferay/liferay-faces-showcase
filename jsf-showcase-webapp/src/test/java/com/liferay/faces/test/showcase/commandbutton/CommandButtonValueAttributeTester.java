@@ -34,13 +34,9 @@ public class CommandButtonValueAttributeTester extends ButtonLinkTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "commandButton", "value-attribute");
 
-		// Wait to begin the test until a button is rendered.
-		String name = "John Adams";
-		String buttonXpath = getValueButton(name);
-		browser.waitForElementVisible(buttonXpath);
-
 		// Test that the "John Adams" option submits successfully.
-		browser.clickAndWaitForAjaxRerender(buttonXpath);
+		String name = "John Adams";
+		browser.clickAndWaitForAjaxRerender(getValueButton(name));
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, name);
 
 		// Test that the "Carter Braxton" option submits successfully.

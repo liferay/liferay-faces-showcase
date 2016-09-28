@@ -32,12 +32,8 @@ public class OutputLinkGeneralTester extends OutputLinkTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputLink", "general");
 
-		// Wait to begin the test until the example link is rendered.
-		String link1Xpath = "(//div[@class='showcase-example-usage'])[1]/a";
-		browser.waitForElementVisible(link1Xpath);
-
 		// Click the link and check that it opens a new window/tab with the correct domain name.
-		testLink(browser, link1Xpath, "liferay.com");
+		testLink(browser, "(//div[@class='showcase-example-usage'])[1]/a", "liferay.com");
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
 		String exampleLink2Xpath = "(//div[@class='showcase-example-usage'])[2]/a";

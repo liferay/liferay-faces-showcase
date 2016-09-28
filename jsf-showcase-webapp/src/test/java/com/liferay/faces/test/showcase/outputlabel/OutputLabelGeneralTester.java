@@ -34,9 +34,6 @@ public class OutputLabelGeneralTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputLabel", "general");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the web page shows an error message when an empty value is submitted.
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 

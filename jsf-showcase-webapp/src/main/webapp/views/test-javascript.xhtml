@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<c:if test="#{facesContext.application.projectStage != showcaseModelBean.projectStageProduction}">
+		<!--
+			For testing purposes, include a JavaScript variable which is set to true after all JavaScript has run.
+		-->
+		<h:outputScript target="head">
+			window.liferay_faces_showcase_ready = false;
+		</h:outputScript>
+		<h:outputScript target="body">
+			if (document.readyState === 'complete') {
+				window.liferay_faces_showcase_ready = true;
+			}
+			else {
+				$(window).load(function() { window.liferay_faces_showcase_ready = true; });
+			}
+		</h:outputScript>
+	</c:if>
+</ui:composition>

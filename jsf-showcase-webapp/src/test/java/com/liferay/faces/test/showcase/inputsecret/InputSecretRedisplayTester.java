@@ -33,9 +33,6 @@ public class InputSecretRedisplayTester extends InputSecretTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "inputSecret", "redisplay");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the value submits successfully and the alloy:inputSecret component is intentionally
 		// not re-rendered in the DOM.
 		String text = "Hello World!";

@@ -37,9 +37,6 @@ public class InputTextTester extends InputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "conversion");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the web page shows an error message when an invalid value is submitted.
 		WebElement input = browser.findElementByXpath(inputText1Xpath);
 		input.clear();
@@ -86,9 +83,6 @@ public class InputTextTester extends InputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "general");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that an empty value submits successfully.
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementVisible(browser, success1Xpath);
@@ -109,9 +103,6 @@ public class InputTextTester extends InputTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "immediate");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
@@ -134,9 +125,6 @@ public class InputTextTester extends InputTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "validation");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
 		WebElement input = browser.findElementByXpath(inputText1Xpath);
