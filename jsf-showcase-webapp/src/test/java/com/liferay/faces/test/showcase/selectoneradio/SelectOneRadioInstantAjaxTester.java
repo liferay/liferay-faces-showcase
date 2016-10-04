@@ -33,12 +33,9 @@ public class SelectOneRadioInstantAjaxTester extends SelectOneRadioTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "selectOneRadio", "instant-ajax");
 
-		// Wait to begin the test until the submit button is rendered.
-		String option1Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[1]";
-		browser.waitForElementVisible(option1Xpath);
-
 		// Test that the selected option submits successfully. Note: selectOneMenu will not perform an ajax request if
 		// the visible option is clicked, so the test clicks the third option instead.
+		String option1Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[1]";
 		clickAndWaitForAjaxRerender(browser, option1Xpath);
 
 		String answer1 = "1";

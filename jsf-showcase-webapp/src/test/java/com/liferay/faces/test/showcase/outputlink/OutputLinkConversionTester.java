@@ -35,12 +35,8 @@ public class OutputLinkConversionTester extends OutputLinkTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputLink", "conversion");
 
-		// Wait to begin the test until the select is rendered.
-		String select1Xpath = "(//select[contains(@id,':selectOneMenuId')])";
-		browser.waitForElementVisible(select1Xpath);
-
 		// Test that selecting a different country changes the text in the link.
-		Select select = new Select(browser.findElementByXpath(select1Xpath));
+		Select select = new Select(browser.findElementByXpath("(//select[contains(@id,':selectOneMenuId')])"));
 		select.selectByVisibleText("United States");
 
 		String mapLink1Xpath = "//a[contains(., 'United States')]";

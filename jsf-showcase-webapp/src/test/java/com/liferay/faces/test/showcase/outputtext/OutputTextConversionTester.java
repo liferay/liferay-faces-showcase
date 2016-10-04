@@ -39,9 +39,6 @@ public class OutputTextConversionTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputText", "conversion");
 
-		// Wait to begin the test until the example text is rendered.
-		browser.waitForElementVisible(exampleText1Xpath);
-
 		// Test that today's date is rendered on the page.
 		Date today = GregorianCalendar.getInstance().getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM dd, yyyy");

@@ -34,9 +34,6 @@ public class OutputFormatGeneralTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputFormat", "general");
 
-		// Wait to begin the test until the formatted text is rendered.
-		browser.waitForElementVisible(exampleText1Xpath);
-
 		// Test that the formatted text renders on the page successfully.
 		SeleniumAssert.assertElementVisible(browser, exampleText1Xpath);
 		SeleniumAssert.assertElementTextVisible(browser, exampleText1Xpath, "First: Alpha, Last: Omega");

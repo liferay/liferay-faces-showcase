@@ -30,9 +30,6 @@ public class SelectOneMenuTester extends SelectOneTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "general");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 		testRequiredCheckboxError(browser);
 
 		// Test that the selected option submits successfully and the "required" error message disappears. Note: In the
@@ -58,9 +55,6 @@ public class SelectOneMenuTester extends SelectOneTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "instant-ajax");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(select1Xpath);
 
 		// Test that the selected option submits successfully. Note: selectOneMenu will not perform an ajax request if
 		// the visible option is clicked, so the test clicks the third option instead.

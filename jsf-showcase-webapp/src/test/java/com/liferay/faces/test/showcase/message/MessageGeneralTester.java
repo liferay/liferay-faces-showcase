@@ -33,9 +33,6 @@ public class MessageGeneralTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "message", "general");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the value submits successfully and message text is displayed
 		String message1Xpath = "(//div[@class='showcase-example-usage'])[1]/div";
 		testCharCountMessage(browser, input1Xpath, submitButton1Xpath, message1Xpath);

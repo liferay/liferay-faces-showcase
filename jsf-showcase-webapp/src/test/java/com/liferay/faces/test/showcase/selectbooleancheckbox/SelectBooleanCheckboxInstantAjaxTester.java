@@ -33,9 +33,6 @@ public class SelectBooleanCheckboxInstantAjaxTester extends SelectBooleanCheckbo
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "selectBooleanCheckbox", "instant-ajax");
 
-		// Wait to begin the test until an element is rendered.
-		browser.waitForElementVisible(checkbox1Xpath);
-
 		// Test that a checked checkbox submits successfully.
 		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "true");

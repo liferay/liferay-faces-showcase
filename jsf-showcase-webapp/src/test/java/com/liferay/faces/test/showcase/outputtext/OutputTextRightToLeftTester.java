@@ -34,12 +34,8 @@ public class OutputTextRightToLeftTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputText", "right-to-left");
 
-		// Wait to begin the test until the example text is rendered.
-		String RTLModelValue1Xpath = "(//span[@dir='RTL'])";
-		browser.waitForElementVisible(RTLModelValue1Xpath);
-
 		// Test that the right-to-left text is rendered on the page.
-		SeleniumAssert.assertElementTextVisible(browser, RTLModelValue1Xpath,
+		SeleniumAssert.assertElementTextVisible(browser, "(//span[@dir='RTL'])",
 			"בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָֽרֶץ");
 	}
 }

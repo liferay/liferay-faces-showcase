@@ -33,9 +33,6 @@ public class OutputScriptResourceTester extends OutputScriptTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputScript", "resource");
 
-		// Wait to begin the test until the example text is rendered.
-		browser.waitForElementVisible(exampleScriptText1Xpath);
-
 		// Test that a text property renders on the page successfully.
 		SeleniumAssert.assertElementTextVisible(browser, exampleScriptText1Xpath, "A script");
 	}

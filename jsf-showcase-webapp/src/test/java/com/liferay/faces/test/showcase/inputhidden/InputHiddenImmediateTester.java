@@ -33,9 +33,6 @@ public class InputHiddenImmediateTester extends InputHiddenTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "inputHidden", "immediate");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the hidden value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
 		browser.click(copyValidValueButton1Xpath);

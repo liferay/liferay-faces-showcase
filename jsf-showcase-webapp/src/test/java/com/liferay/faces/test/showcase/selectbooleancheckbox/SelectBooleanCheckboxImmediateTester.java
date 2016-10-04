@@ -32,9 +32,6 @@ public class SelectBooleanCheckboxImmediateTester extends SelectBooleanCheckboxT
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "selectBooleanCheckbox", "immediate");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 		testSelectBooleanCheckbox(browser, submitButton1Xpath, modelValue1Xpath, checkbox1Xpath);
 		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
 		testSelectBooleanCheckbox(browser, submitButton2Xpath, modelValue2Xpath, checkbox2Xpath);

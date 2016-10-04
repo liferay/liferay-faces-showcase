@@ -32,9 +32,6 @@ public class SelectOneRadioGeneralTester extends SelectOneRadioTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "selectOneRadio", "general");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 		testRequiredCheckboxError(browser);
 
 		// Test that a radio value submits successfully and the "required" error message disappears.

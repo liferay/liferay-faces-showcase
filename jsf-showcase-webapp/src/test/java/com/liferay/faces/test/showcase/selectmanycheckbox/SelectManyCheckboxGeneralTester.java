@@ -32,9 +32,6 @@ public class SelectManyCheckboxGeneralTester extends SelectManyCheckboxTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "selectManyCheckbox", "general");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 		testRequiredCheckboxError(browser);
 
 		// Test that the checked values submit successfully and the "required" error message disappears.

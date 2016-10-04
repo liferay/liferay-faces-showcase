@@ -33,9 +33,6 @@ public class SelectManyMenuTester extends SelectManyTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "general");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
 		Select select = new Select(browser.findElementByXpath(select1Xpath));
 		select.deselectAll();
@@ -82,11 +79,8 @@ public class SelectManyMenuTester extends SelectManyTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "instant-ajax");
 
-		// Wait to begin the test until an element is rendered.
-		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";
-		browser.waitForElementVisible(option1Xpath);
-
 		// Test that multiple selected options submit successfully.
+		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";
 		clickOptionAndWaitForAjaxRerender(browser, option1Xpath);
 
 		String option3Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[3]";

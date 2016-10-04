@@ -33,9 +33,6 @@ public class InputHiddenGeneralTester extends InputHiddenTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "inputHidden", "general");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that an empty value submits successfully.
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementVisible(browser, success1Xpath);

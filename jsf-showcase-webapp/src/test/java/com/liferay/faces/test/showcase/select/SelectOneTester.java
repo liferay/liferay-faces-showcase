@@ -41,9 +41,6 @@ public class SelectOneTester extends SelectTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "conversion");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the selected option submits successfully and the "Incorrect!" message appears.
 		String option1Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[1]";
 		browser.click(option1Xpath);
@@ -79,9 +76,6 @@ public class SelectOneTester extends SelectTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "data-model");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the selected option submits successfully.
 		testSelectOne(browser, selectOne1Xpath, optionChildXpath, submitButton1Xpath, modelValue1Xpath);
 	}
@@ -102,9 +96,6 @@ public class SelectOneTester extends SelectTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "default-value");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that a default value is in the model.
 		String answer3 = "3";
@@ -137,9 +128,6 @@ public class SelectOneTester extends SelectTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "immediate");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
 
 		// Test that the selected option submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.

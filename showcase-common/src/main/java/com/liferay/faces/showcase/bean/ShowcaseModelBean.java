@@ -17,6 +17,7 @@ package com.liferay.faces.showcase.bean;
 
 import java.io.Serializable;
 
+import javax.faces.application.ProjectStage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -78,6 +79,10 @@ public class ShowcaseModelBean implements Serializable {
 		}
 
 		return deploymentType;
+	}
+
+	public ProjectStage getProjectStageProduction() {
+		return ProjectStage.Production;
 	}
 
 	public SelectedComponent getSelectedComponent() {

@@ -33,9 +33,6 @@ public class OutputScriptGeneralTester extends OutputScriptTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "outputScript", "general");
 
-		// Wait to begin the test until the example text is rendered.
-		browser.waitForElementVisible(exampleScriptText1Xpath);
-
 		// Test that the script has successfully added the text to the page.
 		SeleniumAssert.assertElementTextVisible(browser, exampleScriptText1Xpath, "rendered inline");
 

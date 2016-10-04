@@ -33,9 +33,6 @@ public class MessagesGeneralTester extends OutputTester {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "messages", "general");
 
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
-
 		// Test that the first value submits successfully and message text is displayed
 		String text = "hello";
 		String messages1Xpath = "(//div[@class='showcase-example-usage'])[1]/ul/li";
