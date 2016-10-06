@@ -54,6 +54,7 @@ public class TesterBase extends IntegrationTesterBase {
 		"(//div[(contains(@class,'field form-group has-error') or contains(@class,'field control-group error')) and contains(., 'Validation Error: Value is required.')])[1]";
 
 	// Private Constants
+	private static final String CONTAINER = TestUtil.getContainer("tomcat");
 	private static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
 			"integration.default.component.prefix", "h");
 	private static final boolean SIGN_IN;
@@ -63,10 +64,10 @@ public class TesterBase extends IntegrationTesterBase {
 		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp/web/guest/showcase/-/component";
 		boolean signIn = false;
 
-		if (TestUtil.CONTAINER.contains("liferay")) {
+		if (CONTAINER.contains("liferay")) {
 			defaultContext = "/web/guest/jsf-showcase/-/jsf-tag";
 		}
-		else if (TestUtil.CONTAINER.contains("pluto")) {
+		else if (CONTAINER.contains("pluto")) {
 
 			defaultContext = TestUtil.DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
 			signIn = true;
@@ -77,7 +78,7 @@ public class TesterBase extends IntegrationTesterBase {
 		String context = TestUtil.getSystemPropertyOrDefault("integration.context", defaultContext);
 		logger.log(Level.INFO, "context = " + context);
 
-		TEST_CONTEXT_URL = TestUtil.BASE_URL + context;
+		TEST_CONTEXT_URL = TestUtil.DEFAULT_BASE_URL + context;
 		SIGN_IN = signIn;
 	}
 
@@ -85,7 +86,7 @@ public class TesterBase extends IntegrationTesterBase {
 	protected void doSetUp() {
 
 		if (SIGN_IN) {
-			TestUtil.signIn(Browser.getInstance());
+			signIn(Browser.getInstance(), CONTAINER);
 		}
 	}
 
@@ -96,7 +97,7 @@ public class TesterBase extends IntegrationTesterBase {
 	protected void navigateToUseCase(Browser browser, String componentPrefix, String componentName,
 		String componentUseCase) {
 
-		if (TestUtil.CONTAINER.contains("pluto")) {
+		if (CONTAINER.contains("pluto")) {
 
 			// Since pluto does not support friendly URLs, obtain the "general" use case URL from the showcase accordion
 			// and replace "general" with the specified use case. Note: non-"general" use cases are shown conditionally
