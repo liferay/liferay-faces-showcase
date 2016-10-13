@@ -35,6 +35,7 @@
 								<RUNNING_WITH_MAVEN_SUREFIRE_PLUGIN>true</RUNNING_WITH_MAVEN_SUREFIRE_PLUGIN>
 								<!-- Specify a property like so: -Dintegration.browser=phantomjs -->
 								<integration.browser>${integration.browser}</integration.browser>
+								<integration.browser.wait.time.out>${integration.browser.wait.time.out}</integration.browser.wait.time.out>
 								<integration.log.level>${integration.log.level}</integration.log.level>
 								<integration.container>${integration.container}</integration.container>
 								<integration.host>${integration.host}</integration.host>
@@ -154,7 +155,7 @@
 		<dependency>
 			<groupId>com.liferay.faces.test</groupId>
 			<artifactId>com.liferay.faces.test.selenium</artifactId>
-			<version>0.1.0</version>
+			<version>0.2.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- End integration test dependencies. -->
