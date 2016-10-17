@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.liferay.faces.demo</groupId>
 	<artifactId>com.liferay.faces.demo.showcase.parent</artifactId>
-	<version>3.0.1-SNAPSHOT</version>
+	<version>4.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Liferay Faces Showcase Parent</name>
 	<description>Parent POM for all Liferay Faces Showcase modules</description>
@@ -87,11 +87,11 @@
 		<faces.impl.group.id>org.glassfish</faces.impl.group.id>
 		<faces.impl.artifact.id>javax.faces</faces.impl.artifact.id>
 		<faces.impl.scope>runtime</faces.impl.scope>
-		<faces.spec.version>2.2</faces.spec.version>
+		<faces.spec.version>2.3-edr1</faces.spec.version>
 		<faces.version>${mojarra.version}</faces.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<log4j.version>1.2.14</log4j.version>
-		<mojarra.version>2.2.13</mojarra.version>
+		<mojarra.version>2.3.0-m07-SNAPSHOT</mojarra.version>
 		<myfaces.version>UNSUPPORTED</myfaces.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire.version>2.12</surefire.version>
