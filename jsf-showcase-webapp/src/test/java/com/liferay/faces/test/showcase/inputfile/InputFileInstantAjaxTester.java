@@ -16,11 +16,6 @@
 package com.liferay.faces.test.showcase.inputfile;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 
 
 /**
@@ -31,12 +26,6 @@ public class InputFileInstantAjaxTester extends InputFileTester {
 
 	@Test
 	public void runInputFileInstantAjaxTest() throws Exception {
-
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "inputfile", "instant-ajax");
-
-		browser.findElementByXpath(fileUploadChooserXpath).sendKeys(LIFERAY_JSF_JERSEY_PNG_FILE_PATH);
-		browser.waitUntil(ExpectedConditions.presenceOfElementLocated(By.xpath(uploadedFileXpath)));
-		SeleniumAssert.assertElementTextVisible(browser, uploadedFileXpath, "jersey");
+		runInputFileTest(true);
 	}
 }
