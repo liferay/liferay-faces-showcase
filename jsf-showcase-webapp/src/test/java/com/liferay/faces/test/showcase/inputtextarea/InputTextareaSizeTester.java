@@ -17,6 +17,7 @@ package com.liferay.faces.test.showcase.inputtextarea;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
@@ -32,6 +33,7 @@ public class InputTextareaSizeTester extends InputTextareaTester {
 
 	@Test
 	public void runInputTextareaSizeTest() throws Exception {
+
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "inputTextarea", "size");
 
@@ -49,11 +51,17 @@ public class InputTextareaSizeTester extends InputTextareaTester {
 		browser.sendKeys(textarea2Xpath, text);
 		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
-		WebElement textarea2 = browser.findElementByXpath("(//textarea[contains(@id,'textarea')])[2]");
+
+		WebElement textarea2 = browser.findElementByXpath(textarea2Xpath);
 		Dimension size = textarea2.getSize();
-		Assert.assertTrue("Element " + textarea2 + " does not contain size \"" + size + "\". Instead it contains size \"" +
-				size.getWidth() + "\".", size.getWidth()==150);
-		Assert.assertTrue("Element " + textarea2 + " does not contain size \"" + size + "\". Instead it contains size \"" +
-				size.getHeight() + "\".", size.getHeight()==15);
+		int expectedWidth = 150;
+		int width = size.getWidth();
+		Assert.assertEquals("Width of element " + textarea2 + " is not \"" + expectedWidth + "\". Instead it is \"" +
+			width + "\".", 150, width);
+
+		int expectedHeight = 150;
+		int height = size.getHeight();
+		Assert.assertEquals("Width of element " + textarea2 + " is not \"" + expectedHeight + "\". Instead it is \"" +
+			height + "\".", 150, height);
 	}
 }
