@@ -43,6 +43,7 @@ public class TesterBase extends IntegrationTesterBase {
 	protected static final String TEST_CONTEXT_URL;
 
 	// Common Xpath
+	protected static final String error1Xpath = "(//div[contains(@class,'field form-group has-error') or contains(@class,'field control-group error')])[1]";
 	protected static final String immediateMessage1Xpath = "//li[contains(text(),'APPLY_REQUEST_VALUES')]";
 	protected static final String immediateMessage2Xpath = "//li[contains(text(),'PROCESS_VALIDATIONS')]";
 	protected static final String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
