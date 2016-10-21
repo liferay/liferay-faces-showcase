@@ -43,7 +43,8 @@ public class TesterBase extends IntegrationTesterBase {
 	protected static final String TEST_CONTEXT_URL;
 
 	// Common Xpath
-	protected static final String error1Xpath = "(//div[contains(@class,'field form-group has-error') or contains(@class,'field control-group error')])[1]";
+	protected static final String error1Xpath =
+		"(//div[contains(@class,'field form-group has-error') or contains(@class,'field control-group error')])[1]";
 	protected static final String immediateMessage1Xpath = "//li[contains(text(),'APPLY_REQUEST_VALUES')]";
 	protected static final String immediateMessage2Xpath = "//li[contains(text(),'PROCESS_VALIDATIONS')]";
 	protected static final String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
@@ -103,9 +104,16 @@ public class TesterBase extends IntegrationTesterBase {
 			// Since pluto does not support friendly URLs, obtain the "general" use case URL from the showcase accordion
 			// and replace "general" with the specified use case. Note: non-"general" use cases are shown conditionally
 			// so we cannot rely on those links being present, but the "general" use case links are always present.
+
+			String linkText = componentPrefix + ":" + componentName;
+
+			if (componentPrefix.equals("util")) {
+				linkText = componentName;
+			}
+
 			String componentLinkXpath =
 				"//a[contains(@href, 'general')][contains(@class,'showcase-link')][normalize-space(text())='" +
-				componentPrefix + ":" + componentName + "']";
+				linkText + "']";
 			List<WebElement> componentLinkElements = browser.findElements(By.xpath(componentLinkXpath));
 
 			// Initially, navigateToUseCase() may be called when the browser is on the default pluto page, so navigate
