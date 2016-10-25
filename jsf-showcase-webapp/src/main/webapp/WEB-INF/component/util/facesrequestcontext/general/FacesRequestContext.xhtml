@@ -18,7 +18,10 @@
 						<h:panelGroup layout="block" styleClass="modal-body">
 							<h:form>
 								<showcase:field label="#{i18n['please-enter-your-email']}">
-									<h:inputText id="text" label="#{i18n['email']}" value="#{facesRequestContextBacking.email}" required="true" />
+									<h:inputText id="text" label="#{i18n['email']}"
+										validator="#{inputTextBackingBean.emailAddressValidator}"
+										validatorMessage="#{i18n['validator-message']}"
+										value="#{facesRequestContextBacking.email}" required="true" />
 									<h:message for="text" />
 								</showcase:field>
 								<h:commandButton actionListener="#{facesRequestContextBacking.closeDialog}"
