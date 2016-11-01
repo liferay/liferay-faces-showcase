@@ -35,24 +35,24 @@ public class DataTableGeneralTester extends TesterBase {
 		navigateToUseCase(browser, "dataTable", "general");
 
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/th[contains(.,'Customers')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/thead/tr/th[contains(.,'Customers')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/th[contains(.,'First Name')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/thead/tr/th[contains(.,'First Name')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/th[contains(.,'Last Name')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/thead/tr/th[contains(.,'Last Name')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/th[contains(.,'Date of Birth')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/thead/tr/th[contains(.,'Date of Birth')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/th[contains(.,'Country')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/thead/tr/th[contains(.,'Country')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/td[contains(.,'Elbridge')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/tbody/tr/td[contains(.,'Elbridge')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/td[contains(.,'Braxton')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/tbody/tr/td[contains(.,'Braxton')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/td[contains(.,'Apr 21, 1713')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/tbody/tr/td[contains(.,'Apr 21, 1713')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"((//div[contains(@class,'showcase-example-usage')])/table/*/tr/td[contains(.,'United States')])[1]");
+			"((//div[contains(@class,'showcase-example-usage')])/table/tbody/tr/td[contains(.,'United States')])[1]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//div[contains(@class,'showcase-example-usage')])/table/*/tr/td[contains(.,'Footer')]");
+			"(//div[contains(@class,'showcase-example-usage')])/table/tfoot/tr/td[contains(.,'Footer')]");
 	}
 }
