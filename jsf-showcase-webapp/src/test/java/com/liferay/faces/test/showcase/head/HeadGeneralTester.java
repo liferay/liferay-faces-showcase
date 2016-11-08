@@ -18,7 +18,6 @@ package com.liferay.faces.test.showcase.head;
 import org.junit.Assume;
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.showcase.miscellaneous.MiscellaneousTester;
 
 
@@ -34,18 +33,6 @@ public class HeadGeneralTester extends MiscellaneousTester {
 		// Skip the test if it's not the JSF showcase. other showcases should
 		// include their own test for this use case.
 		Assume.assumeTrue(TEST_CONTEXT_URL.contains("jsf"));
-
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "head", "general");
-
-		// Test h:head webappHead.xhtml page content equals file content.
-		assertElementContentEqualsFileContent(browser, pageContentXpath,
-			"src/main/webapp/WEB-INF/component/h/head/general/webappHead.xhtml");
-
-		// Test h:head portletHead.xhtml page content equals file content.
-		browser.click(tab2Xpath);
-		browser.waitForElementVisible(tabContent2Xpath);
-		assertElementContentEqualsFileContent(browser, pageContentXpath,
-			"src/main/webapp/WEB-INF/component/h/head/general/portletHead.xhtml");
+		runMiscellaneousGeneralTest("h", "head");
 	}
 }

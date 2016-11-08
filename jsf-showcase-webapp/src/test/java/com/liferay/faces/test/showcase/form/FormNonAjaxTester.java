@@ -34,7 +34,7 @@ public class FormNonAjaxTester extends TesterBase {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "form", "non-ajax");
 
-		// Test The form was submitted via Ajax and re-rendered with updates to the DOM.
+		// Test that the form submits successfully.
 		browser.click("(//*[contains(text(),'Submit') or contains(@value,'Submit')])[1]");
 		waitForShowcasePageReady(browser);
 		SeleniumAssert.assertElementVisible(browser,
