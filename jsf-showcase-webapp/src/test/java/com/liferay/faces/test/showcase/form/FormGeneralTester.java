@@ -34,7 +34,7 @@ public class FormGeneralTester extends TesterBase {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "form", "general");
 
-		// Test The form was submitted via Ajax and re-rendered with updates to the DOM.
+		// Test that the form submits successfully via Ajax.
 		browser.clickAndWaitForAjaxRerender(
 			"(//*[contains(@onclick,'mojarra.ab')][contains(text(),'Submit') or contains(@value,'Submit')])[1]");
 		SeleniumAssert.assertElementVisible(browser,
