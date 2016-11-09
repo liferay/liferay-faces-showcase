@@ -50,7 +50,7 @@ public class InputFileTester extends InputTester {
 			useCase = "instant-ajax";
 		}
 
-		navigateToUseCase(browser, "inputfile", useCase);
+		navigateToUseCase(browser, "inputFile", useCase);
 		browser.sendKeys(fileUploadChooserXpath, LIFERAY_JSF_JERSEY_PNG_FILE_PATH);
 
 		if (!ajax) {
