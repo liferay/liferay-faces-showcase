@@ -18,13 +18,14 @@ package com.liferay.faces.test.showcase.outputlink;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.showcase.TesterBase;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class OutputLinkGeneralTester extends OutputLinkTester {
+public class OutputLinkGeneralTester extends TesterBase {
 
 	@Test
 	public void runOutputLinkGeneralTest() throws Exception {
