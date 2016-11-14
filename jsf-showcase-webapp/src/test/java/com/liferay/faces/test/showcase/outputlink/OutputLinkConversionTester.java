@@ -21,13 +21,14 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.showcase.TesterBase;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class OutputLinkConversionTester extends OutputLinkTester {
+public class OutputLinkConversionTester extends TesterBase {
 
 	@Test
 	public void runOutputLinkConversionTest() throws Exception {

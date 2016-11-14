@@ -17,8 +17,11 @@ package com.liferay.faces.test.showcase;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.junit.Assert;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -28,6 +31,7 @@ import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.expectedconditions.PageLoaded;
 
 
 /**
@@ -57,7 +61,7 @@ public class TesterBase extends IntegrationTesterBase {
 
 	// Private Constants
 	private static final String CONTAINER = TestUtil.getContainer("tomcat");
-	private static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
+	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
 			"integration.default.component.prefix", "h");
 	private static final boolean SIGN_IN;
 
@@ -149,6 +153,34 @@ public class TesterBase extends IntegrationTesterBase {
 		}
 
 		waitForShowcasePageReady(browser);
+	}
+
+	/**
+	 * Click the link and assert that it opens a new window/tab with the correct domain name.
+	 */
+	protected void testLink(Browser browser, String exampleLink1Xpath, String domainName) {
+		SeleniumAssert.assertElementVisible(browser, exampleLink1Xpath);
+
+		WebElement linkElement = browser.findElementByXpath(exampleLink1Xpath);
+		linkElement.click();
+
+		String originalWindowHandle = browser.getWindowHandle();
+		Set<String> windowHandles = browser.getWindowHandles();
+
+		for (String windowHandle : windowHandles) {
+
+			if (!originalWindowHandle.equals(windowHandle)) {
+				browser.switchTo().window(windowHandle);
+			}
+		}
+
+		browser.waitUntil(new PageLoaded());
+
+		String currentURL = browser.getCurrentUrl();
+		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + currentURL + ".",
+			currentURL.contains(domainName));
+		browser.close();
+		browser.switchTo().window(originalWindowHandle);
 	}
 
 	/**
