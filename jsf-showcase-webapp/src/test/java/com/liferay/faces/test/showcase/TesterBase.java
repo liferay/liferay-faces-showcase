@@ -44,6 +44,8 @@ public class TesterBase extends IntegrationTesterBase {
 	private static final Logger logger = Logger.getLogger(TesterBase.class.getName());
 
 	// Protected Constants
+	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
+			"integration.default.component.prefix", "h");
 	protected static final String TEST_CONTEXT_URL;
 
 	// Common Xpath
@@ -61,8 +63,6 @@ public class TesterBase extends IntegrationTesterBase {
 
 	// Private Constants
 	private static final String CONTAINER = TestUtil.getContainer("tomcat");
-	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
-			"integration.default.component.prefix", "h");
 	private static final boolean SIGN_IN;
 
 	static {
