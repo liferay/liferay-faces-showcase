@@ -30,6 +30,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.19.1</version>
 						<configuration>
 							<systemPropertyVariables>
 								<RUNNING_WITH_MAVEN_SUREFIRE_PLUGIN>true</RUNNING_WITH_MAVEN_SUREFIRE_PLUGIN>
@@ -58,6 +59,7 @@
 							<includes>
 								<include>**/*Test.java,**/Test*.java,**/*TestCase.java,**/*Tester.java</include>
 							</includes>
+							<trimStackTrace>false</trimStackTrace>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -76,55 +78,39 @@
 			</properties>
 		</profile>
 		<profile>
-			<id>alloy</id>
+			<id>phantomjs</id>
 			<properties>
-				<integration.context>/com.liferay.faces.demo.alloy.showcase.webapp/web/guest/showcase/-/component</integration.context>
-				<integration.default.component.prefix>alloy</integration.default.component.prefix>
+				<integration.browser>phantomjs</integration.browser>
 			</properties>
 		</profile>
 		<profile>
-			<id>metal</id>
+			<id>firefox</id>
 			<properties>
-				<integration.context>/com.liferay.faces.demo.metal.showcase.webapp/web/guest/showcase/-/component</integration.context>
-				<integration.default.component.prefix>metal</integration.default.component.prefix>
+				<integration.browser>firefox</integration.browser>
 			</properties>
 		</profile>
 		<profile>
-			<id>liferay-alloy</id>
+			<id>chrome</id>
 			<properties>
-				<integration.container>liferay</integration.container>
-				<integration.context>/web/guest/alloy-showcase/-/alloy-tag</integration.context>
-				<integration.default.component.prefix>alloy</integration.default.component.prefix>
-			</properties>
-		</profile>
-		<profile>
-			<id>liferay-metal</id>
-			<properties>
-				<integration.container>liferay</integration.container>
-				<integration.context>/web/guest/metal-showcase/-/metal-tag</integration.context>
-				<integration.default.component.prefix>metal</integration.default.component.prefix>
-			</properties>
-		</profile>
-		<profile>
-			<id>pluto-alloy</id>
-			<properties>
-				<integration.container>pluto</integration.container>
-				<integration.context>/pluto/portal/alloy-showcase</integration.context>
-				<integration.default.component.prefix>alloy</integration.default.component.prefix>
-			</properties>
-		</profile>
-		<profile>
-			<id>pluto-metal</id>
-			<properties>
-				<integration.container>pluto</integration.container>
-				<integration.context>/pluto/portal/metal-showcase</integration.context>
-				<integration.default.component.prefix>metal</integration.default.component.prefix>
+				<integration.browser>chrome</integration.browser>
 			</properties>
 		</profile>
 	</profiles>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
 				<configuration>
