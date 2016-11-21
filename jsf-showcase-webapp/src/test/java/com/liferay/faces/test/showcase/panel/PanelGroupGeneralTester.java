@@ -34,14 +34,14 @@ public class PanelGroupGeneralTester extends TesterBase {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "panelGroup", "general");
 
-		// Test that the first example component renders a <span> and the second one a <div>.
-		assertElementComponentTextVisible(browser, "div");
-		assertElementComponentTextVisible(browser, "span");
+		// Test that a div or a span is rendered.
+		assertElementTextMatchesElementType(browser, "div");
+		assertElementTextMatchesElementType(browser, "span");
 	}
 
-	private void assertElementComponentTextVisible(Browser browser, String component) {
+	private void assertElementTextMatchesElementType(Browser browser, String component) {
 		SeleniumAssert.assertElementTextVisible(browser,
-			"(//div[@class='showcase-example-usage']/" + component + "[contains(@class,'-panel')])[1]",
+			"//div[@class='showcase-example-usage']/" + component + "[contains(@class,'showcase-example-panel')]",
 			"This text is inside a <" + component + "> HTML tag");
 	}
 }
