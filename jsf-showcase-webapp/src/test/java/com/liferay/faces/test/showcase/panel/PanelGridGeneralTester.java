@@ -34,17 +34,17 @@ public class PanelGridGeneralTester extends TesterBase {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, "panelGrid", "general");
 
-		// Test the visibility of text elements in every row and column of the table.
-		assertRowColTextCorrect(browser, 1, 1);
-		assertRowColTextCorrect(browser, 1, 2);
-		assertRowColTextCorrect(browser, 1, 3);
-		assertRowColTextCorrect(browser, 2, 1);
-		assertRowColTextCorrect(browser, 2, 2);
-		assertRowColTextCorrect(browser, 2, 3);
-		assertRowColTextCorrect(browser, 3, 1);
+		// Test that each cell is rendered in the correct row and column.
+		assertCellTextMatchesCellRowCol(browser, 1, 1);
+		assertCellTextMatchesCellRowCol(browser, 1, 2);
+		assertCellTextMatchesCellRowCol(browser, 1, 3);
+		assertCellTextMatchesCellRowCol(browser, 2, 1);
+		assertCellTextMatchesCellRowCol(browser, 2, 2);
+		assertCellTextMatchesCellRowCol(browser, 2, 3);
+		assertCellTextMatchesCellRowCol(browser, 3, 1);
 	}
 
-	private void assertRowColTextCorrect(Browser browser, int row, int col) {
+	private void assertCellTextMatchesCellRowCol(Browser browser, int row, int col) {
 		SeleniumAssert.assertElementTextVisible(browser,
 			"//div[contains(@class,'showcase-example-usage')]/table/tbody/tr[" + row + "]/td[" + col + "]",
 			"Row " + row + " Col " + col);
