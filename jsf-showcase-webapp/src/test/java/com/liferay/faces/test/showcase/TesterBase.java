@@ -15,15 +15,18 @@
  */
 package com.liferay.faces.test.showcase;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.Assert;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -31,7 +34,6 @@ import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-import com.liferay.faces.test.selenium.expectedconditions.PageLoaded;
 
 
 /**
@@ -158,29 +160,53 @@ public class TesterBase extends IntegrationTesterBase {
 	/**
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
-	protected void testLink(Browser browser, String exampleLink1Xpath, String domainName) {
-		SeleniumAssert.assertElementVisible(browser, exampleLink1Xpath);
+	protected void testLink(Browser browser, String exampleLinkXpath, String domainName) {
 
-		WebElement linkElement = browser.findElementByXpath(exampleLink1Xpath);
+		SeleniumAssert.assertElementVisible(browser, exampleLinkXpath);
+
+		Set<String> initialWindowHandles = browser.getWindowHandles();
+		WebElement linkElement = browser.findElementByXpath(exampleLinkXpath);
 		linkElement.click();
 
 		String originalWindowHandle = browser.getWindowHandle();
-		Set<String> windowHandles = browser.getWindowHandles();
+		Set<String> windowHandles = new HashSet<String>(browser.getWindowHandles());
+		Assert.assertEquals("Clicking the link did not cause the browser to open a new tab/window.",
+			initialWindowHandles.size() + 1, windowHandles.size());
+		windowHandles.removeAll(initialWindowHandles);
+		browser.switchTo().window(windowHandles.iterator().next());
+		browser.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
 
-		for (String windowHandle : windowHandles) {
+		String currentURL = null;
 
-			if (!originalWindowHandle.equals(windowHandle)) {
-				browser.switchTo().window(windowHandle);
-			}
+		try {
+			currentURL = browser.getCurrentUrl();
+		}
+		catch (TimeoutException e) {
+			// The browser likely could not connect to the website.
 		}
 
-		browser.waitUntil(new PageLoaded());
+		// Reset to page load timeout to inifinity (the default).
+		browser.manage().timeouts().pageLoadTimeout(-1, TimeUnit.SECONDS);
 
-		String currentURL = browser.getCurrentUrl();
+		// If the url is null or "about:blank", the browser likely could not connect to the website, so fall back to
+		// testing the link on the original page.
+		if ((currentURL == null) || "about:blank".equals(currentURL)) {
+
+			browser.close();
+			browser.switchTo().window(originalWindowHandle);
+			linkElement = browser.findElementByXpath(exampleLinkXpath);
+
+			currentURL = linkElement.getAttribute("href");
+		}
+
 		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + currentURL + ".",
 			currentURL.contains(domainName));
-		browser.close();
-		browser.switchTo().window(originalWindowHandle);
+
+		if (!browser.getWindowHandle().equals(originalWindowHandle)) {
+
+			browser.close();
+			browser.switchTo().window(originalWindowHandle);
+		}
 	}
 
 	/**
