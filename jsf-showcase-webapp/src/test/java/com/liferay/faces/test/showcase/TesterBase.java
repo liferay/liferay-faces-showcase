@@ -15,12 +15,18 @@
  */
 package com.liferay.faces.test.showcase;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.junit.Assert;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -40,6 +46,8 @@ public class TesterBase extends IntegrationTesterBase {
 	private static final Logger logger = Logger.getLogger(TesterBase.class.getName());
 
 	// Protected Constants
+	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
+			"integration.default.component.prefix", "h");
 	protected static final String TEST_CONTEXT_URL;
 
 	// Common Xpath
@@ -57,8 +65,6 @@ public class TesterBase extends IntegrationTesterBase {
 
 	// Private Constants
 	private static final String CONTAINER = TestUtil.getContainer("tomcat");
-	private static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
-			"integration.default.component.prefix", "h");
 	private static final boolean SIGN_IN;
 
 	static {
@@ -149,6 +155,58 @@ public class TesterBase extends IntegrationTesterBase {
 		}
 
 		waitForShowcasePageReady(browser);
+	}
+
+	/**
+	 * Click the link and assert that it opens a new window/tab with the correct domain name.
+	 */
+	protected void testLink(Browser browser, String exampleLinkXpath, String domainName) {
+
+		SeleniumAssert.assertElementVisible(browser, exampleLinkXpath);
+
+		Set<String> initialWindowHandles = browser.getWindowHandles();
+		WebElement linkElement = browser.findElementByXpath(exampleLinkXpath);
+		linkElement.click();
+
+		String originalWindowHandle = browser.getWindowHandle();
+		Set<String> windowHandles = new HashSet<String>(browser.getWindowHandles());
+		Assert.assertEquals("Clicking the link did not cause the browser to open a new tab/window.",
+			initialWindowHandles.size() + 1, windowHandles.size());
+		windowHandles.removeAll(initialWindowHandles);
+		browser.switchTo().window(windowHandles.iterator().next());
+		browser.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+
+		String currentURL = null;
+
+		try {
+			currentURL = browser.getCurrentUrl();
+		}
+		catch (TimeoutException e) {
+			// The browser likely could not connect to the website.
+		}
+
+		// Reset to page load timeout to inifinity (the default).
+		browser.manage().timeouts().pageLoadTimeout(-1, TimeUnit.SECONDS);
+
+		// If the url is null or "about:blank", the browser likely could not connect to the website, so fall back to
+		// testing the link on the original page.
+		if ((currentURL == null) || "about:blank".equals(currentURL)) {
+
+			browser.close();
+			browser.switchTo().window(originalWindowHandle);
+			linkElement = browser.findElementByXpath(exampleLinkXpath);
+
+			currentURL = linkElement.getAttribute("href");
+		}
+
+		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + currentURL + ".",
+			currentURL.contains(domainName));
+
+		if (!browser.getWindowHandle().equals(originalWindowHandle)) {
+
+			browser.close();
+			browser.switchTo().window(originalWindowHandle);
+		}
 	}
 
 	/**
