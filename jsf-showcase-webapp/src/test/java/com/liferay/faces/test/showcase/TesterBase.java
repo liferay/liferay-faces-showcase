@@ -15,18 +15,15 @@
  */
 package com.liferay.faces.test.showcase;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.Assert;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -34,6 +31,7 @@ import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.expectedconditions.PageLoaded;
 
 
 /**
@@ -46,8 +44,6 @@ public class TesterBase extends IntegrationTesterBase {
 	private static final Logger logger = Logger.getLogger(TesterBase.class.getName());
 
 	// Protected Constants
-	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
-			"integration.default.component.prefix", "h");
 	protected static final String TEST_CONTEXT_URL;
 
 	// Common Xpath
@@ -65,6 +61,8 @@ public class TesterBase extends IntegrationTesterBase {
 
 	// Private Constants
 	private static final String CONTAINER = TestUtil.getContainer("tomcat");
+	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
+			"integration.default.component.prefix", "h");
 	private static final boolean SIGN_IN;
 
 	static {
@@ -160,53 +158,29 @@ public class TesterBase extends IntegrationTesterBase {
 	/**
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
-	protected void testLink(Browser browser, String exampleLinkXpath, String domainName) {
+	protected void testLink(Browser browser, String exampleLink1Xpath, String domainName) {
+		SeleniumAssert.assertElementVisible(browser, exampleLink1Xpath);
 
-		SeleniumAssert.assertElementVisible(browser, exampleLinkXpath);
-
-		Set<String> initialWindowHandles = browser.getWindowHandles();
-		WebElement linkElement = browser.findElementByXpath(exampleLinkXpath);
+		WebElement linkElement = browser.findElementByXpath(exampleLink1Xpath);
 		linkElement.click();
 
 		String originalWindowHandle = browser.getWindowHandle();
-		Set<String> windowHandles = new HashSet<String>(browser.getWindowHandles());
-		Assert.assertEquals("Clicking the link did not cause the browser to open a new tab/window.",
-			initialWindowHandles.size() + 1, windowHandles.size());
-		windowHandles.removeAll(initialWindowHandles);
-		browser.switchTo().window(windowHandles.iterator().next());
-		browser.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+		Set<String> windowHandles = browser.getWindowHandles();
 
-		String currentURL = null;
+		for (String windowHandle : windowHandles) {
 
-		try {
-			currentURL = browser.getCurrentUrl();
-		}
-		catch (TimeoutException e) {
-			// The browser likely could not connect to the website.
+			if (!originalWindowHandle.equals(windowHandle)) {
+				browser.switchTo().window(windowHandle);
+			}
 		}
 
-		// Reset to page load timeout to inifinity (the default).
-		browser.manage().timeouts().pageLoadTimeout(-1, TimeUnit.SECONDS);
+		browser.waitUntil(new PageLoaded());
 
-		// If the url is null or "about:blank", the browser likely could not connect to the website, so fall back to
-		// testing the link on the original page.
-		if ((currentURL == null) || "about:blank".equals(currentURL)) {
-
-			browser.close();
-			browser.switchTo().window(originalWindowHandle);
-			linkElement = browser.findElementByXpath(exampleLinkXpath);
-
-			currentURL = linkElement.getAttribute("href");
-		}
-
+		String currentURL = browser.getCurrentUrl();
 		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + currentURL + ".",
 			currentURL.contains(domainName));
-
-		if (!browser.getWindowHandle().equals(originalWindowHandle)) {
-
-			browser.close();
-			browser.switchTo().window(originalWindowHandle);
-		}
+		browser.close();
+		browser.switchTo().window(originalWindowHandle);
 	}
 
 	/**
