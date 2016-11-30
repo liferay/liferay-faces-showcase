@@ -24,43 +24,72 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>integration</id>
+			<id>selenium</id>
 			<build>
 				<plugins>
+					<!-- Ensure that the png resource is in the temporary directory for testing. -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<id>test</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<copy file="src/test/resources/liferay-jsf-jersey.png" todir="${java.io.tmpdir}" />
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
 						<version>2.19.1</version>
-						<configuration>
-							<systemPropertyVariables>
-								<RUNNING_WITH_MAVEN_SUREFIRE_PLUGIN>true</RUNNING_WITH_MAVEN_SUREFIRE_PLUGIN>
-								<!-- Specify a property like so: -Dintegration.browser=phantomjs -->
-								<integration.browser>${integration.browser}</integration.browser>
-								<integration.browser.wait.time.out>${integration.browser.wait.time.out}</integration.browser.wait.time.out>
-								<integration.log.level>${integration.log.level}</integration.log.level>
-								<integration.container>${integration.container}</integration.container>
-								<integration.host>${integration.host}</integration.host>
-								<integration.port>${integration.port}</integration.port>
-								<integration.context>${integration.context}</integration.context>
-								<integration.default.component.prefix>${integration.default.component.prefix}</integration.default.component.prefix>
-								<integration.sign.in.context>${integration.sign.in.context}</integration.sign.in.context>
-								<integration.login.xpath>${integration.login.xpath}</integration.login.xpath>
-								<integration.password.xpath>${integration.password.xpath}</integration.password.xpath>
-								<integration.sign.in.button.xpath>${integration.sign.in.button.xpath}</integration.sign.in.button.xpath>
-								<integration.login>${integration.login}</integration.login>
-								<integration.password>${integration.password}</integration.password>
-							</systemPropertyVariables>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>com.liferay.faces.test.selenium.IntegrationTestSuiteListener</value>
-								</property>
-							</properties>
-							<includes>
-								<include>**/*Test.java,**/Test*.java,**/*TestCase.java,**/*Tester.java</include>
-							</includes>
-							<trimStackTrace>false</trimStackTrace>
-						</configuration>
+						<executions>
+							<execution>
+								<id>selenium-tests</id>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+								<configuration>
+									<systemPropertyVariables>
+										<RUNNING_WITH_MAVEN>true</RUNNING_WITH_MAVEN>
+										<!-- Specify a property like so: -Dintegration.browser=phantomjs -->
+										<integration.browser>${integration.browser}</integration.browser>
+										<integration.browser.wait.time.out>${integration.browser.wait.time.out}</integration.browser.wait.time.out>
+										<integration.log.level>${integration.log.level}</integration.log.level>
+										<integration.container>tomcat</integration.container>
+										<integration.host>${integration.host}</integration.host>
+										<integration.port>${integration.port}</integration.port>
+										<integration.showcase.context>/com.liferay.faces.demo.jsf.showcase.webapp/web/guest/showcase/-/component</integration.showcase.context>
+										<integration.default.component.prefix>h</integration.default.component.prefix>
+										<integration.sign.in.context>${integration.sign.in.context}</integration.sign.in.context>
+										<integration.login.xpath>${integration.login.xpath}</integration.login.xpath>
+										<integration.password.xpath>${integration.password.xpath}</integration.password.xpath>
+										<integration.sign.in.button.xpath>${integration.sign.in.button.xpath}</integration.sign.in.button.xpath>
+										<integration.login>${integration.login}</integration.login>
+										<integration.password>${integration.password}</integration.password>
+									</systemPropertyVariables>
+									<properties>
+										<property>
+											<name>listener</name>
+											<value>com.liferay.faces.test.selenium.IntegrationTestSuiteListener</value>
+										</property>
+									</properties>
+									<includes>
+										<include>**/*Test.java,**/Test*.java,**/*TestCase.java,**/*Tester.java</include>
+									</includes>
+									<trimStackTrace>false</trimStackTrace>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -131,7 +160,10 @@
 						</goals>
 						<configuration>
 							<target>
-								<copy file="src/test/resources/liferay-jsf-jersey.png" todir="${java.io.tmpdir}" />
+								<copy file="src/main/webapp/WEB-INF/component/h/body/general/webappBody.xhtml" todir="${project.build.testOutputDirectory}" />
+								<copy file="src/main/webapp/WEB-INF/component/h/body/general/portletBody.xhtml" todir="${project.build.testOutputDirectory}" />
+								<copy file="src/main/webapp/WEB-INF/component/h/head/general/webappHead.xhtml" todir="${project.build.testOutputDirectory}" />
+								<copy file="src/main/webapp/WEB-INF/component/h/head/general/portletHead.xhtml" todir="${project.build.testOutputDirectory}" />
 							</target>
 						</configuration>
 					</execution>
