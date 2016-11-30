@@ -15,8 +15,9 @@
  */
 package com.liferay.faces.test.showcase.miscellaneous;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -52,12 +53,9 @@ public class MiscellaneousTester extends TesterBase {
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentPrefix, componentName, "general");
 
-		String fileNameTemplate = "src/main/webapp/WEB-INF/component/" + componentPrefix + "/" + componentName +
-			"/general/{0}" + capitalize(componentName) + ".xhtml";
-
 		// Test that the webapp*.xhtml file content is displayed correctly in the browser.
 		assertElementContentEqualsFileContent(browser, "(//div[contains(@class,'tab-pane')]/pre)[1]",
-			fileNameTemplate.replace("{0}", "webapp"));
+			"/webapp" + capitalize(componentName) + ".xhtml");
 
 		//J-
 		// TODO move portlet testing (and portlet*.xhtml) into bridge-impl.
@@ -68,7 +66,8 @@ public class MiscellaneousTester extends TesterBase {
 
 		String tabContent2Xpath = "(//div[contains(@class,'tab-pane')]/pre)[2]";
 		browser.waitForElementVisible(tabContent2Xpath);
-		assertElementContentEqualsFileContent(browser, tabContent2Xpath, fileNameTemplate.replace("{0}", "portlet"));
+		assertElementContentEqualsFileContent(browser, tabContent2Xpath,
+			"/portlet" + capitalize(componentName) + ".xhtml");
 	}
 
 	private String capitalize(String string) {
@@ -88,16 +87,17 @@ public class MiscellaneousTester extends TesterBase {
 		return capitalizedString;
 	}
 
-	private String getFileContentAsString(String filePath) throws FileNotFoundException {
+	private String getFileContentAsString(String resource) throws FileNotFoundException {
 
-		String fileContent = "";
+		String resourceContent = "";
+		InputStream inputStream = null;
 		Scanner scanner = null;
 
 		try {
-			File file = new File(filePath);
-			scanner = new Scanner(file, "UTF-8");
+			inputStream = getClass().getResourceAsStream(resource);
+			scanner = new Scanner(inputStream, "UTF-8");
 
-			fileContent = scanner.useDelimiter("\\A").next();
+			resourceContent = scanner.useDelimiter("\\A").next();
 		}
 		catch (NoSuchElementException e) {
 			// Empty file.
@@ -107,8 +107,18 @@ public class MiscellaneousTester extends TesterBase {
 			if (scanner != null) {
 				scanner.close();
 			}
+
+			if (inputStream != null) {
+
+				try {
+					inputStream.close();
+				}
+				catch (IOException e) {
+					// do nothing.
+				}
+			}
 		}
 
-		return fileContent;
+		return resourceContent;
 	}
 }
