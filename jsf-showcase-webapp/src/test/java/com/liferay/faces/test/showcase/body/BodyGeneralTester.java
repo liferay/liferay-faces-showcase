@@ -32,7 +32,7 @@ public class BodyGeneralTester extends MiscellaneousTester {
 
 		// Skip the test if it's not the JSF showcase. other showcases should
 		// include their own test for this use case.
-		Assume.assumeTrue(TEST_CONTEXT_URL.contains("jsf"));
+		Assume.assumeTrue(SHOWCASE_CONTEXT_URL.contains("jsf"));
 		runMiscellaneousGeneralTest("h", "body");
 	}
 }

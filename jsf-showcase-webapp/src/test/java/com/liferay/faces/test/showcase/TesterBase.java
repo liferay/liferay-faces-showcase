@@ -48,7 +48,7 @@ public class TesterBase extends IntegrationTesterBase {
 	// Protected Constants
 	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
 			"integration.default.component.prefix", "h");
-	protected static final String TEST_CONTEXT_URL;
+	protected static final String SHOWCASE_CONTEXT_URL;
 
 	// Common Xpath
 	protected static final String error1Xpath =
@@ -69,24 +69,25 @@ public class TesterBase extends IntegrationTesterBase {
 
 	static {
 
-		String defaultContext = "/com.liferay.faces.demo.jsf.showcase.webapp/web/guest/showcase/-/component";
+		String defaultShowcaseContext = "/com.liferay.faces.demo.jsf.showcase.webapp/web/guest/showcase/-/component";
 		boolean signIn = false;
 
 		if (CONTAINER.contains("liferay")) {
-			defaultContext = "/web/guest/jsf-showcase/-/jsf-tag";
+			defaultShowcaseContext = "/web/guest/jsf-showcase/-/jsf-tag";
 		}
 		else if (CONTAINER.contains("pluto")) {
 
-			defaultContext = TestUtil.DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
+			defaultShowcaseContext = TestUtil.DEFAULT_PLUTO_CONTEXT + "/jsf-showcase";
 			signIn = true;
 		}
 
-		logger.log(Level.INFO, "defaultContext = " + defaultContext);
+		logger.log(Level.INFO, "defaultShowcaseContext = " + defaultShowcaseContext);
 
-		String context = TestUtil.getSystemPropertyOrDefault("integration.context", defaultContext);
-		logger.log(Level.INFO, "context = " + context);
+		String showcaseContext = TestUtil.getSystemPropertyOrDefault("integration.showcase.context",
+				defaultShowcaseContext);
+		logger.log(Level.INFO, "showcaseContext = " + showcaseContext);
 
-		TEST_CONTEXT_URL = TestUtil.DEFAULT_BASE_URL + context;
+		SHOWCASE_CONTEXT_URL = TestUtil.DEFAULT_BASE_URL + showcaseContext;
 		SIGN_IN = signIn;
 	}
 
@@ -126,7 +127,7 @@ public class TesterBase extends IntegrationTesterBase {
 			// to the showcase if no component link element is found.
 			if (componentLinkElements.isEmpty()) {
 
-				browser.get(TEST_CONTEXT_URL);
+				browser.get(SHOWCASE_CONTEXT_URL);
 				waitForShowcasePageReady(browser);
 				browser.click("//img[contains(@src,'max.png')]/parent::a[contains(@href,'maximized')]");
 				waitForShowcasePageReady(browser);
@@ -150,7 +151,7 @@ public class TesterBase extends IntegrationTesterBase {
 			browser.get(plutoUseCaseURL);
 		}
 		else {
-			browser.get(TEST_CONTEXT_URL + "/" + componentPrefix + "/" + componentName.toLowerCase(Locale.ENGLISH) +
+			browser.get(SHOWCASE_CONTEXT_URL + "/" + componentPrefix + "/" + componentName.toLowerCase(Locale.ENGLISH) +
 				"/" + componentUseCase);
 		}
 
