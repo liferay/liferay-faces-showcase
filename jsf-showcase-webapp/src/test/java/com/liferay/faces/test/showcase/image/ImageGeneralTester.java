@@ -40,10 +40,10 @@ public class ImageGeneralTester extends TesterBase {
 		navigateToUseCase(browser, componentName, "general");
 
 		// Test that the images render on the page successfully.
-		assertImageRendered(browser, getImageXpath("value"));
-		assertImageRendered(browser, getImageXpath("#{resource}"));
-		assertImageRendered(browser, getImageXpath("name"));
-		assertImageRendered(browser, getImageXpath("usemap"));
+		assertImageRendered(browser, getExampleImageXpath("value"));
+		assertImageRendered(browser, getExampleImageXpath("#{resource}"));
+		assertImageRendered(browser, getExampleImageXpath("name"));
+		assertImageRendered(browser, getExampleImageXpath("usemap"));
 
 		// Click the image links on both areas of the example 4 image usemap and check that it opens a new window/tab
 		// with the correct domain name.
@@ -51,11 +51,5 @@ public class ImageGeneralTester extends TesterBase {
 			"jcp.org");
 		testLink(browser, "(//div[contains(@class,'showcase-example-usage')]//area[contains(@title,'JSR 378')])",
 			"jcp.org");
-	}
-
-	private String getImageXpath(String imageExampleLabelText) {
-		return "//label[contains(.,'Example')][contains(.,'" + imageExampleLabelText +
-			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
-
 	}
 }

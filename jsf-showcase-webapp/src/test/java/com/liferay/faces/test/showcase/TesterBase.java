@@ -107,6 +107,11 @@ public class TesterBase extends IntegrationTesterBase {
 		Assert.assertTrue("Image " + imageXpath + " (src=\"" + imageSrc + "\") is not rendered in the DOM.",
 			imageRendered);
 	}
+	
+	protected String getExampleImageXpath(String exampleLabelText) {
+		return "//label[contains(.,'Example')][contains(.,'" + exampleLabelText +
+			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
+	}
 
 	@Override
 	protected void doSetUp() {
