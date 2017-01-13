@@ -28,6 +28,6 @@ public class LinkGeneralTester extends ButtonLinkTester {
 
 	@Test
 	public void runLinkGeneralTest() throws Exception {
-		runButtonLinkGeneralTest("link", generalLink1Xpath, generalLink1Xpath);
+		runButtonLinkGeneralTest(true, "link", generalLink1Xpath, generalLink1Xpath);
 	}
 }

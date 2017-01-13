@@ -34,8 +34,8 @@ public class ButtonLinkTester extends TesterBase {
 	protected static final String generalLink2Xpath =
 		"//a[contains(text(),'Text for a link')][not(contains(@src,'jsf-logo-small.png'))]";
 
-	protected void runButtonLinkGeneralTest(String componentName, String buttonLink1xpath, String buttonLink2xpath)
-		throws Exception {
+	protected void runButtonLinkGeneralTest(boolean link, String componentName, String buttonLink1xpath,
+		String buttonLink2xpath) throws Exception {
 
 		// Skip the test if it's not the JSF showcase. other showcases should
 		// include their own test for this use case.
@@ -49,6 +49,11 @@ public class ButtonLinkTester extends TesterBase {
 		SeleniumAssert.assertElementVisible(browser, buttonLink2xpath);
 		browser.click(buttonLink1xpath);
 		browser.click(buttonLink2xpath);
+
+		// Test that the images render on the link use cases successfully.
+		if (link) {
+			assertImageRendered(browser, "children");
+		}
 	}
 
 	protected void runButtonLinkImmediateTest(String componentName) throws Exception {
