@@ -26,6 +26,6 @@ public class InputFileGeneralTester extends InputFileTester {
 
 	@Test
 	public void runInputFileGeneralTest() throws Exception {
-		runInputFileTest(false);
+		runInputFileTest("general");
 	}
 }
