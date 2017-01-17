@@ -26,6 +26,6 @@ public class InputFileInstantAjaxTester extends InputFileTester {
 
 	@Test
 	public void runInputFileInstantAjaxTest() throws Exception {
-		runInputFileTest(true);
+		runInputFileTest("instant-ajax");
 	}
 }

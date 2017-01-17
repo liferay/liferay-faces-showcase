@@ -18,13 +18,14 @@ package com.liferay.faces.test.showcase.image;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.showcase.TesterBase;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class ImageGeneralTester extends ImageTester {
+public class ImageGeneralTester extends TesterBase {
 
 	@Test
 	public void runImageGeneralTest() throws Exception {
@@ -54,7 +55,7 @@ public class ImageGeneralTester extends ImageTester {
 
 	private String getImageXpath(String imageExampleLabelText) {
 		return "//label[contains(.,'Example')][contains(.,'" + imageExampleLabelText +
-				"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
+			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
 
 	}
 }
