@@ -91,6 +91,23 @@ public class TesterBase extends IntegrationTesterBase {
 		SIGN_IN = signIn;
 	}
 
+	protected void assertImageRendered(Browser browser, String imageXpath) {
+
+		SeleniumAssert.assertElementVisible(browser, imageXpath);
+
+		WebElement image = browser.findElementByXpath(imageXpath);
+		String imageSrc = image.getAttribute("src");
+		Assert.assertTrue("Image src " + imageSrc + " is not a valid JSF resource URL.",
+			imageSrc.matches(".*javax.faces.resource\\p{Punct}[a-z-]+[.]png.*") &&
+			imageSrc.matches(".*ln\\p{Punct}images.*"));
+
+		Boolean imageRendered = (Boolean) browser.executeScript(
+				"return arguments[0].complete && typeof arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth > 0",
+				image);
+		Assert.assertTrue("Image " + imageXpath + " (src=\"" + imageSrc + "\") is not rendered in the DOM.",
+			imageRendered);
+	}
+
 	@Override
 	protected void doSetUp() {
 
