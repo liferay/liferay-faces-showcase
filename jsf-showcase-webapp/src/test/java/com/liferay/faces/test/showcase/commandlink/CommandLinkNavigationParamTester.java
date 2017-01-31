@@ -27,7 +27,7 @@ import com.liferay.faces.test.showcase.buttonlink.ButtonLinkTester;
 public class CommandLinkNavigationParamTester extends ButtonLinkTester {
 
 	@Test
-	public void runCommandLinkNavigationTest() throws Exception {
+	public void runCommandLinkNavigationParamTest() throws Exception {
 		runButtonLinkNavigationParamTest("commandLink");
 	}
 }
