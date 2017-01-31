@@ -30,6 +30,7 @@ public class SelectOneMenuTester extends SelectOneTester {
 
 		Browser browser = Browser.getInstance();
 		navigateToUseCase(browser, componentName, "general");
+		browser.centerElementInView(select1Xpath);
 		testRequiredCheckboxError(browser);
 
 		// Test that the selected option submits successfully and the "required" error message disappears. Note: In the

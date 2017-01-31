@@ -17,7 +17,6 @@ package com.liferay.faces.test.showcase.outputstylesheet;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import org.openqa.selenium.WebElement;
 
 import com.liferay.faces.test.selenium.Browser;
@@ -56,7 +55,6 @@ public class OutputStylesheetGeneralTester extends OutputTester {
 		buttonElement = browser.findElementByXpath(button2Xpath);
 
 		String buttonDisplay = buttonElement.getCssValue("display");
-		Assert.assertEquals("The button's display is not block, instead it is " + buttonDisplay, "block",
-			buttonDisplay);
+		Assert.assertTrue("The button's display is not block, instead it is " + buttonDisplay, buttonDisplay.contains("block"));
 	}
 }
