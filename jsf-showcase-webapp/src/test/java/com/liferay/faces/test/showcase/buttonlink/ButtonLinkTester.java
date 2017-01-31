@@ -109,31 +109,31 @@ public class ButtonLinkTester extends TesterBase {
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-success')][@value='Success' or contains(.,'Success')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"//*[contains(@class,'btn')][contains(@class,'btn-warning')][@value='Warning' or contains(.,'Warning')]");
+			"//*[contains(@class,'btn ')][contains(@class,'btn-warning')][@value='Warning' or contains(.,'Warning')]");
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-danger')][@value=' Danger' or contains(.,' Danger')]");
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-link')][@value='Link' or contains(.,'Link')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Large' or contains(.,'Large')]");
+			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][contains(@class,'btn-lg') or contains(@class,'btn-large')][@value='Large' or contains(.,'Large')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"//*[contains(@class,'btn ')][contains(@class,'btn-lg')][@value='Large' or contains(.,'Large')][2]");
+			"//*[contains(@class,'btn ')][contains(@class,'btn-lg') or contains(@class,'btn-large')][@value='Large' or contains(.,'Large')][2]");
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Default' or contains(.,'Default')]");
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ') or @class='btn'][@value='Default' or contains(.,'Default')][2]");
 		SeleniumAssert.assertElementVisible(browser,
-			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Small' or contains(.,'Small')]");
+			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][contains(@class,'btn-sm') or contains(@class,'btn-small')][@value='Small' or contains(.,'Small')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"//*[contains(@class,'btn ')][contains(@class,'btn-sm')][@value='Small' or contains(.,'Small')][2]");
+			"//*[contains(@class,'btn ')][contains(@class,'btn-sm') or contains(@class,'btn-small')][@value='Small' or contains(.,'Small')][2]");
 		SeleniumAssert.assertElementVisible(browser,
-			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Mini' or contains(.,'Mini')]");
+			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][contains(@class,'btn-mini') or contains(@class,'btn-xs')][@value='Mini' or contains(.,'Mini')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"//*[contains(@class,'btn ')][contains(@class,'btn-xs')][@value='Mini' or contains(.,'Mini')][2]");
+			"//*[contains(@class,'btn ')][contains(@class,'btn-mini') or contains(@class,'btn-xs')][@value='Mini' or contains(.,'Mini')][2]");
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Disabled' or contains(.,'Disabled')]");
 		SeleniumAssert.assertElementVisible(browser,
-			"(//*[contains(@class,'btn ')][@value='Disabled' or contains(.,'Disabled')])[2]");
+			"(//*[contains(@class,'btn ') or @class='btn'][@value='Disabled' or contains(.,'Disabled')])[2]");
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Block' or contains(.,'Block')]");
 		SeleniumAssert.assertElementVisible(browser,
