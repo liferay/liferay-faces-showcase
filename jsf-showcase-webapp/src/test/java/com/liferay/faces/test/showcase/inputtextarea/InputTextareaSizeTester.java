@@ -17,6 +17,7 @@ package com.liferay.faces.test.showcase.inputtextarea;
 
 import org.junit.Assert;
 import org.junit.Test;
+
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
