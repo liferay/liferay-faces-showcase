@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,6 @@ public class LinkGeneralTester extends ButtonLinkTester {
 
 	@Test
 	public void runLinkGeneralTest() throws Exception {
-		runButtonLinkGeneralTest(true, "link", generalLink1Xpath, generalLink1Xpath);
+		runButtonLinkGeneralTest("link", generalLink1Xpath, generalLink2Xpath);
 	}
 }
