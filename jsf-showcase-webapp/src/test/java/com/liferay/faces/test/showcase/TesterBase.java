@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -107,11 +107,6 @@ public class TesterBase extends IntegrationTesterBase {
 		Assert.assertTrue("Image " + imageXpath + " (src=\"" + imageSrc + "\") is not rendered in the DOM.",
 			imageRendered);
 	}
-	
-	protected String getExampleImageXpath(String exampleLabelText) {
-		return "//label[contains(.,'Example')][contains(.,'" + exampleLabelText +
-			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
-	}
 
 	@Override
 	protected void doSetUp() {
@@ -119,6 +114,11 @@ public class TesterBase extends IntegrationTesterBase {
 		if (SIGN_IN) {
 			signIn(Browser.getInstance(), CONTAINER);
 		}
+	}
+
+	protected String getExampleImageXpath(String exampleLabelText) {
+		return "//label[contains(.,'Example')][contains(.,'" + exampleLabelText +
+			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
 	}
 
 	protected void navigateToUseCase(Browser browser, String componentName, String componentUseCase) {
