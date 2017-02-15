@@ -28,6 +28,6 @@ public class CommandButtonGeneralTester extends ButtonLinkTester {
 
 	@Test
 	public void runCommandButtonGeneralTest() throws Exception {
-		runButtonLinkGeneralTest(false, "commandButton", generalButton1Xpath, "//input[@value='1234'][@type='submit']");
+		runButtonLinkGeneralTest("commandButton", generalButton1Xpath, "//input[@value='1234'][@type='submit']");
 	}
 }

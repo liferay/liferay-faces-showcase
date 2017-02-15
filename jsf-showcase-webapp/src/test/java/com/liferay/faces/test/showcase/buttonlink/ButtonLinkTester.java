@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 package com.liferay.faces.test.showcase.buttonlink;
+
+import java.util.Locale;
 
 import org.junit.Assume;
 
@@ -32,10 +34,10 @@ public class ButtonLinkTester extends TesterBase {
 	protected static final String generalLink1Xpath =
 		"//img[contains(@src,'jsf-logo-small.png')]/parent::a[contains(text(),'Text for a link')]";
 	protected static final String generalLink2Xpath =
-		"//a[contains(text(),'Text for a link')][not(contains(@src,'jsf-logo-small.png'))]";
+		"//a[contains(text(),'Text for a link')][not(./img[contains(@src,'jsf-logo-small.png')])]";
 
-	protected void runButtonLinkGeneralTest(boolean link, String componentName, String buttonLink1xpath,
-		String buttonLink2xpath) throws Exception {
+	protected void runButtonLinkGeneralTest(String componentName, String buttonLink1xpath, String buttonLink2xpath)
+		throws Exception {
 
 		// Skip the test if it's not the JSF showcase. other showcases should
 		// include their own test for this use case.
@@ -46,13 +48,16 @@ public class ButtonLinkTester extends TesterBase {
 
 		// Test that both buttons/links render on the page visibly and are clickable.
 		SeleniumAssert.assertElementVisible(browser, buttonLink1xpath);
-		SeleniumAssert.assertElementVisible(browser, buttonLink2xpath);
 		browser.click(buttonLink1xpath);
+		browser.waitForElementVisible(buttonLink2xpath);
+		SeleniumAssert.assertElementVisible(browser, buttonLink2xpath);
 		browser.click(buttonLink2xpath);
 
+		String lowerCaseComponentName = componentName.toLowerCase(Locale.ENGLISH);
+
 		// Test that the images render on the link use cases successfully.
-		if (link) {
-			assertImageRendered(browser, "children");
+		if (lowerCaseComponentName.contains("link")) {
+			assertImageRendered(browser, getExampleImageXpath("children"));
 		}
 	}
 

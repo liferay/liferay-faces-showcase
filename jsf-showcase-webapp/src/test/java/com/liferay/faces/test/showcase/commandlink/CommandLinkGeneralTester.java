@@ -28,6 +28,6 @@ public class CommandLinkGeneralTester extends ButtonLinkTester {
 
 	@Test
 	public void runCommandLinkGeneralTest() throws Exception {
-		runButtonLinkGeneralTest(true, "commandLink", generalLink1Xpath, generalLink2Xpath);
+		runButtonLinkGeneralTest("commandLink", generalLink1Xpath, generalLink2Xpath);
 	}
 }
