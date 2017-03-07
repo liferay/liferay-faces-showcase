@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.liferay.faces.test.showcase.inputfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.TestUtil;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 import com.liferay.faces.test.showcase.input.InputTester;
 
@@ -29,8 +30,7 @@ import com.liferay.faces.test.showcase.input.InputTester;
 public class InputFileTester extends InputTester {
 
 	// Private Constants
-	private static final String LIFERAY_JSF_JERSEY_PNG_FILE_PATH = System.getProperty("java.io.tmpdir") +
-		"liferay-jsf-jersey.png";
+	private static final String LIFERAY_JSF_JERSEY_PNG_FILE_PATH = TestUtil.JAVA_IO_TMPDIR + "liferay-jsf-jersey.png";
 	private static final String PHANTOMJS_ALERT_CONFIRMATION_WORKAROUND =
 		"window.alert = function(msg){ console.log(msg); };" +
 		"window.confirm = function(msg){ console.log(msg); return true; };";
