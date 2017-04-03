@@ -87,11 +87,11 @@
 		<faces.impl.group.id>org.glassfish</faces.impl.group.id>
 		<faces.impl.artifact.id>javax.faces</faces.impl.artifact.id>
 		<faces.impl.scope>runtime</faces.impl.scope>
-		<faces.spec.version>2.3-prd</faces.spec.version>
+		<faces.spec.version>2.3</faces.spec.version>
 		<faces.version>${mojarra.version}</faces.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<log4j.version>1.2.14</log4j.version>
-		<mojarra.version>2.3.0-m10-SNAPSHOT</mojarra.version>
+		<mojarra.version>2.3.0</mojarra.version>
 		<myfaces.version>UNSUPPORTED</myfaces.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
