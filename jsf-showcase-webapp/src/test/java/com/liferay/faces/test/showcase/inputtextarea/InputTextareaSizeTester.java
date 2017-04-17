@@ -53,15 +53,14 @@ public class InputTextareaSizeTester extends InputTextareaTester {
 		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
 
 		WebElement textarea2 = browser.findElementByXpath(textarea2Xpath);
-		Dimension size = textarea2.getSize();
-		int expectedWidth = 150;
-		int width = size.getWidth();
+		String expectedWidth = "150px";
+		String width = textarea2.getCssValue("width");
 		Assert.assertEquals("Width of element " + textarea2 + " is not \"" + expectedWidth + "\". Instead it is \"" +
-			width + "\".", 150, width);
+			width + "\".", expectedWidth, width);
 
-		int expectedHeight = 150;
-		int height = size.getHeight();
-		Assert.assertEquals("Width of element " + textarea2 + " is not \"" + expectedHeight + "\". Instead it is \"" +
-			height + "\".", 150, height);
+		String expectedHeight = "150px";
+		String height = textarea2.getCssValue("height");
+		Assert.assertEquals("Height of element " + textarea2 + " is not \"" + expectedHeight + "\". Instead it is \"" +
+			height + "\".", expectedHeight, height);
 	}
 }
