@@ -81,11 +81,11 @@ public class TesterBase extends IntegrationTesterBase {
 			signIn = true;
 		}
 
-		logger.log(Level.INFO, "defaultShowcaseContext = " + defaultShowcaseContext);
+		logger.log(Level.INFO, "defaultShowcaseContext = {0}", defaultShowcaseContext);
 
 		String showcaseContext = TestUtil.getSystemPropertyOrDefault("integration.showcase.context",
 				defaultShowcaseContext);
-		logger.log(Level.INFO, "showcaseContext = " + showcaseContext);
+		logger.log(Level.INFO, "showcaseContext = {0}", showcaseContext);
 
 		SHOWCASE_CONTEXT_URL = TestUtil.DEFAULT_BASE_URL + showcaseContext;
 		SIGN_IN = signIn;
@@ -119,6 +119,10 @@ public class TesterBase extends IntegrationTesterBase {
 	protected String getExampleImageXpath(String exampleLabelText) {
 		return "//label[contains(.,'Example')][contains(.,'" + exampleLabelText +
 			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
+	}
+
+	protected boolean isHeadlessChrome(Browser browser) {
+		return "chrome".equals(browser.getName()) && browser.isHeadless();
 	}
 
 	protected void navigateToUseCase(Browser browser, String componentName, String componentUseCase) {

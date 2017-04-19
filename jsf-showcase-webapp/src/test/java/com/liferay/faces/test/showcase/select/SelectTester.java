@@ -45,17 +45,6 @@ public class SelectTester extends TesterBase {
 		"var changeEvent = document.createEvent('HTMLEvents');" +
 		"changeEvent.initEvent('change', true, true); arguments[0].parentNode.dispatchEvent(changeEvent);";
 
-	protected void clickAndWaitForAjaxRerender(Browser browser, String xpath) {
-
-		// SelectOneMenu and SelectManyMenu tests occasionally fail due to elements moving off screen, so center the
-		// element in the view.
-		if (this.getClass().getName().contains("Menu")) {
-			browser.centerElementInView(xpath);
-		}
-
-		browser.clickAndWaitForAjaxRerender(xpath);
-	}
-
 	/**
 	 * Click an option and wait for Ajax to rerender the option. This method exists because {@link
 	 * Browser#clickAndWaitForAjaxRerender(java.lang.String)} does not work on selectOneMenu, selectManyListbox, and
@@ -63,11 +52,7 @@ public class SelectTester extends TesterBase {
 	 */
 	protected void clickOptionAndWaitForAjaxRerender(Browser browser, String optionXpath) {
 
-		// SelectOneMenu and SelectManyMenu tests occasionally fail due to elements moving off screen, so center the
-		// element in the view.
-		if (this.getClass().getName().contains("Menu")) {
-			browser.centerElementInView(optionXpath);
-		}
+		browser.centerElementInView(optionXpath);
 
 		WebElement optionElement = browser.findElementByXpath(optionXpath);
 
