@@ -47,7 +47,6 @@ public class MessagesGeneralTester extends OutputTester {
 		String input3Xpath = "(//input[contains(@id,':inputText')])[3]";
 		String messages3Xpath = "(//div[@class='showcase-example-usage'])[3]/table/tbody/tr/td";
 		String submitButton3Xpath = "(//*[contains(@value, 'Submit')])[3]";
-		browser.centerElementInView(submitButton3Xpath);
 		testMessage(browser, input3Xpath, text, submitButton3Xpath, messages3Xpath,
 			"Your request processed successfully.");
 	}

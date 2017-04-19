@@ -36,14 +36,14 @@ public class SelectOneRadioInstantAjaxTester extends SelectOneRadioTester {
 		// Test that the selected option submits successfully. Note: selectOneMenu will not perform an ajax request if
 		// the visible option is clicked, so the test clicks the third option instead.
 		String option1Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[1]";
-		clickAndWaitForAjaxRerender(browser, option1Xpath);
+		browser.clickAndWaitForAjaxRerender(option1Xpath);
 
 		String answer1 = "1";
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
 
 		// Test that selecting another value changes the model value.
 		String option3Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[3]";
-		clickAndWaitForAjaxRerender(browser, option3Xpath);
+		browser.clickAndWaitForAjaxRerender(option3Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
 	}

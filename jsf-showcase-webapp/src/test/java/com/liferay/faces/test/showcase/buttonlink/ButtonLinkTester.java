@@ -19,6 +19,9 @@ import java.util.Locale;
 
 import org.junit.Assume;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
 import com.liferay.faces.test.showcase.TesterBase;
@@ -48,10 +51,9 @@ public class ButtonLinkTester extends TesterBase {
 
 		// Test that both buttons/links render on the page visibly and are clickable.
 		SeleniumAssert.assertElementVisible(browser, buttonLink1xpath);
-		browser.click(buttonLink1xpath);
-		browser.waitForElementVisible(buttonLink2xpath);
+		clickButtonLink(browser, buttonLink1xpath);
 		SeleniumAssert.assertElementVisible(browser, buttonLink2xpath);
-		browser.click(buttonLink2xpath);
+		clickButtonLink(browser, buttonLink2xpath);
 
 		String lowerCaseComponentName = componentName.toLowerCase(Locale.ENGLISH);
 
@@ -149,9 +151,24 @@ public class ButtonLinkTester extends TesterBase {
 		SeleniumAssert.assertElementVisible(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-block')][@value='Block' or contains(.,'Block')][2]");
 
-		// click first button
-		browser.click(
+		// Click first button.
+		clickButtonLink(browser,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Primary' or contains(.,'Primary')]");
+	}
+
+	private void clickButtonLink(Browser browser, String xpath) {
+
+		WebElement webElement = browser.findElementByXpath(xpath);
+		String tagName = webElement.getTagName();
+		String onclick = webElement.getAttribute("onclick");
+		browser.click(xpath);
+
+		// If the clicking the button/link will cause the page to reload.
+		if (!"button".equals(tagName) || ((onclick != null) && !"".equals(onclick))) {
+
+			browser.waitUntil(ExpectedConditions.stalenessOf(webElement));
+			waitForShowcasePageReady(browser);
+		}
 	}
 
 	private void testNavigationPage(Browser browser, String toParamPageXpath, String backToNavigationXpath) {

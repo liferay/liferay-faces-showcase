@@ -46,7 +46,6 @@ public class OutputLabelGeneralTester extends OutputTester {
 
 		String text = "Philip";
 		browser.sendKeys(inputFirstName1Xpath, text);
-		browser.centerElementInView(submitButton1Xpath);
 		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 
 		String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";

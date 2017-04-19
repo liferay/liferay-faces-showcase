@@ -31,8 +31,7 @@ public class InputFileTester extends InputTester {
 
 	// Private Constants
 	private static final String LIFERAY_JSF_JERSEY_PNG_FILE_PATH = TestUtil.JAVA_IO_TMPDIR + "liferay-jsf-jersey.png";
-	private static final String PHANTOMJS_ALERT_CONFIRMATION_WORKAROUND =
-		"window.alert = function(msg){ console.log(msg); };" +
+	private static final String ALERT_CONFIRMATION_WORKAROUND = "window.alert = function(msg){ console.log(msg); };" +
 		"window.confirm = function(msg){ console.log(msg); return true; };";
 
 	// Private Xpaths
@@ -79,9 +78,9 @@ public class InputFileTester extends InputTester {
 
 		// Workaround https://github.com/detro/ghostdriver/issues/20: Implement all the Session Commands related to JS
 		// Alert, Prompt and Confirm.
-		if (browserName.contains("phantomjs")) {
+		if (isHeadlessChrome(browser) || browserName.contains("phantomjs")) {
 
-			browser.executeScript(PHANTOMJS_ALERT_CONFIRMATION_WORKAROUND);
+			browser.executeScript(ALERT_CONFIRMATION_WORKAROUND);
 			browser.click(deleteFileXpath);
 		}
 		else {
