@@ -49,7 +49,7 @@ public class SelectManyTester extends SelectTester {
 
 		String option4Xpath = "(" + selectMany1Xpath + optionChildXpath + ")[4]";
 		browser.click(option4Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 
 		String date1 = "Apr 5, 0033 AD";
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, date1);
@@ -66,7 +66,7 @@ public class SelectManyTester extends SelectTester {
 		// is not the case in selenium, so elements must be deselected by clicking them again.
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browser.click(option1Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, date1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, date2);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, date3);
@@ -120,7 +120,7 @@ public class SelectManyTester extends SelectTester {
 		// Test that multiple selected options submit successfully.
 		String option1Xpath = "(" + selectMany1Xpath + optionChildXpath + ")[1]";
 		browser.click(option1Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 
 		String answer1 = "1";
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
@@ -132,7 +132,7 @@ public class SelectManyTester extends SelectTester {
 		// is not the case in selenium, so elements must be deselected by clicking them again.
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browser.click(option1Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer2);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer4);
@@ -193,7 +193,7 @@ public class SelectManyTester extends SelectTester {
 
 		String option4Xpath = "(" + selectManyXpath + optionChildXpath + ")[4]";
 		browser.click(option4Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButtonXpath);
+		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 
 		String answer1 = "1";
 		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, answer1);
@@ -209,7 +209,7 @@ public class SelectManyTester extends SelectTester {
 		// is not the case in selenium, so elements must be deselected by clicking them again.
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browser.click(option1Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButtonXpath);
+		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValueXpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, answer3);
 		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, answer4);

@@ -38,7 +38,7 @@ public class SelectOneMenuTester extends SelectOneTester {
 		// (which has a value of 1) instead of the first one.
 		String option2Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[2]";
 		browser.click(option2Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
 
 		String answer1 = "1";
@@ -47,7 +47,7 @@ public class SelectOneMenuTester extends SelectOneTester {
 		// Test that selecting another value changes the model value.
 		String option4Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[4]";
 		browser.click(option4Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
 	}

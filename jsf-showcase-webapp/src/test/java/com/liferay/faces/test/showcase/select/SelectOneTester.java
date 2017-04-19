@@ -44,7 +44,7 @@ public class SelectOneTester extends SelectTester {
 		// Test that the selected option submits successfully and the "Incorrect!" message appears.
 		String option1Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[1]";
 		browser.click(option1Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 
 		String answer1 = "Oct 31, 1517 AD";
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
@@ -53,7 +53,7 @@ public class SelectOneTester extends SelectTester {
 		// Test that selecting another value changes the model value and the "Correct!" message appears.
 		String option2Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[2]";
 		browser.click(option2Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "Jul 4, 1776 AD");
 		SeleniumAssert.assertElementVisible(browser, conversionCorrectMessage1Xpath);
@@ -104,7 +104,7 @@ public class SelectOneTester extends SelectTester {
 		// Test that selecting another value changes the model value.
 		String option1Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[1]";
 		browser.click(option1Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButton1Xpath);
+		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer3);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
 	}
@@ -158,7 +158,7 @@ public class SelectOneTester extends SelectTester {
 		// Test that the selected option submits successfully.
 		String option1Xpath = "(" + selectOneXpath + optionChildXpath + ")[1]";
 		browser.click(option1Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButtonXpath);
+		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 
 		String answer1 = "1";
 		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, answer1);
@@ -166,7 +166,7 @@ public class SelectOneTester extends SelectTester {
 		// Test that selecting another option changes the model value.
 		String option3Xpath = "(" + selectOneXpath + optionChildXpath + ")[3]";
 		browser.click(option3Xpath);
-		clickAndWaitForAjaxRerender(browser, submitButtonXpath);
+		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValueXpath, answer1);
 		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, "3");
 	}

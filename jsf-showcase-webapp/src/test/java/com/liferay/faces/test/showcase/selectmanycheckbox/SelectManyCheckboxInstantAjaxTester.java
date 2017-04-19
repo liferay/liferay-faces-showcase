@@ -35,19 +35,19 @@ public class SelectManyCheckboxInstantAjaxTester extends SelectManyCheckboxTeste
 
 		// Test that multiple checked checkboxes submit successfully.
 		String checkbox1Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[1]";
-		clickAndWaitForAjaxRerender(browser, checkbox1Xpath);
+		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
 
 		String checkbox3Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[3]";
-		clickAndWaitForAjaxRerender(browser, checkbox3Xpath);
+		browser.clickAndWaitForAjaxRerender(checkbox3Xpath);
 
 		String checkbox4Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[4]";
-		clickAndWaitForAjaxRerender(browser, checkbox4Xpath);
+		browser.clickAndWaitForAjaxRerender(checkbox4Xpath);
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "4");
 
 		// Test that unchecking a checkbox removes the value from the model.
-		clickAndWaitForAjaxRerender(browser, checkbox1Xpath);
+		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
 		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, "1");
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
 		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "4");

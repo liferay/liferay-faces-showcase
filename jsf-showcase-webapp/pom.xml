@@ -13,11 +13,6 @@
 	<name>JSF Showcase Webapp</name>
 	<description>This plugin is the JSF Showcase demo webapp.</description>
 
-
-	<properties>
-		<integration.browser>phantomjs</integration.browser>
-	</properties>
-
 	<profiles>
 		<profile>
 			<id>prettyfaces</id>
@@ -25,101 +20,6 @@
 				<dependency>
 					<groupId>com.ocpsoft</groupId>
 					<artifactId>prettyfaces-jsf2</artifactId>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>selenium</id>
-			<build>
-				<plugins>
-					<!-- Ensure that the png resource is in the temporary directory for testing. -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<version>1.7</version>
-						<executions>
-							<execution>
-								<id>test</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<configuration>
-									<target>
-										<copy file="src/test/resources/liferay-jsf-jersey.png" todir="${java.io.tmpdir}" />
-									</target>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.19.1</version>
-						<executions>
-							<execution>
-								<id>selenium-tests</id>
-								<goals>
-									<goal>integration-test</goal>
-									<goal>verify</goal>
-								</goals>
-								<configuration>
-									<systemPropertyVariables>
-										<RUNNING_WITH_MAVEN>true</RUNNING_WITH_MAVEN>
-										<!-- Specify a property like so: -Dintegration.browser=phantomjs -->
-										<integration.browser>${integration.browser}</integration.browser>
-										<integration.browser.wait.time.out>${integration.browser.wait.time.out}</integration.browser.wait.time.out>
-										<integration.log.level>${integration.log.level}</integration.log.level>
-										<integration.container>tomcat</integration.container>
-										<integration.host>${integration.host}</integration.host>
-										<integration.port>${integration.port}</integration.port>
-										<integration.showcase.context>/com.liferay.faces.demo.jsf.showcase.webapp/web/guest/showcase/-/component</integration.showcase.context>
-										<integration.default.component.prefix>h</integration.default.component.prefix>
-										<integration.sign.in.context>${integration.sign.in.context}</integration.sign.in.context>
-										<integration.login.xpath>${integration.login.xpath}</integration.login.xpath>
-										<integration.password.xpath>${integration.password.xpath}</integration.password.xpath>
-										<integration.sign.in.button.xpath>${integration.sign.in.button.xpath}</integration.sign.in.button.xpath>
-										<integration.login>${integration.login}</integration.login>
-										<integration.password>${integration.password}</integration.password>
-									</systemPropertyVariables>
-									<properties>
-										<property>
-											<name>listener</name>
-											<value>com.liferay.faces.test.selenium.IntegrationTestSuiteListener</value>
-										</property>
-									</properties>
-									<includes>
-										<include>**/*Test.java,**/Test*.java,**/*TestCase.java,**/*Tester.java</include>
-									</includes>
-									<trimStackTrace>false</trimStackTrace>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-			<dependencies>
-				<dependency>
-					<groupId>com.codeborne</groupId>
-					<artifactId>phantomjsdriver</artifactId>
-					<version>1.3.0</version>
-					<scope>test</scope>
-					<!-- Don't download the version of selenium that phantomjsdriver depends on since it is older than the
-					version we specify. -->
-					<exclusions>
-						<exclusion>
-							<artifactId>org.seleniumhq.selenium</artifactId>
-							<groupId>selenium-java</groupId>
-						</exclusion>
-						<exclusion>
-							<artifactId>org.seleniumhq.selenium</artifactId>
-							<groupId>selenium-server</groupId>
-						</exclusion>
-						<exclusion>
-							<artifactId>org.seleniumhq.selenium</artifactId>
-							<groupId>selenium-remote-driver</groupId>
-						</exclusion>
-					</exclusions>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -138,15 +38,12 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>chrome</id>
-			<properties>
-				<integration.browser>chrome</integration.browser>
-			</properties>
+			<id>phantomjs</id>
 			<dependencies>
 				<dependency>
-					<groupId>org.seleniumhq.selenium</groupId>
-					<artifactId>selenium-chrome-driver</artifactId>
-					<version>2.53.0</version>
+					<groupId>com.codeborne</groupId>
+					<artifactId>phantomjsdriver</artifactId>
+					<version>1.3.0</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
@@ -196,6 +93,78 @@
 					<scope>test</scope>
 				</dependency>
 			</dependencies>
+		</profile>
+		<profile>
+			<id>selenium</id>
+			<build>
+				<plugins>
+					<!-- Ensure that the png resource is in the temporary directory for testing. -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<id>test</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<copy file="src/test/resources/liferay-jsf-jersey.png" todir="${java.io.tmpdir}" />
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>2.19.1</version>
+						<executions>
+							<execution>
+								<id>selenium-tests</id>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+								<configuration>
+									<systemPropertyVariables>
+										<RUNNING_WITH_MAVEN>true</RUNNING_WITH_MAVEN>
+										<!-- Specify a property like so: -Dintegration.browser=phantomjs -->
+										<integration.browser>${integration.browser}</integration.browser>
+										<integration.browser.headless>${integration.browser.headless}</integration.browser.headless>
+										<integration.browser.wait.time.out>${integration.browser.wait.time.out}</integration.browser.wait.time.out>
+										<integration.log.level>${integration.log.level}</integration.log.level>
+										<integration.container>tomcat</integration.container>
+										<integration.host>${integration.host}</integration.host>
+										<integration.port>${integration.port}</integration.port>
+										<integration.showcase.context>/com.liferay.faces.demo.jsf.showcase.webapp/web/guest/showcase/-/component</integration.showcase.context>
+										<integration.default.component.prefix>h</integration.default.component.prefix>
+										<integration.sign.in.context>${integration.sign.in.context}</integration.sign.in.context>
+										<integration.login.xpath>${integration.login.xpath}</integration.login.xpath>
+										<integration.password.xpath>${integration.password.xpath}</integration.password.xpath>
+										<integration.sign.in.button.xpath>${integration.sign.in.button.xpath}</integration.sign.in.button.xpath>
+										<integration.login>${integration.login}</integration.login>
+										<integration.password>${integration.password}</integration.password>
+									</systemPropertyVariables>
+									<properties>
+										<property>
+											<name>listener</name>
+											<value>com.liferay.faces.test.selenium.IntegrationTestSuiteListener</value>
+										</property>
+									</properties>
+									<includes>
+										<include>**/*Test.java,**/Test*.java,**/*TestCase.java,**/*Tester.java</include>
+									</includes>
+									<trimStackTrace>false</trimStackTrace>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 
