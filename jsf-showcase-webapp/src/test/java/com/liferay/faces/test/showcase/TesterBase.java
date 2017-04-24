@@ -34,6 +34,7 @@ import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
 import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.expectedconditions.TabOpened;
 
 
 /**
@@ -191,22 +192,28 @@ public class TesterBase extends IntegrationTesterBase {
 
 		SeleniumAssert.assertElementVisible(browser, exampleLinkXpath);
 
-		Set<String> initialWindowHandles = browser.getWindowHandles();
+		String newTabURL = null;
+		String originalWindowHandle = null;
+		Set<String> originalWindowHandles = browser.getWindowHandles();
+		int initialNumberOfTabs = originalWindowHandles.size();
 		WebElement linkElement = browser.findElementByXpath(exampleLinkXpath);
-		linkElement.click();
-
-		String originalWindowHandle = browser.getWindowHandle();
-		Set<String> windowHandles = new HashSet<String>(browser.getWindowHandles());
-		Assert.assertEquals("Clicking the link did not cause the browser to open a new tab/window.",
-			initialWindowHandles.size() + 1, windowHandles.size());
-		windowHandles.removeAll(initialWindowHandles);
-		browser.switchTo().window(windowHandles.iterator().next());
 		browser.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
 
-		String currentURL = null;
-
 		try {
-			currentURL = browser.getCurrentUrl();
+
+			linkElement.click();
+			browser.waitUntil(new TabOpened(initialNumberOfTabs));
+
+			Set<String> windowHandles = new HashSet<String>(browser.getWindowHandles());
+			Assert.assertEquals("Clicking the link did not cause the browser to open a new tab/window.",
+				initialNumberOfTabs + 1, windowHandles.size());
+
+			originalWindowHandle = browser.getWindowHandle();
+
+			// Obtain the URL of the newly opened tab.
+			windowHandles.removeAll(originalWindowHandles);
+			browser.switchTo().window(windowHandles.iterator().next());
+			newTabURL = browser.getCurrentUrl();
 		}
 		catch (TimeoutException e) {
 			// The browser likely could not connect to the website.
@@ -217,21 +224,30 @@ public class TesterBase extends IntegrationTesterBase {
 
 		// If the url is null or "about:blank", the browser likely could not connect to the website, so fall back to
 		// testing the link on the original page.
-		if ((currentURL == null) || "about:blank".equals(currentURL)) {
+		if ((newTabURL == null) || "about:blank".equals(newTabURL)) {
 
-			browser.close();
-			browser.switchTo().window(originalWindowHandle);
+			if (originalWindowHandle != null) {
+
+				if (!isHeadlessChrome(browser)) {
+					browser.close();
+				}
+
+				browser.switchTo().window(originalWindowHandle);
+			}
+
 			linkElement = browser.findElementByXpath(exampleLinkXpath);
-
-			currentURL = linkElement.getAttribute("href");
+			newTabURL = linkElement.getAttribute("href");
 		}
 
-		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + currentURL + ".",
-			currentURL.contains(domainName));
+		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + newTabURL + ".",
+			newTabURL.contains(domainName));
 
-		if (!browser.getWindowHandle().equals(originalWindowHandle)) {
+		if ((originalWindowHandle != null) && !browser.getWindowHandle().equals(originalWindowHandle)) {
 
-			browser.close();
+			if (!isHeadlessChrome(browser)) {
+				browser.close();
+			}
+
 			browser.switchTo().window(originalWindowHandle);
 		}
 	}
