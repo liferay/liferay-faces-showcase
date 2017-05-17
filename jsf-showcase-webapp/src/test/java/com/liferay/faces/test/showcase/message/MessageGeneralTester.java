@@ -17,7 +17,8 @@ package com.liferay.faces.test.showcase.message;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -30,11 +31,12 @@ public class MessageGeneralTester extends OutputTester {
 	@Test
 	public void runMessageGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "message", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "message", "general");
 
 		// Test that the value submits successfully and message text is displayed
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		String message1Xpath = "(//div[@class='showcase-example-usage'])[1]/div";
-		testCharCountMessage(browser, input1Xpath, submitButton1Xpath, message1Xpath);
+		testCharCountMessage(browserDriver, browserStateAsserter, input1Xpath, submitButton1Xpath, message1Xpath);
 	}
 }

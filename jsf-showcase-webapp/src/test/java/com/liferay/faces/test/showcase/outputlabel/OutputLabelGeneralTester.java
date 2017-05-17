@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.outputlabel;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -31,32 +31,33 @@ public class OutputLabelGeneralTester extends OutputTester {
 	@Test
 	public void runOutputLabelGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputLabel", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputLabel", "general");
 
 		// Test that the web page shows an error message when an empty value is submitted.
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		String valueRequiredText = "Name: Validation Error: Value is required.";
 		String field1Xpath = "(//div[@class='showcase-example-usage'])[1]/div";
-		SeleniumAssert.assertElementTextVisible(browser, field1Xpath, valueRequiredText);
+		browserStateAsserter.assertTextPresentInElement(valueRequiredText, field1Xpath);
 
 		// Test that the value submits successfully and is displayed in the model value
 		String inputFirstName1Xpath = "(//input[contains(@id,':firstName')])[1]";
 
 		String text = "Philip";
-		browser.sendKeys(inputFirstName1Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		browserDriver.sendKeysToElement(inputFirstName1Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
 		String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
 
 		String valueRequiredMessage1Xpath =
 			"(//div[@class='showcase-example-usage'])[1]/div[contains(text(),'Value is required.')]";
-		SeleniumAssert.assertElementNotPresent(browser, valueRequiredMessage1Xpath);
+		browserStateAsserter.assertElementNotDisplayed(valueRequiredMessage1Xpath);
 
 		// Test that the success message is rendered.
 		String successMessage1Xpath = "(//div[@class='showcase-example-usage'])[1]/table/tbody/tr/td";
-		SeleniumAssert.assertElementTextVisible(browser, successMessage1Xpath, "Your request processed successfully.");
+		browserStateAsserter.assertTextPresentInElement("Your request processed successfully.", successMessage1Xpath);
 	}
 }

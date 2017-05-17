@@ -21,7 +21,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -47,23 +47,23 @@ public class SelectTester extends TesterBase {
 
 	/**
 	 * Click an option and wait for Ajax to rerender the option. This method exists because {@link
-	 * Browser#clickAndWaitForAjaxRerender(java.lang.String)} does not work on selectOneMenu, selectManyListbox, and
-	 * SelectManyMenu. For more information see method comments.
+	 * BrowserDriver#clickElementAndWaitForRerender(java.lang.String)} does not work on selectOneMenu,
+	 * selectManyListbox, and SelectManyMenu. For more information see method comments.
 	 */
-	protected void clickOptionAndWaitForAjaxRerender(Browser browser, String optionXpath) {
+	protected void clickOptionAndWaitForAjaxRerender(BrowserDriver browserDriver, String optionXpath) {
 
-		browser.centerElementInView(optionXpath);
+		browserDriver.centerElementInCurrentWindow(optionXpath);
 
-		WebElement optionElement = browser.findElementByXpath(optionXpath);
+		WebElement optionElement = browserDriver.findElementByXpath(optionXpath);
 
 		// Note: clicking a selectOneMenu option on Chrome and PhantomJS via Actions.click(WebElement) (which is used
 		// by Browser.clickAndWaitForAjaxRerender(String)) does not fire the select element's change event, so the
 		// element must be clicked via Element.click().
 		optionElement.click();
 
-		// phantomjs browser does not fire a change event when a <select multiple="multiple"> <option> is clicked, so
-		// the event must be fired manually.
-		if ("phantomjs".equals(browser.getName())) {
+		// phantomjs browser does not fire a change event when a <select multiple="multiple"> <option> is clicked,
+		// so the event must be fired manually.
+		if ("phantomjs".equals(browserDriver.getBrowserName())) {
 
 			try {
 
@@ -71,7 +71,7 @@ public class SelectTester extends TesterBase {
 				Select select = new Select(selectElement);
 
 				if (select.isMultiple()) {
-					browser.executeScript(FIRE_SELECT_CHANGE_EVENT_SCRIPT, optionElement);
+					browserDriver.executeScriptInCurrentWindow(FIRE_SELECT_CHANGE_EVENT_SCRIPT, optionElement);
 				}
 			}
 			catch (StaleElementReferenceException e) {
@@ -79,7 +79,7 @@ public class SelectTester extends TesterBase {
 			}
 		}
 
-		browser.waitUntil(ExpectedConditions.stalenessOf(optionElement));
-		browser.waitForElementVisible(optionXpath);
+		browserDriver.waitFor(ExpectedConditions.stalenessOf(optionElement));
+		browserDriver.waitForElementEnabled(optionXpath);
 	}
 }

@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.inputhidden;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,30 +30,32 @@ public class InputHiddenGeneralTester extends InputHiddenTester {
 	@Test
 	public void runInputHiddenGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "inputHidden", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "inputHidden", "general");
 
 		// Test that an empty value submits successfully.
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, success1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(success1Xpath);
 
 		// Test that a hidden value submits successfully.
-		browser.click(copyValidValueButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1234");
+		browserDriver.clickElement(copyValidValueButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertTextPresentInElement("1234", modelValue1Xpath);
 
 		// Test that the hidden value clears successfully.
-		browser.click(clearButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementPresent(browser, modelValueEmpty1Xpath);
+		browserDriver.clickElement(clearButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertElementPresent(modelValueEmpty1Xpath);
 
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		testRequiredCheckboxError(browser);
+		testRequiredCheckboxError(browserDriver, browserStateAsserter);
 
 		// Test that the error message disappears when a valid value is submitted.
-		browser.click(copyValidValueButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1234");
-		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
+		browserDriver.clickElement(copyValidValueButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertTextPresentInElement("1234", modelValue1Xpath);
+		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 	}
 }

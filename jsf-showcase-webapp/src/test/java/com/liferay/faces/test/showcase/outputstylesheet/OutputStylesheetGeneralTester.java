@@ -20,8 +20,8 @@ import org.junit.Test;
 
 import org.openqa.selenium.WebElement;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -34,18 +34,19 @@ public class OutputStylesheetGeneralTester extends OutputTester {
 	@Test
 	public void runOutputStylesheetGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputStylesheet", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputStylesheet", "general");
 
 		// Test that both buttons render on the page successfully.
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		String button1Xpath = "(//button[normalize-space(text())='Button'])[1]";
-		SeleniumAssert.assertElementVisible(browser, button1Xpath);
+		browserStateAsserter.assertElementDisplayed(button1Xpath);
 
 		String button2Xpath = "(//button[normalize-space(text())='Button'])[2]";
-		SeleniumAssert.assertElementVisible(browser, button2Xpath);
+		browserStateAsserter.assertElementDisplayed(button2Xpath);
 
 		// Test that the first button's opacity is correct.
-		WebElement buttonElement = browser.findElementByXpath(button1Xpath);
+		WebElement buttonElement = browserDriver.findElementByXpath(button1Xpath);
 		String buttonOpacity = buttonElement.getCssValue("opacity");
 
 		// Since the opacity is a floating point value, it's value may not match .65 exactly.
@@ -53,7 +54,7 @@ public class OutputStylesheetGeneralTester extends OutputTester {
 			(buttonOpacity.contains(".649") || buttonOpacity.contains(".65")));
 
 		// Test that the second button's display is block.
-		buttonElement = browser.findElementByXpath(button2Xpath);
+		buttonElement = browserDriver.findElementByXpath(button2Xpath);
 
 		String buttonDisplay = buttonElement.getCssValue("display");
 		Assert.assertTrue("The button's display is not block, instead it is " + buttonDisplay,

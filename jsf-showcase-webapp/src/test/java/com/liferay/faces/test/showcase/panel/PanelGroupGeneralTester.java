@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.panel;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -31,17 +31,17 @@ public class PanelGroupGeneralTester extends TesterBase {
 	@Test
 	public void runPanelGroupGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "panelGroup", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "panelGroup", "general");
 
 		// Test that a div or a span is rendered.
-		assertElementTextMatchesElementType(browser, "div");
-		assertElementTextMatchesElementType(browser, "span");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		assertElementTextMatchesElementType(browserStateAsserter, "div");
+		assertElementTextMatchesElementType(browserStateAsserter, "span");
 	}
 
-	private void assertElementTextMatchesElementType(Browser browser, String component) {
-		SeleniumAssert.assertElementTextVisible(browser,
-			"//div[@class='showcase-example-usage']/" + component + "[contains(@class,'showcase-example-panel')]",
-			"This text is inside a <" + component + "> HTML tag");
+	private void assertElementTextMatchesElementType(BrowserStateAsserter browserStateAsserter, String component) {
+		browserStateAsserter.assertTextPresentInElement("This text is inside a <" + component + "> HTML tag",
+			"//div[@class='showcase-example-usage']/" + component + "[contains(@class,'showcase-example-panel')]");
 	}
 }

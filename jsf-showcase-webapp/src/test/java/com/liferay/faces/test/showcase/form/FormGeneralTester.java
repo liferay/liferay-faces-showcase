@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.form;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -31,13 +31,15 @@ public class FormGeneralTester extends TesterBase {
 	@Test
 	public void runFormGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "form", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "form", "general");
 
 		// Test that the form submits successfully via Ajax.
-		browser.clickAndWaitForAjaxRerender(
+		browserDriver.clickElementAndWaitForRerender(
 			"(//*[contains(@onclick,'mojarra.ab')][contains(text(),'Submit') or contains(@value,'Submit')])[1]");
-		SeleniumAssert.assertElementVisible(browser,
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(
 			"//td[contains(text(),'The form was submitted via Ajax and re-rendered with updates to the DOM.')]");
 	}
 }

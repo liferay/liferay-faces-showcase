@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.panel;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -31,22 +31,22 @@ public class PanelGridGeneralTester extends TesterBase {
 	@Test
 	public void runPanelGridGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "panelGrid", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "panelGrid", "general");
 
 		// Test that each cell is rendered in the correct row and column.
-		assertCellTextMatchesCellRowCol(browser, 1, 1);
-		assertCellTextMatchesCellRowCol(browser, 1, 2);
-		assertCellTextMatchesCellRowCol(browser, 1, 3);
-		assertCellTextMatchesCellRowCol(browser, 2, 1);
-		assertCellTextMatchesCellRowCol(browser, 2, 2);
-		assertCellTextMatchesCellRowCol(browser, 2, 3);
-		assertCellTextMatchesCellRowCol(browser, 3, 1);
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		assertCellTextMatchesCellRowCol(browserStateAsserter, 1, 1);
+		assertCellTextMatchesCellRowCol(browserStateAsserter, 1, 2);
+		assertCellTextMatchesCellRowCol(browserStateAsserter, 1, 3);
+		assertCellTextMatchesCellRowCol(browserStateAsserter, 2, 1);
+		assertCellTextMatchesCellRowCol(browserStateAsserter, 2, 2);
+		assertCellTextMatchesCellRowCol(browserStateAsserter, 2, 3);
+		assertCellTextMatchesCellRowCol(browserStateAsserter, 3, 1);
 	}
 
-	private void assertCellTextMatchesCellRowCol(Browser browser, int row, int col) {
-		SeleniumAssert.assertElementTextVisible(browser,
-			"//div[contains(@class,'showcase-example-usage')]/table/tbody/tr[" + row + "]/td[" + col + "]",
-			"Row " + row + " Col " + col);
+	private void assertCellTextMatchesCellRowCol(BrowserStateAsserter browserStateAsserter, int row, int col) {
+		browserStateAsserter.assertTextPresentInElement("Row " + row + " Col " + col,
+			"//div[contains(@class,'showcase-example-usage')]/table/tbody/tr[" + row + "]/td[" + col + "]");
 	}
 }

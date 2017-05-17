@@ -18,11 +18,10 @@ package com.liferay.faces.test.showcase.inputtextarea;
 import org.junit.Assert;
 import org.junit.Test;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -34,25 +33,24 @@ public class InputTextareaSizeTester extends InputTextareaTester {
 	@Test
 	public void runInputTextareaSizeTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "inputTextarea", "size");
-
-		// Wait to begin the test until the submit button is rendered.
-		browser.waitForElementVisible(submitButton1Xpath);
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "inputTextarea", "size");
 
 		// Test that the value submits successfully
 		String text = "Hello World!";
-		browser.sendKeys(textarea1Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
-		SeleniumAssert.assertElementVisible(browser, "//textarea[@cols='50'][@rows='6']");
+		browserDriver.sendKeysToElement(textarea1Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		browserStateAsserter.assertElementDisplayed("//textarea[@cols='50'][@rows='6']");
 
 		// Test that the value submits successfully
-		browser.sendKeys(textarea2Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
+		browserDriver.sendKeysToElement(textarea2Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
 
-		WebElement textarea2 = browser.findElementByXpath(textarea2Xpath);
+		WebElement textarea2 = browserDriver.findElementByXpath(textarea2Xpath);
 		String expectedWidth = "150px";
 		String width = textarea2.getCssValue("width");
 		Assert.assertEquals("Width of element " + textarea2 + " is not \"" + expectedWidth + "\". Instead it is \"" +

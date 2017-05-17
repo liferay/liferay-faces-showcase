@@ -19,22 +19,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.junit.Assert;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.IntegrationTesterBase;
 import com.liferay.faces.test.selenium.TestUtil;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
-import com.liferay.faces.test.selenium.expectedconditions.TabOpened;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.expectedconditions.WindowOpened;
+import com.liferay.faces.util.logging.Logger;
+import com.liferay.faces.util.logging.LoggerFactory;
 
 
 /**
@@ -44,7 +42,7 @@ import com.liferay.faces.test.selenium.expectedconditions.TabOpened;
 public class TesterBase extends IntegrationTesterBase {
 
 	// Logger
-	private static final Logger logger = Logger.getLogger(TesterBase.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(TesterBase.class);
 
 	// Protected Constants
 	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
@@ -82,27 +80,28 @@ public class TesterBase extends IntegrationTesterBase {
 			signIn = true;
 		}
 
-		logger.log(Level.INFO, "defaultShowcaseContext = {0}", defaultShowcaseContext);
+		logger.info("defaultShowcaseContext = {0}", defaultShowcaseContext);
 
 		String showcaseContext = TestUtil.getSystemPropertyOrDefault("integration.showcase.context",
 				defaultShowcaseContext);
-		logger.log(Level.INFO, "showcaseContext = {0}", showcaseContext);
+		logger.info("showcaseContext = {0}", showcaseContext);
 
 		SHOWCASE_CONTEXT_URL = TestUtil.DEFAULT_BASE_URL + showcaseContext;
 		SIGN_IN = signIn;
 	}
 
-	protected void assertImageRendered(Browser browser, String imageXpath) {
+	protected void assertImageRendered(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+		String imageXpath) {
 
-		SeleniumAssert.assertElementVisible(browser, imageXpath);
+		browserStateAsserter.assertElementDisplayed(imageXpath);
 
-		WebElement image = browser.findElementByXpath(imageXpath);
+		WebElement image = browserDriver.findElementByXpath(imageXpath);
 		String imageSrc = image.getAttribute("src");
 		Assert.assertTrue("Image src " + imageSrc + " is not a valid JSF resource URL.",
 			imageSrc.matches(".*javax.faces.resource\\p{Punct}[a-z-]+[.]png.*") &&
 			imageSrc.matches(".*ln\\p{Punct}images.*"));
 
-		Boolean imageRendered = (Boolean) browser.executeScript(
+		Boolean imageRendered = (Boolean) browserDriver.executeScriptInCurrentWindow(
 				"return arguments[0].complete && typeof arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth > 0",
 				image);
 		Assert.assertTrue("Image " + imageXpath + " (src=\"" + imageSrc + "\") is not rendered in the DOM.",
@@ -113,7 +112,7 @@ public class TesterBase extends IntegrationTesterBase {
 	protected void doSetUp() {
 
 		if (SIGN_IN) {
-			signIn(Browser.getInstance(), CONTAINER);
+			signIn(getBrowserDriver(), CONTAINER);
 		}
 	}
 
@@ -122,15 +121,15 @@ public class TesterBase extends IntegrationTesterBase {
 			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
 	}
 
-	protected boolean isHeadlessChrome(Browser browser) {
-		return "chrome".equals(browser.getName()) && browser.isHeadless();
+	protected boolean isHeadlessChrome(BrowserDriver browserDriver) {
+		return "chrome".equals(browserDriver.getBrowserName()) && browserDriver.isBrowserHeadless();
 	}
 
-	protected void navigateToUseCase(Browser browser, String componentName, String componentUseCase) {
-		navigateToUseCase(browser, DEFAULT_COMPONENT_PREFIX, componentName, componentUseCase);
+	protected void navigateToUseCase(BrowserDriver browserDriver, String componentName, String componentUseCase) {
+		navigateToUseCase(browserDriver, DEFAULT_COMPONENT_PREFIX, componentName, componentUseCase);
 	}
 
-	protected void navigateToUseCase(Browser browser, String componentPrefix, String componentName,
+	protected void navigateToUseCase(BrowserDriver browserDriver, String componentPrefix, String componentName,
 		String componentUseCase) {
 
 		if (CONTAINER.contains("pluto")) {
@@ -148,17 +147,17 @@ public class TesterBase extends IntegrationTesterBase {
 			String componentLinkXpath =
 				"//a[contains(@href, 'general')][contains(@class,'showcase-link')][normalize-space(text())='" +
 				linkText + "']";
-			List<WebElement> componentLinkElements = browser.findElements(By.xpath(componentLinkXpath));
+			List<WebElement> componentLinkElements = browserDriver.findElementsByXpath(componentLinkXpath);
 
-			// Initially, navigateToUseCase() may be called when the browser is on the default pluto page, so navigate
-			// to the showcase if no component link element is found.
+			// Initially, navigateToUseCase() may be called when the browser is on the default pluto page, so
+			// navigate to the showcase if no component link element is found.
 			if (componentLinkElements.isEmpty()) {
 
-				browser.get(SHOWCASE_CONTEXT_URL);
-				waitForShowcasePageReady(browser);
-				browser.click("//img[contains(@src,'max.png')]/parent::a[contains(@href,'maximized')]");
-				waitForShowcasePageReady(browser);
-				componentLinkElements = browser.findElements(By.xpath(componentLinkXpath));
+				browserDriver.navigateWindowTo(SHOWCASE_CONTEXT_URL);
+				waitForShowcasePageReady(browserDriver);
+				browserDriver.clickElement("//img[contains(@src,'max.png')]/parent::a[contains(@href,'maximized')]");
+				waitForShowcasePageReady(browserDriver);
+				componentLinkElements = browserDriver.findElementsByXpath(componentLinkXpath);
 			}
 
 			if (componentLinkElements.isEmpty()) {
@@ -175,96 +174,93 @@ public class TesterBase extends IntegrationTesterBase {
 
 			String hrefAttribute = componentLinkElements.get(0).getAttribute("href");
 			String plutoUseCaseURL = hrefAttribute.replace("general", componentUseCase);
-			browser.get(plutoUseCaseURL);
+			browserDriver.navigateWindowTo(plutoUseCaseURL);
 		}
 		else {
-			browser.get(SHOWCASE_CONTEXT_URL + "/" + componentPrefix + "/" + componentName.toLowerCase(Locale.ENGLISH) +
-				"/" + componentUseCase);
+			browserDriver.navigateWindowTo(SHOWCASE_CONTEXT_URL + "/" + componentPrefix + "/" +
+				componentName.toLowerCase(Locale.ENGLISH) + "/" + componentUseCase);
 		}
 
-		waitForShowcasePageReady(browser);
+		waitForShowcasePageReady(browserDriver);
 	}
 
 	/**
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
-	protected void testLink(Browser browser, String exampleLinkXpath, String domainName) {
+	protected void testLink(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+		String exampleLinkXpath, String domainName) {
 
-		SeleniumAssert.assertElementVisible(browser, exampleLinkXpath);
+		browserStateAsserter.assertElementDisplayed(exampleLinkXpath);
 
 		String newTabURL = null;
 		String originalWindowHandle = null;
-		Set<String> originalWindowHandles = browser.getWindowHandles();
-		int initialNumberOfTabs = originalWindowHandles.size();
-		WebElement linkElement = browser.findElementByXpath(exampleLinkXpath);
-		browser.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+		Set<String> originalWindowIds = browserDriver.getWindowIds();
+		int initialNumberOfWindows = originalWindowIds.size();
+		WebElement linkElement = browserDriver.findElementByXpath(exampleLinkXpath);
+		linkElement.click();
+		browserStateAsserter.assertTrue(new WindowOpened(initialNumberOfWindows));
+		browserDriver.setPageLoadTimeout(5);
 
 		try {
 
-			linkElement.click();
-			browser.waitUntil(new TabOpened(initialNumberOfTabs));
-
-			Set<String> windowHandles = new HashSet<String>(browser.getWindowHandles());
-			Assert.assertEquals("Clicking the link did not cause the browser to open a new tab/window.",
-				initialNumberOfTabs + 1, windowHandles.size());
-
-			originalWindowHandle = browser.getWindowHandle();
+			Set<String> windowIds = new HashSet<String>(browserDriver.getWindowIds());
+			originalWindowHandle = browserDriver.getCurrentWindowId();
 
 			// Obtain the URL of the newly opened tab.
-			windowHandles.removeAll(originalWindowHandles);
-			browser.switchTo().window(windowHandles.iterator().next());
-			newTabURL = browser.getCurrentUrl();
+			windowIds.removeAll(originalWindowIds);
+			browserDriver.switchToWindow(windowIds.iterator().next());
+			newTabURL = browserDriver.getCurrentWindowUrl();
 		}
 		catch (TimeoutException e) {
 			// The browser likely could not connect to the website.
 		}
 
 		// Reset to page load timeout to inifinity (the default).
-		browser.manage().timeouts().pageLoadTimeout(-1, TimeUnit.SECONDS);
+		browserDriver.setPageLoadTimeout(-1);
 
-		// If the url is null or "about:blank", the browser likely could not connect to the website, so fall back to
-		// testing the link on the original page.
+		// If the url is null or "about:blank", the browser likely could not connect to the website, so fall back
+		// to testing the link on the original page.
 		if ((newTabURL == null) || "about:blank".equals(newTabURL)) {
 
 			if (originalWindowHandle != null) {
 
-				if (!isHeadlessChrome(browser)) {
-					browser.close();
+				if (!isHeadlessChrome(browserDriver)) {
+					browserDriver.closeCurrentWindow();
 				}
 
-				browser.switchTo().window(originalWindowHandle);
+				browserDriver.switchToWindow(originalWindowHandle);
 			}
 
-			linkElement = browser.findElementByXpath(exampleLinkXpath);
+			linkElement = browserDriver.findElementByXpath(exampleLinkXpath);
 			newTabURL = linkElement.getAttribute("href");
 		}
 
 		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + newTabURL + ".",
 			newTabURL.contains(domainName));
 
-		if ((originalWindowHandle != null) && !browser.getWindowHandle().equals(originalWindowHandle)) {
+		if ((originalWindowHandle != null) && !browserDriver.getCurrentWindowId().equals(originalWindowHandle)) {
 
-			if (!isHeadlessChrome(browser)) {
-				browser.close();
+			if (!isHeadlessChrome(browserDriver)) {
+				browserDriver.closeCurrentWindow();
 			}
 
-			browser.switchTo().window(originalWindowHandle);
+			browserDriver.switchToWindow(originalWindowHandle);
 		}
 	}
 
 	/**
 	 * Test that the web page shows an error message when a value is required and an empty value is submitted.
 	 */
-	protected void testRequiredCheckboxError(Browser browser) {
+	protected void testRequiredCheckboxError(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter) {
 
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
-		browser.click(requiredCheckbox1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, valueIsRequiredError1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
+		browserDriver.clickElement(requiredCheckbox1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertElementDisplayed(valueIsRequiredError1Xpath);
 	}
 
-	protected void waitForShowcasePageReady(Browser browser) {
-		browser.waitUntil(ExpectedConditions.jsReturnsValue("return window.liferay_faces_showcase_ready;"));
+	protected void waitForShowcasePageReady(BrowserDriver browserDriver) {
+		browserDriver.waitFor(ExpectedConditions.jsReturnsValue("return window.liferay_faces_showcase_ready;"));
 	}
 }

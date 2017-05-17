@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.inputtext;
 
 import org.openqa.selenium.WebElement;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.input.InputTester;
 
 
@@ -34,128 +34,136 @@ public class InputTextTester extends InputTester {
 	protected void runInputTextConversionTest(String componentName, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "conversion");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "conversion");
 
 		// Test that the web page shows an error message when an invalid value is submitted.
-		WebElement input = browser.findElementByXpath(inputText1Xpath);
+		WebElement input = browserDriver.findElementByXpath(inputText1Xpath);
 		input.clear();
 
 		String invalidText1 = "apr 3 33";
 		input.sendKeys(invalidText1);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that a valid value submits successfully.
-		input = browser.findElementByXpath(inputText1Xpath);
+		input = browserDriver.findElementByXpath(inputText1Xpath);
 		input.clear();
 
 		String text1 = "apr 3, 33";
 		input.sendKeys(text1);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
 		String textOutput1 = "Apr 3, 0033";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, textOutput1);
+		browserStateAsserter.assertTextPresentInElement(textOutput1, modelValue1Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
-		input = browser.findElementByXpath(inputText2Xpath);
+		input = browserDriver.findElementByXpath(inputText2Xpath);
 		input.clear();
 
 		String invalidText2 = "4/333";
 		input.sendKeys(invalidText2);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that a valid value submits successfully.
-		input = browser.findElementByXpath(inputText2Xpath);
+		input = browserDriver.findElementByXpath(inputText2Xpath);
 		input.clear();
 
 		String text2 = "4/3/33";
 		input.sendKeys(text2);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
 
 		String textOutput2 = "04/03/0033";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, textOutput2);
+		browserStateAsserter.assertTextPresentInElement(textOutput2, modelValue2Xpath);
 	}
 
 	protected void runInputTextGeneralTest(String componentName, String inputText1Xpath) throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "general");
 
 		// Test that an empty value submits successfully.
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, success1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(success1Xpath);
 
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		testRequiredCheckboxError(browser);
+		testRequiredCheckboxError(browserDriver, browserStateAsserter);
 
 		// Test that a text value submits successfully and the "required" error message disappears.
 		String text = "Hello World!";
-		browser.sendKeys(inputText1Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
-		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
+		browserDriver.sendKeysToElement(inputText1Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 	}
 
 	protected void runInputTextImmediateTest(String componentName, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "immediate");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "immediate");
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
 		String text = "Hello World!";
-		browser.sendKeys(inputText1Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
+		browserDriver.sendKeysToElement(inputText1Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
-		browser.sendKeys(inputText2Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
+		browserDriver.sendKeysToElement(inputText2Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage2Xpath);
 	}
 
 	protected void runInputTextValidationTest(String componentName, String inputText1Xpath, String inputText2Xpath)
 		throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "validation");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "validation");
 
 		// Test that the web page shows an error message when an invalid value is submitted.
-		WebElement input = browser.findElementByXpath(inputText1Xpath);
+		WebElement input = browserDriver.findElementByXpath(inputText1Xpath);
 		input.clear();
 
 		String invalidText = "HelloWorldcom";
 		input.sendKeys(invalidText);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that a valid value submits successfully.
-		input = browser.findElementByXpath(inputText1Xpath);
+		input = browserDriver.findElementByXpath(inputText1Xpath);
 		input.clear();
 
 		String text = "Hello@World.com";
 		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
-		input = browser.findElementByXpath(inputText2Xpath);
+		input = browserDriver.findElementByXpath(inputText2Xpath);
 		input.clear();
 		input.sendKeys(invalidText);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that a valid value submits successfully.
-		input = browser.findElementByXpath(inputText2Xpath);
+		input = browserDriver.findElementByXpath(inputText2Xpath);
 		input.clear();
 		input.sendKeys(text);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
 	}
 }

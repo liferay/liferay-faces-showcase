@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.selectbooleancheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,11 +30,15 @@ public class SelectBooleanCheckboxImmediateTester extends SelectBooleanCheckboxT
 	@Test
 	public void runSelectBooleanCheckboxImmediateTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "selectBooleanCheckbox", "immediate");
-		testSelectBooleanCheckbox(browser, submitButton1Xpath, modelValue1Xpath, checkbox1Xpath);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
-		testSelectBooleanCheckbox(browser, submitButton2Xpath, modelValue2Xpath, checkbox2Xpath);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "selectBooleanCheckbox", "immediate");
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		testSelectBooleanCheckbox(browserDriver, browserStateAsserter, submitButton1Xpath, modelValue1Xpath,
+			checkbox1Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
+		testSelectBooleanCheckbox(browserDriver, browserStateAsserter, submitButton2Xpath, modelValue2Xpath,
+			checkbox2Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage2Xpath);
 	}
 }

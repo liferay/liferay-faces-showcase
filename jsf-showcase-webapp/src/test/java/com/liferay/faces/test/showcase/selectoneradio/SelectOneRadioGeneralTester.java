@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.selectoneradio;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,12 +30,15 @@ public class SelectOneRadioGeneralTester extends SelectOneRadioTester {
 	@Test
 	public void runSelectOneRadioGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "selectOneRadio", "general");
-		testRequiredCheckboxError(browser);
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "selectOneRadio", "general");
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		testRequiredCheckboxError(browserDriver, browserStateAsserter);
 
 		// Test that a radio value submits successfully and the "required" error message disappears.
-		testSelectOne(browser, selectOneRadio1Xpath, RADIO_CHILD_XPATH, submitButton1Xpath, modelValue1Xpath);
-		SeleniumAssert.assertElementNotPresent(browser, valueIsRequiredError1Xpath);
+		testSelectOne(browserDriver, browserStateAsserter, selectOneRadio1Xpath, RADIO_CHILD_XPATH, submitButton1Xpath,
+			modelValue1Xpath);
+		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 	}
 }

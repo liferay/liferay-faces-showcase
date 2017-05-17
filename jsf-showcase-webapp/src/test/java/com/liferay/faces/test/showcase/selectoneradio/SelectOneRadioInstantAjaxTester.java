@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.selectoneradio;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,21 +30,22 @@ public class SelectOneRadioInstantAjaxTester extends SelectOneRadioTester {
 	@Test
 	public void runSelectOneRadioInstantAjaxTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "selectOneRadio", "instant-ajax");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "selectOneRadio", "instant-ajax");
 
 		// Test that the selected option submits successfully. Note: selectOneMenu will not perform an ajax request if
-		// the visible option is clicked, so the test clicks the third option instead.
+		// the displayed option is clicked, so the test clicks the third option instead.
 		String option1Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[1]";
-		browser.clickAndWaitForAjaxRerender(option1Xpath);
+		browserDriver.clickElementAndWaitForRerender(option1Xpath);
 
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		String answer1 = "1";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
+		browserStateAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
 
 		// Test that selecting another value changes the model value.
 		String option3Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[3]";
-		browser.clickAndWaitForAjaxRerender(option3Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
+		browserDriver.clickElementAndWaitForRerender(option3Xpath);
+		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
+		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
 	}
 }
