@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.outputtext;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -31,11 +31,12 @@ public class OutputTextRightToLeftTester extends OutputTester {
 	@Test
 	public void runOutputTextRightToLeftTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputText", "right-to-left");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputText", "right-to-left");
 
 		// Test that the right-to-left text is rendered on the page.
-		SeleniumAssert.assertElementTextVisible(browser, "(//span[@dir='RTL'])",
-			"בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָֽרֶץ");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָֽרֶץ",
+			"(//span[@dir='RTL'])");
 	}
 }

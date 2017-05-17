@@ -17,7 +17,8 @@ package com.liferay.faces.test.showcase.outputlink;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -30,18 +31,19 @@ public class OutputLinkGeneralTester extends TesterBase {
 	@Test
 	public void runOutputLinkGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputLink", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputLink", "general");
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
-		testLink(browser, "(//div[@class='showcase-example-usage'])[1]/a", "liferay.com");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		testLink(browserDriver, browserStateAsserter, "(//div[@class='showcase-example-usage'])[1]/a", "liferay.com");
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
 		String exampleLink2Xpath = "(//div[@class='showcase-example-usage'])[2]/a";
-		testLink(browser, exampleLink2Xpath, "liferay.com");
+		testLink(browserDriver, browserStateAsserter, exampleLink2Xpath, "liferay.com");
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
 		String exampleLink3Xpath = "(//div[@class='showcase-example-usage'])[3]/a";
-		testLink(browser, exampleLink3Xpath, "google.com");
+		testLink(browserDriver, browserStateAsserter, exampleLink3Xpath, "google.com");
 	}
 }

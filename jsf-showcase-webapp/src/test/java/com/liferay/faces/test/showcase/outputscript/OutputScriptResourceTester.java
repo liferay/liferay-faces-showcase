@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.outputscript;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,10 +30,11 @@ public class OutputScriptResourceTester extends OutputScriptTester {
 	@Test
 	public void runOutputScriptResourceTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputScript", "resource");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputScript", "resource");
 
 		// Test that a text property renders on the page successfully.
-		SeleniumAssert.assertElementTextVisible(browser, exampleScriptText1Xpath, "A script");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("A script", exampleScriptText1Xpath);
 	}
 }

@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,26 +30,28 @@ public class SelectManyCheckboxInstantAjaxTester extends SelectManyCheckboxTeste
 	@Test
 	public void runSelectManyCheckboxInstantAjaxTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "selectManyCheckbox", "instant-ajax");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "selectManyCheckbox", "instant-ajax");
 
 		// Test that multiple checked checkboxes submit successfully.
 		String checkbox1Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[1]";
-		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
+		browserDriver.clickElementAndWaitForRerender(checkbox1Xpath);
 
 		String checkbox3Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[3]";
-		browser.clickAndWaitForAjaxRerender(checkbox3Xpath);
+		browserDriver.clickElementAndWaitForRerender(checkbox3Xpath);
 
 		String checkbox4Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[4]";
-		browser.clickAndWaitForAjaxRerender(checkbox4Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "4");
+		browserDriver.clickElementAndWaitForRerender(checkbox4Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("1", modelValue1Xpath);
+		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		browserStateAsserter.assertTextPresentInElement("4", modelValue1Xpath);
 
 		// Test that unchecking a checkbox removes the value from the model.
-		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, "1");
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "3");
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "4");
+		browserDriver.clickElementAndWaitForRerender(checkbox1Xpath);
+		browserStateAsserter.assertTextNotPresentInElement("1", modelValue1Xpath);
+		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		browserStateAsserter.assertTextPresentInElement("4", modelValue1Xpath);
 	}
 }

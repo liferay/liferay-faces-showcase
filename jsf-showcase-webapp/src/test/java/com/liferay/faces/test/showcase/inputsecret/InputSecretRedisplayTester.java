@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.inputsecret;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,26 +30,29 @@ public class InputSecretRedisplayTester extends InputSecretTester {
 	@Test
 	public void runInputSecretRedisplayTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "inputSecret", "redisplay");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "inputSecret", "redisplay");
 
 		// Test that the value submits successfully and the alloy:inputSecret component is intentionally
 		// not re-rendered in the DOM.
 		String text = "Hello World!";
-		browser.sendKeys(inputSecret1Xpath, text);
-		browser.performAndWaitForAjaxRerender(browser.createClickAction(submitButton1Xpath), modelValue1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
+		browserDriver.sendKeysToElement(inputSecret1Xpath, text);
+		browserDriver.performAndWaitForRerender(browserDriver.createClickElementAction(submitButton1Xpath),
+			modelValue1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
 
 		String redisplayMessage1Xpath = "//td[contains(text(),'was intentionally not re-rendered')]";
-		SeleniumAssert.assertElementVisible(browser, redisplayMessage1Xpath);
+		browserStateAsserter.assertElementDisplayed(redisplayMessage1Xpath);
 
 		// Test that the value submits successfully and the entire form (including the alloy:inputSecret component)
 		// is re-rendered in the DOM.
-		browser.sendKeys(inputSecret2Xpath, text);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
+		browserDriver.sendKeysToElement(inputSecret2Xpath, text);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
 
 		String redisplayMessage2Xpath = "//td[contains(text(),'entire form')]";
-		SeleniumAssert.assertElementVisible(browser, redisplayMessage2Xpath);
+		browserStateAsserter.assertElementDisplayed(redisplayMessage2Xpath);
 	}
 }

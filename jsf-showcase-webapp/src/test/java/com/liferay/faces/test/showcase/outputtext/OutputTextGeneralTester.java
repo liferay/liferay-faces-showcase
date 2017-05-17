@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.outputtext;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -31,10 +31,11 @@ public class OutputTextGeneralTester extends OutputTester {
 	@Test
 	public void runOutputTextGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputText", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputText", "general");
 
 		// Test that the text property is rendered on the page.
-		SeleniumAssert.assertElementTextVisible(browser, exampleText1Xpath, "This is text from a model bean property.");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("This is text from a model bean property.", exampleText1Xpath);
 	}
 }

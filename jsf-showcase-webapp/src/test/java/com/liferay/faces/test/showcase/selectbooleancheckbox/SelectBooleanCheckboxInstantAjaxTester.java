@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.selectbooleancheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,15 +30,17 @@ public class SelectBooleanCheckboxInstantAjaxTester extends SelectBooleanCheckbo
 	@Test
 	public void runSelectBooleanCheckboxInstantAjaxTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "selectBooleanCheckbox", "instant-ajax");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "selectBooleanCheckbox", "instant-ajax");
 
 		// Test that a checked checkbox submits successfully.
-		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "true");
+		browserDriver.clickElementAndWaitForRerender(checkbox1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("true", modelValue1Xpath);
 
 		// Test that an unchecked checkbox submits successfully.
-		browser.clickAndWaitForAjaxRerender(checkbox1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "false");
+		browserDriver.clickElementAndWaitForRerender(checkbox1Xpath);
+		browserStateAsserter.assertTextPresentInElement("false", modelValue1Xpath);
 	}
 }

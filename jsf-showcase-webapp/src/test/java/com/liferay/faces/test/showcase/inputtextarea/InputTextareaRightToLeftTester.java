@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.inputtextarea;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,15 +30,12 @@ public class InputTextareaRightToLeftTester extends InputTextareaTester {
 	@Test
 	public void runInputTextareaRightToLeftTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "inputTextarea", "right-to-left");
-
-		// Wait to begin the test until the example text is rendered.
-		String RTLModelValue1Xpath = "(//textarea[@dir='RTL'])";
-		browser.waitForElementVisible(RTLModelValue1Xpath);
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "inputTextarea", "right-to-left");
 
 		// Test that the right-to-left text is rendered on the page.
-		SeleniumAssert.assertElementTextVisible(browser, RTLModelValue1Xpath,
-			"בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָֽרֶץ");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָֽרֶץ",
+			"(//textarea[@dir='RTL'])");
 	}
 }
