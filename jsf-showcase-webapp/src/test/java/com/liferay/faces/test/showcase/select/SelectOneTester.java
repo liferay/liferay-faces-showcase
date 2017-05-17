@@ -15,8 +15,8 @@
  */
 package com.liferay.faces.test.showcase.select;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -38,25 +38,26 @@ public class SelectOneTester extends SelectTester {
 	public void runSelectOneConversionTest(String componentName, String selectOne1Xpath, String optionChildXpath)
 		throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "conversion");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "conversion");
 
 		// Test that the selected option submits successfully and the "Incorrect!" message appears.
 		String option1Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[1]";
-		browser.click(option1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		browserDriver.clickElement(option1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		String answer1 = "Oct 31, 1517 AD";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer1);
-		SeleniumAssert.assertElementVisible(browser, conversionIncorrectMessage1Xpath);
+		browserStateAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
+		browserStateAsserter.assertElementDisplayed(conversionIncorrectMessage1Xpath);
 
 		// Test that selecting another value changes the model value and the "Correct!" message appears.
 		String option2Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[2]";
-		browser.click(option2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer1);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "Jul 4, 1776 AD");
-		SeleniumAssert.assertElementVisible(browser, conversionCorrectMessage1Xpath);
+		browserDriver.clickElement(option2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
+		browserStateAsserter.assertTextPresentInElement("Jul 4, 1776 AD", modelValue1Xpath);
+		browserStateAsserter.assertElementDisplayed(conversionCorrectMessage1Xpath);
 	}
 
 	/**
@@ -73,11 +74,13 @@ public class SelectOneTester extends SelectTester {
 	public void runSelectOneDataModelTest(String componentName, String selectOne1Xpath, String optionChildXpath)
 		throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "data-model");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "data-model");
 
 		// Test that the selected option submits successfully.
-		testSelectOne(browser, selectOne1Xpath, optionChildXpath, submitButton1Xpath, modelValue1Xpath);
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		testSelectOne(browserDriver, browserStateAsserter, selectOne1Xpath, optionChildXpath, submitButton1Xpath,
+			modelValue1Xpath);
 	}
 
 	/**
@@ -94,19 +97,20 @@ public class SelectOneTester extends SelectTester {
 	public void runSelectOneDefaultValueTest(String componentName, String selectOne1Xpath, String optionChildXpath)
 		throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "default-value");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "default-value");
 
 		// Test that a default value is in the model.
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		String answer3 = "3";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, answer3);
+		browserStateAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
 
 		// Test that selecting another value changes the model value.
 		String option1Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[1]";
-		browser.click(option1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValue1Xpath, answer3);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, "1");
+		browserDriver.clickElement(option1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertTextNotPresentInElement(answer3, modelValue1Xpath);
+		browserStateAsserter.assertTextPresentInElement("1", modelValue1Xpath);
 	}
 
 	/**
@@ -126,22 +130,25 @@ public class SelectOneTester extends SelectTester {
 	public void runSelectOneImmediateTest(String componentName, String selectOne1Xpath, String selectOne2Xpath,
 		String optionChildXpath) throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "immediate");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "immediate");
 
 		// Test that the selected option submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		testSelectOne(browser, selectOne1Xpath, optionChildXpath, submitButton1Xpath, modelValue1Xpath);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		testSelectOne(browserDriver, browserStateAsserter, selectOne1Xpath, optionChildXpath, submitButton1Xpath,
+			modelValue1Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
 
 		// Test that the selected option submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
-		testSelectOne(browser, selectOne2Xpath, optionChildXpath, submitButton2Xpath, modelValue2Xpath);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
+		testSelectOne(browserDriver, browserStateAsserter, selectOne2Xpath, optionChildXpath, submitButton2Xpath,
+			modelValue2Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage2Xpath);
 	}
 
 	/**
-	 * @param  browser
+	 * @param  browserDriver
 	 * @param  selectOneXpath     The xpath for the outermost selectOne component. The element may be any element type
 	 *                            that is rendered by a selectOne component including a div(alloy:selectManyCheckbox),
 	 *                            table (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -152,22 +159,22 @@ public class SelectOneTester extends SelectTester {
 	 * @param  submitButtonXpath
 	 * @param  modelValueXpath
 	 */
-	protected void testSelectOne(Browser browser, String selectOneXpath, String optionChildXpath,
-		String submitButtonXpath, String modelValueXpath) {
+	protected void testSelectOne(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+		String selectOneXpath, String optionChildXpath, String submitButtonXpath, String modelValueXpath) {
 
 		// Test that the selected option submits successfully.
 		String option1Xpath = "(" + selectOneXpath + optionChildXpath + ")[1]";
-		browser.click(option1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
+		browserDriver.clickElement(option1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
 
 		String answer1 = "1";
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, answer1);
+		browserStateAsserter.assertTextPresentInElement(answer1, modelValueXpath);
 
 		// Test that selecting another option changes the model value.
 		String option3Xpath = "(" + selectOneXpath + optionChildXpath + ")[3]";
-		browser.click(option3Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButtonXpath);
-		SeleniumAssert.assertElementTextInvisible(browser, modelValueXpath, answer1);
-		SeleniumAssert.assertElementTextVisible(browser, modelValueXpath, "3");
+		browserDriver.clickElement(option3Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
+		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValueXpath);
+		browserStateAsserter.assertTextPresentInElement("3", modelValueXpath);
 	}
 }

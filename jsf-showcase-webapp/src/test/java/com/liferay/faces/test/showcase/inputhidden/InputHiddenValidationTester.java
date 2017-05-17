@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.inputhidden;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,47 +30,49 @@ public class InputHiddenValidationTester extends InputHiddenTester {
 	@Test
 	public void runInputHiddenValidationTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "inputHidden", "validation");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "inputHidden", "validation");
 
 		// Test that a hidden valid value submits successfully.
 		String text = "test@liferay.com";
 		String validButton1Xpath = "(//button[contains(text(),'a valid')])[1]";
-		browser.click(validButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
+		browserDriver.clickElement(validButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
 		String invalidButton1Xpath = "(//button[contains(text(),'an invalid')])[1]";
-		browser.click(invalidButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		browserDriver.clickElement(invalidButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that the hidden value clears successfully.
-		browser.click(validButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		browser.click(clearButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementVisible(browser, error1Xpath);
+		browserDriver.clickElement(validButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserDriver.clickElement(clearButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that a hidden valid value submits successfully.
 		String validButton2Xpath = "(//button[contains(text(),'a valid')])[2]";
-		browser.click(validButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
+		browserDriver.clickElement(validButton2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
 		String invalidButton2Xpath = "(//button[contains(text(),'an invalid')])[2]";
-		browser.click(invalidButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementVisible(browser, error2Xpath);
+		browserDriver.clickElement(invalidButton2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertElementDisplayed(error2Xpath);
 
 		// Test that the hidden value clears successfully.
-		browser.click(invalidButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		browser.click(clearButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementVisible(browser, error2Xpath);
+		browserDriver.clickElement(invalidButton2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserDriver.clickElement(clearButton2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertElementDisplayed(error2Xpath);
 
 	}
 }

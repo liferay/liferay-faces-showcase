@@ -22,8 +22,8 @@ import org.junit.Assume;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -46,146 +46,153 @@ public class ButtonLinkTester extends TesterBase {
 		// include their own test for this use case.
 		Assume.assumeTrue(SHOWCASE_CONTEXT_URL.contains("jsf"));
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "general");
 
 		// Test that both buttons/links render on the page visibly and are clickable.
-		SeleniumAssert.assertElementVisible(browser, buttonLink1xpath);
-		clickButtonLink(browser, buttonLink1xpath);
-		SeleniumAssert.assertElementVisible(browser, buttonLink2xpath);
-		clickButtonLink(browser, buttonLink2xpath);
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(buttonLink1xpath);
+		clickButtonLink(browserDriver, buttonLink1xpath);
+		browserStateAsserter.assertElementDisplayed(buttonLink2xpath);
+		clickButtonLink(browserDriver, buttonLink2xpath);
 
 		String lowerCaseComponentName = componentName.toLowerCase(Locale.ENGLISH);
 
 		// Test that the images render on the link use cases successfully.
 		if (lowerCaseComponentName.contains("link")) {
-			assertImageRendered(browser, getExampleImageXpath("children"));
+			assertImageRendered(browserDriver, browserStateAsserter, getExampleImageXpath("children"));
 		}
 	}
 
 	protected void runButtonLinkImmediateTest(String componentName) throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "immediate");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "immediate");
 
 		// Test that the value submits successfully and the valueChangeListener
 		// method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		browser.clickAndWaitForAjaxRerender(
+		browserDriver.clickElementAndWaitForRerender(
 			"(//*[contains(@onclick,'mojarra.ab')][contains(text(),'Submit') or contains(@value,'Submit')])[1]");
-		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener
 		// method is called during the
 		// PROCESS_VALIDATIONS phase.
-		browser.clickAndWaitForAjaxRerender(
+		browserDriver.clickElementAndWaitForRerender(
 			"(//*[contains(@onclick,'mojarra.ab')][contains(text(),'Submit') or contains(@value,'Submit')])[2]");
-		SeleniumAssert.assertElementVisible(browser, "//li[contains(text(),'INVOKE_APPLICATION ')]");
+		browserStateAsserter.assertElementDisplayed("//li[contains(text(),'INVOKE_APPLICATION ')]");
 	}
 
 	protected void runButtonLinkNavigationParamTest(String componentName) throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "navigation");
-		SeleniumAssert.assertElementVisible(browser, "//pre/span[text()='foo=']");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "navigation");
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed("//pre/span[text()='foo=']");
 
 		String toParamPageXpath = "//*[contains(text(),'To Param page') or contains(@value,'To Param page')]";
 		String backToNavigationXpath =
 			"//*[contains(text(),'Back to Navigation with foo=1234') or contains(@value,'Back to Navigation with foo=1234')]";
-		testNavigationPage(browser, toParamPageXpath, backToNavigationXpath);
-		testParamPage(browser, toParamPageXpath, backToNavigationXpath);
+		testNavigationPage(browserDriver, browserStateAsserter, toParamPageXpath, backToNavigationXpath);
+		testParamPage(browserDriver, browserStateAsserter, toParamPageXpath, backToNavigationXpath);
 
 		if (componentName.startsWith("command")) {
 
 			// Click "To Param page" and check that it opens the Param page
 			String ajaxCheckbox1Xpath = "//label[contains(text(),'Ajax')]/input[@type='checkbox']";
-			browser.clickAndWaitForAjaxRerender(ajaxCheckbox1Xpath);
-			testNavigationPage(browser, toParamPageXpath, backToNavigationXpath);
+			browserDriver.clickElementAndWaitForRerender(ajaxCheckbox1Xpath);
+			testNavigationPage(browserDriver, browserStateAsserter, toParamPageXpath, backToNavigationXpath);
 
 			// Click "Back to Navigation with foo=1234" and assert that the value "1234" submits successfully.
-			browser.clickAndWaitForAjaxRerender(ajaxCheckbox1Xpath);
-			testParamPage(browser, toParamPageXpath, backToNavigationXpath);
+			browserDriver.clickElementAndWaitForRerender(ajaxCheckbox1Xpath);
+			testParamPage(browserDriver, browserStateAsserter, toParamPageXpath, backToNavigationXpath);
 		}
 	}
 
 	protected void runVariousStylesTest(String componentName) throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentName, "various-styles");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentName, "various-styles");
 
 		// Test the values and classes of every button.
-		SeleniumAssert.assertElementVisible(browser,
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Primary' or contains(.,'Primary')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-info')][@value='Info' or contains(.,'Info')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-success')][@value='Success' or contains(.,'Success')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-warning')][@value='Warning' or contains(.,'Warning')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-danger')][@value=' Danger' or contains(.,' Danger')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-link')][@value='Link' or contains(.,'Link')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][contains(@class,'btn-lg') or contains(@class,'btn-large')][@value='Large' or contains(.,'Large')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-lg') or contains(@class,'btn-large')][@value='Large' or contains(.,'Large')][2]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Default' or contains(.,'Default')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ') or @class='btn'][@value='Default' or contains(.,'Default')][2]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][contains(@class,'btn-sm') or contains(@class,'btn-small')][@value='Small' or contains(.,'Small')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-sm') or contains(@class,'btn-small')][@value='Small' or contains(.,'Small')][2]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][contains(@class,'btn-mini') or contains(@class,'btn-xs')][@value='Mini' or contains(.,'Mini')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-mini') or contains(@class,'btn-xs')][@value='Mini' or contains(.,'Mini')][2]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Disabled' or contains(.,'Disabled')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"(//*[contains(@class,'btn ') or @class='btn'][@value='Disabled' or contains(.,'Disabled')])[2]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Block' or contains(.,'Block')]");
-		SeleniumAssert.assertElementVisible(browser,
+		browserStateAsserter.assertElementDisplayed(
 			"//*[contains(@class,'btn ')][contains(@class,'btn-block')][@value='Block' or contains(.,'Block')][2]");
 
 		// Click first button.
-		clickButtonLink(browser,
+		clickButtonLink(browserDriver,
 			"//*[contains(@class,'btn ')][contains(@class,'btn-primary')][@value='Primary' or contains(.,'Primary')]");
 	}
 
-	private void clickButtonLink(Browser browser, String xpath) {
+	private void clickButtonLink(BrowserDriver browserDriver, String xpath) {
 
-		WebElement webElement = browser.findElementByXpath(xpath);
+		WebElement webElement = browserDriver.findElementByXpath(xpath);
 		String tagName = webElement.getTagName();
 		String onclick = webElement.getAttribute("onclick");
-		browser.click(xpath);
+		browserDriver.clickElement(xpath);
 
 		// If the clicking the button/link will cause the page to reload.
 		if (!"button".equals(tagName) || ((onclick != null) && !"".equals(onclick))) {
 
-			browser.waitUntil(ExpectedConditions.stalenessOf(webElement));
-			waitForShowcasePageReady(browser);
+			browserDriver.waitFor(ExpectedConditions.stalenessOf(webElement));
+			waitForShowcasePageReady(browserDriver);
 		}
 	}
 
-	private void testNavigationPage(Browser browser, String toParamPageXpath, String backToNavigationXpath) {
+	private void testNavigationPage(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+		String toParamPageXpath, String backToNavigationXpath) {
 
 		// Click "To Param page" and check that it opens the Param page.
-		browser.click(toParamPageXpath);
-		browser.waitForElementVisible(backToNavigationXpath);
-		waitForShowcasePageReady(browser);
-		SeleniumAssert.assertElementVisible(browser, backToNavigationXpath);
+		browserDriver.clickElement(toParamPageXpath);
+		browserStateAsserter.assertElementDisplayed(backToNavigationXpath);
+		waitForShowcasePageReady(browserDriver);
 	}
 
-	private void testParamPage(Browser browser, String toParamPageXpath, String backToNavigationXpath) {
+	private void testParamPage(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+		String toParamPageXpath, String backToNavigationXpath) {
 
 		// Click "Back to Navigation with foo=1234" and assert that the value "1234" appears in the model value.
-		browser.click(backToNavigationXpath);
-		browser.waitForElementVisible(toParamPageXpath);
-		waitForShowcasePageReady(browser);
-		SeleniumAssert.assertElementVisible(browser, "//pre/span[text()='foo=1234']");
+		browserDriver.clickElement(backToNavigationXpath);
+		browserStateAsserter.assertElementDisplayed(toParamPageXpath);
+		browserStateAsserter.assertElementDisplayed("//pre/span[text()='foo=1234']");
+		waitForShowcasePageReady(browserDriver);
 	}
 }

@@ -22,8 +22,8 @@ import java.util.TimeZone;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -36,16 +36,17 @@ public class OutputTextConversionTester extends OutputTester {
 	@Test
 	public void runOutputTextConversionTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputText", "conversion");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputText", "conversion");
 
 		// Test that today's date is rendered on the page.
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		Date today = GregorianCalendar.getInstance().getTime();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMM dd, yyyy");
 		TimeZone gmtTimeZone = TimeZone.getTimeZone("GMT");
 		dateFormat.setTimeZone(gmtTimeZone);
 
 		String todayString = dateFormat.format(today);
-		SeleniumAssert.assertElementTextVisible(browser, exampleText1Xpath, todayString);
+		browserStateAsserter.assertTextPresentInElement(todayString, exampleText1Xpath);
 	}
 }

@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.outputscript;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,15 +30,16 @@ public class OutputScriptGeneralTester extends OutputScriptTester {
 	@Test
 	public void runOutputScriptGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "outputScript", "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "outputScript", "general");
 
 		// Test that the script has successfully added the text to the page.
-		SeleniumAssert.assertElementTextVisible(browser, exampleScriptText1Xpath, "rendered inline");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("rendered inline", exampleScriptText1Xpath);
 
 		// Test that the script has successfully added the text to the page.
 		String exampleScriptText2Xpath = "(//div[@class='showcase-example-usage'])[2]/span[text()]";
-		SeleniumAssert.assertElementTextVisible(browser, exampleScriptText2Xpath,
-			"rendered immediately before the closing");
+		browserStateAsserter.assertTextPresentInElement("rendered immediately before the closing",
+			exampleScriptText2Xpath);
 	}
 }

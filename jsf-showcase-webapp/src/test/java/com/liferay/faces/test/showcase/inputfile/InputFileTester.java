@@ -15,11 +15,13 @@
  */
 package com.liferay.faces.test.showcase.inputfile;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.liferay.faces.test.selenium.Browser;
 import com.liferay.faces.test.selenium.TestUtil;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.input.InputTester;
 
 
@@ -46,51 +48,54 @@ public class InputFileTester extends InputTester {
 
 	protected void runInputFileTest(String componentPrefix, String useCase) {
 
-		Browser browser = Browser.getInstance();
+		BrowserDriver browserDriver = getBrowserDriver();
 
 		if (componentPrefix != null) {
-			navigateToUseCase(browser, componentPrefix, "inputFile", useCase);
+			navigateToUseCase(browserDriver, componentPrefix, "inputFile", useCase);
 		}
 		else {
-			navigateToUseCase(browser, "inputFile", useCase);
+			navigateToUseCase(browserDriver, "inputFile", useCase);
 		}
 
-		String browserName = browser.getName();
+		String browserDriverName = browserDriver.getBrowserName();
 
 		// Workaround https://github.com/ariya/phantomjs/issues/10993 by removing the multiple attribute from <input
 		// type="file" />
-		if (browserName.equals("phantomjs")) {
+		if (browserDriverName.equals("phantomjs")) {
 
-			browser.executeScript(
+			browserDriver.executeScriptInCurrentWindow(
 				"var multipleFileUploadElements = document.querySelectorAll('input[type=\"file\"][multiple]');" +
 				"for (var i = 0; i < multipleFileUploadElements.length; i++) {" +
 				"multipleFileUploadElements[i].removeAttribute('multiple'); }");
 		}
 
-		browser.sendKeys(fileUploadChooserXpath, LIFERAY_JSF_JERSEY_PNG_FILE_PATH);
+		browserDriver.sendKeysToElement(fileUploadChooserXpath, LIFERAY_JSF_JERSEY_PNG_FILE_PATH);
 
 		if (!useCase.equals("instant-ajax")) {
-			browser.click(submitButton1Xpath);
+			browserDriver.clickElement(submitButton1Xpath);
 		}
 
-		browser.waitForElementVisible(uploadedFileXpath);
-		SeleniumAssert.assertElementTextVisible(browser, uploadedFileXpath, "jersey");
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement("jersey", uploadedFileXpath);
 
 		// Workaround https://github.com/detro/ghostdriver/issues/20: Implement all the Session Commands related to JS
 		// Alert, Prompt and Confirm.
-		if (isHeadlessChrome(browser) || browserName.contains("phantomjs")) {
+		if (isHeadlessChrome(browserDriver) || browserDriverName.contains("phantomjs")) {
 
-			browser.executeScript(ALERT_CONFIRMATION_WORKAROUND);
-			browser.click(deleteFileXpath);
+			browserDriver.executeScriptInCurrentWindow(ALERT_CONFIRMATION_WORKAROUND);
+			browserDriver.clickElement(deleteFileXpath);
 		}
 		else {
 
-			browser.click(deleteFileXpath);
-			browser.waitUntil(ExpectedConditions.alertIsPresent());
-			browser.switchTo().alert().accept();
+			browserDriver.clickElement(deleteFileXpath);
+			browserDriver.waitFor(ExpectedConditions.alertIsPresent());
+			browserDriver.acceptAlert();
 		}
 
-		browser.waitForElementNotPresent(uploadedFileXpath);
-		SeleniumAssert.assertElementTextInvisible(browser, uploadedFileXpath, "jersey");
+		By byXpath = By.xpath(uploadedFileXpath);
+		ExpectedCondition<Boolean> invisibilityOfElement = ExpectedConditions.invisibilityOfElementLocated(byXpath);
+		ExpectedCondition<Boolean> textNotToBePresentInElement = ExpectedConditions.not(ExpectedConditions
+				.textToBePresentInElementLocated(byXpath, "jersey"));
+		browserStateAsserter.assertTrue(ExpectedConditions.or(invisibilityOfElement, textNotToBePresentInElement));
 	}
 }

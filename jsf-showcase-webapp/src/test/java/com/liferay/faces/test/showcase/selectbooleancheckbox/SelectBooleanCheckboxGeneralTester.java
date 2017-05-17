@@ -17,7 +17,8 @@ package com.liferay.faces.test.showcase.selectbooleancheckbox;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -29,8 +30,11 @@ public class SelectBooleanCheckboxGeneralTester extends SelectBooleanCheckboxTes
 	@Test
 	public void runSelectBooleanCheckboxGeneralTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "selectBooleanCheckbox", "general");
-		testSelectBooleanCheckbox(browser, submitButton1Xpath, modelValue1Xpath, checkbox1Xpath);
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "selectBooleanCheckbox", "general");
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		testSelectBooleanCheckbox(browserDriver, browserStateAsserter, submitButton1Xpath, modelValue1Xpath,
+			checkbox1Xpath);
 	}
 }

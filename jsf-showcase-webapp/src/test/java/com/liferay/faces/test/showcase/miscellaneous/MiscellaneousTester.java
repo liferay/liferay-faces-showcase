@@ -24,8 +24,8 @@ import java.util.Scanner;
 
 import org.junit.Assert;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -35,26 +35,27 @@ import com.liferay.faces.test.showcase.TesterBase;
  */
 public class MiscellaneousTester extends TesterBase {
 
-	protected void assertElementContentEqualsFileContent(Browser browser, String elementXpath, String filePath)
-		throws FileNotFoundException {
+	protected void assertElementContentEqualsFileContent(BrowserDriver browserDriver, String elementXpath,
+		String filePath) throws FileNotFoundException {
 
 		String fileContent = getFileContentAsString(filePath);
-		SeleniumAssert.assertElementVisible(browser, elementXpath);
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(elementXpath);
 
-		String pageElementText = browser.findElementByXpath(elementXpath).getText();
+		String pageElementText = browserDriver.findElementByXpath(elementXpath).getText();
 
-		// Replace groups of whitespace with single spaces before comparing since the file is rendered in the browser
-		// with different whitespace.
+		// Replace groups of whitespace with single spaces before comparing since the file is rendered in the
+		// browser with different whitespace.
 		Assert.assertEquals(fileContent.replaceAll("\\s+", " "), pageElementText.replaceAll("\\s+", " "));
 	}
 
 	protected void runMiscellaneousGeneralTest(String componentPrefix, String componentName) throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, componentPrefix, componentName, "general");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, componentPrefix, componentName, "general");
 
 		// Test that the webapp*.xhtml file content is displayed correctly in the browser.
-		assertElementContentEqualsFileContent(browser, "(//div[contains(@class,'tab-pane')]/pre)[1]",
+		assertElementContentEqualsFileContent(browserDriver, "(//div[contains(@class,'tab-pane')]/pre)[1]",
 			"/webapp" + capitalize(componentName) + ".xhtml");
 
 		//J-
@@ -62,11 +63,10 @@ public class MiscellaneousTester extends TesterBase {
 		//J+
 
 		// Test that the portlet*.xhtml file content is displayed correctly in the browser.
-		browser.click("//a[contains(text(),'portlet" + capitalize(componentName) + ".xhtml')]");
+		browserDriver.clickElement("//a[contains(text(),'portlet" + capitalize(componentName) + ".xhtml')]");
 
 		String tabContent2Xpath = "(//div[contains(@class,'tab-pane')]/pre)[2]";
-		browser.waitForElementVisible(tabContent2Xpath);
-		assertElementContentEqualsFileContent(browser, tabContent2Xpath,
+		assertElementContentEqualsFileContent(browserDriver, tabContent2Xpath,
 			"/portlet" + capitalize(componentName) + ".xhtml");
 	}
 

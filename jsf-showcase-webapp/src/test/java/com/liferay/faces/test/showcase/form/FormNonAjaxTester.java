@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.form;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -31,13 +31,15 @@ public class FormNonAjaxTester extends TesterBase {
 	@Test
 	public void runFormNonAjaxTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "form", "non-ajax");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "form", "non-ajax");
 
 		// Test that the form submits successfully.
-		browser.click("(//*[contains(text(),'Submit') or contains(@value,'Submit')])[1]");
-		waitForShowcasePageReady(browser);
-		SeleniumAssert.assertElementVisible(browser,
+		browserDriver.clickElement("(//*[contains(text(),'Submit') or contains(@value,'Submit')])[1]");
+		waitForShowcasePageReady(browserDriver);
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertElementDisplayed(
 			"//td[contains(text(),'The form was submitted as a full page postback and the entire page was re-rendered.')]");
 	}
 }

@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.inputhidden;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 
 
 /**
@@ -30,31 +30,32 @@ public class InputHiddenImmediateTester extends InputHiddenTester {
 	@Test
 	public void runInputHiddenImmediateTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "inputHidden", "immediate");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "inputHidden", "immediate");
 
 		// Test that the hidden value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		browser.click(copyValidValueButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
+		browserDriver.clickElement(copyValidValueButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
 		String text = "1234";
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage1Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
 
-		browser.click(clearButton1Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton1Xpath);
-		SeleniumAssert.assertElementPresent(browser, modelValueEmpty1Xpath);
+		browserDriver.clickElement(clearButton1Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
+		browserStateAsserter.assertElementPresent(modelValueEmpty1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
-		browser.click(copyValidValueButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementTextVisible(browser, modelValue2Xpath, text);
-		SeleniumAssert.assertElementVisible(browser, immediateMessage2Xpath);
+		browserDriver.clickElement(copyValidValueButton2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
+		browserStateAsserter.assertElementDisplayed(immediateMessage2Xpath);
 
-		browser.click(clearButton2Xpath);
-		browser.clickAndWaitForAjaxRerender(submitButton2Xpath);
-		SeleniumAssert.assertElementPresent(browser, modelValueEmpty2Xpath);
+		browserDriver.clickElement(clearButton2Xpath);
+		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
+		browserStateAsserter.assertElementPresent(modelValueEmpty2Xpath);
 	}
 }

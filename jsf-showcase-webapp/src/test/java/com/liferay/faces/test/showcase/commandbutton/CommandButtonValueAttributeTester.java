@@ -17,8 +17,8 @@ package com.liferay.faces.test.showcase.commandbutton;
 
 import org.junit.Test;
 
-import com.liferay.faces.test.selenium.Browser;
-import com.liferay.faces.test.selenium.assertion.SeleniumAssert;
+import com.liferay.faces.test.selenium.browser.BrowserDriver;
+import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
 import com.liferay.faces.test.showcase.buttonlink.ButtonLinkTester;
 
 
@@ -31,18 +31,20 @@ public class CommandButtonValueAttributeTester extends ButtonLinkTester {
 	@Test
 	public void runCommandButtonValueAttributeTest() throws Exception {
 
-		Browser browser = Browser.getInstance();
-		navigateToUseCase(browser, "commandButton", "value-attribute");
+		BrowserDriver browserDriver = getBrowserDriver();
+		navigateToUseCase(browserDriver, "commandButton", "value-attribute");
 
 		// Test that the "John Adams" option submits successfully.
 		String name = "John Adams";
-		browser.clickAndWaitForAjaxRerender(getValueButton(name));
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, name);
+		browserDriver.clickElementAndWaitForRerender(getValueButton(name));
+
+		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		browserStateAsserter.assertTextPresentInElement(name, modelValue1Xpath);
 
 		// Test that the "Carter Braxton" option submits successfully.
 		name = "Carter Braxton";
-		browser.clickAndWaitForAjaxRerender(getValueButton(name));
-		SeleniumAssert.assertElementTextVisible(browser, modelValue1Xpath, name);
+		browserDriver.clickElementAndWaitForRerender(getValueButton(name));
+		browserStateAsserter.assertTextPresentInElement(name, modelValue1Xpath);
 	}
 
 	private String getValueButton(String name) {
