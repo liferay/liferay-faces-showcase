@@ -18,7 +18,6 @@ package com.liferay.faces.test.showcase.miscellaneous;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -68,23 +67,6 @@ public class MiscellaneousTester extends TesterBase {
 		String tabContent2Xpath = "(//div[contains(@class,'tab-pane')]/pre)[2]";
 		assertElementContentEqualsFileContent(browserDriver, tabContent2Xpath,
 			"/portlet" + capitalize(componentName) + ".xhtml");
-	}
-
-	private String capitalize(String string) {
-
-		String capitalizedString = string;
-
-		if (string != null) {
-
-			if (string.length() > 1) {
-				capitalizedString = string.substring(0, 1).toUpperCase(Locale.ENGLISH) + string.substring(1);
-			}
-			else {
-				capitalizedString = string.toUpperCase(Locale.ENGLISH);
-			}
-		}
-
-		return capitalizedString;
 	}
 
 	private String getFileContentAsString(String resource) throws FileNotFoundException {

@@ -108,6 +108,23 @@ public class TesterBase extends IntegrationTesterBase {
 			imageRendered);
 	}
 
+	protected String capitalize(String string) {
+
+		String capitalizedString = string;
+
+		if (string != null) {
+
+			if (string.length() > 1) {
+				capitalizedString = string.substring(0, 1).toUpperCase(Locale.ENGLISH) + string.substring(1);
+			}
+			else {
+				capitalizedString = string.toUpperCase(Locale.ENGLISH);
+			}
+		}
+
+		return capitalizedString;
+	}
+
 	@Override
 	protected void doSetUp() {
 
