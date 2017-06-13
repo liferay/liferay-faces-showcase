@@ -252,7 +252,7 @@
 		<!-- END: Only required for file upload -->
 		<dependency>
 			<groupId>javax.annotation</groupId>
-			<artifactId>jsr250-api</artifactId>
+			<artifactId>javax.annotation-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.el</groupId>
