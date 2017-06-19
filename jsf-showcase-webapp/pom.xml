@@ -39,6 +39,9 @@
 		</profile>
 		<profile>
 			<id>phantomjs</id>
+			<properties>
+				<integration.browser.name>phantomjs</integration.browser.name>
+			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>com.codeborne</groupId>
