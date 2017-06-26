@@ -81,10 +81,6 @@ public class ShowcaseModelBean implements Serializable {
 		return deploymentType;
 	}
 
-	public ProjectStage getProjectStageProduction() {
-		return ProjectStage.Production;
-	}
-
 	public SelectedComponent getSelectedComponent() {
 
 		if (selectedComponent == null) {
