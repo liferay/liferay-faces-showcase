@@ -36,14 +36,14 @@ public class OutputLinkGeneralTester extends TesterBase {
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
-		testLink(browserDriver, waitingAsserter, "(//div[@class='showcase-example-usage'])[1]/a", "liferay.com");
+		testLink(browserDriver, waitingAsserter, "(//div[@class='showcase-example-usage'])[1]/a", "liferay.[a-z]+");
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
 		String exampleLink2Xpath = "(//div[@class='showcase-example-usage'])[2]/a";
-		testLink(browserDriver, waitingAsserter, exampleLink2Xpath, "liferay.com");
+		testLink(browserDriver, waitingAsserter, exampleLink2Xpath, "liferay.[a-z]+");
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
 		String exampleLink3Xpath = "(//div[@class='showcase-example-usage'])[3]/a";
-		testLink(browserDriver, waitingAsserter, exampleLink3Xpath, "google.com");
+		testLink(browserDriver, waitingAsserter, exampleLink3Xpath, "google.[a-z]+");
 	}
 }
