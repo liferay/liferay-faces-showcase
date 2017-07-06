@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.junit.Assert;
 
@@ -206,7 +207,7 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
 	protected void testLink(BrowserDriver browserDriver, WaitingAsserter waitingAsserter, String exampleLinkXpath,
-		String domainName) {
+		String domainNameRegex) {
 
 		waitingAsserter.assertElementDisplayed(exampleLinkXpath);
 
@@ -253,8 +254,9 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 			newTabURL = linkElement.getAttribute("href");
 		}
 
-		Assert.assertTrue("The url does not contain " + domainName + " instead it is " + newTabURL + ".",
-			newTabURL.contains(domainName));
+		Pattern pattern = Pattern.compile(domainNameRegex);
+		Assert.assertTrue("The url does not contain text matching the pattern " + domainNameRegex +
+			". The full URL is " + newTabURL + ".", pattern.matcher(newTabURL).find());
 
 		if ((originalWindowHandle != null) && !browserDriver.getCurrentWindowId().equals(originalWindowHandle)) {
 

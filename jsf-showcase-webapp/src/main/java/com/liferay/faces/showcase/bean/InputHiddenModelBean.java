@@ -45,8 +45,6 @@ public class InputHiddenModelBean {
 		// Example 1 requires a date formatted by the user's locale.
 		DateTimeConverter dateTimeConverter = new DateTimeConverter();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = facesContext.getExternalContext();
-		dateTimeConverter.setLocale(externalContext.getRequestLocale());
 
 		return dateTimeConverter.getAsString(facesContext, facesContext.getViewRoot(), testDate);
 	}
@@ -56,8 +54,6 @@ public class InputHiddenModelBean {
 		// Example 1 requires a date formatted by a specific date pattern.
 		DateTimeConverter dateTimeConverter = new DateTimeConverter();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = facesContext.getExternalContext();
-		dateTimeConverter.setLocale(externalContext.getRequestLocale());
 		dateTimeConverter.setPattern("MM/dd/yyyy");
 
 		return dateTimeConverter.getAsString(facesContext, facesContext.getViewRoot(), testDate);
