@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -39,40 +39,40 @@ public class InputHiddenValidationTester extends InputHiddenTester {
 		browserDriver.clickElement(validButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement(text, modelValue1Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
 		String invalidButton1Xpath = "(//button[contains(text(),'an invalid')])[1]";
 		browserDriver.clickElement(invalidButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementDisplayed(error1Xpath);
+		waitingAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that the hidden value clears successfully.
 		browserDriver.clickElement(validButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 		browserDriver.clickElement(clearButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementDisplayed(error1Xpath);
+		waitingAsserter.assertElementDisplayed(error1Xpath);
 
 		// Test that a hidden valid value submits successfully.
 		String validButton2Xpath = "(//button[contains(text(),'a valid')])[2]";
 		browserDriver.clickElement(validButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
+		waitingAsserter.assertTextPresentInElement(text, modelValue2Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
 		String invalidButton2Xpath = "(//button[contains(text(),'an invalid')])[2]";
 		browserDriver.clickElement(invalidButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertElementDisplayed(error2Xpath);
+		waitingAsserter.assertElementDisplayed(error2Xpath);
 
 		// Test that the hidden value clears successfully.
 		browserDriver.clickElement(invalidButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
 		browserDriver.clickElement(clearButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertElementDisplayed(error2Xpath);
+		waitingAsserter.assertElementDisplayed(error2Xpath);
 
 	}
 }

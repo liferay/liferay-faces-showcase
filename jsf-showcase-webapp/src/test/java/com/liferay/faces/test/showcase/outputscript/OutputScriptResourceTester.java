@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.outputscript;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -34,7 +34,7 @@ public class OutputScriptResourceTester extends OutputScriptTester {
 		navigateToUseCase(browserDriver, "outputScript", "resource");
 
 		// Test that a text property renders on the page successfully.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement("A script", exampleScriptText1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement("A script", exampleScriptText1Xpath);
 	}
 }

@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.panel;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -35,18 +35,18 @@ public class PanelGridGeneralTester extends TesterBase {
 		navigateToUseCase(browserDriver, "panelGrid", "general");
 
 		// Test that each cell is rendered in the correct row and column.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		assertCellTextMatchesCellRowCol(browserStateAsserter, 1, 1);
-		assertCellTextMatchesCellRowCol(browserStateAsserter, 1, 2);
-		assertCellTextMatchesCellRowCol(browserStateAsserter, 1, 3);
-		assertCellTextMatchesCellRowCol(browserStateAsserter, 2, 1);
-		assertCellTextMatchesCellRowCol(browserStateAsserter, 2, 2);
-		assertCellTextMatchesCellRowCol(browserStateAsserter, 2, 3);
-		assertCellTextMatchesCellRowCol(browserStateAsserter, 3, 1);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		assertCellTextMatchesCellRowCol(waitingAsserter, 1, 1);
+		assertCellTextMatchesCellRowCol(waitingAsserter, 1, 2);
+		assertCellTextMatchesCellRowCol(waitingAsserter, 1, 3);
+		assertCellTextMatchesCellRowCol(waitingAsserter, 2, 1);
+		assertCellTextMatchesCellRowCol(waitingAsserter, 2, 2);
+		assertCellTextMatchesCellRowCol(waitingAsserter, 2, 3);
+		assertCellTextMatchesCellRowCol(waitingAsserter, 3, 1);
 	}
 
-	private void assertCellTextMatchesCellRowCol(BrowserStateAsserter browserStateAsserter, int row, int col) {
-		browserStateAsserter.assertTextPresentInElement("Row " + row + " Col " + col,
+	private void assertCellTextMatchesCellRowCol(WaitingAsserter waitingAsserter, int row, int col) {
+		waitingAsserter.assertTextPresentInElement("Row " + row + " Col " + col,
 			"//div[contains(@class,'showcase-example-usage')]/table/tbody/tr[" + row + "]/td[" + col + "]");
 	}
 }

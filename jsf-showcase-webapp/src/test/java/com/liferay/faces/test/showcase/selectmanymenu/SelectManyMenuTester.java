@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.selectmanymenu;
 import org.openqa.selenium.support.ui.Select;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.select.SelectManyTester;
 
 
@@ -37,8 +37,8 @@ public class SelectManyMenuTester extends SelectManyTester {
 		Select select = new Select(browserDriver.findElementByXpath(select1Xpath));
 		select.deselectAll();
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testRequiredCheckboxError(browserDriver, browserStateAsserter);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testRequiredCheckboxError(browserDriver, waitingAsserter);
 		select = new Select(browserDriver.findElementByXpath(select1Xpath));
 		select.deselectAll();
 
@@ -54,16 +54,16 @@ public class SelectManyMenuTester extends SelectManyTester {
 		String option5Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[5]";
 		browserDriver.clickElement(option5Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
+		waitingAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 
 		String answer1 = "1";
-		browserStateAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
 
 		String answer3 = "3";
-		browserStateAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
 
 		String answer4 = "4";
-		browserStateAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
 
 		// Test that unchecking the checkbox removes the value from the model.
 		// Note: when selecting an <option> element manually, browsers will deselect all other elements. However, this
@@ -71,9 +71,9 @@ public class SelectManyMenuTester extends SelectManyTester {
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browserDriver.clickElement(option2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
 	}
 
 	protected void runSelectManyMenuInstantAjaxTest(String componentName) {
@@ -91,18 +91,18 @@ public class SelectManyMenuTester extends SelectManyTester {
 		String option4Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[4]";
 		clickOptionAndWaitForAjaxRerender(browserDriver, option4Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement("1", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("4", modelValue1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement("1", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("4", modelValue1Xpath);
 
 		// Test that deselecting an option removes the value from the model.
 		// Note: when selecting an <option> element manually, browsers will deselect all other elements. However, this
 		// is not the case in selenium, so elements must be deselected by clicking them again.
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		clickOptionAndWaitForAjaxRerender(browserDriver, option1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement("1", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("4", modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement("1", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("4", modelValue1Xpath);
 	}
 }

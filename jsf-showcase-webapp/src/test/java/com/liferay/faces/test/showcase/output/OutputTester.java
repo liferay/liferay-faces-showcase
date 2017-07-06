@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.output;
 import org.openqa.selenium.interactions.Action;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -32,24 +32,24 @@ public class OutputTester extends TesterBase {
 	protected static final String exampleText1Xpath = "(//div[@class='showcase-example-usage'])[1]";
 	protected static final String input1Xpath = "(//input[contains(@id,':inputText')])[1]";
 
-	protected void testCharCountMessage(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
-		String inputXpath, String submitButtonXpath, String messageXpath) {
+	protected void testCharCountMessage(BrowserDriver browserDriver, WaitingAsserter waitingAsserter, String inputXpath,
+		String submitButtonXpath, String messageXpath) {
 
 		String text = "hello";
-		testMessage(browserDriver, browserStateAsserter, inputXpath, text, submitButtonXpath, messageXpath,
+		testMessage(browserDriver, waitingAsserter, inputXpath, text, submitButtonXpath, messageXpath,
 			"You typed " + text.length() + " characters.");
 	}
 
 	/**
 	 * Tests that the text value submits successfully and the message is displayed.
 	 */
-	protected void testMessage(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
-		String inputXpath, String text, String submitButtonXpath, String messageXpath, String message) {
+	protected void testMessage(BrowserDriver browserDriver, WaitingAsserter waitingAsserter, String inputXpath,
+		String text, String submitButtonXpath, String messageXpath, String message) {
 
 		browserDriver.sendKeysToElement(inputXpath, text);
 
 		Action submitButtonClickAction = browserDriver.createClickElementAction(submitButtonXpath);
 		browserDriver.performAndWaitForRerender(submitButtonClickAction, inputXpath);
-		browserStateAsserter.assertTextPresentInElement(message, messageXpath);
+		waitingAsserter.assertTextPresentInElement(message, messageXpath);
 	}
 }

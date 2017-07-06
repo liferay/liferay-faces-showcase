@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.form;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -38,8 +38,8 @@ public class FormGeneralTester extends TesterBase {
 		browserDriver.clickElementAndWaitForRerender(
 			"(//*[contains(@onclick,'mojarra.ab')][contains(text(),'Submit') or contains(@value,'Submit')])[1]");
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertElementDisplayed(
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertElementDisplayed(
 			"//td[contains(text(),'The form was submitted via Ajax and re-rendered with updates to the DOM.')]");
 	}
 }

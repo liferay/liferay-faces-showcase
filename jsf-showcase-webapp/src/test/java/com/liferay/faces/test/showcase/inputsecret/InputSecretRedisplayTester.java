@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.inputsecret;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -40,19 +40,19 @@ public class InputSecretRedisplayTester extends InputSecretTester {
 		browserDriver.performAndWaitForRerender(browserDriver.createClickElementAction(submitButton1Xpath),
 			modelValue1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement(text, modelValue1Xpath);
 
 		String redisplayMessage1Xpath = "//td[contains(text(),'was intentionally not re-rendered')]";
-		browserStateAsserter.assertElementDisplayed(redisplayMessage1Xpath);
+		waitingAsserter.assertElementDisplayed(redisplayMessage1Xpath);
 
 		// Test that the value submits successfully and the entire form (including the alloy:inputSecret component)
 		// is re-rendered in the DOM.
 		browserDriver.sendKeysToElement(inputSecret2Xpath, text);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
+		waitingAsserter.assertTextPresentInElement(text, modelValue2Xpath);
 
 		String redisplayMessage2Xpath = "//td[contains(text(),'entire form')]";
-		browserStateAsserter.assertElementDisplayed(redisplayMessage2Xpath);
+		waitingAsserter.assertElementDisplayed(redisplayMessage2Xpath);
 	}
 }

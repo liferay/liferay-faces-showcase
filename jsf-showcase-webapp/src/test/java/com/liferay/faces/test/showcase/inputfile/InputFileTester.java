@@ -19,9 +19,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.liferay.faces.test.selenium.TestUtil;
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.TestUtil;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.input.InputTester;
 
 
@@ -75,8 +75,8 @@ public class InputFileTester extends InputTester {
 			browserDriver.clickElement(submitButton1Xpath);
 		}
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement("jersey", uploadedFileXpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement("jersey", uploadedFileXpath);
 
 		// Workaround https://github.com/detro/ghostdriver/issues/20: Implement all the Session Commands related to JS
 		// Alert, Prompt and Confirm.
@@ -96,6 +96,6 @@ public class InputFileTester extends InputTester {
 		ExpectedCondition<Boolean> invisibilityOfElement = ExpectedConditions.invisibilityOfElementLocated(byXpath);
 		ExpectedCondition<Boolean> textNotToBePresentInElement = ExpectedConditions.not(ExpectedConditions
 				.textToBePresentInElementLocated(byXpath, "jersey"));
-		browserStateAsserter.assertTrue(ExpectedConditions.or(invisibilityOfElement, textNotToBePresentInElement));
+		waitingAsserter.assertTrue(ExpectedConditions.or(invisibilityOfElement, textNotToBePresentInElement));
 	}
 }

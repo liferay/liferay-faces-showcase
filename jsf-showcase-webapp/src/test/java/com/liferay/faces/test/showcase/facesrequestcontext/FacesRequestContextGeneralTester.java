@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.facesrequestcontext;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -37,26 +37,26 @@ public class FacesRequestContextGeneralTester extends TesterBase {
 		// Test that clicking the "Show Modal" button shows the modal.
 		browserDriver.clickElement("(//*[contains(@value,'Show Modal')])[1]");
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String modalDialogXpath = "//div[contains(@class,'modal-dialog')]";
-		browserStateAsserter.assertElementDisplayed(modalDialogXpath);
+		waitingAsserter.assertElementDisplayed(modalDialogXpath);
 
 		// Test that the modal is still displayed (and shows an error message) when an empty value is submitted.
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementDisplayed(modalDialogXpath);
-		browserStateAsserter.assertTextPresentInElement("Email: Validation Error: Value is required.", error1Xpath);
+		waitingAsserter.assertElementDisplayed(modalDialogXpath);
+		waitingAsserter.assertTextPresentInElement("Email: Validation Error: Value is required.", error1Xpath);
 
 		// Test that the modal is still displayed (and shows an error message) when an invalid value is submitted.
 		String emailAddressInputTextXpath = "(//input[contains(@id,':text')])[1]";
 		browserDriver.sendKeysToElement(emailAddressInputTextXpath, "HelloWorldcom");
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementDisplayed(modalDialogXpath);
-		browserStateAsserter.assertTextPresentInElement("Invalid E-Mail Address", error1Xpath);
+		waitingAsserter.assertElementDisplayed(modalDialogXpath);
+		waitingAsserter.assertTextPresentInElement("Invalid E-Mail Address", error1Xpath);
 
 		// Test that a valid value submits successfully and the modal disappears.
 		browserDriver.clearElement(emailAddressInputTextXpath);
 		browserDriver.sendKeysToElement(emailAddressInputTextXpath, "hello@world.com");
 		browserDriver.clickElement(submitButton1Xpath);
-		browserStateAsserter.assertElementNotDisplayed(modalDialogXpath);
+		waitingAsserter.assertElementNotDisplayed(modalDialogXpath);
 	}
 }

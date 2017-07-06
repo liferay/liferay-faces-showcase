@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -43,15 +43,15 @@ public class SelectManyCheckboxInstantAjaxTester extends SelectManyCheckboxTeste
 		String checkbox4Xpath = "(" + CHECKBOX_CHILD_XPATH + ")[4]";
 		browserDriver.clickElementAndWaitForRerender(checkbox4Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement("1", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("4", modelValue1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement("1", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("4", modelValue1Xpath);
 
 		// Test that unchecking a checkbox removes the value from the model.
 		browserDriver.clickElementAndWaitForRerender(checkbox1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement("1", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("4", modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement("1", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("4", modelValue1Xpath);
 	}
 }

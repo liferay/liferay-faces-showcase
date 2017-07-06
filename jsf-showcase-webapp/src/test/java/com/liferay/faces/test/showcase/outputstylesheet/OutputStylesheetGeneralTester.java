@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -38,12 +38,12 @@ public class OutputStylesheetGeneralTester extends OutputTester {
 		navigateToUseCase(browserDriver, "outputStylesheet", "general");
 
 		// Test that both buttons render on the page successfully.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String button1Xpath = "(//button[normalize-space(text())='Button'])[1]";
-		browserStateAsserter.assertElementDisplayed(button1Xpath);
+		waitingAsserter.assertElementDisplayed(button1Xpath);
 
 		String button2Xpath = "(//button[normalize-space(text())='Button'])[2]";
-		browserStateAsserter.assertElementDisplayed(button2Xpath);
+		waitingAsserter.assertElementDisplayed(button2Xpath);
 
 		// Test that the first button's opacity is correct.
 		WebElement buttonElement = browserDriver.findElementByXpath(button1Xpath);

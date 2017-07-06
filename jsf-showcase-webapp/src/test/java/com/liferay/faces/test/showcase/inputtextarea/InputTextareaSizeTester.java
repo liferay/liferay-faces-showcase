@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -41,14 +41,14 @@ public class InputTextareaSizeTester extends InputTextareaTester {
 		browserDriver.sendKeysToElement(textarea1Xpath, text);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed("//textarea[@cols='50'][@rows='6']");
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		waitingAsserter.assertElementDisplayed("//textarea[@cols='50'][@rows='6']");
 
 		// Test that the value submits successfully
 		browserDriver.sendKeysToElement(textarea2Xpath, text);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
+		waitingAsserter.assertTextPresentInElement(text, modelValue2Xpath);
 
 		WebElement textarea2 = browserDriver.findElementByXpath(textarea2Xpath);
 		String expectedWidth = "150px";

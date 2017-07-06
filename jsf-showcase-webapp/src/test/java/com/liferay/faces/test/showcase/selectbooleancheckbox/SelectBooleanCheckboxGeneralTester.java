@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.selectbooleancheckbox;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -33,8 +33,7 @@ public class SelectBooleanCheckboxGeneralTester extends SelectBooleanCheckboxTes
 		BrowserDriver browserDriver = getBrowserDriver();
 		navigateToUseCase(browserDriver, "selectBooleanCheckbox", "general");
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testSelectBooleanCheckbox(browserDriver, browserStateAsserter, submitButton1Xpath, modelValue1Xpath,
-			checkbox1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testSelectBooleanCheckbox(browserDriver, waitingAsserter, submitButton1Xpath, modelValue1Xpath, checkbox1Xpath);
 	}
 }
