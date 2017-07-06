@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.openqa.selenium.support.ui.Select;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -40,11 +40,11 @@ public class OutputLinkConversionTester extends TesterBase {
 		Select select = new Select(browserDriver.findElementByXpath("(//select[contains(@id,':selectOneMenuId')])"));
 		select.selectByVisibleText("United States");
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String mapLink1Xpath = "//a[contains(., 'United States')]";
-		browserStateAsserter.assertTextPresentInElement("Link to a map of United States", mapLink1Xpath);
+		waitingAsserter.assertTextPresentInElement("Link to a map of United States", mapLink1Xpath);
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
-		testLink(browserDriver, browserStateAsserter, mapLink1Xpath, "google.com");
+		testLink(browserDriver, waitingAsserter, mapLink1Xpath, "google.com");
 	}
 }

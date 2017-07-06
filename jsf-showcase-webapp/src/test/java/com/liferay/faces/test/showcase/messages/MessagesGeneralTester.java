@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.messages;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -35,21 +35,21 @@ public class MessagesGeneralTester extends OutputTester {
 		navigateToUseCase(browserDriver, "messages", "general");
 
 		// Test that the first value submits successfully and message text is displayed
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String text = "hello";
 		String messages1Xpath = "(//div[@class='showcase-example-usage'])[1]/ul/li";
-		testCharCountMessage(browserDriver, browserStateAsserter, input1Xpath, submitButton1Xpath, messages1Xpath);
+		testCharCountMessage(browserDriver, waitingAsserter, input1Xpath, submitButton1Xpath, messages1Xpath);
 
 		// Test that the second value submits successfully and message text is displayed
 		String input2Xpath = "(//input[contains(@id,':inputText')])[2]";
 		String messages2Xpath = "(//div[@class='showcase-example-usage'])[2]/table/tbody/tr/td";
-		testCharCountMessage(browserDriver, browserStateAsserter, input2Xpath, submitButton2Xpath, messages2Xpath);
+		testCharCountMessage(browserDriver, waitingAsserter, input2Xpath, submitButton2Xpath, messages2Xpath);
 
 		// Test that the third value submits successfully and message text is displayed
 		String input3Xpath = "(//input[contains(@id,':inputText')])[3]";
 		String messages3Xpath = "(//div[@class='showcase-example-usage'])[3]/table/tbody/tr/td";
 		String submitButton3Xpath = "(//*[contains(@value, 'Submit')])[3]";
-		testMessage(browserDriver, browserStateAsserter, input3Xpath, text, submitButton3Xpath, messages3Xpath,
+		testMessage(browserDriver, waitingAsserter, input3Xpath, text, submitButton3Xpath, messages3Xpath,
 			"Your request processed successfully.");
 	}
 }

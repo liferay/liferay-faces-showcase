@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.selectmanycheckbox;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -33,12 +33,12 @@ public class SelectManyCheckboxGeneralTester extends SelectManyCheckboxTester {
 		BrowserDriver browserDriver = getBrowserDriver();
 		navigateToUseCase(browserDriver, "selectManyCheckbox", "general");
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testRequiredCheckboxError(browserDriver, browserStateAsserter);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testRequiredCheckboxError(browserDriver, waitingAsserter);
 
 		// Test that the checked values submit successfully and the "required" error message disappears.
-		testSelectMany(browserDriver, browserStateAsserter, selectManyCheckbox1Xpath, CHECKBOX_CHILD_XPATH,
+		testSelectMany(browserDriver, waitingAsserter, selectManyCheckbox1Xpath, CHECKBOX_CHILD_XPATH,
 			submitButton1Xpath, modelValue1Xpath);
-		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
+		waitingAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 	}
 }

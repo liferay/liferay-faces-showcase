@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -37,22 +37,22 @@ public class InputHiddenConversionTester extends InputHiddenTester {
 		browserDriver.clickElement(copyValidValueButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement("Apr 5, 0033", modelValue1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement("Apr 5, 0033", modelValue1Xpath);
 
 		// Test that the hidden value clears successfully.
 		browserDriver.clickElement(clearButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementPresent(modelValueEmpty1Xpath);
+		waitingAsserter.assertElementPresent(modelValueEmpty1Xpath);
 
 		// Test that a hidden valid value submits successfully.
 		browserDriver.clickElement(copyValidValueButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertTextPresentInElement("04/05/0033", modelValue2Xpath);
+		waitingAsserter.assertTextPresentInElement("04/05/0033", modelValue2Xpath);
 
 		// Test that the hidden value clears successfully.
 		browserDriver.clickElement(clearButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertElementPresent(modelValueEmpty2Xpath);
+		waitingAsserter.assertElementPresent(modelValueEmpty2Xpath);
 	}
 }

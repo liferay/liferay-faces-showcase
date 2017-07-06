@@ -16,7 +16,7 @@
 package com.liferay.faces.test.showcase.select;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -46,18 +46,18 @@ public class SelectOneTester extends SelectTester {
 		browserDriver.clickElement(option1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String answer1 = "Oct 31, 1517 AD";
-		browserStateAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed(conversionIncorrectMessage1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertElementDisplayed(conversionIncorrectMessage1Xpath);
 
 		// Test that selecting another value changes the model value and the "Correct!" message appears.
 		String option2Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[2]";
 		browserDriver.clickElement(option2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("Jul 4, 1776 AD", modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed(conversionCorrectMessage1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("Jul 4, 1776 AD", modelValue1Xpath);
+		waitingAsserter.assertElementDisplayed(conversionCorrectMessage1Xpath);
 	}
 
 	/**
@@ -78,8 +78,8 @@ public class SelectOneTester extends SelectTester {
 		navigateToUseCase(browserDriver, componentName, "data-model");
 
 		// Test that the selected option submits successfully.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testSelectOne(browserDriver, browserStateAsserter, selectOne1Xpath, optionChildXpath, submitButton1Xpath,
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testSelectOne(browserDriver, waitingAsserter, selectOne1Xpath, optionChildXpath, submitButton1Xpath,
 			modelValue1Xpath);
 	}
 
@@ -101,16 +101,16 @@ public class SelectOneTester extends SelectTester {
 		navigateToUseCase(browserDriver, componentName, "default-value");
 
 		// Test that a default value is in the model.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String answer3 = "3";
-		browserStateAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
 
 		// Test that selecting another value changes the model value.
 		String option1Xpath = "(" + selectOne1Xpath + optionChildXpath + ")[1]";
 		browserDriver.clickElement(option1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer3, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("1", modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(answer3, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("1", modelValue1Xpath);
 	}
 
 	/**
@@ -135,16 +135,16 @@ public class SelectOneTester extends SelectTester {
 
 		// Test that the selected option submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testSelectOne(browserDriver, browserStateAsserter, selectOne1Xpath, optionChildXpath, submitButton1Xpath,
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testSelectOne(browserDriver, waitingAsserter, selectOne1Xpath, optionChildXpath, submitButton1Xpath,
 			modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
+		waitingAsserter.assertElementDisplayed(immediateMessage1Xpath);
 
 		// Test that the selected option submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
-		testSelectOne(browserDriver, browserStateAsserter, selectOne2Xpath, optionChildXpath, submitButton2Xpath,
+		testSelectOne(browserDriver, waitingAsserter, selectOne2Xpath, optionChildXpath, submitButton2Xpath,
 			modelValue2Xpath);
-		browserStateAsserter.assertElementDisplayed(immediateMessage2Xpath);
+		waitingAsserter.assertElementDisplayed(immediateMessage2Xpath);
 	}
 
 	/**
@@ -159,8 +159,8 @@ public class SelectOneTester extends SelectTester {
 	 * @param  submitButtonXpath
 	 * @param  modelValueXpath
 	 */
-	protected void testSelectOne(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
-		String selectOneXpath, String optionChildXpath, String submitButtonXpath, String modelValueXpath) {
+	protected void testSelectOne(BrowserDriver browserDriver, WaitingAsserter waitingAsserter, String selectOneXpath,
+		String optionChildXpath, String submitButtonXpath, String modelValueXpath) {
 
 		// Test that the selected option submits successfully.
 		String option1Xpath = "(" + selectOneXpath + optionChildXpath + ")[1]";
@@ -168,13 +168,13 @@ public class SelectOneTester extends SelectTester {
 		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
 
 		String answer1 = "1";
-		browserStateAsserter.assertTextPresentInElement(answer1, modelValueXpath);
+		waitingAsserter.assertTextPresentInElement(answer1, modelValueXpath);
 
 		// Test that selecting another option changes the model value.
 		String option3Xpath = "(" + selectOneXpath + optionChildXpath + ")[3]";
 		browserDriver.clickElement(option3Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValueXpath);
-		browserStateAsserter.assertTextPresentInElement("3", modelValueXpath);
+		waitingAsserter.assertTextNotPresentInElement(answer1, modelValueXpath);
+		waitingAsserter.assertTextPresentInElement("3", modelValueXpath);
 	}
 }

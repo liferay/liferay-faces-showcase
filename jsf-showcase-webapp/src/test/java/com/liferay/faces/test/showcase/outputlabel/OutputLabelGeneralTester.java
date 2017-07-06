@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.outputlabel;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -37,10 +37,10 @@ public class OutputLabelGeneralTester extends OutputTester {
 		// Test that the web page shows an error message when an empty value is submitted.
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String valueRequiredText = "Name: Validation Error: Value is required.";
 		String field1Xpath = "(//div[@class='showcase-example-usage'])[1]/div";
-		browserStateAsserter.assertTextPresentInElement(valueRequiredText, field1Xpath);
+		waitingAsserter.assertTextPresentInElement(valueRequiredText, field1Xpath);
 
 		// Test that the value submits successfully and is displayed in the model value
 		String inputFirstName1Xpath = "(//input[contains(@id,':firstName')])[1]";
@@ -50,14 +50,14 @@ public class OutputLabelGeneralTester extends OutputTester {
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
 		String modelValue1Xpath = "(//span[contains(@id,':modelValue')])[1]";
-		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(text, modelValue1Xpath);
 
 		String valueRequiredMessage1Xpath =
 			"(//div[@class='showcase-example-usage'])[1]/div[contains(text(),'Value is required.')]";
-		browserStateAsserter.assertElementNotDisplayed(valueRequiredMessage1Xpath);
+		waitingAsserter.assertElementNotDisplayed(valueRequiredMessage1Xpath);
 
 		// Test that the success message is rendered.
 		String successMessage1Xpath = "(//div[@class='showcase-example-usage'])[1]/table/tbody/tr/td";
-		browserStateAsserter.assertTextPresentInElement("Your request processed successfully.", successMessage1Xpath);
+		waitingAsserter.assertTextPresentInElement("Your request processed successfully.", successMessage1Xpath);
 	}
 }

@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.selectoneradio;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -38,14 +38,14 @@ public class SelectOneRadioInstantAjaxTester extends SelectOneRadioTester {
 		String option1Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[1]";
 		browserDriver.clickElementAndWaitForRerender(option1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String answer1 = "1";
-		browserStateAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
 
 		// Test that selecting another value changes the model value.
 		String option3Xpath = "(" + selectOneRadio1Xpath + RADIO_CHILD_XPATH + ")[3]";
 		browserDriver.clickElementAndWaitForRerender(option3Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("3", modelValue1Xpath);
 	}
 }

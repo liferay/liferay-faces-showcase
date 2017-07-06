@@ -16,7 +16,7 @@
 package com.liferay.faces.test.showcase.selectbooleancheckbox;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -30,16 +30,16 @@ public class SelectBooleanCheckboxTester extends TesterBase {
 	protected static final String checkbox1Xpath = "(//input[contains(@id,':checkbox')])[1]";
 	protected static final String checkbox2Xpath = "(//input[contains(@id,':checkbox')])[2]";
 
-	protected void testSelectBooleanCheckbox(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+	protected void testSelectBooleanCheckbox(BrowserDriver browserDriver, WaitingAsserter waitingAsserter,
 		String submitButtonXpath, String modelValueXpath, String checkboxXpath) {
 
 		// Test that an unchecked checkbox submits successfully.
 		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
-		browserStateAsserter.assertTextPresentInElement("false", modelValueXpath);
+		waitingAsserter.assertTextPresentInElement("false", modelValueXpath);
 
 		// Test that a checked checkbox submits successfully.
 		browserDriver.clickElement(checkboxXpath);
 		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
-		browserStateAsserter.assertTextPresentInElement("true", modelValueXpath);
+		waitingAsserter.assertTextPresentInElement("true", modelValueXpath);
 	}
 }

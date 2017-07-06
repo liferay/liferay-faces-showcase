@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.image;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -41,17 +41,17 @@ public class ImageGeneralTester extends TesterBase {
 		navigateToUseCase(browserDriver, componentName, "general");
 
 		// Test that the images render on the page successfully.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		assertImageRendered(browserDriver, browserStateAsserter, getExampleImageXpath("value"));
-		assertImageRendered(browserDriver, browserStateAsserter, getExampleImageXpath("#{resource}"));
-		assertImageRendered(browserDriver, browserStateAsserter, getExampleImageXpath("name"));
-		assertImageRendered(browserDriver, browserStateAsserter, getExampleImageXpath("usemap"));
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("value"));
+		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("#{resource}"));
+		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("name"));
+		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("usemap"));
 
 		// Click the image links on both areas of the example 4 image usemap and check that it opens a new window/tab
 		// with the correct domain name.
-		testLink(browserDriver, browserStateAsserter,
+		testLink(browserDriver, waitingAsserter,
 			"(//div[contains(@class,'showcase-example-usage')]//area[contains(@title,'JSR 362')])", "jcp.org");
-		testLink(browserDriver, browserStateAsserter,
+		testLink(browserDriver, waitingAsserter,
 			"(//div[contains(@class,'showcase-example-usage')]//area[contains(@title,'JSR 378')])", "jcp.org");
 	}
 }

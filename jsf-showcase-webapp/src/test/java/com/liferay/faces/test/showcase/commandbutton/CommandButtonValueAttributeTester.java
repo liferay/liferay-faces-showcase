@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.commandbutton;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.buttonlink.ButtonLinkTester;
 
 
@@ -38,13 +38,13 @@ public class CommandButtonValueAttributeTester extends ButtonLinkTester {
 		String name = "John Adams";
 		browserDriver.clickElementAndWaitForRerender(getValueButton(name));
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement(name, modelValue1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement(name, modelValue1Xpath);
 
 		// Test that the "Carter Braxton" option submits successfully.
 		name = "Carter Braxton";
 		browserDriver.clickElementAndWaitForRerender(getValueButton(name));
-		browserStateAsserter.assertTextPresentInElement(name, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(name, modelValue1Xpath);
 	}
 
 	private String getValueButton(String name) {

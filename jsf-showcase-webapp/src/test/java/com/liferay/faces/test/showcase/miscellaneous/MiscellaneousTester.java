@@ -24,7 +24,7 @@ import java.util.Scanner;
 import org.junit.Assert;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -38,8 +38,8 @@ public class MiscellaneousTester extends TesterBase {
 		String filePath) throws FileNotFoundException {
 
 		String fileContent = getFileContentAsString(filePath);
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertElementDisplayed(elementXpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertElementDisplayed(elementXpath);
 
 		String pageElementText = browserDriver.findElementByXpath(elementXpath).getText();
 

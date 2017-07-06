@@ -16,7 +16,7 @@
 package com.liferay.faces.test.showcase.select;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -51,16 +51,16 @@ public class SelectManyTester extends SelectTester {
 		browserDriver.clickElement(option4Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String date1 = "Apr 5, 0033 AD";
-		browserStateAsserter.assertTextPresentInElement(date1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(date1, modelValue1Xpath);
 
 		String date2 = "Jul 4, 1776 AD";
-		browserStateAsserter.assertTextPresentInElement(date2, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(date2, modelValue1Xpath);
 
 		String date3 = "Jul 14, 1789 AD";
-		browserStateAsserter.assertTextPresentInElement(date3, modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed(conversionIncorrectMessage1Xpath);
+		waitingAsserter.assertTextPresentInElement(date3, modelValue1Xpath);
+		waitingAsserter.assertElementDisplayed(conversionIncorrectMessage1Xpath);
 
 		// Test that deselecting a option removes the value from the model and the "Correct!" message appears.
 		// Note: when selecting an <option> element manually, browsers will deselect all other elements. However, this
@@ -68,10 +68,10 @@ public class SelectManyTester extends SelectTester {
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browserDriver.clickElement(option1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(date1, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(date2, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(date3, modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed(conversionCorrectMessage1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(date1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(date2, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(date3, modelValue1Xpath);
+		waitingAsserter.assertElementDisplayed(conversionCorrectMessage1Xpath);
 	}
 
 	/**
@@ -91,8 +91,8 @@ public class SelectManyTester extends SelectTester {
 		navigateToUseCase(browserDriver, componentName, "data-model");
 
 		// Test that the selected values submit successfully.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testSelectMany(browserDriver, browserStateAsserter, selectMany1Xpath, optionChildXpath, submitButton1Xpath,
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testSelectMany(browserDriver, waitingAsserter, selectMany1Xpath, optionChildXpath, submitButton1Xpath,
 			modelValue1Xpath);
 	}
 
@@ -114,12 +114,12 @@ public class SelectManyTester extends SelectTester {
 		navigateToUseCase(browserDriver, componentName, "default-value");
 
 		// Test that the default values are in the model.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String answer2 = "2";
-		browserStateAsserter.assertTextPresentInElement(answer2, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer2, modelValue1Xpath);
 
 		String answer4 = "4";
-		browserStateAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
 
 		// Test that multiple selected options submit successfully.
 		String option1Xpath = "(" + selectMany1Xpath + optionChildXpath + ")[1]";
@@ -127,9 +127,9 @@ public class SelectManyTester extends SelectTester {
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
 		String answer1 = "1";
-		browserStateAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(answer2, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer2, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
 
 		// Test that deselcting an option removes the value from the model.
 		// Note: when selecting an <option> element manually, browsers will deselect all other elements. However, this
@@ -137,9 +137,9 @@ public class SelectManyTester extends SelectTester {
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browserDriver.clickElement(option1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(answer2, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer2, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer4, modelValue1Xpath);
 	}
 
 	/**
@@ -164,16 +164,16 @@ public class SelectManyTester extends SelectTester {
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// APPLY_REQUEST_VALUES phase.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testSelectMany(browserDriver, browserStateAsserter, selectMany1Xpath, optionChildXpath, submitButton1Xpath,
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testSelectMany(browserDriver, waitingAsserter, selectMany1Xpath, optionChildXpath, submitButton1Xpath,
 			modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
+		waitingAsserter.assertElementDisplayed(immediateMessage1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
-		testSelectMany(browserDriver, browserStateAsserter, selectMany2Xpath, optionChildXpath, submitButton2Xpath,
+		testSelectMany(browserDriver, waitingAsserter, selectMany2Xpath, optionChildXpath, submitButton2Xpath,
 			modelValue2Xpath);
-		browserStateAsserter.assertElementDisplayed(immediateMessage2Xpath);
+		waitingAsserter.assertElementDisplayed(immediateMessage2Xpath);
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class SelectManyTester extends SelectTester {
 	 * @param  submitButtonXpath
 	 * @param  modelValueXpath
 	 */
-	protected final void testSelectMany(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+	protected final void testSelectMany(BrowserDriver browserDriver, WaitingAsserter waitingAsserter,
 		String selectManyXpath, String optionChildXpath, String submitButtonXpath, String modelValueXpath) {
 
 		// Test that multiple selected options submit successfully.
@@ -203,13 +203,13 @@ public class SelectManyTester extends SelectTester {
 		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
 
 		String answer1 = "1";
-		browserStateAsserter.assertTextPresentInElement(answer1, modelValueXpath);
+		waitingAsserter.assertTextPresentInElement(answer1, modelValueXpath);
 
 		String answer3 = "3";
-		browserStateAsserter.assertTextPresentInElement(answer3, modelValueXpath);
+		waitingAsserter.assertTextPresentInElement(answer3, modelValueXpath);
 
 		String answer4 = "4";
-		browserStateAsserter.assertTextPresentInElement(answer4, modelValueXpath);
+		waitingAsserter.assertTextPresentInElement(answer4, modelValueXpath);
 
 		// Test that deselecting an option removes the value from the model.
 		// Note: when selecting an <option> element manually, browsers will deselect all other elements. However, this
@@ -217,8 +217,8 @@ public class SelectManyTester extends SelectTester {
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
 		browserDriver.clickElement(option1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButtonXpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValueXpath);
-		browserStateAsserter.assertTextPresentInElement(answer3, modelValueXpath);
-		browserStateAsserter.assertTextPresentInElement(answer4, modelValueXpath);
+		waitingAsserter.assertTextNotPresentInElement(answer1, modelValueXpath);
+		waitingAsserter.assertTextPresentInElement(answer3, modelValueXpath);
+		waitingAsserter.assertTextPresentInElement(answer4, modelValueXpath);
 	}
 }

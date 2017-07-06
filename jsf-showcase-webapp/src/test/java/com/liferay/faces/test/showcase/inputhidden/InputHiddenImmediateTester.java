@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -38,24 +38,24 @@ public class InputHiddenImmediateTester extends InputHiddenTester {
 		browserDriver.clickElement(copyValidValueButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String text = "1234";
-		browserStateAsserter.assertTextPresentInElement(text, modelValue1Xpath);
-		browserStateAsserter.assertElementDisplayed(immediateMessage1Xpath);
+		waitingAsserter.assertTextPresentInElement(text, modelValue1Xpath);
+		waitingAsserter.assertElementDisplayed(immediateMessage1Xpath);
 
 		browserDriver.clickElement(clearButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementPresent(modelValueEmpty1Xpath);
+		waitingAsserter.assertElementPresent(modelValueEmpty1Xpath);
 
 		// Test that the value submits successfully and the valueChangeListener method is called during the
 		// PROCESS_VALIDATIONS phase.
 		browserDriver.clickElement(copyValidValueButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertTextPresentInElement(text, modelValue2Xpath);
-		browserStateAsserter.assertElementDisplayed(immediateMessage2Xpath);
+		waitingAsserter.assertTextPresentInElement(text, modelValue2Xpath);
+		waitingAsserter.assertElementDisplayed(immediateMessage2Xpath);
 
 		browserDriver.clickElement(clearButton2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton2Xpath);
-		browserStateAsserter.assertElementPresent(modelValueEmpty2Xpath);
+		waitingAsserter.assertElementPresent(modelValueEmpty2Xpath);
 	}
 }

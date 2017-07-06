@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.selectbooleancheckbox;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -36,11 +36,11 @@ public class SelectBooleanCheckboxInstantAjaxTester extends SelectBooleanCheckbo
 		// Test that a checked checkbox submits successfully.
 		browserDriver.clickElementAndWaitForRerender(checkbox1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertTextPresentInElement("true", modelValue1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertTextPresentInElement("true", modelValue1Xpath);
 
 		// Test that an unchecked checkbox submits successfully.
 		browserDriver.clickElementAndWaitForRerender(checkbox1Xpath);
-		browserStateAsserter.assertTextPresentInElement("false", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("false", modelValue1Xpath);
 	}
 }
