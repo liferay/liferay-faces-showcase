@@ -16,7 +16,7 @@
 package com.liferay.faces.test.showcase.selectonemenu;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.select.SelectOneTester;
 
 
@@ -32,8 +32,8 @@ public class SelectOneMenuTester extends SelectOneTester {
 		navigateToUseCase(browserDriver, componentName, "general");
 		browserDriver.centerElementInCurrentWindow(select1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		testRequiredCheckboxError(browserDriver, browserStateAsserter);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		testRequiredCheckboxError(browserDriver, waitingAsserter);
 
 		// Test that the selected option submits successfully and the "required" error message disappears. Note: In the
 		// general use case, the first option is the "-- Select --" noSelectionOption, so select the second option
@@ -41,17 +41,17 @@ public class SelectOneMenuTester extends SelectOneTester {
 		String option2Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[2]";
 		browserDriver.clickElement(option2Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
+		waitingAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 
 		String answer1 = "1";
-		browserStateAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer1, modelValue1Xpath);
 
 		// Test that selecting another value changes the model value.
 		String option4Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[4]";
 		browserDriver.clickElement(option4Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("3", modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(answer1, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("3", modelValue1Xpath);
 	}
 
 	protected void runSelectOneMenuInstantAjaxTest(String componentName) throws Exception {
@@ -64,14 +64,14 @@ public class SelectOneMenuTester extends SelectOneTester {
 		String option3Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[3]";
 		clickOptionAndWaitForAjaxRerender(browserDriver, option3Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String answer3 = "3";
-		browserStateAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement(answer3, modelValue1Xpath);
 
 		// Test that selecting another value changes the model value.
 		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";
 		clickOptionAndWaitForAjaxRerender(browserDriver, option1Xpath);
-		browserStateAsserter.assertTextNotPresentInElement(answer3, modelValue1Xpath);
-		browserStateAsserter.assertTextPresentInElement("1", modelValue1Xpath);
+		waitingAsserter.assertTextNotPresentInElement(answer3, modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("1", modelValue1Xpath);
 	}
 }

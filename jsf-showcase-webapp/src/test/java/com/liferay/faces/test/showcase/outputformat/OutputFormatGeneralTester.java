@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.outputformat;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.output.OutputTester;
 
 
@@ -35,8 +35,8 @@ public class OutputFormatGeneralTester extends OutputTester {
 		navigateToUseCase(browserDriver, "outputFormat", "general");
 
 		// Test that the formatted text renders on the page successfully.
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertElementDisplayed(exampleText1Xpath);
-		browserStateAsserter.assertTextPresentInElement("First: Alpha, Last: Omega", exampleText1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertElementDisplayed(exampleText1Xpath);
+		waitingAsserter.assertTextPresentInElement("First: Alpha, Last: Omega", exampleText1Xpath);
 	}
 }

@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.inputhidden;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 
 
 /**
@@ -36,26 +36,26 @@ public class InputHiddenGeneralTester extends InputHiddenTester {
 		// Test that an empty value submits successfully.
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertElementDisplayed(success1Xpath);
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertElementDisplayed(success1Xpath);
 
 		// Test that a hidden value submits successfully.
 		browserDriver.clickElement(copyValidValueButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextPresentInElement("1234", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("1234", modelValue1Xpath);
 
 		// Test that the hidden value clears successfully.
 		browserDriver.clickElement(clearButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementPresent(modelValueEmpty1Xpath);
+		waitingAsserter.assertElementPresent(modelValueEmpty1Xpath);
 
 		// Test that the web page shows an error message when a value is required and an empty value is submitted.
-		testRequiredCheckboxError(browserDriver, browserStateAsserter);
+		testRequiredCheckboxError(browserDriver, waitingAsserter);
 
 		// Test that the error message disappears when a valid value is submitted.
 		browserDriver.clickElement(copyValidValueButton1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertTextPresentInElement("1234", modelValue1Xpath);
-		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
+		waitingAsserter.assertTextPresentInElement("1234", modelValue1Xpath);
+		waitingAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 	}
 }

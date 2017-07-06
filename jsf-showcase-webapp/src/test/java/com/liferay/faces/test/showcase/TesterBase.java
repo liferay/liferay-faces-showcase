@@ -26,20 +26,21 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.liferay.faces.test.selenium.IntegrationTesterBase;
-import com.liferay.faces.test.selenium.TestUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.BrowserDriverManagingTesterBase;
+import com.liferay.faces.test.selenium.browser.TestUtil;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.selenium.expectedconditions.WindowOpened;
-import com.liferay.faces.util.logging.Logger;
-import com.liferay.faces.util.logging.LoggerFactory;
 
 
 /**
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class TesterBase extends IntegrationTesterBase {
+public class TesterBase extends BrowserDriverManagingTesterBase {
 
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(TesterBase.class);
@@ -80,20 +81,20 @@ public class TesterBase extends IntegrationTesterBase {
 			signIn = true;
 		}
 
-		logger.info("defaultShowcaseContext = {0}", defaultShowcaseContext);
+		logger.info("defaultShowcaseContext = {}", defaultShowcaseContext);
 
 		String showcaseContext = TestUtil.getSystemPropertyOrDefault("integration.showcase.context",
 				defaultShowcaseContext);
-		logger.info("showcaseContext = {0}", showcaseContext);
+		logger.info("showcaseContext = {}", showcaseContext);
 
 		SHOWCASE_CONTEXT_URL = TestUtil.DEFAULT_BASE_URL + showcaseContext;
 		SIGN_IN = signIn;
 	}
 
-	protected void assertImageRendered(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
+	protected void assertImageRendered(BrowserDriver browserDriver, WaitingAsserter waitingAsserter,
 		String imageXpath) {
 
-		browserStateAsserter.assertElementDisplayed(imageXpath);
+		waitingAsserter.assertElementDisplayed(imageXpath);
 
 		WebElement image = browserDriver.findElementByXpath(imageXpath);
 		String imageSrc = image.getAttribute("src");
@@ -129,7 +130,7 @@ public class TesterBase extends IntegrationTesterBase {
 	protected void doSetUp() {
 
 		if (SIGN_IN) {
-			signIn(getBrowserDriver(), CONTAINER);
+			TestUtil.signIn(getBrowserDriver(), CONTAINER);
 		}
 	}
 
@@ -204,10 +205,10 @@ public class TesterBase extends IntegrationTesterBase {
 	/**
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
-	protected void testLink(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter,
-		String exampleLinkXpath, String domainName) {
+	protected void testLink(BrowserDriver browserDriver, WaitingAsserter waitingAsserter, String exampleLinkXpath,
+		String domainName) {
 
-		browserStateAsserter.assertElementDisplayed(exampleLinkXpath);
+		waitingAsserter.assertElementDisplayed(exampleLinkXpath);
 
 		String newTabURL = null;
 		String originalWindowHandle = null;
@@ -215,7 +216,7 @@ public class TesterBase extends IntegrationTesterBase {
 		int initialNumberOfWindows = originalWindowIds.size();
 		WebElement linkElement = browserDriver.findElementByXpath(exampleLinkXpath);
 		linkElement.click();
-		browserStateAsserter.assertTrue(new WindowOpened(initialNumberOfWindows));
+		waitingAsserter.assertTrue(new WindowOpened(initialNumberOfWindows));
 		browserDriver.setPageLoadTimeout(5);
 
 		try {
@@ -268,13 +269,13 @@ public class TesterBase extends IntegrationTesterBase {
 	/**
 	 * Test that the web page shows an error message when a value is required and an empty value is submitted.
 	 */
-	protected void testRequiredCheckboxError(BrowserDriver browserDriver, BrowserStateAsserter browserStateAsserter) {
+	protected void testRequiredCheckboxError(BrowserDriver browserDriver, WaitingAsserter waitingAsserter) {
 
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
+		waitingAsserter.assertElementNotDisplayed(valueIsRequiredError1Xpath);
 		browserDriver.clickElement(requiredCheckbox1Xpath);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
-		browserStateAsserter.assertElementDisplayed(valueIsRequiredError1Xpath);
+		waitingAsserter.assertElementDisplayed(valueIsRequiredError1Xpath);
 	}
 
 	protected void waitForShowcasePageReady(BrowserDriver browserDriver) {

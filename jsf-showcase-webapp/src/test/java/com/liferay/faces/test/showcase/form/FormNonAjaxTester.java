@@ -18,7 +18,7 @@ package com.liferay.faces.test.showcase.form;
 import org.junit.Test;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserStateAsserter;
+import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -38,8 +38,8 @@ public class FormNonAjaxTester extends TesterBase {
 		browserDriver.clickElement("(//*[contains(text(),'Submit') or contains(@value,'Submit')])[1]");
 		waitForShowcasePageReady(browserDriver);
 
-		BrowserStateAsserter browserStateAsserter = getBrowserStateAsserter();
-		browserStateAsserter.assertElementDisplayed(
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+		waitingAsserter.assertElementDisplayed(
 			"//td[contains(text(),'The form was submitted as a full page postback and the entire page was re-rendered.')]");
 	}
 }
