@@ -26,7 +26,6 @@ public class SelectManyTester extends SelectTester {
 
 	/**
 	 * @param  componentName
-	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -76,7 +75,6 @@ public class SelectManyTester extends SelectTester {
 
 	/**
 	 * @param  componentName
-	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -98,7 +96,6 @@ public class SelectManyTester extends SelectTester {
 
 	/**
 	 * @param  componentName
-	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).
@@ -144,7 +141,6 @@ public class SelectManyTester extends SelectTester {
 
 	/**
 	 * @param  componentName
-	 * @param  componentUseCase
 	 * @param  selectMany1Xpath  The xpath for the first selectMany component. The element may be any element type that
 	 *                           is rendered by a selectMany component including a div (alloy:selectManyCheckbox),table
 	 *                           (h:selectBooleanCheckbox), or select (h:selectManyMenu).

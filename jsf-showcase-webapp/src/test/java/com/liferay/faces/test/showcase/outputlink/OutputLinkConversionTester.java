@@ -45,6 +45,6 @@ public class OutputLinkConversionTester extends TesterBase {
 		waitingAsserter.assertTextPresentInElement("Link to a map of United States", mapLink1Xpath);
 
 		// Click the link and check that it opens a new window/tab with the correct domain name.
-		testLink(browserDriver, waitingAsserter, mapLink1Xpath, "google.com");
+		testLink(browserDriver, waitingAsserter, mapLink1Xpath, "google.[a-z]+");
 	}
 }
