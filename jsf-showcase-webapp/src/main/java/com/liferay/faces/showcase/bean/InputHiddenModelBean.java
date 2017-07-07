@@ -20,9 +20,6 @@ import java.util.GregorianCalendar;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.DateTimeConverter;
 
 
 /**
@@ -33,30 +30,10 @@ import javax.faces.convert.DateTimeConverter;
 public class InputHiddenModelBean {
 
 	private Date date = new GregorianCalendar().getTime();
-	private Date testDate = new GregorianCalendar(33, 3, 5).getTime();
 	private String text;
 
 	public Date getDate() {
 		return date;
-	}
-
-	public String getTestDate1() {
-
-		// Example 1 requires a date formatted by the user's locale.
-		DateTimeConverter dateTimeConverter = new DateTimeConverter();
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-
-		return dateTimeConverter.getAsString(facesContext, facesContext.getViewRoot(), testDate);
-	}
-
-	public String getTestDate2() {
-
-		// Example 1 requires a date formatted by a specific date pattern.
-		DateTimeConverter dateTimeConverter = new DateTimeConverter();
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		dateTimeConverter.setPattern("MM/dd/yyyy");
-
-		return dateTimeConverter.getAsString(facesContext, facesContext.getViewRoot(), testDate);
 	}
 
 	public String getText() {
