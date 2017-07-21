@@ -53,7 +53,7 @@
 		<tag-extension>
 			<delegate-renderer-type><![CDATA["javax.faces.Group"]]></delegate-renderer-type>
 			<extends-tags>htmlCommonEventsInherited</extends-tags>
-			<extra-style-classes>btn-group</extra-style-classes>
+			<extra-style-classes>button-holder</extra-style-classes>
 			<parent-class><![CDATA[javax.faces.component.html.HtmlPanelGroup]]></parent-class>
 			<renderer-parent-class><![CDATA[com.liferay.faces.util.render.DelegatingRendererBase]]></renderer-parent-class>
 		</tag-extension>

@@ -44,27 +44,27 @@ public abstract class OutputSourceCodeBase extends HtmlOutputText implements Sty
 	}
 
 	/**
-	 * <code>mode</code> attribute description:
-	 * <br /><br />
-	 * The name of the programming language that the editor is editing or displaying.
+	 * <p><code>mode</code> attribute description:</p>
+	 *
+	 * <div>The name of the programming language that the editor is editing or displaying.</div>
 	 */
 	public String getMode() {
 		return (String) getStateHelper().eval(OutputSourceCodePropertyKeys.mode, null);
 	}
 
 	/**
-	 * <code>mode</code> attribute description:
-	 * <br /><br />
-	 * The name of the programming language that the editor is editing or displaying.
+	 * <p><code>mode</code> attribute description:</p>
+	 *
+	 * <div>The name of the programming language that the editor is editing or displaying.</div>
 	 */
 	public void setMode(String mode) {
 		getStateHelper().put(OutputSourceCodePropertyKeys.mode, mode);
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {

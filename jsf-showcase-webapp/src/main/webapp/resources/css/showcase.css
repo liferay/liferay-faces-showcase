@@ -226,6 +226,10 @@
 	margin-bottom: 2px;
 }
 
+.text-center {
+    text-align: center;
+}
+
 /*
 	Turn off transitions in bootstrap 2.
 */

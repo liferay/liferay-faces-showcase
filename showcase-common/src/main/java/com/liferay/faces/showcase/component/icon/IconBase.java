@@ -53,45 +53,45 @@ public abstract class IconBase extends UIComponentBase implements Styleable {
 	}
 
 	/**
-	 * <code>color</code> attribute description:
-	 * <br /><br />
-	 * The color of the icon which this component will render. Valid values include black (the default) and white.
+	 * <p><code>color</code> attribute description:</p>
+	 *
+	 * <div>The color of the icon which this component will render. Valid values include black (the default) and white.</div>
 	 */
 	public String getColor() {
 		return (String) getStateHelper().eval(IconPropertyKeys.color, null);
 	}
 
 	/**
-	 * <code>color</code> attribute description:
-	 * <br /><br />
-	 * The color of the icon which this component will render. Valid values include black (the default) and white.
+	 * <p><code>color</code> attribute description:</p>
+	 *
+	 * <div>The color of the icon which this component will render. Valid values include black (the default) and white.</div>
 	 */
 	public void setColor(String color) {
 		getStateHelper().put(IconPropertyKeys.color, color);
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
-	 * The icon which this component will render. A list of valid icons can be found at <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">Bootstrap Base CSS</a>. <b>Note:</b> icon names must be specified without the <code>glyphicon glyphicon-</code> prefix.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <div>The icon which this component will render. A list of valid icons can be found at <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">Bootstrap Base CSS</a>. <b>Note:</b> icon names must be specified without the <code>glyphicon glyphicon-</code> prefix.</div>
 	 */
 	public String getName() {
 		return (String) getStateHelper().eval(IconPropertyKeys.name, null);
 	}
 
 	/**
-	 * <code>name</code> attribute description:
-	 * <br /><br />
-	 * The icon which this component will render. A list of valid icons can be found at <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">Bootstrap Base CSS</a>. <b>Note:</b> icon names must be specified without the <code>glyphicon glyphicon-</code> prefix.
+	 * <p><code>name</code> attribute description:</p>
+	 *
+	 * <div>The icon which this component will render. A list of valid icons can be found at <a href="http://getbootstrap.com/components/#glyphicons" target="_blank">Bootstrap Base CSS</a>. <b>Note:</b> icon names must be specified without the <code>glyphicon glyphicon-</code> prefix.</div>
 	 */
 	public void setName(String name) {
 		getStateHelper().put(IconPropertyKeys.name, name);
 	}
 
 	/**
-	 * <code>style</code> attribute description:
-	 * <br /><br />
-	 * HTML passthrough attribute specifying the css style of the element.
+	 * <p><code>style</code> attribute description:</p>
+	 *
+	 * <div>HTML passthrough attribute specifying the css style of the element.</div>
 	 */
 	@Override
 	public String getStyle() {
@@ -99,9 +99,9 @@ public abstract class IconBase extends UIComponentBase implements Styleable {
 	}
 
 	/**
-	 * <code>style</code> attribute description:
-	 * <br /><br />
-	 * HTML passthrough attribute specifying the css style of the element.
+	 * <p><code>style</code> attribute description:</p>
+	 *
+	 * <div>HTML passthrough attribute specifying the css style of the element.</div>
 	 */
 	@Override
 	public void setStyle(String style) {
@@ -109,9 +109,9 @@ public abstract class IconBase extends UIComponentBase implements Styleable {
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {
@@ -124,9 +124,9 @@ public abstract class IconBase extends UIComponentBase implements Styleable {
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public void setStyleClass(String styleClass) {

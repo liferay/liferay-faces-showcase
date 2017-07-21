@@ -47,81 +47,81 @@ public abstract class ExampleBase extends PanelGroupBlockLayout implements Style
 	}
 
 	/**
-	 * <code>description</code> attribute description:
-	 * <br /><br />
-	 * The description the component.
+	 * <p><code>description</code> attribute description:</p>
+	 *
+	 * <div>The description the component.</div>
 	 */
 	public String getDescription() {
 		return (String) getStateHelper().eval(ExamplePropertyKeys.description, null);
 	}
 
 	/**
-	 * <code>description</code> attribute description:
-	 * <br /><br />
-	 * The description the component.
+	 * <p><code>description</code> attribute description:</p>
+	 *
+	 * <div>The description the component.</div>
 	 */
 	public void setDescription(String description) {
 		getStateHelper().put(ExamplePropertyKeys.description, description);
 	}
 
 	/**
-	 * <code>number</code> attribute description:
-	 * <br /><br />
-	 * The number of the example.
+	 * <p><code>number</code> attribute description:</p>
+	 *
+	 * <div>The number of the example.</div>
 	 */
 	public int getNumber() {
 		return (Integer) getStateHelper().eval(ExamplePropertyKeys.number, 0);
 	}
 
 	/**
-	 * <code>number</code> attribute description:
-	 * <br /><br />
-	 * The number of the example.
+	 * <p><code>number</code> attribute description:</p>
+	 *
+	 * <div>The number of the example.</div>
 	 */
 	public void setNumber(int number) {
 		getStateHelper().put(ExamplePropertyKeys.number, number);
 	}
 
 	/**
-	 * <code>renderedCheckbox</code> attribute description:
-	 * <br /><br />
-	 * Flag indicating whether or not a "Rendered" checkbox should be included.
+	 * <p><code>renderedCheckbox</code> attribute description:</p>
+	 *
+	 * <div>Flag indicating whether or not a "Rendered" checkbox should be included.</div>
 	 */
 	public boolean isRenderedCheckbox() {
 		return (Boolean) getStateHelper().eval(ExamplePropertyKeys.renderedCheckbox, false);
 	}
 
 	/**
-	 * <code>renderedCheckbox</code> attribute description:
-	 * <br /><br />
-	 * Flag indicating whether or not a "Rendered" checkbox should be included.
+	 * <p><code>renderedCheckbox</code> attribute description:</p>
+	 *
+	 * <div>Flag indicating whether or not a "Rendered" checkbox should be included.</div>
 	 */
 	public void setRenderedCheckbox(boolean renderedCheckbox) {
 		getStateHelper().put(ExamplePropertyKeys.renderedCheckbox, renderedCheckbox);
 	}
 
 	/**
-	 * <code>requiredCheckbox</code> attribute description:
-	 * <br /><br />
-	 * Flag indicating whether or not a "Required" checkbox should be included.
+	 * <p><code>requiredCheckbox</code> attribute description:</p>
+	 *
+	 * <div>Flag indicating whether or not a "Required" checkbox should be included.</div>
 	 */
 	public boolean isRequiredCheckbox() {
 		return (Boolean) getStateHelper().eval(ExamplePropertyKeys.requiredCheckbox, false);
 	}
 
 	/**
-	 * <code>requiredCheckbox</code> attribute description:
-	 * <br /><br />
-	 * Flag indicating whether or not a "Required" checkbox should be included.
+	 * <p><code>requiredCheckbox</code> attribute description:</p>
+	 *
+	 * <div>Flag indicating whether or not a "Required" checkbox should be included.</div>
 	 */
 	public void setRequiredCheckbox(boolean requiredCheckbox) {
 		getStateHelper().put(ExamplePropertyKeys.requiredCheckbox, requiredCheckbox);
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {

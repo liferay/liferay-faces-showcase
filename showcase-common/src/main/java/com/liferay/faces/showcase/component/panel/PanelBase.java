@@ -45,45 +45,45 @@ public abstract class PanelBase extends PanelGroupBlockLayout implements Styleab
 	}
 
 	/**
-	 * <code>footerText</code> attribute description:
-	 * <br /><br />
-	 * The text to place in the footer of the component.
+	 * <p><code>footerText</code> attribute description:</p>
+	 *
+	 * <div>The text to place in the footer of the component.</div>
 	 */
 	public String getFooterText() {
 		return (String) getStateHelper().eval(PanelPropertyKeys.footerText, null);
 	}
 
 	/**
-	 * <code>footerText</code> attribute description:
-	 * <br /><br />
-	 * The text to place in the footer of the component.
+	 * <p><code>footerText</code> attribute description:</p>
+	 *
+	 * <div>The text to place in the footer of the component.</div>
 	 */
 	public void setFooterText(String footerText) {
 		getStateHelper().put(PanelPropertyKeys.footerText, footerText);
 	}
 
 	/**
-	 * <code>headerText</code> attribute description:
-	 * <br /><br />
-	 * The text to place in the header of the component.
+	 * <p><code>headerText</code> attribute description:</p>
+	 *
+	 * <div>The text to place in the header of the component.</div>
 	 */
 	public String getHeaderText() {
 		return (String) getStateHelper().eval(PanelPropertyKeys.headerText, null);
 	}
 
 	/**
-	 * <code>headerText</code> attribute description:
-	 * <br /><br />
-	 * The text to place in the header of the component.
+	 * <p><code>headerText</code> attribute description:</p>
+	 *
+	 * <div>The text to place in the header of the component.</div>
 	 */
 	public void setHeaderText(String headerText) {
 		getStateHelper().put(PanelPropertyKeys.headerText, headerText);
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {
