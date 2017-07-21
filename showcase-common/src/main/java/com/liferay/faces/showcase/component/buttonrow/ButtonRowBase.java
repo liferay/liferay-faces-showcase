@@ -39,9 +39,9 @@ public abstract class ButtonRowBase extends HtmlPanelGroup implements Styleable 
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {
@@ -50,7 +50,7 @@ public abstract class ButtonRowBase extends HtmlPanelGroup implements Styleable 
 		// super.getStyleClass() may return the styleClass name of the super class.
 		String styleClass = (String) getStateHelper().eval(PropertyKeys.styleClass, null);
 
-		return com.liferay.faces.util.component.ComponentUtil.concatCssClasses(styleClass, "showcase-button-row", "btn-group");
+		return com.liferay.faces.util.component.ComponentUtil.concatCssClasses(styleClass, "showcase-button-row", "button-holder");
 	}
 }
 //J+

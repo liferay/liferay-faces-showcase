@@ -46,27 +46,27 @@ public abstract class AccordionBase extends UIData implements Styleable {
 	}
 
 	/**
-	 * <code>selectedIndex</code> attribute description:
-	 * <br /><br />
-	 * Integer representing the zero-based index representing the selected tab.
+	 * <p><code>selectedIndex</code> attribute description:</p>
+	 *
+	 * <div>Integer representing the zero-based index representing the selected tab.</div>
 	 */
 	public Integer getSelectedIndex() {
 		return (Integer) getStateHelper().eval(AccordionPropertyKeys.selectedIndex, null);
 	}
 
 	/**
-	 * <code>selectedIndex</code> attribute description:
-	 * <br /><br />
-	 * Integer representing the zero-based index representing the selected tab.
+	 * <p><code>selectedIndex</code> attribute description:</p>
+	 *
+	 * <div>Integer representing the zero-based index representing the selected tab.</div>
 	 */
 	public void setSelectedIndex(Integer selectedIndex) {
 		getStateHelper().put(AccordionPropertyKeys.selectedIndex, selectedIndex);
 	}
 
 	/**
-	 * <code>style</code> attribute description:
-	 * <br /><br />
-	 * HTML passthrough attribute specifying the css style of the element.
+	 * <p><code>style</code> attribute description:</p>
+	 *
+	 * <div>HTML passthrough attribute specifying the css style of the element.</div>
 	 */
 	@Override
 	public String getStyle() {
@@ -74,9 +74,9 @@ public abstract class AccordionBase extends UIData implements Styleable {
 	}
 
 	/**
-	 * <code>style</code> attribute description:
-	 * <br /><br />
-	 * HTML passthrough attribute specifying the css style of the element.
+	 * <p><code>style</code> attribute description:</p>
+	 *
+	 * <div>HTML passthrough attribute specifying the css style of the element.</div>
 	 */
 	@Override
 	public void setStyle(String style) {
@@ -84,9 +84,9 @@ public abstract class AccordionBase extends UIData implements Styleable {
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {
@@ -99,9 +99,9 @@ public abstract class AccordionBase extends UIData implements Styleable {
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public void setStyleClass(String styleClass) {

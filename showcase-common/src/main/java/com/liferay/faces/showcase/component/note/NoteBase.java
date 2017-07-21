@@ -44,27 +44,27 @@ public abstract class NoteBase extends PanelGroupBlockLayout implements Styleabl
 	}
 
 	/**
-	 * <code>smallIcon</code> attribute description:
-	 * <br /><br />
-	 * When this flag is true, the small version of the icon will be used.
+	 * <p><code>smallIcon</code> attribute description:</p>
+	 *
+	 * <div>When this flag is true, the small version of the icon will be used.</div>
 	 */
 	public boolean isSmallIcon() {
 		return (Boolean) getStateHelper().eval(NotePropertyKeys.smallIcon, false);
 	}
 
 	/**
-	 * <code>smallIcon</code> attribute description:
-	 * <br /><br />
-	 * When this flag is true, the small version of the icon will be used.
+	 * <p><code>smallIcon</code> attribute description:</p>
+	 *
+	 * <div>When this flag is true, the small version of the icon will be used.</div>
 	 */
 	public void setSmallIcon(boolean smallIcon) {
 		getStateHelper().put(NotePropertyKeys.smallIcon, smallIcon);
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {
