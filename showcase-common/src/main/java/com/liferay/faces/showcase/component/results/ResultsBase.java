@@ -44,27 +44,27 @@ public abstract class ResultsBase extends PanelGroupBlockLayout implements Style
 	}
 
 	/**
-	 * <code>label</code> attribute description:
-	 * <br /><br />
-	 * The text value for the rendered &lt;label&gt; element.
+	 * <p><code>label</code> attribute description:</p>
+	 *
+	 * <div>The text value for the rendered &lt;label&gt; element.</div>
 	 */
 	public String getLabel() {
 		return (String) getStateHelper().eval(ResultsPropertyKeys.label, null);
 	}
 
 	/**
-	 * <code>label</code> attribute description:
-	 * <br /><br />
-	 * The text value for the rendered &lt;label&gt; element.
+	 * <p><code>label</code> attribute description:</p>
+	 *
+	 * <div>The text value for the rendered &lt;label&gt; element.</div>
 	 */
 	public void setLabel(String label) {
 		getStateHelper().put(ResultsPropertyKeys.label, label);
 	}
 
 	/**
-	 * <code>styleClass</code> attribute description:
-	 * <br /><br />
-	 * List of CSS class names (separated by spaces) that are to be rendered within the class attribute.
+	 * <p><code>styleClass</code> attribute description:</p>
+	 *
+	 * <div>List of CSS class names (separated by spaces) that are to be rendered within the class attribute.</div>
 	 */
 	@Override
 	public String getStyleClass() {
