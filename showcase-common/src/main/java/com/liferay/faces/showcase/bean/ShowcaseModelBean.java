@@ -25,6 +25,8 @@ import javax.faces.bean.ViewScoped;
 import com.liferay.faces.showcase.dto.SelectedComponent;
 import com.liferay.faces.showcase.dto.SelectedComponentImpl;
 import com.liferay.faces.showcase.dto.ShowcaseComponent;
+import com.liferay.faces.util.logging.Logger;
+import com.liferay.faces.util.logging.LoggerFactory;
 import com.liferay.faces.util.product.Product;
 import com.liferay.faces.util.product.ProductFactory;
 
@@ -35,6 +37,9 @@ import com.liferay.faces.util.product.ProductFactory;
 @ManagedBean
 @ViewScoped
 public class ShowcaseModelBean implements Serializable {
+
+	// Logger
+	private static final Logger logger = LoggerFactory.getLogger(ShowcaseModelBean.class);
 
 	// Public Constants
 	public static final boolean BOOTSTRAP_2;
@@ -93,6 +98,9 @@ public class ShowcaseModelBean implements Serializable {
 						viewParameters.getComponentPrefix(), viewParameters.getComponentName());
 
 				selectedComponent = new SelectedComponentImpl(showcaseComponent, viewParameters.getComponentUseCase());
+
+				logger.debug("{0}:{1} useCase=[{2}]", viewParameters.getComponentPrefix(),
+					viewParameters.getComponentName(), viewParameters.getComponentUseCase());
 			}
 		}
 
