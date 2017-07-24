@@ -42,7 +42,7 @@ public class ImageGeneralTester extends TesterBase {
 
 		// Test that the images render on the page successfully.
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
-		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("value"));
+		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("Context-relative"));
 		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("#{resource}"));
 		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("name"));
 		assertImageRendered(browserDriver, waitingAsserter, getExampleImageXpath("usemap"));

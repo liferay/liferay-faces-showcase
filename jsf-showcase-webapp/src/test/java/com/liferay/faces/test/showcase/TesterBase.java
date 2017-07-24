@@ -100,8 +100,13 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 		WebElement image = browserDriver.findElementByXpath(imageXpath);
 		String imageSrc = image.getAttribute("src");
 		Assert.assertTrue("Image src " + imageSrc + " is not a valid JSF resource URL.",
-			imageSrc.matches(".*javax.faces.resource\\p{Punct}[a-z-]+[.]png.*") &&
-			imageSrc.matches(".*ln\\p{Punct}images.*"));
+
+			// Context-relative path:
+			imageSrc.matches(".*/resources/images/[a-z-]+[.]png.*") ||
+
+			// JSF Resource URL:
+			(imageSrc.matches(".*javax.faces.resource\\p{Punct}[a-z-]+[.]png.*") &&
+				imageSrc.matches(".*ln\\p{Punct}images.*")));
 
 		Boolean imageRendered = (Boolean) browserDriver.executeScriptInCurrentWindow(
 				"return arguments[0].complete && typeof arguments[0].naturalWidth != 'undefined' && arguments[0].naturalWidth > 0",
@@ -137,7 +142,7 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 
 	protected String getExampleImageXpath(String exampleLabelText) {
 		return "//label[contains(.,'Example')][contains(.,'" + exampleLabelText +
-			"')]/ancestor::div[@class='showcase-example']//img[contains(@src,'javax.faces.resource')][contains(@src,'ln=images') or contains(@src,'ln:images')]";
+			"')]/ancestor::div[@class='showcase-example']//img";
 	}
 
 	protected boolean isHeadlessChrome(BrowserDriver browserDriver) {
