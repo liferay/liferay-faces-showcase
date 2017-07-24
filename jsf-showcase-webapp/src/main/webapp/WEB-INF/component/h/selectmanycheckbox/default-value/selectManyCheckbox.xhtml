@@ -6,8 +6,8 @@
 		<h:form>
 			<showcase:example>
 				<h:outputLabel value="#{i18n['favorite-liferay-benefit']}" />
-				<h:selectManyCheckbox id="selectManyCheckbox" layout="pageDirection" selectedClass="inline-label" unselectedClass="inline-label"
-					value="#{selectManyModelBean.benefitIds}">
+				<h:selectManyCheckbox id="selectManyCheckbox" collectionType="java.util.ArrayList" layout="pageDirection"
+					selectedClass="inline-label" unselectedClass="inline-label" value="#{selectManyModelBean.benefitIds}">
 					<f:converter converterId="javax.faces.Long" />
 					<f:selectItem itemLabel="Compatible" itemValue="1" />
 					<f:selectItem itemLabel="Enterprise Ready" itemValue="2" />
