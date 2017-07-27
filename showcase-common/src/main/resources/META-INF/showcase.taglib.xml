@@ -997,7 +997,7 @@
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[HTML passthrough attribute specifying the various WAI-ARIA roles that the element is used for.]]></description>
+			<description><![CDATA[HTML passthrough attribute specifying the various WAI-ARIA roles that the element is used for. Since: JSF 2.2]]></description>
 			<name>role</name>
 			<required>false</required>
 			<type>java.lang.String</type>
