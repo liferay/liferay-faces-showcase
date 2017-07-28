@@ -88,10 +88,14 @@ public class HtmlInputFileBackingBean {
 	}
 
 	public void setUploadedPart(Part uploadedPart) {
+
 		this.uploadedPart = uploadedPart;
 
-		String id = Long.toString(((long) hashCode()) + System.currentTimeMillis());
-		UploadedFile uploadedFile = new UploadedFilePart(uploadedPart, id, UploadedFile.Status.FILE_SAVED);
-		htmlInputFileModelBean.getUploadedFiles().add(uploadedFile);
+		if (uploadedPart != null) {
+
+			String id = Long.toString(((long) hashCode()) + System.currentTimeMillis());
+			UploadedFile uploadedFile = new UploadedFilePart(uploadedPart, id, UploadedFile.Status.FILE_SAVED);
+			htmlInputFileModelBean.getUploadedFiles().add(uploadedFile);
+		}
 	}
 }
