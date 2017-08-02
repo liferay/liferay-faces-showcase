@@ -87,6 +87,7 @@ public class CodeExampleUtil {
 				int trimTab = 0;
 				String line;
 				boolean ignoreNextLine = false;
+				boolean ignoreCaptchaValidator = false;
 				int defineCount = 0;
 
 				while ((line = bufferedReader.readLine()) != null) {
@@ -156,12 +157,19 @@ public class CodeExampleUtil {
 								}
 							}
 
-							// Strip empty lines
-							Matcher matcher = BLANK_LINE_PATTERN.matcher(line);
+							if (ignoreCaptchaValidator) {
+								ignoreCaptchaValidator = !line.contains("SHOWCASE:IGNORE-END");
+							}
+							else {
+								ignoreCaptchaValidator = line.contains("SHOWCASE:IGNORE-BEGIN");
 
-							if (!matcher.matches()) {
-								stringBuilder.append(line);
-								stringBuilder.append("\n");
+								// Strip empty lines
+								Matcher matcher = BLANK_LINE_PATTERN.matcher(line);
+
+								if (!matcher.matches() && !ignoreCaptchaValidator) {
+									stringBuilder.append(line);
+									stringBuilder.append("\n");
+								}
 							}
 						}
 					}
