@@ -58,6 +58,11 @@ public class InputFileTester extends InputTester {
 		}
 
 		String browserDriverName = browserDriver.getBrowserName();
+		WaitingAsserter waitingAsserter = getWaitingAsserter();
+
+		if ("general".equals(useCase)) {
+			testRequiredCheckboxError(browserDriver, waitingAsserter);
+		}
 
 		// Workaround https://github.com/ariya/phantomjs/issues/10993 by removing the multiple attribute from <input
 		// type="file" />
@@ -75,7 +80,6 @@ public class InputFileTester extends InputTester {
 			browserDriver.clickElement(submitButton1Xpath);
 		}
 
-		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		waitingAsserter.assertTextPresentInElement("jersey", uploadedFileXpath);
 
 		// Workaround https://github.com/detro/ghostdriver/issues/20: Implement all the Session Commands related to JS
