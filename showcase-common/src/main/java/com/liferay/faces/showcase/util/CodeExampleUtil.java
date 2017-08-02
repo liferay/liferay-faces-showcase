@@ -87,7 +87,7 @@ public class CodeExampleUtil {
 				int trimTab = 0;
 				String line;
 				boolean ignoreNextLine = false;
-				boolean ignoreCaptchaValidator = false;
+				boolean ignoringLines = false;
 				int defineCount = 0;
 
 				while ((line = bufferedReader.readLine()) != null) {
@@ -157,16 +157,16 @@ public class CodeExampleUtil {
 								}
 							}
 
-							if (ignoreCaptchaValidator) {
-								ignoreCaptchaValidator = !line.contains("SHOWCASE:IGNORE-END");
+							if (ignoringLines) {
+								ignoringLines = !line.contains("SHOWCASE:IGNORE-END");
 							}
 							else {
-								ignoreCaptchaValidator = line.contains("SHOWCASE:IGNORE-BEGIN");
+								ignoringLines = line.contains("SHOWCASE:IGNORE-BEGIN");
 
 								// Strip empty lines
 								Matcher matcher = BLANK_LINE_PATTERN.matcher(line);
 
-								if (!matcher.matches() && !ignoreCaptchaValidator) {
+								if (!matcher.matches() && !ignoringLines) {
 									stringBuilder.append(line);
 									stringBuilder.append("\n");
 								}
