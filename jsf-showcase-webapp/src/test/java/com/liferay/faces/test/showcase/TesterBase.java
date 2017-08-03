@@ -22,12 +22,14 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +47,7 @@ import com.liferay.faces.test.selenium.expectedconditions.WindowOpened;
 public class TesterBase extends BrowserDriverManagingTesterBase {
 
 	// Logger
-	protected static final Logger logger = LoggerFactory.getLogger(TesterBase.class);
+	private static final Logger logger = LoggerFactory.getLogger(TesterBase.class);
 
 	// Protected Constants
 	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
@@ -68,8 +70,8 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 	// Private Constants
 	private static final String CONTAINER = TestUtil.getContainer("tomcat");
 	private static final String FIRE_SELECT_CHANGE_EVENT_SCRIPT =
-			"var changeEvent = document.createEvent('HTMLEvents');" +
-			"changeEvent.initEvent('change', true, true); arguments[0].parentNode.dispatchEvent(changeEvent);";
+		"var changeEvent = document.createEvent('HTMLEvents');" +
+		"changeEvent.initEvent('change', true, true); arguments[0].parentNode.dispatchEvent(changeEvent);";
 	private static final boolean SIGN_IN;
 
 	static {
@@ -254,8 +256,7 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
 	protected void testLink(BrowserDriver browserDriver, WaitingAsserter waitingAsserter, String exampleLinkXpath,
-
-			String domainNameRegex) {
+		String domainNameRegex) {
 
 		waitingAsserter.assertElementDisplayed(exampleLinkXpath);
 
