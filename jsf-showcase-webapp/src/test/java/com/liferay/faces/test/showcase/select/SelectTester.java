@@ -15,13 +15,6 @@
  */
 package com.liferay.faces.test.showcase.select;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-
-import com.liferay.faces.test.selenium.browser.BrowserDriver;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -39,47 +32,4 @@ public class SelectTester extends TesterBase {
 
 	// Protected Constants
 	protected static final String OPTION_CHILD_XPATH = "/option";
-
-	// Private Constants
-	private static final String FIRE_SELECT_CHANGE_EVENT_SCRIPT =
-		"var changeEvent = document.createEvent('HTMLEvents');" +
-		"changeEvent.initEvent('change', true, true); arguments[0].parentNode.dispatchEvent(changeEvent);";
-
-	/**
-	 * Click an option and wait for Ajax to rerender the option. This method exists because {@link
-	 * BrowserDriver#clickElementAndWaitForRerender(java.lang.String)} does not work on selectOneMenu,
-	 * selectManyListbox, and SelectManyMenu. For more information see method comments.
-	 */
-	protected void clickOptionAndWaitForAjaxRerender(BrowserDriver browserDriver, String optionXpath) {
-
-		browserDriver.centerElementInCurrentWindow(optionXpath);
-
-		WebElement optionElement = browserDriver.findElementByXpath(optionXpath);
-
-		// Note: clicking a selectOneMenu option on Chrome and PhantomJS via Actions.click(WebElement) (which is used
-		// by Browser.clickAndWaitForAjaxRerender(String)) does not fire the select element's change event, so the
-		// element must be clicked via Element.click().
-		optionElement.click();
-
-		// phantomjs browser does not fire a change event when a <select multiple="multiple"> <option> is clicked,
-		// so the event must be fired manually.
-		if ("phantomjs".equals(browserDriver.getBrowserName())) {
-
-			try {
-
-				WebElement selectElement = optionElement.findElement(By.xpath(".."));
-				Select select = new Select(selectElement);
-
-				if (select.isMultiple()) {
-					browserDriver.executeScriptInCurrentWindow(FIRE_SELECT_CHANGE_EVENT_SCRIPT, optionElement);
-				}
-			}
-			catch (StaleElementReferenceException e) {
-				// do nothing. The element is stale because an ajax rerender has correctly occured.
-			}
-		}
-
-		browserDriver.waitFor(ExpectedConditions.stalenessOf(optionElement));
-		browserDriver.waitForElementEnabled(optionXpath);
-	}
 }
