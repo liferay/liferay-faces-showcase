@@ -94,9 +94,10 @@ public class ButtonLinkTester extends TesterBase {
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		waitingAsserter.assertElementDisplayed("//pre/span[text()='foo=']");
 
-		String toParamPageXpath = "//*[contains(text(),'To Param page') or contains(@value,'To Param page')]";
+		String toParamPageXpath =
+			"(//a[contains(.,'To Param page')]|//input[contains(@value,'To Param page')]|//button[contains(.,'To Param page')])";
 		String backToNavigationXpath =
-			"//*[contains(text(),'Back to Navigation with foo=1234') or contains(@value,'Back to Navigation with foo=1234')]";
+			"(//a[contains(.,'Back to Navigation with foo=1234')]|//input[contains(@value,'Back to Navigation with foo=1234')]|//button[contains(.,'Back to Navigation with foo=1234')])";
 		testNavigationPage(browserDriver, waitingAsserter, toParamPageXpath, backToNavigationXpath);
 		testParamPage(browserDriver, waitingAsserter, toParamPageXpath, backToNavigationXpath);
 
@@ -105,11 +106,17 @@ public class ButtonLinkTester extends TesterBase {
 			// Click "To Param page" and check that it opens the Param page
 			String ajaxCheckbox1Xpath = "//label[contains(text(),'Ajax')]/input[@type='checkbox']";
 			browserDriver.clickElementAndWaitForRerender(ajaxCheckbox1Xpath);
-			testNavigationPage(browserDriver, waitingAsserter, toParamPageXpath, backToNavigationXpath);
+
+			String ajaxButtonLinkXpathSuffix =
+				"[contains(@onclick,'mojarra.ab') or contains(@onclick,'jsf.ajax.request')]";
+
+			testNavigationPage(browserDriver, waitingAsserter, toParamPageXpath + ajaxButtonLinkXpathSuffix,
+				backToNavigationXpath);
 
 			// Click "Back to Navigation with foo=1234" and assert that the value "1234" submits successfully.
 			browserDriver.clickElementAndWaitForRerender(ajaxCheckbox1Xpath);
-			testParamPage(browserDriver, waitingAsserter, toParamPageXpath, backToNavigationXpath);
+			testParamPage(browserDriver, waitingAsserter, toParamPageXpath,
+				backToNavigationXpath + ajaxButtonLinkXpathSuffix);
 		}
 	}
 
