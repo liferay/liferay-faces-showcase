@@ -83,13 +83,13 @@ public class SelectManyMenuTester extends SelectManyTester {
 
 		// Test that multiple selected options submit successfully.
 		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";
-		clickOptionAndWaitForAjaxRerender(browserDriver, option1Xpath);
+		clickOptionAndWaitForRerender(browserDriver, option1Xpath);
 
 		String option3Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[3]";
-		clickOptionAndWaitForAjaxRerender(browserDriver, option3Xpath);
+		clickOptionAndWaitForRerender(browserDriver, option3Xpath);
 
 		String option4Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[4]";
-		clickOptionAndWaitForAjaxRerender(browserDriver, option4Xpath);
+		clickOptionAndWaitForRerender(browserDriver, option4Xpath);
 
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		waitingAsserter.assertTextPresentInElement("1", modelValue1Xpath);
@@ -100,7 +100,7 @@ public class SelectManyMenuTester extends SelectManyTester {
 		// Note: when selecting an <option> element manually, browsers will deselect all other elements. However, this
 		// is not the case in selenium, so elements must be deselected by clicking them again.
 		// https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/1899#issuecomment-191480860
-		clickOptionAndWaitForAjaxRerender(browserDriver, option1Xpath);
+		clickOptionAndWaitForRerender(browserDriver, option1Xpath);
 		waitingAsserter.assertTextNotPresentInElement("1", modelValue1Xpath);
 		waitingAsserter.assertTextPresentInElement("3", modelValue1Xpath);
 		waitingAsserter.assertTextPresentInElement("4", modelValue1Xpath);
