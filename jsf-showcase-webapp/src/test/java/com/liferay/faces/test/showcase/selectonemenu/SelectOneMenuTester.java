@@ -62,7 +62,7 @@ public class SelectOneMenuTester extends SelectOneTester {
 		// Test that the selected option submits successfully. Note: selectOneMenu will not perform an ajax request if
 		// the displayed option is clicked, so the test clicks the third option instead.
 		String option3Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[3]";
-		clickOptionAndWaitForAjaxRerender(browserDriver, option3Xpath);
+		clickOptionAndWaitForRerender(browserDriver, option3Xpath);
 
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
 		String answer3 = "3";
@@ -70,7 +70,7 @@ public class SelectOneMenuTester extends SelectOneTester {
 
 		// Test that selecting another value changes the model value.
 		String option1Xpath = "(" + select1Xpath + OPTION_CHILD_XPATH + ")[1]";
-		clickOptionAndWaitForAjaxRerender(browserDriver, option1Xpath);
+		clickOptionAndWaitForRerender(browserDriver, option1Xpath);
 		waitingAsserter.assertTextNotPresentInElement(answer3, modelValue1Xpath);
 		waitingAsserter.assertTextPresentInElement("1", modelValue1Xpath);
 	}

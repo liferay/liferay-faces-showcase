@@ -22,11 +22,12 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
+import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +45,7 @@ import com.liferay.faces.test.selenium.expectedconditions.WindowOpened;
 public class TesterBase extends BrowserDriverManagingTesterBase {
 
 	// Logger
-	private static final Logger logger = LoggerFactory.getLogger(TesterBase.class);
+	protected static final Logger logger = LoggerFactory.getLogger(TesterBase.class);
 
 	// Protected Constants
 	protected static final String DEFAULT_COMPONENT_PREFIX = TestUtil.getSystemPropertyOrDefault(
@@ -66,6 +67,9 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 
 	// Private Constants
 	private static final String CONTAINER = TestUtil.getContainer("tomcat");
+	private static final String FIRE_SELECT_CHANGE_EVENT_SCRIPT =
+			"var changeEvent = document.createEvent('HTMLEvents');" +
+			"changeEvent.initEvent('change', true, true); arguments[0].parentNode.dispatchEvent(changeEvent);";
 	private static final boolean SIGN_IN;
 
 	static {
@@ -130,6 +134,44 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 		}
 
 		return capitalizedString;
+	}
+
+	/**
+	 * Click an option and wait for Ajax to rerender the option. This method exists because {@link
+	 * BrowserDriver#clickElementAndWaitForRerender(java.lang.String)} does not work on selectOneMenu,
+	 * selectManyListbox, and SelectManyMenu. For more information see method comments.
+	 */
+	protected void clickOptionAndWaitForRerender(BrowserDriver browserDriver, String optionXpath) {
+
+		browserDriver.centerElementInCurrentWindow(optionXpath);
+
+		WebElement optionElement = browserDriver.findElementByXpath(optionXpath);
+
+		// Note: clicking a selectOneMenu option on Chrome and PhantomJS via Actions.click(WebElement) (which is used
+		// by Browser.clickAndWaitForAjaxRerender(String)) does not fire the select element's change event, so the
+		// element must be clicked via Element.click().
+		optionElement.click();
+
+		// phantomjs browser does not fire a change event when a <select multiple="multiple"> <option> is clicked,
+		// so the event must be fired manually.
+		if ("phantomjs".equals(browserDriver.getBrowserName())) {
+
+			try {
+
+				WebElement selectElement = optionElement.findElement(By.xpath(".."));
+				Select select = new Select(selectElement);
+
+				if (select.isMultiple()) {
+					browserDriver.executeScriptInCurrentWindow(FIRE_SELECT_CHANGE_EVENT_SCRIPT, optionElement);
+				}
+			}
+			catch (StaleElementReferenceException e) {
+				// do nothing. The element is stale because an ajax rerender has correctly occured.
+			}
+		}
+
+		browserDriver.waitFor(ExpectedConditions.stalenessOf(optionElement));
+		browserDriver.waitForElementEnabled(optionXpath);
 	}
 
 	@Override
@@ -212,7 +254,8 @@ public class TesterBase extends BrowserDriverManagingTesterBase {
 	 * Click the link and assert that it opens a new window/tab with the correct domain name.
 	 */
 	protected void testLink(BrowserDriver browserDriver, WaitingAsserter waitingAsserter, String exampleLinkXpath,
-		String domainNameRegex) {
+
+			String domainNameRegex) {
 
 		waitingAsserter.assertElementDisplayed(exampleLinkXpath);
 
