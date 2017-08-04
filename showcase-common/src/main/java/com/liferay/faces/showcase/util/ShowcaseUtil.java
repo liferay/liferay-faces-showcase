@@ -54,30 +54,30 @@ public class ShowcaseUtil {
 	private static final String LIFERAY_FACES_ALLOY_PACKAGE_PREFIX = "com.liferay.faces.alloy";
 	private static final String LIFERAY_FACES_ALLOY_VERSION = LIFERAY_FACES_ALLOY_PRODUCT.getMajorVersion() + "." +
 		LIFERAY_FACES_ALLOY_PRODUCT.getMinorVersion();
-	private static final String LIFERAY_FACES_ALLOY_JAVADOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/" +
-		LIFERAY_FACES_ALLOY_VERSION + "/javadoc/alloy/";
+	private static final String LIFERAY_FACES_ALLOY_JAVADOC_BASE_URL =
+		"http://www.liferayfaces.org/doc/faces/javadoc/alloy/" + LIFERAY_FACES_ALLOY_VERSION;
 	private static final String LIFERAY_FACES_BRIDGE_PACKAGE_PREFIX = "com.liferay.faces.bridge";
 	private static final Product LIFERAY_FACES_BRIDGE_PRODUCT = ProductFactory.getProduct(
 			Product.Name.LIFERAY_FACES_BRIDGE);
 	private static final String LIFERAY_FACES_BRIDGE_VERSION = LIFERAY_FACES_BRIDGE_PRODUCT.getMajorVersion() + "." +
 		LIFERAY_FACES_BRIDGE_PRODUCT.getMinorVersion();
-	private static final String LIFERAY_FACES_BRIDGE_JAVADOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/" +
-		LIFERAY_FACES_BRIDGE_VERSION + "/javadoc/bridge-api/";
+	private static final String LIFERAY_FACES_BRIDGE_JAVADOC_BASE_URL =
+		"http://www.liferayfaces.org/doc/faces/javadoc/bridge-api/" + LIFERAY_FACES_BRIDGE_VERSION;
 	private static final Product LIFERAY_FACES_PORTAL_PRODUCT = ProductFactory.getProduct(
 			Product.Name.LIFERAY_FACES_PORTAL);
 	private static final String LIFERAY_FACES_PORTAL_PACKAGE_PREFIX = "com.liferay.faces.portal";
 	private static final String LIFERAY_FACES_PORTAL_VERSION = LIFERAY_FACES_PORTAL_PRODUCT.getMajorVersion() + "." +
 		LIFERAY_FACES_PORTAL_PRODUCT.getMinorVersion();
-	private static final String LIFERAY_FACES_PORTAL_JAVADOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/" +
-		LIFERAY_FACES_PORTAL_VERSION + "/javadoc/portal/";
+	private static final String LIFERAY_FACES_PORTAL_JAVADOC_BASE_URL =
+		"http://www.liferayfaces.org/doc/faces/javadoc/portal/" + LIFERAY_FACES_PORTAL_VERSION;
 	private static final String LIFERAY_FACES_PORTLET_PACKAGE_PREFIX = "com.liferay.faces.portlet";
 	private static final Product LIFERAY_FACES_UTIL_PRODUCT = ProductFactory.getProduct(
 			Product.Name.LIFERAY_FACES_UTIL);
 	private static final String LIFERAY_FACES_UTIL_PACKAGE_PREFIX = "com.liferay.faces.util";
 	private static final String LIFERAY_FACES_UTIL_VERSION = LIFERAY_FACES_UTIL_PRODUCT.getMajorVersion() + "." +
 		LIFERAY_FACES_UTIL_PRODUCT.getMinorVersion();
-	private static final String LIFERAY_FACES_UTIL_JAVADOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/" +
-		LIFERAY_FACES_UTIL_VERSION + "/javadoc/util/";
+	private static final String LIFERAY_FACES_UTIL_JAVADOC_BASE_URL =
+		"http://www.liferayfaces.org/doc/faces/javadoc/util/" + LIFERAY_FACES_UTIL_VERSION;
 	private static final String LIFERAY_FACES_VDLDOC_BASE_URL = "http://www.liferayfaces.org/doc/faces/";
 	private static final String NAMESPACE_PREFIX_ALLOY = "alloy";
 	private static final String NAMESPACE_PREFIX_AUI = "aui";
@@ -90,7 +90,7 @@ public class ShowcaseUtil {
 	private static final String NAMESPACE_PREFIX_PORTAL = "portal";
 	private static final String NAMESPACE_PREFIX_UI = "ui";
 	private static final String PORTLET_API_PACKAGE_PREFIX = "javax.portlet";
-	private static final String PORTLET_API_JAVADOC_BASE_URL = "http://docs.liferay.com/portlet-api/2.0/javadocs/";
+	private static final String PORTLET_API_JAVADOC_BASE_URL = "http://docs.liferay.com/portlet-api/2.0/javadocs";
 	private static final String REGEX_COLON = "[:]";
 	private static final String REGEX_DOT = "[.]";
 	private static final String SINGLE_BACKSLASH_COLON = "\\\\:";
@@ -100,12 +100,12 @@ public class ShowcaseUtil {
 
 	static {
 
-		String eeJavaDocBaseURL = "http://docs.oracle.com/javaee/6/api/";
-		String seJavaDocBaseURL = "http://docs.oracle.com/javase/6/docs/api/";
+		String eeJavaDocBaseURL = "http://docs.oracle.com/javaee/6/api";
+		String seJavaDocBaseURL = "http://docs.oracle.com/javase/6/docs/api";
 
 		if (JSF_PRODUCT.getMinorVersion() >= 2) {
-			eeJavaDocBaseURL = "http://docs.oracle.com/javaee/7/api/";
-			seJavaDocBaseURL = "http://docs.oracle.com/javase/7/docs/api/";
+			eeJavaDocBaseURL = "http://docs.oracle.com/javaee/7/api";
+			seJavaDocBaseURL = "http://docs.oracle.com/javase/7/docs/api";
 		}
 
 		JAVA_EE_JAVADOC_BASE_URL = eeJavaDocBaseURL;
@@ -213,6 +213,8 @@ public class ShowcaseUtil {
 		else {
 			logger.error("Unknown JavaDoc fqcn=[{0}]", fqcn);
 		}
+
+		javaDocURL.append("/");
 
 		String javaClassURLPath = fqcn.replaceAll(REGEX_DOT, "/");
 		javaDocURL.append(javaClassURLPath);
