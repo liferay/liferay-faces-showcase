@@ -66,7 +66,7 @@ public class ListModelBean {
 			"com.liferay.faces.showcase.constants", "com.liferay.faces.showcase.dto",
 			"com.liferay.faces.showcase.converter", "com.liferay.faces.showcase.model",
 			"com.liferay.faces.showcase.portlet", "com.liferay.faces.showcase.validator",
-			"com.liferay.faces.showcase.service"
+			"com.liferay.faces.showcase.service", "com.liferay.faces.bridge.demos.portlet"
 		};
 
 	// Private Data Members
@@ -197,15 +197,15 @@ public class ListModelBean {
 
 								if (sourceFileName.endsWith(".css")) {
 
-									String sourcePath = File.separator + "WEB-INF" + File.separator + "resources" +
-										File.separator + "css" + File.separator + sourceFileName;
+									String sourcePath = File.separator + "resources" + File.separator + "css" +
+										File.separator + sourceFileName;
 
 									sourceFileURL = startupExternalContext.getResource(sourcePath);
 								}
 								else if (sourceFileName.endsWith(".js")) {
 
-									String sourcePath = File.separator + "WEB-INF" + File.separator + "resources" +
-										File.separator + "js" + File.separator + sourceFileName;
+									String sourcePath = File.separator + "resources" + File.separator + "js" +
+										File.separator + sourceFileName;
 
 									sourceFileURL = startupExternalContext.getResource(sourcePath);
 								}
@@ -219,7 +219,6 @@ public class ListModelBean {
 									}
 
 									sourcePath = sourcePath + sourceFileName;
-
 									sourceFileURL = startupExternalContext.getResource(sourcePath);
 								}
 								else if (sourceFileName.endsWith(".xml")) {
@@ -257,7 +256,9 @@ public class ListModelBean {
 									logger.debug("Loaded source file=[{0}]", sourceFileName);
 								}
 								else {
-									logger.error("Unable to find source for sourceFileName=[{0}]", sourceFileName);
+									logger.error(
+										"Unable to find source for component=[{0}:{1}] useCaseName=[{2}] sourceFileName=[{3}]",
+										prefix, camelCaseName, useCaseName, sourceFileName);
 								}
 							}
 
