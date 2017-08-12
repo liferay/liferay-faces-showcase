@@ -261,6 +261,7 @@ public class CustomerServiceMockImpl implements CustomerService, Serializable {
 		allCustomers.add(new Customer(userId++, unitedKingdom, "Sidrach", "Spurstowe", getDate(1, 9, 1600)));
 		allCustomers.add(new Customer(userId++, unitedKingdom, "William", "Woodcock", getDate(3, 7, 1600)));
 		allCustomers.add(new Customer(userId++, unitedKingdom, "Francis", "Simpson", getDate(7, 7, 1614)));
+		allCustomers = Collections.unmodifiableList(allCustomers);
 	}
 
 	public void setCountryService(CountryService countryService) {
