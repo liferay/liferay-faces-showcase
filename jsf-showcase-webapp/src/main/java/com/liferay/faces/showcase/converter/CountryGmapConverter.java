@@ -36,8 +36,8 @@ import com.liferay.faces.showcase.service.CountryService;
 @FacesConverter(value = "com.liferay.faces.showcase.converter.CountryGmapConverter")
 public class CountryGmapConverter implements Converter {
 
-	// Private Data Members
-	private static Map<Long, Country> countryMap;
+	// Instance field must be declared volatile in order for the double-check idiom to work (requires JRE 1.5+)
+	private static volatile Map<Long, Country> countryMap;
 
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String value) {
@@ -65,14 +65,20 @@ public class CountryGmapConverter implements Converter {
 
 	protected Map<Long, Country> getCountryMap(FacesContext facesContext) {
 
+		// First check without locking (not yet thread-safe)
 		if (countryMap == null) {
 
 			synchronized (this) {
 
-				ELResolver elResolver = facesContext.getApplication().getELResolver();
-				ELContext elContext = facesContext.getELContext();
-				CountryService countryService = (CountryService) elResolver.getValue(elContext, null, "countryService");
-				countryMap = countryService.getCountryMap();
+				// Second check with locking (thread-safe)
+				if (countryMap == null) {
+
+					ELResolver elResolver = facesContext.getApplication().getELResolver();
+					ELContext elContext = facesContext.getELContext();
+					CountryService countryService = (CountryService) elResolver.getValue(elContext, null,
+							"countryService");
+					countryMap = countryService.getCountryMap();
+				}
 			}
 		}
 
