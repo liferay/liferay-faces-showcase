@@ -63,7 +63,7 @@ public class CustomerServiceMockImpl implements CustomerService, Serializable {
 
 	@Override
 	public List<Customer> getCustomers(int start, int finish) {
-		return allCustomers.subList(start, finish + 1);
+		return new ArrayList<Customer>(allCustomers.subList(start, finish + 1));
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class CustomerServiceMockImpl implements CustomerService, Serializable {
 		List<Customer> customerList = new ArrayList<Customer>(getAllCustomers());
 		Collections.sort(customerList, comparator);
 
-		return customerList.subList(start, finish + 1);
+		return new ArrayList<Customer>(customerList.subList(start, finish + 1));
 	}
 
 	public Date getDate(int month, int day, int year) {
