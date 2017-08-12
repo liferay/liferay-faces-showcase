@@ -16,6 +16,7 @@
 package com.liferay.faces.showcase.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
@@ -34,22 +35,23 @@ public class LiferayBenefitServiceMockImpl implements LiferayBenefitService {
 	private static final List<LiferayBenefit> LIFERAY_BENEFITS;
 
 	static {
-		LIFERAY_BENEFITS = new ArrayList<LiferayBenefit>();
-		LIFERAY_BENEFITS.add(new LiferayBenefit(1, "Compatible", "Compatible With Your IT",
+		List<LiferayBenefit> liferayBenefits = new ArrayList<LiferayBenefit>();
+		liferayBenefits.add(new LiferayBenefit(1, "Compatible", "Compatible With Your IT",
 				"Liferay lets you reuse the enterprise software and skills you already have in-house.",
 				"compatible.png"));
-		LIFERAY_BENEFITS.add(new LiferayBenefit(2, "Enterprise Ready", "Enterprise Ready",
+		liferayBenefits.add(new LiferayBenefit(2, "Enterprise Ready", "Enterprise Ready",
 				"Liferay is designed for scalability, reliability, and high performance both on-premise and in the cloud.",
 				"enterprise.png"));
-		LIFERAY_BENEFITS.add(new LiferayBenefit(3, "Powerful Integration", "Powerful Integration",
+		liferayBenefits.add(new LiferayBenefit(3, "Powerful Integration", "Powerful Integration",
 				"Liferay is designed for integrating with both enterprise systems and web-based resources.",
 				"integration.png"));
-		LIFERAY_BENEFITS.add(new LiferayBenefit(4, "Lightweight", "Lightweight and Agile",
+		liferayBenefits.add(new LiferayBenefit(4, "Lightweight", "Lightweight and Agile",
 				"With Liferay, projects are completed faster and with smaller budgets so you can see immediate results.",
 				"lightweight.png"));
-		LIFERAY_BENEFITS.add(new LiferayBenefit(5, "Open Source", "Built With Open Source",
+		liferayBenefits.add(new LiferayBenefit(5, "Open Source", "Built With Open Source",
 				"Our open source community fosters innovation, increase security, and improves quality of the software.",
 				"open-source.png"));
+		LIFERAY_BENEFITS = Collections.unmodifiableList(liferayBenefits);
 	}
 
 	@Override

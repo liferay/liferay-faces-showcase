@@ -17,6 +17,7 @@ package com.liferay.faces.showcase.service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,7 @@ public class CountryServiceMockImpl implements CountryService, Serializable {
 		countryMap.put(country.getCountryId(), country);
 		country = new Country(5, "VN", "Vietnam");
 		countryMap.put(country.getCountryId(), country);
-		countryList = new ArrayList<Country>(countryMap.values());
+		countryMap = Collections.unmodifiableMap(countryMap);
+		countryList = Collections.unmodifiableList(new ArrayList<Country>(countryMap.values()));
 	}
 }
