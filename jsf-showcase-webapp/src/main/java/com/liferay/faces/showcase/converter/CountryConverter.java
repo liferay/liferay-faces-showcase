@@ -35,7 +35,7 @@ import com.liferay.faces.showcase.service.CountryService;
 @FacesConverter(value = "com.liferay.faces.showcase.converter.CountryConverter")
 public class CountryConverter implements Converter {
 
-	// Instance field must be declared volatile in order for the double-check idiom to work (requires JRE 1.5+)
+	// Static field must be declared volatile in order for the double-check idiom to work (requires JRE 1.5+)
 	private static volatile Map<Long, Country> countryMap;
 
 	@Override
@@ -68,7 +68,7 @@ public class CountryConverter implements Converter {
 		// First check without locking (not yet thread-safe)
 		if (countryMap == null) {
 
-			synchronized (this) {
+			synchronized (CountryConverter.class) {
 
 				// Second check with locking (thread-safe)
 				if (countryMap == null) {
