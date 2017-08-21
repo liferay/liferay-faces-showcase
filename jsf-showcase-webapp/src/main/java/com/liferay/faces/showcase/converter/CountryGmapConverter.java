@@ -65,14 +65,14 @@ public class CountryGmapConverter implements Converter {
 
 	protected Map<Long, Country> getCountryMap(FacesContext facesContext) {
 
-		Map<Long, Country> countryMap = this.countryMap;
+		Map<Long, Country> countryMap = CountryGmapConverter.countryMap;
 
 		// First check without locking (not yet thread-safe)
 		if (countryMap == null) {
 
 			synchronized (CountryGmapConverter.class) {
 
-				countryMap = this.countryMap;
+				countryMap = CountryGmapConverter.countryMap;
 
 				// Second check with locking (thread-safe)
 				if (countryMap == null) {
@@ -81,7 +81,7 @@ public class CountryGmapConverter implements Converter {
 					ELContext elContext = facesContext.getELContext();
 					CountryService countryService = (CountryService) elResolver.getValue(elContext, null,
 							"countryService");
-					countryMap = this.countryMap = countryService.getCountryMap();
+					countryMap = CountryGmapConverter.countryMap = countryService.getCountryMap();
 				}
 			}
 		}
