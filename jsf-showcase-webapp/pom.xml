@@ -15,6 +15,15 @@
 
 	<profiles>
 		<profile>
+			<id>jdkNotSupportedBySelenium</id>
+			<activation>
+				<jdk>(,1.6]</jdk>
+			</activation>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+			</properties>
+		</profile>
+		<profile>
 			<id>prettyfaces</id>
 			<dependencies>
 				<dependency>
