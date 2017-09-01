@@ -48,12 +48,12 @@ public class ResetValuesBackingBean {
 		this.requiredText2 = null;
 	}
 
-	public void setRequiredText1(String requiredText) {
-		this.requiredText1 = requiredText;
+	public void setRequiredText1(String requiredText1) {
+		this.requiredText1 = requiredText1;
 	}
 
-	public void setRequiredText2(String nonRequiredText) {
-		this.requiredText2 = nonRequiredText;
+	public void setRequiredText2(String requiredText2) {
+		this.requiredText2 = requiredText2;
 	}
 
 }
