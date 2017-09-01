@@ -4,8 +4,8 @@
 
 	<ui:define name="col1">
 		<h:form id="resetFrm">
-			<showcase:example id="example1" renderedCheckbox="true">
-				<h:messages/>		
+			<showcase:example>
+				<h:messages />
 				<h:inputText id="required1" value="#{resetValuesBackingBean.requiredText1}" required="true"/>
 				<h:inputText id="required2" value="#{resetValuesBackingBean.requiredText2}" required="true"/>
 				
@@ -13,9 +13,9 @@
 
 				<h:commandButton actionListener="#{resetValuesBackingBean.actionListener}" immediate="true"
 					value="#{i18n['reset']}">
-					<f:resetValues render="resetFrm:example1:required1 resetFrm:example1:required2"/>				
-				</h:commandButton>								
-			</showcase:example>			
+					<f:resetValues render="resetFrm:required1 resetFrm:required2" />
+				</h:commandButton>
+			</showcase:example>
 		</h:form>
 	</ui:define>
 
