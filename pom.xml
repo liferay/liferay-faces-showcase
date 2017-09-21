@@ -96,6 +96,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<surefire.version>2.12</surefire.version>
+		<war.name>${project.build.finalName}</war.name>
 	</properties>
 
 	<build>
@@ -180,6 +181,7 @@
 						</archive>
 						<dependentWarExcludes>WEB-INF/lib/*</dependentWarExcludes>
 						<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+						<warName>${war.name}</warName>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -236,6 +238,12 @@
 			<id>development</id>
 			<properties>
 				<project.stage>Development</project.stage>
+			</properties>
+		</profile>
+		<profile>
+			<id>removeWarVersion</id>
+			<properties>
+				<war.name>${project.artifactId}</war.name>
 			</properties>
 		</profile>
 		<profile>
