@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,8 @@ public class FormNonAjaxTester extends TesterBase {
 		navigateToUseCase(browserDriver, "form", "non-ajax");
 
 		// Test that the form submits successfully.
-		browserDriver.clickElement("(//*[contains(text(),'Submit') or contains(@value,'Submit')])[1]");
+		browserDriver.clickElement(
+			"(//*[contains(text(),'Submit and Re-Render Form') or contains(@value,'Submit and Re-Render Form')])[1]");
 		waitForShowcasePageReady(browserDriver);
 
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
