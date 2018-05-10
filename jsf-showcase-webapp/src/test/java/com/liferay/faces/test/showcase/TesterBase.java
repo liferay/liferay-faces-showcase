@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
-import com.liferay.faces.test.selenium.browser.BrowserDriverManagingTesterBase;
+import com.liferay.faces.test.selenium.browser.FileUploadTesterBase;
 import com.liferay.faces.test.selenium.browser.TestUtil;
 import com.liferay.faces.test.selenium.browser.WaitingAsserter;
 import com.liferay.faces.test.selenium.expectedconditions.WindowOpened;
@@ -44,7 +44,7 @@ import com.liferay.faces.test.selenium.expectedconditions.WindowOpened;
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class TesterBase extends BrowserDriverManagingTesterBase {
+public class TesterBase extends FileUploadTesterBase {
 
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(TesterBase.class);
