@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 package com.liferay.faces.test.showcase.inputfile;
+
+import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -32,7 +34,6 @@ import com.liferay.faces.test.showcase.input.InputTester;
 public class InputFileTester extends InputTester {
 
 	// Private Constants
-	private static final String LIFERAY_JSF_JERSEY_PNG_FILE_PATH = TestUtil.JAVA_IO_TMPDIR + "liferay-jsf-jersey.png";
 	private static final String ALERT_CONFIRMATION_WORKAROUND = "window.alert = function(msg){ console.log(msg); };" +
 		"window.confirm = function(msg){ console.log(msg); return true; };";
 
@@ -42,11 +43,11 @@ public class InputFileTester extends InputTester {
 	private static final String deleteFileXpath =
 		"(//input[contains(@src,'icon-delete.png')]|//button/span[contains(@class,'trash')])";
 
-	protected void runInputFileTest(String useCase) {
+	protected void runInputFileTest(String useCase) throws IOException {
 		runInputFileTest(null, useCase);
 	}
 
-	protected void runInputFileTest(String componentPrefix, String useCase) {
+	protected void runInputFileTest(String componentPrefix, String useCase) throws IOException {
 
 		BrowserDriver browserDriver = getBrowserDriver();
 
@@ -74,7 +75,7 @@ public class InputFileTester extends InputTester {
 				"multipleFileUploadElements[i].removeAttribute('multiple'); }");
 		}
 
-		browserDriver.sendKeysToElement(fileUploadChooserXpath, LIFERAY_JSF_JERSEY_PNG_FILE_PATH);
+		browserDriver.sendKeysToElement(fileUploadChooserXpath, getFileSystemPathForResource("liferay-jsf-jersey.png"));
 
 		if (!useCase.equals("instant-ajax")) {
 			browserDriver.clickElement(submitButton1Xpath);
