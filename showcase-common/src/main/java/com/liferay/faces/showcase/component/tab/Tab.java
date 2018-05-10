@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,16 +35,14 @@ import javax.faces.render.Renderer;
  }
  * </pre>
  *
- * Note that this class ultimately extends {@link javax.faces.component.UIColumn} because the
- * {@link com.liferay.faces.showcase.component.tabview.TabView} class
- * ultimately extends {@link javax.faces.component.UIData} (which handles children of type
- * {@link javax.faces.component.UIColumn} in a special manner). In fact, the JavaDoc description for the
- * {@link javax.faces.component.UIData} class states that _ONLY_ children of type
- * {@link javax.faces.component.UIColumn} should be processed by associated {@link Renderer} classes. One of the
- * most important benefits of extending
- * {@link javax.faces.component.UIColumn} is that the {@link javax.faces.component.UIData#getClientId()} method will
- * append the rowIndex during iteration over a {@link DataModel}, ensuring that each rendered {@link Tab} will
- * have a unique clientId.
+ * Note that this class ultimately extends {@link javax.faces.component.UIColumn} because the {@link
+ * com.liferay.faces.showcase.component.tabview.TabView} class ultimately extends {@link javax.faces.component.UIData}
+ * (which handles children of type {@link javax.faces.component.UIColumn} in a special manner). In fact, the JavaDoc
+ * description for the {@link javax.faces.component.UIData} class states that _ONLY_ children of type {@link
+ * javax.faces.component.UIColumn} should be processed by associated {@link Renderer} classes. One of the most important
+ * benefits of extending {@link javax.faces.component.UIColumn} is that the {@link
+ * javax.faces.component.UIData#getClientId()} method will append the rowIndex during iteration over a {@link
+ * DataModel}, ensuring that each rendered {@link Tab} will have a unique clientId.
  *
  * @author  Neil Griffin
  */
