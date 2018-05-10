@@ -15,17 +15,14 @@
  */
 package com.liferay.faces.test.showcase.miscellaneous;
 
-import java.io.Closeable;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.junit.Assert;
 
 import com.liferay.faces.test.selenium.browser.BrowserDriver;
 import com.liferay.faces.test.selenium.browser.WaitingAsserter;
+import com.liferay.faces.test.selenium.util.ClosableUtil;
 import com.liferay.faces.test.showcase.TesterBase;
 
 
@@ -35,21 +32,24 @@ import com.liferay.faces.test.showcase.TesterBase;
  */
 public class MiscellaneousTester extends TesterBase {
 
-	private static void close(Closeable closeable) {
+	private static String getFileContentAsString(String resource) {
 
-		if (closeable != null) {
+		String resourceContent = "";
+		InputStream inputStream = MiscellaneousTester.class.getResourceAsStream(resource);
+		Scanner scanner = new Scanner(inputStream, "UTF-8").useDelimiter("\\A");
 
-			try {
-				closeable.close();
-			}
-			catch (IOException e) {
-				// do nothing.
-			}
+		if (scanner.hasNext()) {
+			resourceContent = scanner.next();
 		}
+
+		ClosableUtil.close(scanner);
+		ClosableUtil.close(inputStream);
+
+		return resourceContent;
 	}
 
-	protected void assertElementContentEqualsFileContent(BrowserDriver browserDriver, String elementXpath,
-		String filePath) throws FileNotFoundException {
+	protected final void assertElementContentEqualsFileContent(BrowserDriver browserDriver, String elementXpath,
+		String filePath) {
 
 		String fileContent = getFileContentAsString(filePath);
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
@@ -62,7 +62,7 @@ public class MiscellaneousTester extends TesterBase {
 		Assert.assertEquals(fileContent.replaceAll("\\s+", " "), pageElementText.replaceAll("\\s+", " "));
 	}
 
-	protected void runMiscellaneousGeneralTest(String componentPrefix, String componentName) throws Exception {
+	protected final void runMiscellaneousGeneralTest(String componentPrefix, String componentName) {
 
 		BrowserDriver browserDriver = getBrowserDriver();
 		navigateToUseCase(browserDriver, componentPrefix, componentName, "general");
@@ -81,29 +81,5 @@ public class MiscellaneousTester extends TesterBase {
 		String tabContent2Xpath = "(//div[contains(@class,'tab-pane')]/pre)[2]";
 		assertElementContentEqualsFileContent(browserDriver, tabContent2Xpath,
 			"/portlet" + capitalize(componentName) + ".xhtml");
-	}
-
-	private String getFileContentAsString(String resource) throws FileNotFoundException {
-
-		String resourceContent = "";
-		InputStream inputStream = null;
-		Scanner scanner = null;
-
-		try {
-
-			inputStream = MiscellaneousTester.class.getResourceAsStream(resource);
-			scanner = new Scanner(inputStream, "UTF-8");
-			resourceContent = scanner.useDelimiter("\\A").next();
-		}
-		catch (NoSuchElementException e) {
-			// Empty file.
-		}
-		finally {
-
-			close(scanner);
-			close(inputStream);
-		}
-
-		return resourceContent;
 	}
 }
