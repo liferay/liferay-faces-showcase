@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package com.liferay.faces.test.showcase.miscellaneous;
 
+import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +34,19 @@ import com.liferay.faces.test.showcase.TesterBase;
  * @author  Philip White
  */
 public class MiscellaneousTester extends TesterBase {
+
+	private static void close(Closeable closeable) {
+
+		if (closeable != null) {
+
+			try {
+				closeable.close();
+			}
+			catch (IOException e) {
+				// do nothing.
+			}
+		}
+	}
 
 	protected void assertElementContentEqualsFileContent(BrowserDriver browserDriver, String elementXpath,
 		String filePath) throws FileNotFoundException {
@@ -76,9 +90,9 @@ public class MiscellaneousTester extends TesterBase {
 		Scanner scanner = null;
 
 		try {
-			inputStream = getClass().getResourceAsStream(resource);
-			scanner = new Scanner(inputStream, "UTF-8");
 
+			inputStream = MiscellaneousTester.class.getResourceAsStream(resource);
+			scanner = new Scanner(inputStream, "UTF-8");
 			resourceContent = scanner.useDelimiter("\\A").next();
 		}
 		catch (NoSuchElementException e) {
@@ -86,19 +100,8 @@ public class MiscellaneousTester extends TesterBase {
 		}
 		finally {
 
-			if (scanner != null) {
-				scanner.close();
-			}
-
-			if (inputStream != null) {
-
-				try {
-					inputStream.close();
-				}
-				catch (IOException e) {
-					// do nothing.
-				}
-			}
+			close(scanner);
+			close(inputStream);
 		}
 
 		return resourceContent;
