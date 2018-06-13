@@ -28,6 +28,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.ProjectStage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -76,7 +77,26 @@ public class ListModelBean {
 	private Map<String, ShowcaseComponent> showcaseComponentMap;
 	private String dependencyInfo;
 
-	public ListModelBean() {
+	public ShowcaseComponent findShowcaseComponent(String prefix, String name) {
+		String key = prefix + "_" + name;
+
+		return showcaseComponentMap.get(key);
+	}
+
+	public String getDependencyInfo() {
+		return dependencyInfo;
+	}
+
+	public List<String> getShowcaseCategories() {
+		return showcaseCategoryList;
+	}
+
+	public Map<String, List<ShowcaseComponent>> getShowcaseCategoryMap() {
+		return showcaseCategoryMap;
+	}
+
+	@PostConstruct
+	public void postConstruct() {
 
 		FacesContext startupFacesContext = FacesContext.getCurrentInstance();
 		boolean developmentMode = startupFacesContext.isProjectStage(ProjectStage.Development);
@@ -107,6 +127,7 @@ public class ListModelBean {
 		showcaseCategoryList.add("facescore");
 		showcaseCategoryList.add("facelets");
 		showcaseCategoryList.add("extensions");
+		showcaseCategoryList = Collections.unmodifiableList(showcaseCategoryList);
 
 		this.showcaseComponents = new ArrayList<ShowcaseComponent>();
 		this.showcaseCategoryMap = new HashMap<String, List<ShowcaseComponent>>();
@@ -297,63 +318,45 @@ public class ListModelBean {
 				this.showcaseCategoryMap.put(showcaseCategoryList.get(i), categoryShowcaseComponents);
 			}
 		}
-	}
 
-	public ShowcaseComponent findShowcaseComponent(String prefix, String name) {
-		String key = prefix + "_" + name;
+		showcaseComponents = Collections.unmodifiableList(showcaseComponents);
+		showcaseCategoryMap = Collections.unmodifiableMap(showcaseCategoryMap);
+		showcaseComponentMap = Collections.unmodifiableMap(showcaseComponentMap);
 
-		return showcaseComponentMap.get(key);
-	}
+		boolean previousProductDetected = false;
+		StringBuilder buf = new StringBuilder();
+		Product[] products = new Product[] {
+				LIFERAY_FACES_ALLOY, LIFERAY_FACES_BRIDGE, LIFERAY_FACES_METAL, LIFERAY_FACES_PORTAL,
+				ProductFactory.getProduct(Product.Name.LIFERAY_FACES_SHOWCASE),
+				ProductFactory.getProduct(Product.Name.LIFERAY_FACES_UTIL), ProductFactory.getProduct(Product.Name.JSF)
+			};
 
-	public String getDependencyInfo() {
+		for (Product product : products) {
 
-		if (dependencyInfo == null) {
-			boolean previousProductDetected = false;
-			StringBuilder buf = new StringBuilder();
-			Product[] products = new Product[] {
-					LIFERAY_FACES_ALLOY, LIFERAY_FACES_BRIDGE, LIFERAY_FACES_METAL, LIFERAY_FACES_PORTAL,
-					ProductFactory.getProduct(Product.Name.LIFERAY_FACES_SHOWCASE),
-					ProductFactory.getProduct(Product.Name.LIFERAY_FACES_UTIL),
-					ProductFactory.getProduct(Product.Name.JSF)
-				};
+			if (product.isDetected()) {
 
-			for (Product product : products) {
-
-				if (product.isDetected()) {
-
-					if (previousProductDetected) {
-						buf.append(" + ");
-					}
-
-					buf.append(product.getTitle());
-
-					String version = product.getVersion();
-					int pos = version.indexOf(" ");
-
-					if (pos > 0) {
-						version = version.substring(0, pos);
-					}
-
-					if (version.length() > 0) {
-						buf.append(" ");
-						buf.append(version);
-					}
-
-					previousProductDetected = true;
+				if (previousProductDetected) {
+					buf.append(" + ");
 				}
-			}
 
-			dependencyInfo = buf.toString();
+				buf.append(product.getTitle());
+
+				String version = product.getVersion();
+				int pos = version.indexOf(" ");
+
+				if (pos > 0) {
+					version = version.substring(0, pos);
+				}
+
+				if (version.length() > 0) {
+					buf.append(" ");
+					buf.append(version);
+				}
+
+				previousProductDetected = true;
+			}
 		}
 
-		return dependencyInfo;
-	}
-
-	public List<String> getShowcaseCategories() {
-		return showcaseCategoryList;
-	}
-
-	public Map<String, List<ShowcaseComponent>> getShowcaseCategoryMap() {
-		return showcaseCategoryMap;
+		dependencyInfo = buf.toString();
 	}
 }
