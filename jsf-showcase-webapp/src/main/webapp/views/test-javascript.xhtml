@@ -12,7 +12,7 @@
 			window.liferay_faces_showcase_ready = true;
 		}
 		else {
-			$(window).load(function() { window.liferay_faces_showcase_ready = true; });
+			$(window).on("load", function(event) { window.liferay_faces_showcase_ready = true; });
 		}
 	</h:outputScript>
 </ui:composition>
