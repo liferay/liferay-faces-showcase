@@ -121,6 +121,7 @@
 										<integration.browser.simulate.mobile>${integration.browser.simulate.mobile}</integration.browser.simulate.mobile>
 										<integration.browser.driver.wait.time.out>${integration.browser.driver.wait.time.out}</integration.browser.driver.wait.time.out>
 										<integration.container>tomcat</integration.container>
+										<integration.protocol>${integration.protocol}</integration.protocol>
 										<integration.host>${integration.host}</integration.host>
 										<integration.port>${integration.port}</integration.port>
 										<integration.showcase.context>/com.liferay.faces.demo.jsf.showcase.webapp/web/guest/showcase/-/component</integration.showcase.context>
@@ -217,7 +218,7 @@
 		<dependency>
 			<groupId>com.liferay.faces.test</groupId>
 			<artifactId>com.liferay.faces.test.selenium</artifactId>
-			<version>0.5.1</version>
+			<version>0.5.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
