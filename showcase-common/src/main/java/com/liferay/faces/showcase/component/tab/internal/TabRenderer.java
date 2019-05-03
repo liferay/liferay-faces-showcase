@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2019 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,25 +43,7 @@ public class TabRenderer extends TabRendererBase {
 		ResponseWriter responseWriter = facesContext.getResponseWriter();
 		responseWriter.startElement("div", uiComponent);
 		responseWriter.writeAttribute("id", uiComponent.getClientId(facesContext), "id");
-
-		boolean selected = false;
-
-		UIComponent uiComponentParent = uiComponent.getParent();
-
-		if (uiComponentParent instanceof TabView) {
-			TabView tabView = (TabView) uiComponentParent;
-			Integer selectedIndex = tabView.getSelectedIndex();
-			int rowIndex = tabView.getRowIndex();
-			selected = (((selectedIndex == null) && (rowIndex == 0)) ||
-					((selectedIndex != null) && (rowIndex == selectedIndex)));
-		}
-
-		if (selected) {
-			RendererUtil.encodeStyleable(responseWriter, (Styleable) uiComponent, "tab-pane active");
-		}
-		else {
-			RendererUtil.encodeStyleable(responseWriter, (Styleable) uiComponent, "tab-pane");
-		}
+		RendererUtil.encodeStyleable(responseWriter, (Styleable) uiComponent);
 	}
 
 	@Override
