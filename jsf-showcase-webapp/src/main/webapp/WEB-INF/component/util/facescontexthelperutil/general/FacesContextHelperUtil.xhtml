@@ -7,7 +7,7 @@
 		<h:outputScript library="bootstrap" name="js/bootstrap.min.js" target="head" />
 		<showcase:example>
 			<h:form>
-				<h:commandButton actionListener="#{facesRequestContextBacking.openDialog}"
+				<h:commandButton actionListener="#{facesContextHelperUtilBacking.openDialog}"
 					value="#{i18n['show-modal']}">
 					<f:ajax />
 				</h:commandButton>
@@ -21,10 +21,10 @@
 									<h:inputText id="text" label="#{i18n['email']}"
 										validator="#{inputTextBackingBean.emailAddressValidator}"
 										validatorMessage="#{i18n['validator-message']}"
-										value="#{facesRequestContextBacking.email}" required="true" />
+										value="#{facesContextHelperUtilBacking.email}" required="true" />
 									<h:message for="text" />
 								</showcase:field>
-								<h:commandButton actionListener="#{facesRequestContextBacking.closeDialog}"
+								<h:commandButton actionListener="#{facesContextHelperUtilBacking.closeDialog}"
 									value="#{i18n['submit']}">
 									<f:ajax execute="@form" render="@form" />
 								</h:commandButton>

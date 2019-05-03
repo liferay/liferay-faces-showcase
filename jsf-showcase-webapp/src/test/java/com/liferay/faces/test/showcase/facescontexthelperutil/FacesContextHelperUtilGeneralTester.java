@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2019 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.liferay.faces.test.showcase.facesrequestcontext;
+package com.liferay.faces.test.showcase.facescontexthelperutil;
 
 import org.junit.Test;
 
@@ -26,13 +26,13 @@ import com.liferay.faces.test.showcase.TesterBase;
  * @author  Kyle Stiemann
  * @author  Philip White
  */
-public class FacesRequestContextGeneralTester extends TesterBase {
+public class FacesContextHelperUtilGeneralTester extends TesterBase {
 
 	@Test
-	public void runFacesRequestContextGeneralTest() throws Exception {
+	public void runFacesContextHelperUtilGeneralTest() throws Exception {
 
 		BrowserDriver browserDriver = getBrowserDriver();
-		navigateToUseCase(browserDriver, "util", "FacesRequestContext", "general");
+		navigateToUseCase(browserDriver, "util", "FacesContextHelperUtil", "general");
 
 		// Test that clicking the "Show Modal" button shows the modal.
 		browserDriver.clickElement("(//*[contains(@value,'Show Modal')])[1]");
