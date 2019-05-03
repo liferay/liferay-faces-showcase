@@ -66,9 +66,10 @@ public class MiscellaneousTester extends TesterBase {
 
 		BrowserDriver browserDriver = getBrowserDriver();
 		navigateToUseCase(browserDriver, componentPrefix, componentName, "general");
+		String tabSourceCodeXpath = "(//div[contains(@class,'tab-pane')]//pre)";
 
 		// Test that the webapp*.xhtml file content is displayed correctly in the browser.
-		assertElementContentEqualsFileContent(browserDriver, "(//div[contains(@class,'tab-pane')]/pre)[1]",
+		assertElementContentEqualsFileContent(browserDriver, tabSourceCodeXpath + "[1]",
 			"/webapp" + capitalize(componentName) + ".xhtml");
 
 		//J-
@@ -78,7 +79,7 @@ public class MiscellaneousTester extends TesterBase {
 		// Test that the portlet*.xhtml file content is displayed correctly in the browser.
 		browserDriver.clickElement("//a[contains(text(),'portlet" + capitalize(componentName) + ".xhtml')]");
 
-		String tabContent2Xpath = "(//div[contains(@class,'tab-pane')]/pre)[2]";
+		String tabContent2Xpath = tabSourceCodeXpath + "[2]";
 		assertElementContentEqualsFileContent(browserDriver, tabContent2Xpath,
 			"/portlet" + capitalize(componentName) + ".xhtml");
 	}

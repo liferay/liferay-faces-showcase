@@ -28,7 +28,6 @@ import javax.faces.render.FacesRenderer;
 import com.liferay.faces.showcase.component.tab.Tab;
 import com.liferay.faces.showcase.component.tab.TabUtil;
 import com.liferay.faces.showcase.component.tabview.TabView;
-import com.liferay.faces.showcase.util.ShowcaseUtil;
 import com.liferay.faces.util.component.Styleable;
 import com.liferay.faces.util.logging.Logger;
 import com.liferay.faces.util.logging.LoggerFactory;
@@ -53,11 +52,43 @@ import com.liferay.faces.util.render.RendererUtil;
 public class TabViewRenderer extends TabViewRendererBase {
 
 	// Private Constants
-	private static final String SELECTED_TAB_HEADER_CLASSES = "active";
-	private static final String UNSELECTED_TAB_HEADER_CLASSES = "";
+	private static final String SELECTED_TAB_CLASSES = "active";
+	private static final String UNSELECTED_TAB_CLASSES = "";
 
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(TabViewRenderer.class);
+
+	private static void encodeTab(ResponseWriter responseWriter, UIComponent uiComponent, FacesContext facesContext,
+		Integer selectedIndex, int currentIndex) throws IOException {
+
+		responseWriter.startElement("div", null);
+
+		String jQuerySafeTabClientId = getJQuerySafeTabClientId(uiComponent, facesContext);
+		responseWriter.writeAttribute("id", jQuerySafeTabClientId, null);
+
+		// Encode the div's class attribute according to the specified tab's selected/un-selected state.
+		String selectionClass = UNSELECTED_TAB_CLASSES;
+
+		if (isSelected(selectedIndex, currentIndex)) {
+			selectionClass = SELECTED_TAB_CLASSES;
+		}
+
+		responseWriter.writeAttribute("class", "tab-pane " + selectionClass, null);
+		uiComponent.encodeAll(facesContext);
+		responseWriter.endElement("div");
+	}
+
+	private static String getJQuerySafeTabClientId(UIComponent uiComponent, FacesContext facesContext) {
+
+		String clientId = uiComponent.getClientId(facesContext);
+
+		return clientId.replace(":", "_") + "_tab";
+	}
+
+	private static boolean isSelected(Integer selectedIndex, int currentIndex) {
+		return (((selectedIndex == null) && (currentIndex == 0)) ||
+				((selectedIndex != null) && (currentIndex == selectedIndex)));
+	}
 
 	@Override
 	public void encodeBegin(FacesContext facesContext, UIComponent uiComponent) throws IOException {
@@ -80,6 +111,7 @@ public class TabViewRenderer extends TabViewRendererBase {
 		String var = tabView.getVar();
 		boolean iterateOverDataModel = ((value != null) && (var != null));
 		Tab prototypeChildTab = TabUtil.getFirstChildTab(tabView);
+		String clientId = uiComponent.getClientId(facesContext);
 
 		// Encode the starting <ul> unordered list element that represents the list of clickable tabs.
 		ResponseWriter responseWriter = facesContext.getResponseWriter();
@@ -93,11 +125,10 @@ public class TabViewRenderer extends TabViewRendererBase {
 				int rowCount = tabView.getRowCount();
 
 				for (int i = 0; i < rowCount; i++) {
-					tabView.setRowIndex(i);
 
-					boolean selected = (((selectedIndex == null) && (i == 0)) ||
-							((selectedIndex != null) && (i == selectedIndex)));
-					encodeTabListItem(facesContext, responseWriter, prototypeChildTab, selected);
+					tabView.setRowIndex(i);
+					encodeTabListItem(facesContext, responseWriter, prototypeChildTab, isSelected(selectedIndex, i),
+						clientId);
 				}
 
 				tabView.setRowIndex(-1);
@@ -115,10 +146,9 @@ public class TabViewRenderer extends TabViewRendererBase {
 				UIComponent child = children.get(i);
 
 				if ((child instanceof Tab) && child.isRendered()) {
+
 					Tab childTab = (Tab) child;
-					boolean selected = (((selectedIndex == null) && (i == 0)) ||
-							((selectedIndex != null) && (i == selectedIndex)));
-					encodeTabListItem(facesContext, responseWriter, childTab, selected);
+					encodeTabListItem(facesContext, responseWriter, childTab, isSelected(selectedIndex, i), clientId);
 				}
 				else {
 					logger.warn("Unable to render child element of alloy:tabView since it is not alloy:tab");
@@ -139,7 +169,7 @@ public class TabViewRenderer extends TabViewRendererBase {
 
 			for (int i = 0; i < rowCount; i++) {
 				tabView.setRowIndex(i);
-				prototypeChildTab.encodeAll(facesContext);
+				encodeTab(responseWriter, prototypeChildTab, facesContext, selectedIndex, i);
 			}
 		}
 		else {
@@ -149,7 +179,7 @@ public class TabViewRenderer extends TabViewRendererBase {
 				UIComponent child = children.get(i);
 
 				if (child.isRendered()) {
-					child.encodeAll(facesContext);
+					encodeTab(responseWriter, child, facesContext, selectedIndex, i);
 				}
 			}
 		}
@@ -174,35 +204,35 @@ public class TabViewRenderer extends TabViewRendererBase {
 	}
 
 	protected void encodeTabListItem(FacesContext facesContext, ResponseWriter responseWriter, Tab tab,
-		boolean selected) throws IOException {
+		boolean selected, String tabViewClientId) throws IOException {
 
 		responseWriter.startElement("li", tab);
 
 		// Encode the div's class attribute according to the specified tab's selected/un-selected state.
-		String tabClasses = UNSELECTED_TAB_HEADER_CLASSES;
+		String selectionClass = UNSELECTED_TAB_CLASSES;
 
 		if (selected) {
-			tabClasses = SELECTED_TAB_HEADER_CLASSES;
+			selectionClass = SELECTED_TAB_CLASSES;
 		}
 
 		// If the specified tab has a headerClass, then append it to the class attribute before encoding.
 		String tabHeaderClass = tab.getHeaderClass();
 
-		if (tabHeaderClass != null) {
-			tabClasses += " " + tabHeaderClass;
+		if (tabHeaderClass == null) {
+			tabHeaderClass = "";
 		}
 
-		responseWriter.writeAttribute("class", tabClasses, Styleable.STYLE_CLASS);
+		responseWriter.writeAttribute("class", "nav-item " + tabHeaderClass, Styleable.STYLE_CLASS);
 		responseWriter.startElement("a", tab);
 
+		responseWriter.writeAttribute("class", selectionClass + " nav-link", null);
 		responseWriter.writeAttribute("data-toggle", "tab", null);
 
 		if (tab.isDisabled()) {
 			responseWriter.writeAttribute("disabled", "disabled", null);
 		}
 
-		responseWriter.writeAttribute("href", "#" + ShowcaseUtil.singleEscapeClientId(tab.getClientId(facesContext)),
-			null);
+		responseWriter.writeAttribute("href", "#" + getJQuerySafeTabClientId(tab, facesContext), null);
 
 		// If the header facet exists for the specified tab, then encode the header facet.
 		UIComponent headerFacet = tab.getFacet("header");

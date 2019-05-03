@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2019 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,12 +53,12 @@ import com.liferay.faces.util.render.RendererUtil;
 //J+
 public class AccordionRenderer extends AccordionRendererBase {
 
-	// Private Constants
-	private static final boolean LIFERAY_PORTAL_DETECTED = ProductFactory.getProduct(Product.Name.LIFERAY_PORTAL)
-		.isDetected();
-
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(AccordionRenderer.class);
+
+	private static String singleEscapeClientId(String clientId) {
+		return clientId.replace(":", "\\:");
+	}
 
 	@Override
 	public void encodeBegin(FacesContext facesContext, UIComponent uiComponent) throws IOException {
@@ -144,15 +144,6 @@ public class AccordionRenderer extends AccordionRendererBase {
 		// Encode the closing </div> element for the accordion.
 		ResponseWriter responseWriter = facesContext.getResponseWriter();
 		responseWriter.endElement("div");
-
-		String escapedClientId;
-
-		if (LIFERAY_PORTAL_DETECTED) {
-			escapedClientId = ShowcaseUtil.doubleEscapeClientId(uiComponent.getClientId());
-		}
-		else {
-			escapedClientId = ShowcaseUtil.singleEscapeClientId(uiComponent.getClientId());
-		}
 	}
 
 	@Override
@@ -216,11 +207,11 @@ public class AccordionRenderer extends AccordionRendererBase {
 		responseWriter.startElement("a", null);
 		responseWriter.writeAttribute("class", "accordion-toggle panel-title collapsed", null);
 
-		String escapedAccordionClientId = "#".concat(ShowcaseUtil.singleEscapeClientId(accordionClientId));
+		String escapedAccordionClientId = "#".concat(singleEscapeClientId(accordionClientId));
 		responseWriter.writeAttribute("data-parent", escapedAccordionClientId, null);
 		responseWriter.writeAttribute("data-toggle", "collapse", null);
 
-		String escapedTabClientId = "#".concat(ShowcaseUtil.singleEscapeClientId(accordionIteratedClientId));
+		String escapedTabClientId = "#".concat(singleEscapeClientId(accordionIteratedClientId));
 		responseWriter.writeAttribute("href", escapedTabClientId, null);
 
 		// If the header facet exists for the specified tab, then encode the header facet.
