@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2019 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,15 +20,13 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.liferay.faces.util.context.FacesRequestContext;
-
 
 /**
  * @author  Kyle Stiemann
  */
 @ManagedBean
 @ViewScoped
-public class FacesRequestContextBacking implements Serializable {
+public class FacesContextHelperUtilBacking implements Serializable {
 
 	// serialVersionUID
 	private static final long serialVersionUID = 5123157520254209271L;
@@ -38,10 +36,7 @@ public class FacesRequestContextBacking implements Serializable {
 	public void closeDialog() {
 
 		if (email != null) {
-
-			com.liferay.faces.util.context.FacesRequestContext facesRequestContext = FacesRequestContext
-				.getCurrentInstance();
-			facesRequestContext.addScript("$('.modal').modal('hide');");
+			com.liferay.faces.util.context.FacesContextHelperUtil.addScript("$('.modal').modal('hide');");
 		}
 	}
 
@@ -50,9 +45,7 @@ public class FacesRequestContextBacking implements Serializable {
 	}
 
 	public void openDialog() {
-
-		FacesRequestContext facesRequestContext = FacesRequestContext.getCurrentInstance();
-		facesRequestContext.addScript("$('.modal').modal('show');");
+		com.liferay.faces.util.context.FacesContextHelperUtil.addScript("$('.modal').modal('show');");
 	}
 
 	public void setEmail(String email) {

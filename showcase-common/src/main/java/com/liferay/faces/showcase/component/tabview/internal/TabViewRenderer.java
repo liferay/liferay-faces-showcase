@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2019 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,11 +29,7 @@ import com.liferay.faces.showcase.component.tab.Tab;
 import com.liferay.faces.showcase.component.tab.TabUtil;
 import com.liferay.faces.showcase.component.tabview.TabView;
 import com.liferay.faces.showcase.util.ShowcaseUtil;
-import com.liferay.faces.util.client.Script;
-import com.liferay.faces.util.client.ScriptFactory;
 import com.liferay.faces.util.component.Styleable;
-import com.liferay.faces.util.context.FacesRequestContext;
-import com.liferay.faces.util.factory.FactoryExtensionFinder;
 import com.liferay.faces.util.logging.Logger;
 import com.liferay.faces.util.logging.LoggerFactory;
 import com.liferay.faces.util.render.RendererUtil;
