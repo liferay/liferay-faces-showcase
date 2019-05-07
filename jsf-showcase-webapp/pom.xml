@@ -237,17 +237,6 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- End integration test dependencies. -->
-
-		<!-- BEGIN: Only required for file upload -->
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		<!-- END: Only required for file upload -->
 		<dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
