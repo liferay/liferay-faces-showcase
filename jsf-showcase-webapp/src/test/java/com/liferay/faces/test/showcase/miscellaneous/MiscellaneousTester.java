@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2019 Liferay, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,6 +66,7 @@ public class MiscellaneousTester extends TesterBase {
 
 		BrowserDriver browserDriver = getBrowserDriver();
 		navigateToUseCase(browserDriver, componentPrefix, componentName, "general");
+
 		String tabSourceCodeXpath = "(//div[contains(@class,'tab-pane')]//pre)";
 
 		// Test that the webapp*.xhtml file content is displayed correctly in the browser.
