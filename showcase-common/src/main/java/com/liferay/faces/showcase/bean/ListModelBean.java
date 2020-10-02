@@ -69,6 +69,7 @@ public class ListModelBean {
 			"com.liferay.faces.showcase.portlet", "com.liferay.faces.showcase.validator",
 			"com.liferay.faces.showcase.service", "com.liferay.faces.bridge.demos.portlet"
 		};
+	private static final Product PLUTO = ProductFactory.getProduct(Product.Name.PLUTO);
 
 	// Private Data Members
 	private List<String> showcaseCategoryList;
@@ -118,8 +119,9 @@ public class ListModelBean {
 			showcaseCategoryList.add("select");
 		}
 
-		if (LIFERAY_FACES_BRIDGE.isDetected() && !LIFERAY_FACES_ALLOY.isDetected() &&
-				!LIFERAY_FACES_METAL.isDetected() && !LIFERAY_FACES_PORTAL.isDetected()) {
+		if (PLUTO.isDetected() ||
+				(LIFERAY_FACES_BRIDGE.isDetected() && !LIFERAY_FACES_ALLOY.isDetected() &&
+					!LIFERAY_FACES_METAL.isDetected() && !LIFERAY_FACES_PORTAL.isDetected())) {
 			showcaseCategoryList.add("portlet");
 		}
 
@@ -154,8 +156,9 @@ public class ListModelBean {
 			namespaces.add("portal");
 		}
 
-		if (LIFERAY_FACES_BRIDGE.isDetected() && !LIFERAY_FACES_ALLOY.isDetected() &&
-				!LIFERAY_FACES_METAL.isDetected()) {
+		if (PLUTO.isDetected() ||
+				(LIFERAY_FACES_BRIDGE.isDetected() && !LIFERAY_FACES_ALLOY.isDetected() &&
+					!LIFERAY_FACES_METAL.isDetected())) {
 			namespaces.add("portlet");
 		}
 
