@@ -9,6 +9,7 @@
 				<showcase:field label="#{i18n['favorite-liferay-benefit']}">
 					<h:selectManyMenu id="selectManyMenu" rendered="#{showcaseModelBean.selectedComponent.rendered}"
 						required="#{showcaseModelBean.selectedComponent.required}"
+						requiredMessage="Selection is required"
 						value="#{selectManyModelBean.favoriteIds}">
 						<f:selectItem itemValue="#{null}" itemLabel="-- Select --" noSelectionOption="true" />
 						<f:selectItem itemLabel="Compatible" itemValue="1" />
