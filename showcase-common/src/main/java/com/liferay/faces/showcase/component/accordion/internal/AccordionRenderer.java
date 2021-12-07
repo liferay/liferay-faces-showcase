@@ -162,7 +162,7 @@ public class AccordionRenderer extends AccordionRendererBase {
 		String contentClass = "accordion-body panel-body panel-collapse collapse";
 
 		if (selected) {
-			contentClass = contentClass.concat(" in");
+			contentClass = contentClass.concat(" in show");
 		}
 
 		// If the specified tab has a contentClass, then append it to the class attribute before encoding.
