@@ -149,12 +149,26 @@
 	clear: both;
 }
 
-.aui .nav .nav {
-	padding-left: 15px;
+.aui .category-name {
+	text-transform: none;
+}
+
+.aui .nav {
+	display: unset;
 }
 
 .aui .nav>li>a.showcase-link {
 	padding: 0px 0px 0px 30px;
+	white-space: nowrap;
+}
+
+.aui .nav .nav {
+	display: unset;
+	padding-left: 15px;
+}
+
+.aui .nav .nav>li>a.showcase-link {
+	padding: 0px 0px 0px 45px;
 	white-space: nowrap;
 }
 
