@@ -38,7 +38,7 @@ public class InputHiddenConversionTester extends InputHiddenTester {
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
 		WaitingAsserter waitingAsserter = getWaitingAsserter();
-		waitingAsserter.assertTextPresentInElement("Apr 5, 33", modelValue1Xpath);
+		waitingAsserter.assertTextPresentInElement("Apr 5, 0033", modelValue1Xpath);
 
 		// Test that the hidden value clears successfully.
 		browserDriver.clickElement(clearButton1Xpath);
