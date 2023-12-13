@@ -344,6 +344,16 @@
 				<version>4.0.0</version>
 			</dependency>
 			<dependency>
+				<groupId>com.liferay.faces.test</groupId>
+				<artifactId>com.liferay.faces.test.selenium</artifactId>
+				<version>0.5.5</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ocpsoft</groupId>
+				<artifactId>prettyfaces-jsf2</artifactId>
+				<version>3.3.3</version>
+			</dependency>
+			<dependency>
 				<groupId>javax.annotation</groupId>
 				<artifactId>javax.annotation-api</artifactId>
 				<version>1.2</version>
@@ -422,9 +432,9 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>com.ocpsoft</groupId>
-				<artifactId>prettyfaces-jsf2</artifactId>
-				<version>3.3.3</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.7.25</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
