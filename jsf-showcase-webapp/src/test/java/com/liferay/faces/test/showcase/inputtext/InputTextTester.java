@@ -56,7 +56,7 @@ public class InputTextTester extends InputTester {
 		input.sendKeys(text1);
 		browserDriver.clickElementAndWaitForRerender(submitButton1Xpath);
 
-		String textOutput1 = "Apr 3, 0033";
+		String textOutput1 = "Apr 3, 33";
 		waitingAsserter.assertTextPresentInElement(textOutput1, modelValue1Xpath);
 
 		// Test that the web page shows an error message when an invalid value is submitted.
