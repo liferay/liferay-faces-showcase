@@ -284,7 +284,7 @@ public class TesterBase extends FileUploadTesterBase {
 		}
 
 		// Reset to page load timeout to inifinity (the default).
-		browserDriver.setPageLoadTimeout(-1);
+		browserDriver.setPageLoadTimeout(Integer.MAX_VALUE);
 
 		// If the url is null or "about:blank", the browser likely could not connect to the website, so fall back
 		// to testing the link on the original page.
