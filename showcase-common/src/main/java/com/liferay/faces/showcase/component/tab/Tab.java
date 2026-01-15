@@ -15,12 +15,12 @@
  */
 package com.liferay.faces.showcase.component.tab;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIColumn;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIData;
-import javax.faces.model.DataModel;
-import javax.faces.render.Renderer;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIColumn;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIData;
+import jakarta.faces.model.DataModel;
+import jakarta.faces.render.Renderer;
 
 
 /**
@@ -35,13 +35,13 @@ import javax.faces.render.Renderer;
  }
  * </pre>
  *
- * Note that this class ultimately extends {@link javax.faces.component.UIColumn} because the {@link
- * com.liferay.faces.showcase.component.tabview.TabView} class ultimately extends {@link javax.faces.component.UIData}
- * (which handles children of type {@link javax.faces.component.UIColumn} in a special manner). In fact, the JavaDoc
- * description for the {@link javax.faces.component.UIData} class states that _ONLY_ children of type {@link
- * javax.faces.component.UIColumn} should be processed by associated {@link Renderer} classes. One of the most important
- * benefits of extending {@link javax.faces.component.UIColumn} is that the {@link
- * javax.faces.component.UIData#getClientId()} method will append the rowIndex during iteration over a {@link
+ * Note that this class ultimately extends {@link jakarta.faces.component.UIColumn} because the {@link
+ * com.liferay.faces.showcase.component.tabview.TabView} class ultimately extends {@link jakarta.faces.component.UIData}
+ * (which handles children of type {@link jakarta.faces.component.UIColumn} in a special manner). In fact, the JavaDoc
+ * description for the {@link jakarta.faces.component.UIData} class states that _ONLY_ children of type {@link
+ * jakarta.faces.component.UIColumn} should be processed by associated {@link Renderer} classes. One of the most important
+ * benefits of extending {@link jakarta.faces.component.UIColumn} is that the {@link
+ * jakarta.faces.component.UIData#getClientId()} method will append the rowIndex during iteration over a {@link
  * DataModel}, ensuring that each rendered {@link Tab} will have a unique clientId.
  *
  * @author  Neil Griffin

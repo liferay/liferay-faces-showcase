@@ -20,24 +20,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import javax.el.ELContext;
-import javax.el.ExpressionFactory;
-import javax.el.ValueExpression;
-import javax.faces.application.Application;
-import javax.faces.application.ProjectStage;
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.component.behavior.AjaxBehavior;
-import javax.faces.component.html.HtmlSelectBooleanCheckbox;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ComponentSystemEventListener;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.PostAddToViewEvent;
-import javax.faces.render.FacesRenderer;
+import jakarta.el.ELContext;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.ValueExpression;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.application.ResourceDependency;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.component.behavior.AjaxBehavior;
+import jakarta.faces.component.html.HtmlSelectBooleanCheckbox;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ComponentSystemEventListener;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.PostAddToViewEvent;
+import jakarta.faces.render.FacesRenderer;
 
 import com.liferay.faces.showcase.component.example.Example;
 import com.liferay.faces.util.context.FacesContextHelperUtil;
@@ -193,7 +193,7 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 			String library = (String) headResourceComponentAttributes.get("library");
 			String name = (String) headResourceComponentAttributes.get("name");
 
-			if ("javax.faces".equals(library) && "jsf.js".equals(name)) {
+			if ("jakarta.faces".equals(library) && "jsf.js".equals(name)) {
 				foundDependency = true;
 
 				break;
@@ -209,7 +209,7 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 				String library = (String) headResourceComponentAttributes.get("library");
 				String name = (String) headResourceComponentAttributes.get("name");
 
-				if ("javax.faces".equals(library) && "jsf.js".equals(name)) {
+				if ("jakarta.faces".equals(library) && "jsf.js".equals(name)) {
 					foundDependency = true;
 
 					break;
@@ -220,11 +220,11 @@ public class ExampleRenderer extends ExampleRendererBase implements ComponentSys
 		if (!foundDependency) {
 
 			Application application = facesContext.getApplication();
-			UIComponent scriptComponent = application.createComponent("javax.faces.Output");
-			scriptComponent.getAttributes().put("library", "javax.faces");
+			UIComponent scriptComponent = application.createComponent("jakarta.faces.Output");
+			scriptComponent.getAttributes().put("library", "jakarta.faces");
 			scriptComponent.getAttributes().put("name", "jsf.js");
 			scriptComponent.getAttributes().put("target", "head");
-			scriptComponent.setRendererType("javax.faces.resource.Script");
+			scriptComponent.setRendererType("jakarta.faces.resource.Script");
 			viewRoot.addComponentResource(facesContext, scriptComponent);
 		}
 	}

@@ -74,8 +74,8 @@
 	</modules>
 
 	<properties>
-		<faces.api.group.id>javax.faces</faces.api.group.id>
-		<faces.api.artifact.id>javax.faces-api</faces.api.artifact.id>
+		<faces.api.group.id>jakarta.faces</faces.api.group.id>
+		<faces.api.artifact.id>jakarta.faces-api</faces.api.artifact.id>
 		<faces.api.scope>provided</faces.api.scope>
 		<faces.api.version>${faces.spec.version}</faces.api.version>
 		<faces.impl.group.id>org.glassfish</faces.impl.group.id>
@@ -379,43 +379,43 @@
 				<version>3.3.3</version>
 			</dependency>
 			<dependency>
-				<groupId>javax.annotation</groupId>
-				<artifactId>javax.annotation-api</artifactId>
+				<groupId>jakarta.annotation</groupId>
+				<artifactId>jakarta.annotation-api</artifactId>
 				<version>1.2</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>javax.el</groupId>
-				<artifactId>javax.el-api</artifactId>
+				<groupId>jakarta.el</groupId>
+				<artifactId>jakarta.el-api</artifactId>
 				<version>2.2.1</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>javax.faces</groupId>
-				<artifactId>javax.faces-api</artifactId>
+				<groupId>jakarta.faces</groupId>
+				<artifactId>jakarta.faces-api</artifactId>
 				<version>${faces.api.version}</version>
 				<scope>${faces.api.scope}</scope>
 			</dependency>
 			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
+				<groupId>jakarta.inject</groupId>
+				<artifactId>jakarta.inject</artifactId>
 				<version>1</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>javax.servlet.jsp-api</artifactId>
+				<groupId>jakarta.servlet.jsp</groupId>
+				<artifactId>jakarta.servlet.jsp-api</artifactId>
 				<version>2.2.1</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
+				<groupId>jakarta.servlet</groupId>
+				<artifactId>jakarta.servlet-api</artifactId>
 				<version>3.0.1</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>javax.validation</groupId>
+				<groupId>jakarta.validation</groupId>
 				<artifactId>validation-api</artifactId>
 				<version>2.0.1.Final</version>
 			</dependency>
@@ -436,11 +436,11 @@
 				<version>1.2</version>
 				<exclusions>
 					<exclusion>
-						<groupId>javax.servlet</groupId>
+						<groupId>jakarta.servlet</groupId>
 						<artifactId>servlet-api</artifactId>
 					</exclusion>
 					<exclusion>
-						<groupId>javax.servlet.jsp</groupId>
+						<groupId>jakarta.servlet.jsp</groupId>
 						<artifactId>jsp-api</artifactId>
 					</exclusion>
 				</exclusions>

@@ -111,7 +111,7 @@ public class TesterBase extends FileUploadTesterBase {
 			imageSrc.matches(".*/resources/images/[a-z-]+[.]png.*") ||
 
 			// JSF Resource URL:
-			(imageSrc.matches(".*javax.faces.resource\\p{Punct}[a-z-]+[.]png.*") &&
+			(imageSrc.matches(".*jakarta.faces.resource\\p{Punct}[a-z-]+[.]png.*") &&
 				imageSrc.matches(".*ln\\p{Punct}images.*")));
 
 		Boolean imageRendered = (Boolean) browserDriver.executeScriptInCurrentWindow(

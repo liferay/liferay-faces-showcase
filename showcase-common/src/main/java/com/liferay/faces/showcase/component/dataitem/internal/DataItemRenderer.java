@@ -15,7 +15,7 @@
  */
 package com.liferay.faces.showcase.component.dataitem.internal;
 
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.render.FacesRenderer;
 
 import com.liferay.faces.showcase.component.dataitem.DataItem;
 

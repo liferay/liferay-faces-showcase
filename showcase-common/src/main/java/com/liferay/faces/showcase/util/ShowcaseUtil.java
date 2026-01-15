@@ -89,7 +89,7 @@ public class ShowcaseUtil {
 	private static final String NAMESPACE_PREFIX_PORTLET = "portlet";
 	private static final String NAMESPACE_PREFIX_PORTAL = "portal";
 	private static final String NAMESPACE_PREFIX_UI = "ui";
-	private static final String PORTLET_API_PACKAGE_PREFIX = "javax.portlet";
+	private static final String PORTLET_API_PACKAGE_PREFIX = "jakarta.portlet";
 	private static final String PORTLET_API_JAVADOC_BASE_URL = "http://docs.liferay.com/portlet-api/2.0/javadocs";
 	private static final String REGEX_COLON = "[:]";
 	private static final String REGEX_DOT = "[.]";

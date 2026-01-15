@@ -21,15 +21,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.component.EditableValueHolder;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.component.UIMessage;
-import javax.faces.component.html.HtmlSelectBooleanCheckbox;
-import javax.faces.context.FacesContext;
-import javax.faces.context.PartialViewContext;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.EditableValueHolder;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.UIMessage;
+import jakarta.faces.component.html.HtmlSelectBooleanCheckbox;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.PartialViewContext;
 
 import com.liferay.faces.util.component.ComponentUtil;
 

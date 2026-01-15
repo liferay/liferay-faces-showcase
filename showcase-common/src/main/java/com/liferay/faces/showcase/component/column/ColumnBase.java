@@ -16,8 +16,8 @@
 package com.liferay.faces.showcase.component.column;
 //J-
 
-import javax.annotation.Generated;
-import javax.faces.component.html.HtmlColumn;
+import jakarta.annotation.Generated;
+import jakarta.faces.component.html.HtmlColumn;
 
 import com.liferay.faces.util.component.Styleable;
 

@@ -16,7 +16,7 @@
 package com.liferay.faces.showcase.component.outputsourcecode.internal;
 //J-
 
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 import com.liferay.faces.util.render.DelegatingRendererBase;
 
@@ -40,7 +40,7 @@ public abstract class OutputSourceCodeRendererBase extends DelegatingRendererBas
 
 	@Override
 	public String getDelegateRendererType() {
-		return "javax.faces.Text";
+		return "jakarta.faces.Text";
 	}
 }
 //J+

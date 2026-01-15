@@ -15,9 +15,9 @@
  */
 package com.liferay.faces.showcase.bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.event.ActionEvent;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.RequestScoped;
+import jakarta.faces.event.ActionEvent;
 
 
 /**

@@ -15,7 +15,7 @@
  */
 package com.liferay.faces.showcase.component.outputsourcecode;
 
-import javax.faces.component.FacesComponent;
+import jakarta.faces.component.FacesComponent;
 
 
 /**

@@ -20,8 +20,8 @@ import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.faces.application.ProjectStage;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.context.FacesContext;
 
 import com.liferay.faces.showcase.util.CodeExampleUtil;
 import com.liferay.faces.util.logging.Logger;

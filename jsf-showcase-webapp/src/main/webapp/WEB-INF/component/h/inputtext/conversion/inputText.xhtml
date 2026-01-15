@@ -8,7 +8,7 @@
 		<h:form>
 			<showcase:example description="#{i18n['conversion-to-a-date-using-converter-attribute']}" number="1">
 				<showcase:field>
-					<h:inputText id="text" converter="javax.faces.DateTime"
+					<h:inputText id="text" converter="jakarta.faces.DateTime"
 						converterMessage="#{i18n['converter-message']}"
 						value="#{inputTextModelBean.date}" />
 					<br />
@@ -20,7 +20,7 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<h:outputText id="modelValue" converter="javax.faces.DateTime" value="#{inputTextModelBean.date}" />
+				<h:outputText id="modelValue" converter="jakarta.faces.DateTime" value="#{inputTextModelBean.date}" />
 			</showcase:results>
 		</h:form>
 	</ui:define>

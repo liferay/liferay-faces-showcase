@@ -17,12 +17,12 @@ package com.liferay.faces.showcase.bean;
 
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.component.UICommand;
-import javax.faces.event.ActionEvent;
-import javax.servlet.http.Part;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.event.ActionEvent;
+import jakarta.servlet.http.Part;
 
 import com.liferay.faces.showcase.dto.UploadedFilePart;
 import com.liferay.faces.util.logging.Logger;

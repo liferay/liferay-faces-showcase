@@ -16,9 +16,9 @@
 package com.liferay.faces.showcase.component.icon.internal;
 //J-
 
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
-import javax.faces.render.Renderer;
+import jakarta.faces.render.Renderer;
 
 
 /**

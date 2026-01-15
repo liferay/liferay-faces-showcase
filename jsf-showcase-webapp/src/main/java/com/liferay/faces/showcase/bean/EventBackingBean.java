@@ -15,10 +15,10 @@
  */
 package com.liferay.faces.showcase.bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.RequestScoped;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
 
 
 /**

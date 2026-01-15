@@ -17,10 +17,10 @@ package com.liferay.faces.showcase.bean;
 
 import java.io.Serializable;
 
-import javax.faces.application.ProjectStage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.ViewScoped;
 
 import com.liferay.faces.showcase.dto.SelectedComponent;
 import com.liferay.faces.showcase.dto.SelectedComponentImpl;

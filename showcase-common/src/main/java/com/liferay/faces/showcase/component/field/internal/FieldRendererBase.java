@@ -16,7 +16,7 @@
 package com.liferay.faces.showcase.component.field.internal;
 //J-
 
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 import com.liferay.faces.showcase.component.panelgroup.internal.PanelGroupRendererBase;
 

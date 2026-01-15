@@ -17,8 +17,8 @@ package com.liferay.faces.showcase.application.internal;
 
 import java.io.Serializable;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 
 import com.liferay.faces.util.application.ResourceUtil;
 import com.liferay.faces.util.application.ResourceVerifier;

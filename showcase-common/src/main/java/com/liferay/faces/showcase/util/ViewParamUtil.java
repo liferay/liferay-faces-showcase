@@ -15,10 +15,10 @@
  */
 package com.liferay.faces.showcase.util;
 
-import javax.el.ELContext;
-import javax.el.ELResolver;
-import javax.faces.application.Application;
-import javax.faces.context.FacesContext;
+import jakarta.el.ELContext;
+import jakarta.el.ELResolver;
+import jakarta.faces.application.Application;
+import jakarta.faces.context.FacesContext;
 
 import com.liferay.faces.showcase.bean.ShowcaseModelBean;
 import com.liferay.faces.showcase.bean.ShowcaseModelBean.ViewParameters;

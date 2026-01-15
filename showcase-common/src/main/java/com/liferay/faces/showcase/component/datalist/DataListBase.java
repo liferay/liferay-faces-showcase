@@ -16,8 +16,8 @@
 package com.liferay.faces.showcase.component.datalist;
 //J-
 
-import javax.annotation.Generated;
-import javax.faces.component.UIData;
+import jakarta.annotation.Generated;
+import jakarta.faces.component.UIData;
 
 import com.liferay.faces.util.component.Styleable;
 

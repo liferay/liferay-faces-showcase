@@ -44,17 +44,17 @@
 		</attribute>
 		<tag-extension>
 			<extends-tags>styleable uiComponentBaseInherited uiDataInherited</extends-tags>
-			<parent-class><![CDATA[javax.faces.component.UIData]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.UIData]]></parent-class>
 		</tag-extension>
 	</tag>
 	<tag>
 		<description><![CDATA[ButtonRow is a UIPanel component that renders a <code>&lt;div&gt;</code> element for grouping purposes. Since it extends HtmlPanelGroup, it supports all the features of h:panelGroup.]]></description>
 		<tag-name>buttonRow</tag-name>
 		<tag-extension>
-			<delegate-renderer-type><![CDATA["javax.faces.Group"]]></delegate-renderer-type>
+			<delegate-renderer-type><![CDATA["jakarta.faces.Group"]]></delegate-renderer-type>
 			<extends-tags>htmlCommonEventsInherited</extends-tags>
 			<extra-style-classes>button-holder</extra-style-classes>
-			<parent-class><![CDATA[javax.faces.component.html.HtmlPanelGroup]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.html.HtmlPanelGroup]]></parent-class>
 			<renderer-parent-class><![CDATA[com.liferay.faces.util.render.DelegatingRendererBase]]></renderer-parent-class>
 		</tag-extension>
 	</tag>
@@ -151,7 +151,7 @@
 		</attribute>
 		<tag-extension>
 			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
-			<parent-class><![CDATA[javax.faces.component.html.HtmlColumn]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.html.HtmlColumn]]></parent-class>
 		</tag-extension>
 	</tag>
 	<tag>
@@ -176,7 +176,7 @@
 		<tag-name>dataItem</tag-name>
 		<tag-extension>
 			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
-			<parent-class>javax.faces.component.UIColumn</parent-class>
+			<parent-class>jakarta.faces.component.UIColumn</parent-class>
 		</tag-extension>
 	</tag>
 	<tag>
@@ -192,7 +192,7 @@
 		</attribute>
 		<tag-extension>
 			<extends-tags>styleable uiComponentBaseInherited uiDataInherited</extends-tags>
-			<parent-class><![CDATA[javax.faces.component.UIData]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.UIData]]></parent-class>
 		</tag-extension>
 	</tag>
 	<tag>
@@ -315,10 +315,10 @@
 			<type><![CDATA[java.lang.String]]></type>
 		</attribute>
 		<tag-extension>
-			<delegate-renderer-type><![CDATA["javax.faces.Text"]]></delegate-renderer-type>
+			<delegate-renderer-type><![CDATA["jakarta.faces.Text"]]></delegate-renderer-type>
 			<extends-tags>htmlPassthroughInherited uiOutputInherited</extends-tags>
 			<extra-style-classes>prettyprint linenums</extra-style-classes>
-			<parent-class><![CDATA[javax.faces.component.html.HtmlOutputText]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.html.HtmlOutputText]]></parent-class>
 			<renderer-parent-class><![CDATA[com.liferay.faces.util.render.DelegatingRendererBase]]></renderer-parent-class>
 		</tag-extension>
 	</tag>
@@ -376,9 +376,9 @@
 			<type><![CDATA[java.lang.String]]></type>
 		</attribute>
 		<tag-extension>
-			<delegate-renderer-type><![CDATA["javax.faces.Group"]]></delegate-renderer-type>
+			<delegate-renderer-type><![CDATA["jakarta.faces.Group"]]></delegate-renderer-type>
 			<extends-tags>htmlCommonEventsInherited</extends-tags>
-			<parent-class><![CDATA[javax.faces.component.html.HtmlPanelGroup]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.html.HtmlPanelGroup]]></parent-class>
 			<renderer-parent-class><![CDATA[com.liferay.faces.util.render.DelegatingRendererBase]]></renderer-parent-class>
 		</tag-extension>
 	</tag>
@@ -387,7 +387,7 @@
 		<tag-name>row</tag-name>
 		<tag-extension>
 			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
-			<parent-class><![CDATA[javax.faces.component.UIPanel]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.UIPanel]]></parent-class>
 		</tag-extension>
 	</tag>
 	<tag>
@@ -419,7 +419,7 @@
 		</attribute>
 		<tag-extension>
 			<extends-tags>styleable uiComponentBaseInherited</extends-tags>
-			<parent-class><![CDATA[javax.faces.component.UIColumn]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.UIColumn]]></parent-class>
 		</tag-extension>
 	</tag>
 	<tag>
@@ -440,7 +440,7 @@
 		</attribute>
 		<tag-extension>
 			<extends-tags>styleable uiComponentBaseInherited uiDataInherited</extends-tags>
-			<parent-class><![CDATA[javax.faces.component.UIData]]></parent-class>
+			<parent-class><![CDATA[jakarta.faces.component.UIData]]></parent-class>
 		</tag-extension>
 	</tag>
 </facelet-taglib>

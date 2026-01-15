@@ -19,21 +19,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.application.Application;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIData;
-import javax.faces.component.UIPanel;
-import javax.faces.component.UniqueIdVendor;
-import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.ComponentConfig;
-import javax.faces.view.facelets.ComponentHandler;
-import javax.faces.view.facelets.FaceletContext;
+import jakarta.faces.application.Application;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIData;
+import jakarta.faces.component.UIPanel;
+import jakarta.faces.component.UniqueIdVendor;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.facelets.ComponentConfig;
+import jakarta.faces.view.facelets.ComponentHandler;
+import jakarta.faces.view.facelets.FaceletContext;
 
 
 /**
  * This class provides alloy:tab with the ability to implicitly wrap the tab's children inside of a {@link UIPanel}
- * facet. This is necessary because {@link UIData#visitTree(javax.faces.component.visit.VisitContext,
- * javax.faces.component.visit.VisitCallback)} will visit facets but not children when it is not iterating over data
+ * facet. This is necessary because {@link UIData#visitTree(jakarta.faces.component.visit.VisitContext,
+ * jakarta.faces.component.visit.VisitCallback)} will visit facets but not children when it is not iterating over data
  * (i.e. when the value and var attributes are unused).
  *
  * @author  Neil Griffin

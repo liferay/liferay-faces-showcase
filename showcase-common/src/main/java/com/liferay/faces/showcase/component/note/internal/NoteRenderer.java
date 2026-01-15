@@ -17,14 +17,14 @@ package com.liferay.faces.showcase.component.note.internal;
 
 import java.io.IOException;
 
-import javax.faces.application.Application;
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceDependency;
-import javax.faces.application.ResourceHandler;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceDependency;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.render.FacesRenderer;
 
 import com.liferay.faces.showcase.component.note.Note;
 

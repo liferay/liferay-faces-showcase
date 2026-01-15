@@ -17,15 +17,15 @@ package com.liferay.faces.showcase.component.column.internal;
 
 import java.io.IOException;
 
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.UIComponent;
-import javax.faces.component.html.HtmlDataTable;
-import javax.faces.component.html.HtmlPanelGrid;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.application.ResourceDependency;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.html.HtmlDataTable;
+import jakarta.faces.component.html.HtmlPanelGrid;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.render.FacesRenderer;
 
 import com.liferay.faces.showcase.component.column.Column;
 import com.liferay.faces.util.render.RendererUtil;

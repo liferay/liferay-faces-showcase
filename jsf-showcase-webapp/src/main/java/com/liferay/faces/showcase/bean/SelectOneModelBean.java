@@ -18,9 +18,9 @@ package com.liferay.faces.showcase.bean;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
 
 import com.liferay.faces.showcase.dto.LiferayBenefit;
 import com.liferay.faces.showcase.service.LiferayBenefitService;

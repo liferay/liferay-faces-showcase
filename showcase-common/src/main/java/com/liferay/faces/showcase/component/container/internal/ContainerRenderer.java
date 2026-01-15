@@ -15,8 +15,8 @@
  */
 package com.liferay.faces.showcase.component.container.internal;
 
-import javax.faces.application.ResourceDependency;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.application.ResourceDependency;
+import jakarta.faces.render.FacesRenderer;
 
 import com.liferay.faces.showcase.component.container.Container;
 

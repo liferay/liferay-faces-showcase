@@ -18,11 +18,11 @@ package com.liferay.faces.showcase.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.el.ELContext;
-import javax.el.ELResolver;
-import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import jakarta.el.ELContext;
+import jakarta.el.ELResolver;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 
 import com.liferay.faces.showcase.comparator.CustomerComparator;
 import com.liferay.faces.showcase.dto.Customer;

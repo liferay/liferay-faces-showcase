@@ -21,8 +21,8 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.Map;
 
-import javax.faces.FacesWrapper;
-import javax.servlet.http.Part;
+import jakarta.faces.FacesWrapper;
+import jakarta.servlet.http.Part;
 
 import com.liferay.faces.util.model.UploadedFile;
 

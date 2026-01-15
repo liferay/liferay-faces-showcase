@@ -17,7 +17,7 @@ package com.liferay.faces.showcase.dto;
 
 import java.util.List;
 
-import javax.faces.FacesWrapper;
+import jakarta.faces.FacesWrapper;
 
 
 /**

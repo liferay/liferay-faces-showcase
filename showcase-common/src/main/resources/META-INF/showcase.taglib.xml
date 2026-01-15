@@ -34,7 +34,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -94,7 +94,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -196,7 +196,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Space-delimited list of component ids that are to participate in the APPLY_REQUEST_VALUES, PROCESS_VALIDATIONS, UPDATE_MODEL_VALUES, and INVOKE_APPLICATION phases of the JSF lifecycle. The following keywords may also appear in the list: <code>@this</code>, <code>@form</code>, <code>@all</code>, <code>@none</code>, <code>@parent</code>. The default value is <code>@parent</code> (meaning, the parent showcase:dataTable).]]></description>
@@ -322,7 +322,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -430,7 +430,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -472,7 +472,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -532,7 +532,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The description the component.]]></description>
@@ -664,7 +664,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -784,7 +784,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The color of the icon which this component will render. Valid values include black (the default) and white.]]></description>
@@ -838,7 +838,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -952,13 +952,13 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The class name of the converter instance that is to be used by this component.]]></description>
 			<name>converter</name>
 			<required>false</required>
-			<type>javax.faces.convert.Converter</type>
+			<type>jakarta.faces.convert.Converter</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[HTML passthrough attribute specifying the reading direction for the element For example, right to left (RTL), or left to right (LTR).]]></description>
@@ -1042,7 +1042,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The text to place in the footer of the component.]]></description>
@@ -1162,7 +1162,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -1270,7 +1270,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -1384,7 +1384,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A unique identifier for this component.]]></description>
@@ -1427,7 +1427,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[When showcase:tab is a child of showcase:accordion, this is the name of the CSS class that is to be rendered within the class attribute of the content &lt;div&gt;]]></description>
@@ -1493,7 +1493,7 @@
 			<description><![CDATA[An EL expression that binds the Java reference to this component in the component tree to a bean property.]]></description>
 			<name>binding</name>
 			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
+			<type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The the height (in pixels) of the rendered <code>&lt;div&gt;</code>.]]></description>

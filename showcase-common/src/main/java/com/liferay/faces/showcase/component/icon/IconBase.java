@@ -16,8 +16,8 @@
 package com.liferay.faces.showcase.component.icon;
 //J-
 
-import javax.annotation.Generated;
-import javax.faces.component.UIComponentBase;
+import jakarta.annotation.Generated;
+import jakarta.faces.component.UIComponentBase;
 
 import com.liferay.faces.util.component.Styleable;
 

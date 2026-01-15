@@ -15,10 +15,10 @@
  */
 package com.liferay.faces.showcase.bean;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
 
 import com.liferay.faces.showcase.dto.Country;
 import com.liferay.faces.showcase.service.CountryService;

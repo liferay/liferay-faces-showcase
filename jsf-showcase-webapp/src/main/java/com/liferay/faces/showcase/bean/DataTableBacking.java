@@ -18,10 +18,10 @@ package com.liferay.faces.showcase.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.faces.model.DataModel;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.ViewScoped;
+import jakarta.faces.model.DataModel;
 
 import com.liferay.faces.showcase.dto.Customer;
 import com.liferay.faces.showcase.model.CustomerOnDemandDataModel;

@@ -10,7 +10,7 @@
 				<showcase:container>
 					<h:outputText value="#{i18n['this-is-a-div-that-contains-a-hidden-input']}" />
 					<showcase:field>
-						<h:inputHidden id="hidden1" binding="#{inputHidden1}" converter="javax.faces.DateTime"
+						<h:inputHidden id="hidden1" binding="#{inputHidden1}" converter="jakarta.faces.DateTime"
 							converterMessage="#{i18n['converter-message']}" value="#{inputHiddenModelBean.date}" />
 						<h:message for="hidden1" />
 					</showcase:field>
@@ -27,7 +27,7 @@
 				</h:commandButton>
 			</showcase:example>
 			<showcase:results label="#{i18n['model-value']}">
-				<h:outputText id="modelValue" converter="javax.faces.DateTime"
+				<h:outputText id="modelValue" converter="jakarta.faces.DateTime"
 					value="#{inputHiddenModelBean.date}" />
 			</showcase:results>
 		</h:form>
