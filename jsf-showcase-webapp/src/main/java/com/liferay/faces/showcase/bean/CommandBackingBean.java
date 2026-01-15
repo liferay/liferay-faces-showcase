@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ManagedProperty;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.component.UICommand;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.component.UIOutput;
@@ -40,14 +40,14 @@ import com.liferay.faces.util.logging.LoggerFactory;
  * @author  Vernon Singleton
  * @author  Kyle Stiemann
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class CommandBackingBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(CommandBackingBean.class);
 
 	// Injections
-	@ManagedProperty(value = "#{commandModelBean}")
+	@Inject
 	private CommandModelBean commandModelBean;
 
 	public void actionListener(ActionEvent actionEvent) {

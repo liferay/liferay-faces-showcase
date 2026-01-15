@@ -16,9 +16,9 @@
 package com.liferay.faces.showcase.bean;
 
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ManagedProperty;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.PhaseId;
@@ -32,13 +32,13 @@ import com.liferay.faces.util.logging.LoggerFactory;
 /**
  * @author  Neil Griffin
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class InputTextBackingBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(InputTextBackingBean.class);
 
-	@ManagedProperty(value = "#{inputTextModelBean}")
+	@Inject
 	private InputTextModelBean inputTextModelBean;
 
 	public void emailAddressValidator(FacesContext facesContext, UIComponent uiComponent, Object value)

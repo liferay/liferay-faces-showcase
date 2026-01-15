@@ -15,15 +15,15 @@
  */
 package com.liferay.faces.showcase.bean;
 
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.validation.constraints.Pattern;
 
 
 /**
  * @author  Juan Gonzalez
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class ValidationModelBean {
 

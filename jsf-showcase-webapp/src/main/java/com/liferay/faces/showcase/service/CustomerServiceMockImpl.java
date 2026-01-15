@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.TimeZone;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.faces.bean.ApplicationScoped;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ManagedProperty;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
 
 import com.liferay.faces.showcase.dto.Country;
 import com.liferay.faces.showcase.dto.Customer;
@@ -38,7 +38,7 @@ import com.liferay.faces.showcase.dto.Customer;
  * @author  Neil Griffin
  */
 @ApplicationScoped
-@ManagedBean(name = "customerService")
+@Named("customerService")
 public class CustomerServiceMockImpl implements CustomerService, Serializable {
 
 	// serialVersionUID
@@ -48,7 +48,7 @@ public class CustomerServiceMockImpl implements CustomerService, Serializable {
 	private List<Customer> allCustomers;
 
 	// Injections
-	@ManagedProperty(value = "#{countryService}")
+	@Inject
 	private CountryService countryService;
 
 	@Override

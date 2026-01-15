@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import jakarta.faces.bean.ApplicationScoped;
-import jakarta.faces.bean.ManagedBean;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import com.liferay.faces.showcase.dto.LiferayBenefit;
 
@@ -28,7 +28,7 @@ import com.liferay.faces.showcase.dto.LiferayBenefit;
 /**
  * @author  Neil Griffin
  */
-@ManagedBean(name = "liferayBenefitService", eager = true)
+@Named("liferayBenefitService")
 @ApplicationScoped
 public class LiferayBenefitServiceMockImpl implements LiferayBenefitService {
 

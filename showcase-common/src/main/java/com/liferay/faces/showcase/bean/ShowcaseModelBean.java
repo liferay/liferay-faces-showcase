@@ -18,9 +18,10 @@ package com.liferay.faces.showcase.bean;
 import java.io.Serializable;
 
 import jakarta.faces.application.ProjectStage;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ManagedProperty;
-import jakarta.faces.bean.ViewScoped;
+
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import com.liferay.faces.showcase.dto.SelectedComponent;
 import com.liferay.faces.showcase.dto.SelectedComponentImpl;
@@ -34,7 +35,7 @@ import com.liferay.faces.util.product.ProductFactory;
 /**
  * @author  Neil Griffin
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class ShowcaseModelBean implements Serializable {
 
@@ -62,7 +63,7 @@ public class ShowcaseModelBean implements Serializable {
 			Product.Name.LIFERAY_FACES_BRIDGE).isDetected();
 
 	// Injections
-	@ManagedProperty(name = "listModelBean", value = "#{listModelBean}")
+	@Inject
 	private transient ListModelBean listModelBean;
 
 	// Private Data Members

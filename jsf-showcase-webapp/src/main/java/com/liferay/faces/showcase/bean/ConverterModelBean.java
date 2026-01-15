@@ -16,9 +16,9 @@
 package com.liferay.faces.showcase.bean;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ManagedProperty;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
 
 import com.liferay.faces.showcase.dto.Country;
 import com.liferay.faces.showcase.service.CountryService;
@@ -27,11 +27,11 @@ import com.liferay.faces.showcase.service.CountryService;
 /**
  * @author  Juan Gonzalez
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class ConverterModelBean {
 
-	@ManagedProperty(value = "#{countryService}")
+	@Inject
 	private CountryService countryService;
 
 	// Private properties

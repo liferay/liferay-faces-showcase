@@ -18,14 +18,14 @@ package com.liferay.faces.showcase.bean;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 
 /**
  * @author  Vernon Singleton
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class OutputTextModelBean {
 

@@ -17,9 +17,9 @@ package com.liferay.faces.showcase.bean;
 
 import java.util.List;
 
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ManagedProperty;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
 
 import com.liferay.faces.showcase.dto.LiferayBenefit;
 import com.liferay.faces.showcase.service.LiferayBenefitService;
@@ -28,7 +28,7 @@ import com.liferay.faces.showcase.service.LiferayBenefitService;
 /**
  * @author  Vernon Singleton
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class StarRatingModelBean {
 
@@ -36,7 +36,7 @@ public class StarRatingModelBean {
 	private Long favoriteId;
 	private Long benefitId = 3L;
 
-	@ManagedProperty(name = "liferayBenefitService", value = "#{liferayBenefitService}")
+	@Inject
 	private LiferayBenefitService liferayBenefitService;
 
 	public Long getBenefitId() {

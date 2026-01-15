@@ -15,14 +15,14 @@
  */
 package com.liferay.faces.showcase.bean;
 
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 
 
 /**
  * @author  Neil Griffin
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class ButtonBean {
 

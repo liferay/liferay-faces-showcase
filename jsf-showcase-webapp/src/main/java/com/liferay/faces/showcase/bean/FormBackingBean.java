@@ -16,8 +16,8 @@
 package com.liferay.faces.showcase.bean;
 
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 
 
@@ -25,7 +25,7 @@ import jakarta.faces.context.FacesContext;
  * @author  Neil Griffin
  */
 @RequestScoped
-@ManagedBean
+@Named
 public class FormBackingBean {
 
 	public void submit() {

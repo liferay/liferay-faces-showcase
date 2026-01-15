@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.TimeZone;
 
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.bean.ManagedProperty;
-import jakarta.faces.bean.RequestScoped;
+import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.PhaseId;
 import jakarta.faces.event.ValueChangeEvent;
@@ -36,13 +36,13 @@ import com.liferay.faces.util.logging.LoggerFactory;
 /**
  * @author  Vernon Singleton
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class SelectManyBackingBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(SelectManyBackingBean.class);
 
-	@ManagedProperty(name = "selectManyModelBean", value = "#{selectManyModelBean}")
+	@Inject
 	private SelectManyModelBean selectManyModelBean;
 
 	public void setSelectManyModelBean(SelectManyModelBean selectManyModelBean) {
