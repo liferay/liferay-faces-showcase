@@ -432,16 +432,16 @@
 			</dependency>
 			<dependency>
 				<groupId>org.glassfish.web</groupId>
-				<artifactId>jstl-impl</artifactId>
-				<version>1.2</version>
+				<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+				<version>3.0.1</version>
 				<exclusions>
 					<exclusion>
 						<groupId>jakarta.servlet</groupId>
-						<artifactId>servlet-api</artifactId>
+						<artifactId>jakarta.servlet-api</artifactId>
 					</exclusion>
 					<exclusion>
 						<groupId>jakarta.servlet.jsp</groupId>
-						<artifactId>jsp-api</artifactId>
+						<artifactId>jakarta.servlet.jsp-api</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
