@@ -18,14 +18,14 @@ package com.liferay.faces.showcase.bean;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.RequestScoped;
 
 
 /**
  * @author  Juan Gonzalez
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class PassThroughAttributesBackingBean {
 

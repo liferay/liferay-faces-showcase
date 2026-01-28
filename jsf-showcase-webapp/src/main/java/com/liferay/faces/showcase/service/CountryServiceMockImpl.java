@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Named;
+import jakarta.faces.bean.ApplicationScoped;
+import jakarta.faces.bean.ManagedBean;
 
 import com.liferay.faces.showcase.dto.Country;
 
@@ -33,7 +33,7 @@ import com.liferay.faces.showcase.dto.Country;
  * @author  Neil Griffin
  */
 @ApplicationScoped
-@Named("countryService")
+@ManagedBean(name = "countryService")
 public class CountryServiceMockImpl implements CountryService, Serializable {
 
 	// serialVersionUID

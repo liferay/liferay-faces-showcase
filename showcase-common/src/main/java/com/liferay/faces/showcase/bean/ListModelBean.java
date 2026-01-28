@@ -30,8 +30,8 @@ import java.util.Set;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.ProjectStage;
-import jakarta.inject.Named;
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.bean.ApplicationScoped;
+import jakarta.faces.bean.ManagedBean;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 
@@ -50,7 +50,7 @@ import com.liferay.faces.util.product.ProductFactory;
 /**
  * @author  Neil Griffin
  */
-@Named
+@ManagedBean(eager = true)
 @ApplicationScoped
 public class ListModelBean {
 

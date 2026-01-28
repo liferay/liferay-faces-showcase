@@ -16,9 +16,9 @@
 package com.liferay.faces.showcase.bean;
 
 import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
 import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.ValidatorException;
@@ -30,13 +30,13 @@ import com.liferay.faces.util.logging.LoggerFactory;
 /**
  * @author  Kyle Stiemann
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class FieldBackingBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(FieldBackingBean.class);
 
-	@Inject
+	@ManagedProperty(value = "#{fieldModelBean}")
 	private FieldModelBean fieldModelBean;
 
 	public void errorValidator(FacesContext facesContext, UIComponent uiComponent, Object value)

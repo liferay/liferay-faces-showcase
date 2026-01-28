@@ -15,15 +15,15 @@
  */
 package com.liferay.faces.showcase.bean;
 
-import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.RequestScoped;
 
 
 /**
  * @author  Neil Griffin
  */
 @RequestScoped
-@Named
+@ManagedBean
 public class FieldModelBean {
 
 	private String firstName;

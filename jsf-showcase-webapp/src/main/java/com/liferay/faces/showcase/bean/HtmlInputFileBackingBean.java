@@ -17,9 +17,9 @@ package com.liferay.faces.showcase.bean;
 
 import java.util.List;
 
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
 import jakarta.faces.component.UICommand;
 import jakarta.faces.event.ActionEvent;
 import jakarta.servlet.http.Part;
@@ -34,14 +34,14 @@ import com.liferay.faces.util.model.UploadedFile;
  * @author  Neil Griffin
  */
 @RequestScoped
-@Named
+@ManagedBean
 public class HtmlInputFileBackingBean {
 
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(HtmlInputFileBackingBean.class);
 
 	// Injections
-	@Inject
+	@ManagedProperty(value = "#{htmlInputFileModelBean}")
 	private HtmlInputFileModelBean htmlInputFileModelBean;
 
 	// Private Data Members
@@ -83,7 +83,7 @@ public class HtmlInputFileBackingBean {
 
 	public void setHtmlInputFileModelBean(HtmlInputFileModelBean htmlInputFileModelBean) {
 
-		// Injected via @Inject annotation
+		// Injected via @ManagedProperty annotation
 		this.htmlInputFileModelBean = htmlInputFileModelBean;
 	}
 

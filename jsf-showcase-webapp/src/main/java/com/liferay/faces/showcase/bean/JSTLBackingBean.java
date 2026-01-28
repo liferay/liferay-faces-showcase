@@ -15,15 +15,15 @@
  */
 package com.liferay.faces.showcase.bean;
 
-import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.RequestScoped;
 import jakarta.faces.event.ActionEvent;
 
 
 /**
  * @author  Juan Gonzalez
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class JSTLBackingBean {
 

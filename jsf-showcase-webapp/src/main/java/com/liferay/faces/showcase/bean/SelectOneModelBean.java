@@ -18,9 +18,9 @@ package com.liferay.faces.showcase.bean;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
 
 import com.liferay.faces.showcase.dto.LiferayBenefit;
 import com.liferay.faces.showcase.service.LiferayBenefitService;
@@ -29,7 +29,7 @@ import com.liferay.faces.showcase.service.LiferayBenefitService;
 /**
  * @author  Vernon Singleton
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class SelectOneModelBean {
 
@@ -38,7 +38,7 @@ public class SelectOneModelBean {
 	private Date date;
 	private String phase;
 
-	@Inject
+	@ManagedProperty(name = "liferayBenefitService", value = "#{liferayBenefitService}")
 	private LiferayBenefitService liferayBenefitService;
 
 	public Long getBenefitId() {

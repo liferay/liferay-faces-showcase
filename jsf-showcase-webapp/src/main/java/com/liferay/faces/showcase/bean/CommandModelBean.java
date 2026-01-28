@@ -19,9 +19,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.faces.view.ViewScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.ViewScoped;
 
 import com.liferay.faces.showcase.dto.Customer;
 import com.liferay.faces.showcase.service.CustomerService;
@@ -31,7 +31,7 @@ import com.liferay.faces.showcase.service.CustomerService;
  * @author  Vernon Singleton
  * @author  Kyle Stiemann
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class CommandModelBean implements Serializable {
 
@@ -39,7 +39,7 @@ public class CommandModelBean implements Serializable {
 	private static final long serialVersionUID = 332271404377673109L;
 
 	// Injections
-	@Inject
+	@ManagedProperty(value = "#{customerService}")
 	private CustomerService customerService;
 
 	// Private Data Members

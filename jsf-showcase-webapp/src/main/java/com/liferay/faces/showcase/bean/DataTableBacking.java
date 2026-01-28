@@ -18,9 +18,9 @@ package com.liferay.faces.showcase.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.faces.view.ViewScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.ViewScoped;
 import jakarta.faces.model.DataModel;
 
 import com.liferay.faces.showcase.dto.Customer;
@@ -31,7 +31,7 @@ import com.liferay.faces.showcase.service.CustomerService;
 /**
  * @author  Neil Griffin
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class DataTableBacking implements Serializable {
 
@@ -39,7 +39,7 @@ public class DataTableBacking implements Serializable {
 	private static final long serialVersionUID = 1715081848553221866L;
 
 	// Injections
-	@Inject
+	@ManagedProperty(value = "#{customerService}")
 	private transient CustomerService customerService;
 
 	// Private Data Members
@@ -81,7 +81,7 @@ public class DataTableBacking implements Serializable {
 
 	public void setCustomerService(CustomerService customerService) {
 
-		// Injected via @Inject annotation.
+		// Injected via @ManagedProperty annotation.
 		this.customerService = customerService;
 	}
 

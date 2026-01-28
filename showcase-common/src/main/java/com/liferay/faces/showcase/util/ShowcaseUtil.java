@@ -46,7 +46,7 @@ public class ShowcaseUtil {
 	private static final String HTML_EXTENSION = ".html";
 	private static final String JAVADOC_PREFIX = "javadoc:";
 	private static final String JAVA_PACKAGE_PREFIX = "java.";
-	private static final String JAKARTA_PACKAGE_PREFIX = "jakarta.";
+	private static final String JAVAX_PACKAGE_PREFIX = "javax.";
 	private static final String JAVA_EE_JAVADOC_BASE_URL;
 	private static final String JAVA_SE_JAVADOC_BASE_URL;
 	private static final Product LIFERAY_FACES_ALLOY_PRODUCT = ProductFactory.getProduct(
@@ -194,7 +194,7 @@ public class ShowcaseUtil {
 		else if (fqcn.startsWith(PORTLET_API_PACKAGE_PREFIX)) {
 			javaDocURL.append(PORTLET_API_JAVADOC_BASE_URL);
 		}
-		else if (fqcn.startsWith(JAKARTA_PACKAGE_PREFIX)) {
+		else if (fqcn.startsWith(JAVAX_PACKAGE_PREFIX)) {
 			javaDocURL.append(JAVA_EE_JAVADOC_BASE_URL);
 		}
 		else if (fqcn.startsWith(LIFERAY_FACES_ALLOY_PACKAGE_PREFIX)) {

@@ -16,14 +16,14 @@
 package com.liferay.faces.showcase.bean;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.RequestScoped;
 
 
 /**
  * @author  Juan Gonzalez
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class ResetValuesBackingBean {
 

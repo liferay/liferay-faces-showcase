@@ -17,14 +17,14 @@ package com.liferay.faces.showcase.bean;
 
 import java.io.Serializable;
 
-import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ViewScoped;
 
 
 /**
  * @author  Kyle Stiemann
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class FacesContextHelperUtilBacking implements Serializable {
 

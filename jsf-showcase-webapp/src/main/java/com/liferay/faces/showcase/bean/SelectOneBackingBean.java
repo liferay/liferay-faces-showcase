@@ -21,9 +21,9 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import jakarta.faces.application.FacesMessage;
-import jakarta.inject.Named;
-import jakarta.inject.Inject;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.PhaseId;
 import jakarta.faces.event.ValueChangeEvent;
@@ -36,13 +36,13 @@ import com.liferay.faces.util.logging.LoggerFactory;
 /**
  * @author  Vernon Singleton
  */
-@Named
+@ManagedBean
 @RequestScoped
 public class SelectOneBackingBean {
 
 	private static final Logger logger = LoggerFactory.getLogger(SelectOneBackingBean.class);
 
-	@Inject
+	@ManagedProperty(name = "selectOneModelBean", value = "#{selectOneModelBean}")
 	private SelectOneModelBean selectOneModelBean;
 
 	public SelectItem[] getSelectItems() {

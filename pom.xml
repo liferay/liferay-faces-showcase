@@ -81,7 +81,7 @@
 		<faces.impl.group.id>org.glassfish</faces.impl.group.id>
 		<faces.impl.artifact.id>jakarta.faces</faces.impl.artifact.id>
 		<faces.impl.scope>runtime</faces.impl.scope>
-		<faces.spec.version>4.0.1</faces.spec.version>
+		<faces.spec.version>2.3.21-JAKARTA</faces.spec.version>
 		<faces.version>${mojarra.version}</faces.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<log4j.version>2.17.1</log4j.version>
