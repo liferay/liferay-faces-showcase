@@ -74,18 +74,18 @@
 	</modules>
 
 	<properties>
-		<faces.api.group.id>jakarta.faces</faces.api.group.id>
-		<faces.api.artifact.id>jakarta.faces-api</faces.api.artifact.id>
+		<faces.api.group.id>com.liferay</faces.api.group.id>
+		<faces.api.artifact.id>jakarta.faces.api</faces.api.artifact.id>
 		<faces.api.scope>provided</faces.api.scope>
 		<faces.api.version>${faces.spec.version}</faces.api.version>
-		<faces.impl.group.id>org.glassfish</faces.impl.group.id>
+		<faces.impl.group.id>com.liferay</faces.impl.group.id>
 		<faces.impl.artifact.id>jakarta.faces</faces.impl.artifact.id>
 		<faces.impl.scope>runtime</faces.impl.scope>
-		<faces.spec.version>2.3.21-JAKARTA</faces.spec.version>
+		<faces.spec.version>2.3.2.JAKARTA-LIFERAY-PATCHED-1</faces.spec.version>
 		<faces.version>${mojarra.version}</faces.version>
 		<full.version>${project.version} (${timestamp} AD)</full.version>
 		<log4j.version>2.17.1</log4j.version>
-		<mojarra.version>2.3.21</mojarra.version>
+		<mojarra.version>2.3.21.LIFERAY-PATCHED-2.JAKARTA-LIFERAY-PATCHED-1</mojarra.version>
 		<myfaces.version>UNSUPPORTED</myfaces.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -391,8 +391,8 @@
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>jakarta.faces</groupId>
-				<artifactId>jakarta.faces-api</artifactId>
+				<groupId>${faces.api.group.id}</groupId>
+				<artifactId>${faces.api.artifact.id}</artifactId>
 				<version>${faces.api.version}</version>
 				<scope>${faces.api.scope}</scope>
 			</dependency>
@@ -425,9 +425,9 @@
 				<version>${log4j.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.glassfish</groupId>
-				<artifactId>jakarta.faces</artifactId>
-				<version>${mojarra.version}</version>
+				<groupId>${faces.impl.group.id}</groupId>
+				<artifactId>${faces.impl.artifact.id}</artifactId>
+				<version>${faces.version}</version>
 				<scope>${faces.impl.scope}</scope>
 			</dependency>
 			<dependency>

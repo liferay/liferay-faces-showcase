@@ -227,8 +227,8 @@
 			<artifactId>jakarta.el-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>jakarta.faces</groupId>
-			<artifactId>jakarta.faces-api</artifactId>
+			<groupId>${faces.api.group.id}</groupId>
+			<artifactId>${faces.api.artifact.id}</artifactId>
 			<version>${faces.api.version}</version>
 			<scope>${faces.api.scope}</scope>
 		</dependency>
