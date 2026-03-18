@@ -364,7 +364,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.liferay.faces</groupId>
+				<groupId>com.liferay</groupId>
 				<artifactId>com.liferay.faces.util</artifactId>
 				<version>5.0.0</version>
 			</dependency>
