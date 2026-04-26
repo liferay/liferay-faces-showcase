@@ -46,7 +46,7 @@ public class ResourceVerifierShowcaseImpl extends ResourceVerifierWrapper implem
 	private static final String BOOTSTRAP_RESOURCE_ID = ResourceUtil.getResourceId("bootstrap",
 			"css/bootstrap.min.css");
 	private static final boolean JQUERY_SATISFIED = (LIFERAY_PORTAL.isDetected() &&
-			(LIFERAY_PORTAL.getMajorVersion() >= 7));
+			(LIFERAY_PORTAL.getMajorVersion() >= 7) && (LIFERAY_PORTAL.getMinorVersion() < 3));
 	private static final String JQUERY_JS_RESOURCE_ID = ResourceUtil.getResourceId("bootstrap", "js/jquery.min.js");
 
 	// Private Members
