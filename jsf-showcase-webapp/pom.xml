@@ -241,7 +241,7 @@
 			<artifactId>jakarta.servlet-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.liferay.faces.demo</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>com.liferay.faces.demo.showcase.common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
